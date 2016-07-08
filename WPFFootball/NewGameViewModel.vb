@@ -127,11 +127,11 @@ Public Class NewGameViewModel
     End Property
 
     Public Property MyHelmet As ImageSource
-    Get
+        Get
             Return _myhelmet
-    End Get
+        End Get
         Set(value As ImageSource)
-            _myhelmet=value
+            _myhelmet = value
             OnPropertyChanged("MyHelmet")
         End Set
     End Property
@@ -168,7 +168,7 @@ Public Class NewGameViewModel
 
 #End Region
 
-# Region "Enums"
+#Region "Enums"
 
     public Enum DivisionNames
         <Description("AFC East")> AFCE = 1
@@ -217,8 +217,7 @@ Public Class NewGameViewModel
         <Description("San Francisco 49ers")> SFO = 32
     End Enum
 
-   
-# End Region
+#End Region
 
     ''' <summary>
     '''     Sets the background picture of the screen
@@ -273,7 +272,7 @@ Public Class NewGameViewModel
     ''' <param name="TeamNum"></param>
     ''' <returns></returns>
 
-        Public Shared Function GetImage(TeamNum As Integer) As Image
+    Public Shared Function GetImage(TeamNum As Integer) As Image
         Dim MyImage As New Image
         Dim filepath = "Project Files/"
 
@@ -377,4 +376,6 @@ Public Class NewGameViewModel
         myBrush = DirectCast(converter.ConvertFromString(HexString), Brush)
         return MyBrush
     End Function
+
+
 End Class

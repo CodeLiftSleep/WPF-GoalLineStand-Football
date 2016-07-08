@@ -1,12 +1,11 @@
 ﻿Imports System.ComponentModel
 
-
 Public Class UserScreenViewModel
     Inherits NewGameViewModel
     Implements INotifyPropertyChanged
 
     Sub New()
-        
+
     End Sub
 
 #Region "INotifyPropertyChanged"
@@ -28,48 +27,48 @@ Public Class UserScreenViewModel
 #End Region
 
 #Region "Public Properties"
-        Public Property Image1 as ImageSource
-    Get
+    Public Property Image1 as ImageSource
+        Get
             return _image1
-    End Get
-       Set(value As ImageSource)
+        End Get
+        Set(value As ImageSource)
             _image1 = value
             OnPropertyChanged("Image1")
-       End Set
+        End Set
     End Property
-       Public Property Image2 as ImageSource
-    Get
+    Public Property Image2 as ImageSource
+        Get
             return _image2
-    End Get
+        End Get
         Set(value as ImageSource)
-            _image2=value
+            _image2 = value
             OnPropertyChanged("Image2")
         End Set
     End Property
-       Public Property Image3 as ImageSource
-    Get
+    Public Property Image3 as ImageSource
+        Get
             return _image3
-    End Get
+        End Get
         Set(value as ImageSource)
-            _image3=value
+            _image3 = value
             OnPropertyChanged("Image3")
         End Set
     End Property
-       Public Property Image4 as ImageSource
-    Get
+    Public Property Image4 as ImageSource
+        Get
             return _image4
-    End Get
+        End Get
         Set(value as ImageSource)
-            _image4=value
+            _image4 = value
             OnPropertyChanged("Image4")
         End Set
     End Property
-       Public Property Image5 as ImageSource
-    Get
+    Public Property Image5 as ImageSource
+        Get
             return _image5
-    End Get
+        End Get
         Set(value as ImageSource)
-            _image5=value
+            _image5 = value
             OnPropertyChanged("Image5")
         End Set
     End Property

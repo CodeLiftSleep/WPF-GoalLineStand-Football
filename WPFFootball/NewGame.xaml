@@ -145,7 +145,6 @@
                            Foreground="{Binding Path=MySecColor}"
                            Opacity="0.7" />
             </Border>
-
         </StackPanel>
         <TextBlock Grid.Column="1"
                    Width="420"
@@ -228,9 +227,7 @@
                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                         </Style>
                     </DataGrid.CellStyle>
-
                 </DataGrid>
-
             </Border>
             <TabControl x:Name="SalCapTabControl"
                         Width="{Binding Width,
@@ -304,5 +301,4 @@
             </Border>
         </StackPanel>
     </Grid>
-
 </Window>

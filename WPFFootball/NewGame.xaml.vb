@@ -7,7 +7,7 @@ Imports SQLFunctions
 Imports Troschuetz.Random
 Public Class NewGame
     private Readonly SQLTable as New SQLiteDataFunctions
-    public Shared  TeamDT as new DataTable
+    public Shared TeamDT as new DataTable
     private ReadOnly OwnerDT as new DataTable
     private ReadOnly PersonnelDT as new Datatable
     private ReadOnly CoachDT as new Datatable
@@ -25,12 +25,11 @@ Public Class NewGame
     Dim ReadOnly filepath As String = "Project Files/"
     Dim ReadOnly SR as New StreamReader(filepath + My.Resources.Schedule4GamesMaxTxt)
 
-
     Sub New()
         ' This call is required by the designer.
         InitializeComponent()
 
-        For Each team As NewGameViewModel.Teams In EnumToList (Of NewGameViewModel.Teams)()
+        For Each team As NewGameViewModel.Teams In EnumToList(Of NewGameViewModel.Teams)()
             TeamCombo.Items.Add(GetEnumDescription(team))
             myRand.NextUInt() 'Initiate the random number generator to get good randomness
         Next team
@@ -52,7 +51,7 @@ Public Class NewGame
         Football.Tables.Add(TeamDT)
     End Sub
 
-    Private Shared Function EnumToList (Of T)() As IEnumerable(Of T)
+    Public Shared Function EnumToList(Of T)() As IEnumerable(Of T)
         Dim enumType As Type = GetType(T)
 
         ' Can't use generic type constraints on value types,
@@ -71,7 +70,7 @@ Public Class NewGame
         Return enumValList
     End Function
 
-    Private Shared Function GetEnumDescription(value As [Enum]) As String
+    Public Shared Function GetEnumDescription(value As [Enum]) As String
         Dim fi As FieldInfo = value.[GetType]().GetField(value.ToString())
 
         Dim attributes = DirectCast(fi.GetCustomAttributes(GetType(DescriptionAttribute), False), DescriptionAttribute())
@@ -113,13 +112,13 @@ Public Class NewGame
         Dim MyDiv as New NewGameViewModel.DivisionNames
         dim MyAvg as integer = TeamDT.Rows(teamnum).Item("AvgAttendance")
         dim MyCap as Integer = TeamDT.Rows(teamnum).Item("StadiumCapacity")
-        Dim PerOfCap as Single = Math.Round(((myavg/mycap)*100), 1)
+        Dim PerOfCap as Single = Math.Round(((myavg / mycap) * 100), 1)
         Dim Off As Integer = myRand.NextUInt(75, 99)
         Dim Def As Integer = myRand.NextUInt(75, 99)
         Dim ST As Integer = myrand.NextUInt(75, 99)
         Dim SalCapTotal as integer = myRand.NextUInt(151000000, 159000000)
-        dim Top51Contracts As integer = SalCapTotal*(myrand.NextDouble(.80, .93))
-        dim TotContracts as integer = Top51Contracts*(myRand.NextDouble(1.02, 1.06))
+        dim Top51Contracts As integer = SalCapTotal * (myrand.NextDouble(.80, .93))
+        dim TotContracts as integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
         dim DeadCap as integer = myRand.NextUInt(3000000, 12000000)
         dim AvailCap as Integer = SalCapTotal - TotContracts - DeadCap
 
@@ -189,7 +188,7 @@ Public Class NewGame
         TeamStaff.Inlines.Add(New LineBreak)
 
         TeamRatings.Text = String.Format("Team Ratings: OFF: {0}  DEF: {1}  ST: {2}  Overall: {3} ", Off, Def, ST,
-                                         CInt((Off*.4) + (def*.4) + (ST*.2)))
+                                         CInt((Off * .4) + (def * .4) + (ST * .2)))
 
         TempDT = SQLTable.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1),
                                       "Pos")

@@ -74,7 +74,7 @@
                 Margin="2,3,0,2"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Command="{Binding Path=EventBtn}"
+                Command="{Binding EventBtn}"
                 Content="Events"
                 FontSize="12"
                 FontWeight="ExtraBold"
@@ -87,6 +87,7 @@
                 Margin="2,3,0,2"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                Command="{Binding StandingsBtn}"
                 Content="Standings"
                 FontSize="12"
                 FontWeight="ExtraBold"
@@ -99,6 +100,7 @@
                 Margin="2,3,0,2"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                Command="{Binding TransBtn}"
                 Content="Transactions"
                 FontSize="12"
                 FontWeight="ExtraBold"
@@ -146,13 +148,28 @@
                       CanUserResizeRows="False"
                       CanUserSortColumns="True"
                       ColumnWidth="Auto"
+                      FontSize="11"
+                      FontWeight="ExtraBold"
                       GridLinesVisibility="Horizontal"
                       HorizontalScrollBarVisibility="Auto"
                       ItemsSource="{Binding Path=MyDT[0]}"
-                      Opacity="0.4"
+                      Opacity="0.6"
                       RowBackground="SlateGray"
-                      RowHeight="15"
-                      VerticalScrollBarVisibility="Auto" />
+                      RowHeight="25"
+                      VerticalScrollBarVisibility="Auto">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Background" Value="LightGoldenrodYellow" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
         </Border>
     </Grid>
 </Window>

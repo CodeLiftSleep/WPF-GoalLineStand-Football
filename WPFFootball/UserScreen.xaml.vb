@@ -95,7 +95,7 @@ Public Class UserScreen
         End If
     End Sub
 
-    Private Sub LGSet_OnClick(sender As Object, e As RoutedEventArgs)
+    Private Sub LgSet_OnClick(sender As Object, e As RoutedEventArgs)
         dim mySettings as new GameSettings(myTeam)
         mysettings.Show()
         GetWindow(mysettings)
