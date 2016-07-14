@@ -1,0 +1,41 @@
+###League Events: Format EVENT DATE;EVENT NAME;EVENT LOCATION###
+2/16/16;First Day to Designate Franchise/Transition Tag Players;---
+2/23/16;NFL Combine;Indianpolis, IN
+3/1/16;Franchise/Transition Tag deadline(4PM ET);---
+3/9/16;Free Agency Begins;---
+3/9/16;Deadline to submit RFA offers(4PM ET);---
+3/20/16;NFL Annual Meetings Begin;Boca Raton, FL
+3/23/16;NFL Annual Meetings End;Boca Raton, FL
+4/4/16;Teams with new Head Coaches can begin offseason programs;---
+4/18/16;Teams with returning Head Coaches can begin offseason programs;---
+4/28/16;NFL Draft Round 1;Chicago, IL
+4/29/16;NFL Draft Round 2 and 3;Chicago, IL
+4/30/16;NFL Draft Round 4 thru 7;Chicago, IL
+5/6/16;First Rookie Minicamp;---
+5/13/16;Second Rookie Minicamp;---
+5/23/16;NFL Spring Meetings Begin;Charlotte, NC
+5/25/16;NFL Spring Meetings End;Charlotte, NC
+6/7/16;First week for Mandatory MiniCamps;---
+6/19/16;NFL Rookie Symposium Begins;Aurora, OH
+6/25/16;NFL Rookie Symposium Ends;Aurora, OH
+7/15/16;Deadline for Franchise Tagged Players to sign long term deals(4PM ET);---
+7/22/16;Earliest Date for Rookies to Report to Training Camp;---
+7/25/16;Earliest Date for Veterans to Report to Training Camp;---
+8/6/16;NFL Hall Of Fame Enshrinement Ceremonies;Canton, OH
+8/7/16;NFL Hall of Fame Game;Canton, OH
+8/11/16;NFL Preseason Begins;---
+8/31/16;Deadline for NFL Rosters to be reduced to 75 players(4PM ET);---
+9/2/16;NFL Preseason Ends;---
+9/4/16;Deadline for NFL Rosters to be reduced to 53 players(4PM ET);---
+9/5/16;10 Player NFL Practice Squads Can Be Established;---
+9/8/16;NFL Regular Season Begin;---
+9/8/16;'Top 51' Rule Expires for All NFL Teams;---
+10/7/16;NFL Fall Meeting Begins;New York, NY
+10/8/16;NFL Fall Meeting Ends;New York, NY
+11/1/16;NFL Trade Deadline(4PM ET);---
+1/1/17;NFL Regular Season Ends;---
+1/7/17;NFL WildCard Weekend Kicks Off;TBD
+1/14/17;NFL Divisional Playoff Round Kicks Off;TBD
+1/22/17;NFL Conference Championship Games;TBD
+1/29/17;NFL Pro Bowl Game;Orlando, FL
+2/5/17;Super Bowl;Houston, TX

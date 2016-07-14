@@ -1,6 +1,8 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
 Imports System.Data
+Imports System.IO
+Imports System.Linq
 
 Public Class LeagueHomeViewModel
     Inherits NewGameViewModel
@@ -10,47 +12,44 @@ Public Class LeagueHomeViewModel
 
     Public Shadows Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-    private Sub OnPropertyChanged(name As String)
+    Private Sub OnPropertyChanged(name As String)
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
     End Sub
 
 #End Region
 
 #Region "Private Variables"
-    Private _leaguedate as Date
-    Private _myDT as New ObservableCollection(Of DataTable)
-    Private _eventBtn as New Command(AddressOf LgEvent)
-    Private _standingsBtn as New Command(AddressOf LgStandings)
+    Private _leaguedate As Date
+    Private _myDT As New ObservableCollection(Of DataTable)
+    Private _eventBtn As New Command(AddressOf LgEvent)
+    Private _standingsBtn As New Command(AddressOf LgStandings)
     Private _transBtn As New Command(AddressOf LgTrans)
-
-   
+    Private _injuriesBtn As New Command(AddressOf LgInjuries)
+    Private _milestonesBtn As New Command(AddressOf LgMilestones)
 
 #End Region
-
 #Region "Public Properties"
-    Public Property Leaguedate as Date
+    Public Property Leaguedate As Date
         Get
-            return _leaguedate
+            Return _leaguedate
         End Get
-        Set(value as Date)
+        Set(value As Date)
             _leaguedate = value
             OnPropertyChanged("Leaguedate")
         End Set
     End Property
-
-    Public Property MyDT as ObservableCollection(Of DataTable)
+    Public Property MyDT As ObservableCollection(Of DataTable)
         Get
             Return _myDT
         End Get
-        Set(value as ObservableCollection(Of DataTable))
+        Set(value As ObservableCollection(Of DataTable))
             _myDT = value
             OnPropertyChanged("MyDT")
         End Set
     End Property
-
-    Public ReadOnly Property EventBtn as ICommand
+    Public ReadOnly Property EventBtn As ICommand
         Get
-            return _eventBtn
+            Return _eventBtn
         End Get
     End Property
     Public ReadOnly Property StandingsBtn As ICommand
@@ -59,190 +58,157 @@ Public Class LeagueHomeViewModel
         End Get
     End Property
     Public ReadOnly Property TransBtn As ICommand
-    Get
-            Return _TransBtn
-    End Get
+        Get
+            Return _transBtn
+        End Get
     End Property
-
+    Public ReadOnly Property InjuriesBtn As Command
+        Get
+            Return _injuriesBtn
+        End Get
+    End Property
+    Public ReadOnly Property MilestonesBtn As Command
+        Get
+            Return _milestonesBtn
+        End Get
+    End Property
 #End Region
 
 #Region "Commands"
     ''' <summary>
     ''' Controls what happens when Event Button is clicked
     ''' </summary>
-    Private Sub LgEvent
-        Dim TempDT as new DataTable
-        Dim MyDate as new Date
-        Dim formatpattern as String = "ddd MMMM dd, yyyy"
+    Private Sub LgEvent()
+        Dim TempDT As New DataTable
+        Dim ColNames() As String = {"Date", "Event Scheduled", "Location"}
 
-        TempDT.Columns.Add("Date", GetType(string))
-        TempDT.Columns.Add("Event Scheduled", GetType(String))
-        TempDT.Columns.Add("Location", GetType(String))
-
-        '##TODO: Add in code that actually pulls the events---possibly to a function that uses a ParamArray to take Column Names and returns the filled DT
-        'so it can be reused with each Command Event.  Likely will put the Events in a formatted text file and use a StreamReader to pull them out
-
-        MyDate = "2/16/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "First Day to Designate Franchise/Transition Tag Players", "---")
-        MyDate = "2/23/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Combine", "Indianapolis, IN")
-        MyDate = "3/1/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Franchise/Transition Tag Deadline(4PM ET)", "---")
-        MyDate = "3/9/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Free Agency Begins", "---")
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Deadline to Submit RFA Offers(4PM ET)", "---")
-        MyDate = "3/20/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Annual Meetings Begin", "Boca Raton, FL")
-        MyDate = "3/23/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Annual Meetings End", "Boca Raton, FL")
-        MyDate = "4/4/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Teams with new Head Coaches can begin offseason programs", "---")
-        MyDate = "4/18/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Teams with returning Head Coaches can begin offseason programs", "Boca Raton, FL")
-        MyDate = "4/28/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Draft Round 1", "Chicago, IL")
-        MyDate = "4/29/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Draft Round 2 and 3", "Chicago, IL")
-        MyDate = "4/30/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Draft Round 4 thru 7", "Chicago, IL")
-        MyDate = "5/6/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "First Rookie Minicamp", "---")
-        MyDate = "5/13/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Second Rookie Minicamp", "---")
-        MyDate = "5/23/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Spring Meetings Begin", "Charlotte, NC")
-        MyDate = "5/25/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Spring Meetings End", "Charlotte, NC")
-        MyDate = "6/7/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "First week for Mandatory MiniCamps", "---")
-        MyDate = "6/19/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Rookie Symposium Begins", "Aurora, OH")
-        MyDate = "6/25/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Rookie Symposium Ends", "Aurora, OH")
-        MyDate = "7/15/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Deadline for Franchise Tagged Players to sign long term deals(4PM ET)", "---")
-        MyDate = "7/22/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Earliest Date for Rookies to Report to Training Camp", "---")
-        MyDate = "7/25/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Earliest Date for Veterans to Report to Training Camp", "---")
-        MyDate = "8/6/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Hall Of Fame Enshrinement Ceremonies", "Canton, OH")
-        MyDate = "8/7/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Hall of Fame Game", "Canton, OH")
-        MyDate = "8/11/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Preseason Begins", "---")
-        MyDate = "8/31/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Deadline for NFL Rosters to be reduced to 75 players(4PM ET)", "---")
-        MyDate = "9/2/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Preseason Ends", "---")
-        MyDate = "9/4/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Deadline for NFL Rosters to be reduced to 53 players(4PM ET)", "---")
-        MyDate = "9/5/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "10 Player NFL Practice Squads Can Be Established", "---")
-        MyDate = "9/8/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Regular Season Begin", "---")
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "'Top 51' Rule Expires for All NFL Teams", "---")
-        MyDate = "10/7/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Fall Meeting Begins", "New York, NY")
-        MyDate = "10/8/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Fall Meeting Ends", "New York, NY")
-        MyDate = "11/1/16"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Trade Deadline(4PM ET)", "---")
-        MyDate = "1/1/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Regular Season Ends", "---")
-        MyDate = "1/7/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL WildCard Weekend Kicks Off", "TBD")
-        MyDate = "1/14/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Divisional Playoff Round Kicks Off", "TBD")
-        MyDate = "1/22/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Conference Championship Games", "TBD")
-        MyDate = "1/29/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "NFL Pro Bowl Game", "Orlando, FL")
-        MyDate = "2/5/17"
-        TempDT.Rows.Add(MyDate.ToString(formatpattern), "Super Bowl", "Houston, TX")
-        
+        MyDT.Clear()
+        ReadFile("LeagueEvents.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
         MyDT.Add(TempDT)
+
     End Sub
 
     ''' <summary>
     ''' Controls what happens when LgStandings Button is Clicked
     ''' </summary>
-    Private Sub LgStandings
+    Private Sub LgStandings()
         MyDT.Clear()
         Dim TempDT As New DataTable
-        Dim Teams As New Teams       
-        
-        TempDT.Columns.Add("Team Name", GetType(String))
-        TempDT.Columns.Add("Wins||", GetType(string))
-        TempDT.Columns.Add("Losses||", GetType(string))
-        TempDT.Columns.Add("Ties||",GetType(string))
-        TempDT.Columns.Add("Points For||",GetType(string))
-        TempDT.Columns.Add("Pts Against||",GetType(string))
-        TempDT.Columns.Add("Net Pts||",GetType(string))
-        TempDT.Columns.Add("Home||",GetType(string))
-        TempDT.Columns.Add("Road||",GetType(string))
-        TempDT.Columns.Add("Div||",GetType(string))
-        TempDT.Columns.Add("Conf||",GetType(string))
-        TempDT.Columns.Add("Non-Conf||",GetType(string))
-        TempDT.Columns.Add("Streak||",GetType(string))
+        Dim ColNames() As String = {"Team Name", "Wins||", "Losses||", "Ties||", "Points For||", "Pts Against||", "Net Pts||", "Home||", "Road||", "Div||", "Conf||", "Non-Conf||", "Streak||"}
+        Dim DivId As Integer = 1
+        GetColumnNames(TempDT, ColNames)
 
-        '##TODO: Add in code that actually pulls the League Standings---possibly to a function that uses a ParamArray to take Column Names and returns the filled DT
-        'so it can be reused with each Command Event.
-
-        For Each team As Teams In NewGame.EnumToList(Of Teams)() 'cycle through teams in the enum list and add their description
+        While DivId < 9
+            'LINQ Query to get DB info
+            Dim GetDiv =
+                From myrow In NewGame.TeamDT
+                Where myrow.Item("DivID") = DivId
+                Order By (myrow.Item("DivStanding"))
+                Select New With {
+                    .TeamName = myrow.Item("TeamName") + " " + myrow.Item("TeamNickName"),
+                    .Wins = myrow.Item("Wins"), .Losses = myrow.Item("Losses"), .Ties = myrow.Item("Ties"),
+                    .PF = 0, .PA = 0, .NP = 0, .Home = String.Format($"{myrow.Item("Home Wins")}-{myrow.Item("Home Losses")}-{myrow.Item("HomeTies")}"),
+                    .Road = String.Format($"{myrow.Item("Away Wins")}-{myrow.Item("Away Losses")}-{myrow.Item("AwayTies")}"),
+                    .Div = String.Format($"{myrow.Item("DivWins")}-{myrow.Item("DivLosses")}-{myrow.Item("DivTies")}"),
+                    .Conf = String.Format($"{myrow.Item("ConfWins")}-{myrow.Item("ConfLosses")}-{myrow.Item("ConfTies")}"),
+                    .NonConf = String.Format($"{(myrow.Item("Wins") - myrow.Item("ConfWins"))}-{(myrow.Item("Losses") - myrow.Item("ConfLosses"))}-{(myrow.Item("Ties") - myrow.Item("ConfTies"))}"),
+                    .Streak = 0}
 
             Select Case TempDT.Rows.Count 'Add the column header for each Division
-                Case 0:  TempDT.Rows.Add("AFC East","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 5:  TempDT.Rows.Add("AFC North","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 10:  TempDT.Rows.Add("AFC Central","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 15: TempDT.Rows.Add("AFC South","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 20: TempDT.Rows.Add("NFC East","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 25: TempDT.Rows.Add("NFC North","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 30: TempDT.Rows.Add("NFC Central","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
-                Case 35: TempDT.Rows.Add("NFC South","W", "L","T","PF","PA","Net", "Home","Road","Div","Conf","Non-Conf","Strk")
+                Case 0 : TempDT.Rows.Add("AFC East", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 5 : TempDT.Rows.Add("AFC North", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 10 : TempDT.Rows.Add("AFC Central", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 15 : TempDT.Rows.Add("AFC South", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 20 : TempDT.Rows.Add("NFC East", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 25 : TempDT.Rows.Add("NFC North", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 30 : TempDT.Rows.Add("NFC Central", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
+                Case 35 : TempDT.Rows.Add("NFC South", "W", "L", "T", "PF", "PA", "Net", "Home", "Road", "Div", "Conf", "Non-Conf", "Strk")
             End Select
-            TempDT.Rows.Add({$"{NewGame.GetEnumDescription(team)}",0,0,0,0,0,0,"0-0","0-0","0-0","0-0","0-0","W0"})
-        Next team
-       
-        
+
+            For Each item In GetDiv
+                TempDT.Rows.Add().ItemArray = {item.TeamName, item.Wins, item.Losses, item.Ties, item.PF, item.PA, item.NP, item.Home, item.Road, item.Div, item.Conf,
+                    item.NonConf, item.Streak}
+            Next item
+            'Adds a header under each Division
+
+            DivId += 1
+        End While
+
         MyDT.Add(TempDT)
 
     End Sub
     ''' <summary>
-    ''' Controls what happens when LgTrans Button is Clicked
+    ''' Controls what happens when LgTrans Button is Clicked---reads the Lg
     ''' </summary>
-     Private Sub LgTrans()
+    Private Sub LgTrans()
         MyDT.Clear()
-        Dim TempDT As New DataTable 
-        Dim MyDate as new Date
-        Dim Team As New Teams
-        Dim formatpattern as String = "M/dd"
-        
-        '##TODO: Add in code that actually pulls the transcations---possibly to a function that uses a ParamArray to take Column Names and returns the filled DT
-        'so it can be reused with each Command Event.
-    
-        TempDT.Columns.Add("Team",GetType(string))      
-        TempDT.Columns.Add("Trans Date",GetType(string))
-        TempDT.Columns.Add("Player Name",GetType(String))
-        TempDT.Columns.Add("Position",GetType(String))
-        TempDT.Columns.Add("Transaction Type",GetType(String)) 
-        
-        MyDate="6/17/16"
-       
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.BUF)}",MyDate.ToString(formatpattern),"Justin Renfrow", "OT","Free Agent Signing"})
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.BUF)}",MyDate.ToString(formatpattern),"Phillip Thomas", "DB","Waived, Injured, Prior to Cut to 75"})
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.GNB)}",MyDate.ToString(formatpattern),"Kenny Clark", "NT", "Selection List Signing"})
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.NYJ)}",MyDate.ToString(formatpattern),"Kyle Williams", "WR", "Free Agent Signing"})
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.NWO)}",MyDate.ToString(formatpattern),"Jamarca Sanford", "SS", "Reserve/Injured; Prior to Cut to 75"})
-        TempDT.Rows.Add({$"{NewGame.GetEnumDescription(Teams.NWO)}",MyDate.ToString(formatpattern),"Lawrence Virgil", "DT", "Free Agent Signing"})
-
-
-        
-
-
-
-
+        Dim TempDT As New DataTable
+        Dim ColumnNames() As String = {"Team", "Trans Date", "Player Name", "Position", "Transaction Type"}
+        ReadFile("LeagueTrans.Txt", ColumnNames, TempDT, "M/dd", 1, "Trans Date DESC")
         MyDT.Add(TempDT)
+    End Sub
+    ''' <summary>
+    ''' Controls what happens when LgInjuries Button is Clicked
+    ''' </summary>
+    Private Sub LgInjuries()
+        MyDT.Clear()
+        Dim TempDT As New DataTable
+        Dim ColumnNames() As String = {"Team", "Inj Date", "Player Name", "Position", "Body Part", "Prognosis"}
+        ReadFile("LeagueInj.Txt", ColumnNames, TempDT, "M/dd", 1, "Inj Date DESC")
+        MyDT.Add(TempDT)
+    End Sub
+
+    Private Sub LgMilestones()
+        MyDT.Clear()
+        Dim TempDT As New DataTable
+        Dim ColumnNames() As String = {"Team", "Milestone Date", "Player Name", "Position", "Milestone Achieved"}
+        ReadFile("LeagueMile.Txt", ColumnNames, TempDT, "M/dd", 1, "Milestone Date DESC")
+        MyDT.Add(TempDT)
+    End Sub
+    ''' <summary>
+    ''' Takes in the name of the file, ColumnName str array, and a DT.  Reads each line of the file, splits it by a ";" and then adds in the array to the DT
+    ''' after calling the GetColumnNames Sub to take the parameter array and create columns. Optional Parameters for DateFormatting string and the index which which to apply it
+    ''' </summary>
+    ''' <param name="FileName"></param>
+    ''' <param name="ColumnNames"></param>
+    ''' <param name="DT"></param>
+    ''' <param name="DateFormatPattern"></param>
+    ''' <param name="DateFormatIndex"></param>
+    Private Sub ReadFile(ByVal FileName As String, ByVal ColumnNames() As String, ByVal DT As DataTable, Optional DateFormatPattern As String = "",
+                         Optional DateFormatIndex As Integer = -1, Optional OrderBy As String = "")
+        Dim str As String = ""
+        Dim myarray() As String
+
+        GetColumnNames(DT, ColumnNames)
+        'Automatically dispose of the StreamReader once its completed.
+        Using myreader As New StreamReader(FileName)
+            'First Line contains information about formatting and not actual content
+            myreader.ReadLine()
+            While myreader.EndOfStream = False
+                str = myreader.ReadLine()
+                myarray = str.Split(";")
+                'Checks to see if there is a Date involved and if there is, formats it to its proper form before returning it back to the array
+                If DateFormatPattern <> "" Then
+                    Dim MyDate As New Date
+                    MyDate = myarray(DateFormatIndex)
+                    myarray(DateFormatIndex) = MyDate.ToString(DateFormatPattern)
+                End If
+
+                'Adds the array to the data row and sorts it according to the parameter supplied
+                DT.Rows.Add().ItemArray = myarray
+                DT.Select("", OrderBy, DataViewRowState.CurrentRows)
+            End While
+        End Using
+    End Sub
+    ''' <summary>
+    ''' Takes a string parameter array for the column names and then adds the columns by looping through the array
+    ''' </summary>
+    ''' <param name="DT"></param>
+    ''' <param name="args"></param>
+    Private Sub GetColumnNames(ByVal DT As DataTable, ByVal ParamArray args() As String)
+        For i = 0 To args.Count - 1
+            DT.Columns.Add(args(i))
+        Next i
     End Sub
 #End Region
 
@@ -250,7 +216,7 @@ Public Class LeagueHomeViewModel
         Implements ICommand
 
 #Region "Private Variables"
-        Private ReadOnly _action as Action
+        Private ReadOnly _action As Action
 #End Region
         Sub New(myAction As Action)
             _action = myAction
@@ -259,7 +225,7 @@ Public Class LeagueHomeViewModel
         Public Event CanExecuteChanged As EventHandler Implements ICommand.CanExecuteChanged
 
         Public Sub Execute(parameter As Object) Implements ICommand.Execute
-            _action
+            _action()
         End Sub
 
         Public Function CanExecute(parameter As Object) As Boolean Implements ICommand.CanExecute

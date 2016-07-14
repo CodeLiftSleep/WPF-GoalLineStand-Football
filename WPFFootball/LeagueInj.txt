@@ -1,0 +1,14 @@
+###FORMAT: TEAM;INJURY DATE;PLAYER NAME;POSITION;BODY PART;PROGNOSIS
+Cleveland Browns;7/13/16;Desmond Bryant;DL;Chest;Expected to miss the entire 2016 season with a Torn Pec
+Detroit Lions;7/11/16;Timothy Wright;TE;Knee;Expected to miss the entire 2016 season with a Torn ACL
+Kansas City Chiefs;7/11/16;Kenny Cook;WR;Quad;Expected to miss the entire 2016 season with a Torn Quad
+New England Patriots;7/11/16;Michael Williams;TE;Knee;Expected to miss the entire 2016 season with a Torn ACL
+New York Giants;7/11/16;Uani' Unga;LB;Undisclosed;Unga suffered an undisclosed injury and his prognosis is unknown at this time
+Tampa Bay Buccaneers;7/7/16;Dominique Robertson;OG;Leg;Out indefinitely recovering from gunshot wounds
+Baltimore Ravens;7/1/16;Darren Waller;TE;Suspension;Suspended 4 games for violating the League Substance Abuse Policy
+New York Jets;6/30/16;Sheldon Richardson;DT;Suspension;Suspended one game for violating the League Personal Conduct Policy
+Detroit Lions;6/30/16;Stevan Ridley;RB;Undisclosed;Missed most of offseason workouts with undisclosed injury, status uncertain
+Dallas Cowboys;6/30/16;Rolando McClain;LB;Suspension;Suspended 10 games for violating the League Substance Abuse Policy
+New Orleans Saints;6/27/16;Kyle Wilson;DB;Shoulder;Expected to miss the entire 2016 season with a Torn Labrum
+Miami Dolphins;6/25/16;Ifo Ekpre-Olomu;DB;Knee;Questionable for the start of training camp
+New England Patriots;6/20/16;LeGarrette Blount;RB;Hip;Questionable for the start of training camp
