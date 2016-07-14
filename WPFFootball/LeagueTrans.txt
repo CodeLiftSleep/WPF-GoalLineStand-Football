@@ -1,0 +1,34 @@
+###FORMAT: TEAMNAME;TRANSACTION DATE;PERSON NAME;POSITION;TRANSACTION TYPE
+Buffalo Bills;6/17/16;Justin Renfrow;OT;Free Agent Signing
+Buffalo Bills;6/17/16;Phillip Thomas;DB;Waived Injured, Prior to Cut to 75
+Green Bay Packers;6/17/16;Kenny Clark;NT;Selection List Signing
+New York Jets;6/17/16;Kyle Williams;WR;Free Agent Signing
+New Orleans Saints;6/17/16;Jamarca Sanford;SS;Reserve/Injured, Prior to Cut to 75
+New Orleans Saints;6/17/16;Lawrence Virgil;DT;Free Agent Signing
+Seattle Seahawks;6/20/16;Jordan Babineaux/Jackie Montgomery;NA;Named Digital Media Hosts
+Jacksonville Jaguars;6/21/16;Yannick Ngakoue;DE;Signed to 4 Year Contract
+Buffalo Bills;6/21/16;Pete Harris;BLESTO Scout;Promoted to College Area Scout
+Buffalo Bills;6/21/16;Bo Taliaferro;College scouting Asst;Promoted to BLESTO Scout
+Buffalo Bills;6/21/16;Bud Carpenter;Trainer;Promoted to Director of Athletic Training Operations
+Buffalo Bills;6/21/16;Shone Gipson;Asst. Trainer;Promoted To Head Trainer
+Buffalo Bills;6/21/16;Chris Fischetti;Asst. Trainer;Promote to Head of Rehabilitation and Injury Management Services
+Buffalo Bills;6/21/16;Kelvin Fisher;---;Named as Player Personnel Advisor
+Buffalo Bills;6/21/16;Ryan Hollern;---;Named as College Scouting Coordintor
+Buffalo Bills;6/21/16;Collin Dotterer;---;Named Player Personnel Assistant
+Cleveland Browns;6/24/16;Joe Schobert;LB;Free Agent Signing
+New Orleans Saints;6/24/16;Kyle Wilson;CB;Placed on Injured Reserve
+New Orleans Saints;6/24/16;C.J. Wilson;DT;Free Agent Signing
+Pittsburgh Steelers;6/24/16;Shaun Suisham;K;Released from Roster
+Pittsburgh Steelers;6/24/16;Brandon Johnson;RB;Free Agent Signing
+Houston Texans;6/28/16;Will Fuller;WR;Free Agent Signing
+Seattle Seahawks;6/28/16;Doug Baldwin;WR;Agreed to terms on 4 Year Contract Extension
+Seattle Seahawks;6/28/16;Nolan Frese;LS;Free Agent Signing
+Seattle Seahawks;6/28/16;Khairi Fortt;LB;Released from Roster
+Cleveland Browns;6/29/16;Carl Nassib;DL;Free Agent Signing
+Indianapolis Colts;6/29/16;Andrew Luck;Agreed to Terms on a 5 Year Contract Extension
+Cleveland Browns;6/30/16;Connor Shaw;QB;Waived from Roster
+Detroit Lions;7/5/16;Stephen Tulloch;LB;Released from Roster
+New Orleans Saints;7/6/16;Darryl Tapp;DE;Free Agent Signing
+New Orleans Saints;7/6/16;Jack Tabb;TE;Waived from Roster
+Tennessee Titans;7/8/16;Dr. David More;---;Appointed Team Physician
+New York Giants;7/11/16;Brad Wing;P;Agreed to Terms on a 3 Year Contract Extension

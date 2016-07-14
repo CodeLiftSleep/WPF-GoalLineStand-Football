@@ -248,6 +248,16 @@
     <Resource Include="Project Files\PatriotsTunnel.jpg" />
     <Resource Include="Project Files\NFLWallpaper.jpg" />
     <Resource Include="Project Files\NFLWallpaper2.jpg" />
+    <Resource Include="LeagueEvents.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="LeagueTrans.txt" />
+    <Resource Include="LeagueInj.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="LeagueMile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Project Files\Schedule4GamesMax.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
