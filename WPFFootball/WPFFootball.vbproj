@@ -235,12 +235,6 @@
     <Resource Include="Project Files\footballfield.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLFunctions\SQLFunctions\SQLFunctions.vbproj">
-      <Project>{5a4a94c5-fc1d-4301-a83f-810d1961f4ba}</Project>
-      <Name>SQLFunctions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Project Files\ArizonaCardinals3.jpg" />
     <Resource Include="Project Files\Arizona_Cardinals.jpg" />
     <Resource Include="Project Files\Arizona_Cardinals2.jpg" />
@@ -363,6 +357,12 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\RefactoringEssentials.4.1.0\analyzers\dotnet\RefactoringEssentials.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLFunctions\SQLFunctions.vbproj">
+      <Project>{5a4a94c5-fc1d-4301-a83f-810d1961f4ba}</Project>
+      <Name>SQLFunctions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

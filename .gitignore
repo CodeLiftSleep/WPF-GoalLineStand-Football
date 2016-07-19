@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+!SQLite.Interop.dll #Except for SQLite.Interop.dll
+!SQLite.Interop.dll #Except for SQLite.Interop.dll
