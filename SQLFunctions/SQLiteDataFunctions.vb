@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SQLite
 Imports System.Collections
 Imports System.Text
+Imports System.IO
 
 Public Class SQLiteDataFunctions
     'Dim Conn As SQLite.SQLiteConnection = New SQLite.SQLiteConnection()
@@ -132,23 +133,65 @@ Public Class SQLiteDataFunctions
             MyConn.Close()
         End Using
     End Sub
-''' <summary>
-''' Uses the Filterstring  to hold a list of Columns to Filter by, if all columns are wanted put a * as the only item in the string
-''' </summary>
-''' <param name="OrigDT"></param>
-''' <param name="NewDT"></param>
-''' <param name="FilterString"></param>
-''' <param name="SortBy"></param>
-''' <returns></returns>
-    Public Function FilterTable(ByVal OrigDT As DataTable, byval NewDT As DataTable, byval FilterString As string, ByVal SortBy as string) As DataTable
-        Dim FoundRows() as Datarow
-        Dim MyTempDT as new DataTable
-        
-        FoundRows=(OrigDT.Select(FilterString,SortBy,DataViewRowState.CurrentRows))
-        MyTempDT = FoundRows.CopyToDataTable()
-        Dim MyView As new DataView(MyTempDT)
+    ''' <summary>
+    ''' Uses the Filterstring  to hold a list of Columns to Filter by, if all columns are wanted put a * as the only item in the string
+    ''' </summary>
+    ''' <param name="OrigDT"></param>
+    ''' <param name="NewDT"></param>
+    ''' <param name="FilterString"></param>
+    ''' <param name="SortBy"></param>
+    ''' <returns></returns>
+    Public Function FilterTable(ByVal OrigDT As DataTable, ByVal NewDT As DataTable, ByVal FilterString As String, ByVal SortBy As String) As DataTable
+        Dim FoundRows() As DataRow
+        Dim MyTempDT As New DataTable
 
-        NewDT=MyView.ToTable(False,"FName","LName","College","Age","DOB","Height","Weight","Pos","PosType","FortyYardTime", "Dominant", "Weakest")
-        return NewDT
-        End Function
+        FoundRows = (OrigDT.Select(FilterString, SortBy, DataViewRowState.CurrentRows))
+        MyTempDT = FoundRows.CopyToDataTable()
+        Dim MyView As New DataView(MyTempDT)
+
+        NewDT = MyView.ToTable(False, "FName", "LName", "College", "Age", "DOB", "Height", "Weight", "Pos", "PosType", "FortyYardTime", "Dominant", "Weakest")
+        Return NewDT
+    End Function
+
+    ''' <summary>
+    ''' Takes in the name of the file, ColumnName str array, and a DT.  Reads each line of the file, splits it by a ";" and then adds in the array to the DT
+    ''' after calling the GetColumnNames Sub to take the parameter array and create columns. Optional Parameters for DateFormatting string and the index which which to apply it
+    ''' </summary>
+    ''' <param name="FileName"></param>
+    ''' <param name="ColumnNames"></param>
+    ''' <param name="DT"></param>
+    ''' <param name="DateFormatPattern"></param>
+    ''' <param name="DateFormatIndex"></param>
+    Public Shared Sub ReadFile(ByVal FileName As String, ByVal ColumnNames() As String, ByVal DT As DataTable, Optional DateFormatPattern As String = "",
+                         Optional DateFormatIndex As Integer = -1, Optional OrderBy As String = "")
+        Dim str As String = ""
+        Dim myarray() As String
+
+        GetColumnNames(DT, ColumnNames)
+        'Automatically dispose of the StreamReader once its completed.
+        Using myreader As New StreamReader(FileName)
+            'First Line contains information about formatting and not actual content
+            myreader.ReadLine()
+            While myreader.EndOfStream = False
+                str = myreader.ReadLine()
+                myarray = str.Split(";")
+                'Checks to see if there is a Date involved and if there is, formats it to its proper form before returning it back to the array
+                If DateFormatPattern <> "" Then
+                    Dim MyDate As New Date
+                    MyDate = myarray(DateFormatIndex)
+                    myarray(DateFormatIndex) = MyDate.ToString(DateFormatPattern)
+                End If
+
+                'Adds the array to the data row and sorts it according to the parameter supplied
+                DT.Rows.Add().ItemArray = myarray
+                DT.Select("", OrderBy, DataViewRowState.CurrentRows)
+            End While
+        End Using
+    End Sub
+
+    Public Shared Sub GetColumnNames(ByVal DT As DataTable, ByVal ParamArray args() As String)
+        For i = 0 To args.Count - 1
+            DT.Columns.Add(args(i))
+        Next i
+    End Sub
 End Class

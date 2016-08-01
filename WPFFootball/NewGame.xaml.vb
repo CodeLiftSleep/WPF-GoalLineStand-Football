@@ -6,31 +6,30 @@ Imports System.Text.RegularExpressions
 Imports SQLFunctions
 Imports Troschuetz.Random
 Public Class NewGame
-    private ReadOnly SQLTable as New SQLiteDataFunctions
-    private Shared ReadOnly TeamDT as new DataTable
-    private ReadOnly OwnerDT as new DataTable
-    private ReadOnly PersonnelDT as new Datatable
-    private ReadOnly CoachDT as new Datatable
-    Private ReadOnly PlayerDT as New Datatable
-    Private ReadOnly Football as New DataSet
-    private TempDT as new Datatable
+    Private ReadOnly SQLTable As New SQLiteDataFunctions
+    Public Shared ReadOnly TeamDT As New DataTable
+    Public ReadOnly OwnerDT As New DataTable
+    Public ReadOnly PersonnelDT As New DataTable
+    Public ReadOnly CoachDT As New DataTable
+    Public ReadOnly PlayerDT As New DataTable
+    Public ReadOnly Football As New DataSet
+    Public TempDT As New DataTable
 
-    Dim ReadOnly MyVM as new NewGameViewModel
+    ReadOnly MyVM As New NewGameViewModel
 
-    Dim ReadOnly MyDB as String = "Football"
+    ReadOnly MyDB As String = "Football"
 
-    Dim ReadOnly myQueue as new Queue
-    Dim ReadOnly myRand as new TRandom
+    ReadOnly myQueue As New Queue
+    ReadOnly myRand As New TRandom
 
-    Dim ReadOnly filepath As String = "Project Files/"
-    Dim ReadOnly SR as New StreamReader(filepath + My.Resources.Schedule4GamesMaxTxt)
-
+    ReadOnly filepath As String = "Project Files/"
+    ReadOnly SR As New StreamReader(filepath + My.Resources.Schedule4GamesMaxTxt)
 
     Sub New()
         ' This call is required by the designer.
         InitializeComponent()
 
-        For Each team As NewGameViewModel.Teams In EnumToList (Of NewGameViewModel.Teams)()
+        For Each team As NewGameViewModel.Teams In EnumToList(Of NewGameViewModel.Teams)()
             TeamCombo.Items.Add(GetEnumDescription(team))
             myRand.NextUInt() 'Initiate the random number generator to get good randomness
         Next team
@@ -39,9 +38,9 @@ Public Class NewGame
         DataContext = MyVM
 
         SQLTable.LoadTable(MyDB, TeamDT, "Teams")
-        SQLTable.LoadTable(myDB, OwnerDT, "Owners")
-        SQLTable.LoadTable(mydb, PersonnelDT, "Personnel")
-        SQlTable.LoadTable(MyDB, CoachDT, "Coaches")
+        SQLTable.LoadTable(MyDB, OwnerDT, "Owners")
+        SQLTable.LoadTable(MyDB, PersonnelDT, "Personnel")
+        SQLTable.LoadTable(MyDB, CoachDT, "Coaches")
         SQLTable.LoadTable(MyDB, PlayerDT, "RosterPlayers")
 
         'Add DataTables to the Football DataSet for operations without having to continuously load tables
@@ -52,7 +51,7 @@ Public Class NewGame
         Football.Tables.Add(TeamDT)
     End Sub
 
-    Private Shared Function EnumToList (Of T)() As IEnumerable(Of T)
+    Private Shared Function EnumToList(Of T)() As IEnumerable(Of T)
         Dim enumType As Type = GetType(T)
 
         ' Can't use generic type constraints on value types,
@@ -97,11 +96,11 @@ Public Class NewGame
         MyVM.MyBackgroundImg = New BitmapImage(New Uri(NewGameViewModel.GetBackgroundFilePath(TeamCombo.SelectedIndex),
                                                        UriKind.RelativeOrAbsolute))
         NewGameViewModel.GetBrush(TeamCombo.SelectedIndex, myQueue, TeamDT)
-        MyVM.MyPrimColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
-        MyVM.MySecColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
-        MyVM.MyTrimColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
-        GetPeople(TeamCombo.Selectedindex, myQueue)
-        GetTeamValues(TeamCombo.selectedindex)
+        MyVM.MyPrimColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
+        MyVM.MySecColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
+        MyVM.MyTrimColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
+        GetPeople(TeamCombo.SelectedIndex, myQueue)
+        GetTeamValues(TeamCombo.SelectedIndex)
         LoadTeamSchedule(TeamCombo.SelectedIndex)
     End Sub
 
@@ -109,42 +108,42 @@ Public Class NewGame
     '''     This updates the team information when a user selects a team via the IndexChanged propert of the combobox
     ''' </summary>
     ''' <param name="TeamNum"></param>
-    Private sub GetTeamValues(TeamNum As integer)
-        Dim MyDiv as New NewGameViewModel.DivisionNames
-        dim MyAvg as integer = TeamDT.Rows(teamnum).Item("AvgAttendance")
-        dim MyCap as Integer = TeamDT.Rows(teamnum).Item("StadiumCapacity")
-        Dim PerOfCap as Single = Math.Round(((myavg/mycap)*100), 1)
+    Private Sub GetTeamValues(TeamNum As Integer)
+        Dim MyDiv As New NewGameViewModel.DivisionNames
+        Dim MyAvg As Integer = TeamDT.Rows(TeamNum).Item("AvgAttendance")
+        Dim MyCap As Integer = TeamDT.Rows(TeamNum).Item("StadiumCapacity")
+        Dim PerOfCap As Single = Math.Round(((MyAvg / MyCap) * 100), 1)
         Dim Off As Integer = myRand.NextUInt(75, 99)
         Dim Def As Integer = myRand.NextUInt(75, 99)
-        Dim ST As Integer = myrand.NextUInt(75, 99)
-        Dim SalCapTotal as integer = myRand.NextUInt(151000000, 159000000)
-        dim Top51Contracts As integer = SalCapTotal*(myrand.NextDouble(.80, .93))
-        dim TotContracts as integer = Top51Contracts*(myRand.NextDouble(1.02, 1.06))
-        dim DeadCap as integer = myRand.NextUInt(3000000, 12000000)
-        dim AvailCap as Integer = SalCapTotal - TotContracts - DeadCap
+        Dim ST As Integer = myRand.NextUInt(75, 99)
+        Dim SalCapTotal As Integer = myRand.NextUInt(151000000, 159000000)
+        Dim Top51Contracts As Integer = SalCapTotal * (myRand.NextDouble(0.8, 0.93))
+        Dim TotContracts As Integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
+        Dim DeadCap As Integer = myRand.NextUInt(3000000, 12000000)
+        Dim AvailCap As Integer = SalCapTotal - TotContracts - DeadCap
 
-        MyDiv = TeamDT.Rows(teamnum).Item("DivID")
+        MyDiv = TeamDT.Rows(TeamNum).Item("DivID")
 
-        MyVM.MyStadiumName = string.format("Stadium Name: {0}", Teamdt.Rows(teamnum).item("StadiumName"))
-        MyVM.MyStadiumCapacity = string.format("Stadium Capacity: {0}", MyCap)
-        MyVM.MYStadiumPic = New BitmapImage(New Uri(NewGameViewModel.GetStadiumPic(TeamCombo.SelectedIndex),
+        MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(TeamNum).Item("StadiumName"))
+        MyVM.MyStadiumCapacity = String.Format("Stadium Capacity: {0}", MyCap)
+        MyVM.MyStadiumPic = New BitmapImage(New Uri(NewGameViewModel.GetStadiumPic(TeamCombo.SelectedIndex),
                                                     UriKind.RelativeOrAbsolute))
-        MyVM.MyCityState = string.format("{0}, {1}", Teamdt.Rows(teamnum).Item("City"),
-                                         TeamDT.Rows(teamnum).Item("State"))
-        MyVM.MyAvgAttendance = string.format("Last Year Avg. Attendance: {0}{1}({2}% of Capacity)",
-                                             Environment.newline, MyAvg, PerOfCap)
+        MyVM.MyCityState = String.Format("{0}, {1}", TeamDT.Rows(TeamNum).Item("City"),
+                                         TeamDT.Rows(TeamNum).Item("State"))
+        MyVM.MyAvgAttendance = String.Format("Last Year Avg. Attendance: {0}{1}({2}% of Capacity)",
+                                             Environment.NewLine, MyAvg, PerOfCap)
         MyVM.MyTeamRecord =
-            string.format("Last Year Record: {0} Wins  {1} Losses  {2} Ties  {3}{4}{5} Place in the {6}",
-                          TeamDT.Rows(teamnum).Item("Wins"), TeamDT.Rows(TeamNum).Item("Losses"),
-                          TeamDT.Rows(teamnum).Item("Ties"), Environment.NewLine,
-                          teamdt.Rows(teamnum).Item("DivStanding"),
-                          GetDivPlace(teamdt.Rows(teamnum).Item("DivStanding")), GetEnumDescription(MyDiv))
+            String.Format("Last Year Record: {0} Wins  {1} Losses  {2} Ties  {3}{4}{5} Place in the {6}",
+                          TeamDT.Rows(TeamNum).Item("Wins"), TeamDT.Rows(TeamNum).Item("Losses"),
+                          TeamDT.Rows(TeamNum).Item("Ties"), Environment.NewLine,
+                          TeamDT.Rows(TeamNum).Item("DivStanding"),
+                          GetDivPlace(TeamDT.Rows(TeamNum).Item("DivStanding")), GetEnumDescription(MyDiv))
         TeamStaff.Inlines.Clear()
         TeamStaff.Inlines.Add(New Run() With {.FontSize = 40, .Text = "Team Information "})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Owner "})
         TeamStaff.Inlines.Add(New LineBreak)
-        Teamstaff.Inlines.Add(
+        TeamStaff.Inlines.Add(
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
@@ -152,7 +151,7 @@ Public Class NewGame
                                                 myQueue.Dequeue()))})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "General Manager "})
-        teamstaff.Inlines.Add(New LineBreak)
+        TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(
             New Run() _
                                  With {.FontSize = 24,
@@ -161,7 +160,7 @@ Public Class NewGame
                                                myQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Head Coach "})
-        Teamstaff.Inlines.Add(New LineBreak)
+        TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(
             New Run() _
                                  With {.FontSize = 24,
@@ -170,7 +169,7 @@ Public Class NewGame
                                                myQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Off. Coordinator "})
-        Teamstaff.Inlines.Add(New LineBreak)
+        TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(
             New Run() _
                                  With {.FontSize = 24,
@@ -179,7 +178,7 @@ Public Class NewGame
                                                myQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Def. Coordinator "})
-        Teamstaff.Inlines.Add(New LineBreak)
+        TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(
             New Run() _
                                  With {.FontSize = 24,
@@ -189,12 +188,12 @@ Public Class NewGame
         TeamStaff.Inlines.Add(New LineBreak)
 
         TeamRatings.Text = String.Format("Team Ratings: OFF: {0}  DEF: {1}  ST: {2}  Overall: {3} ", Off, Def, ST,
-                                         CInt((Off*.4) + (def*.4) + (ST*.2)))
+                                         CInt((Off * 0.4) + (Def * 0.4) + (ST * 0.2)))
 
         TempDT = SQLTable.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1),
                                       "Pos")
 
-        MyVM.MyDTProperty.clear
+        MyVM.MyDTProperty.Clear()
         MyVM.MyDTProperty.Add(TempDT)
 
         TeamRosterDT.Visibility = 0
@@ -204,7 +203,7 @@ Public Class NewGame
         Tab2.Visibility = 0
         Tab3.Visibility = 0
 
-        SalaryCap.Inlines.clear
+        SalaryCap.Inlines.Clear()
         SalaryCap.Inlines.Add(New Run() _
                                  With {.FontSize = 40, .Foreground = MyVM.MyTrimColor, .Text = "Team Salary Cap Info:"})
         SalaryCap.Inlines.Add(New LineBreak)
@@ -213,37 +212,37 @@ Public Class NewGame
                                  With {.FontSize = 36, .Foreground = MyVM.MyTrimColor,
                                  .Text = String.Format("Team Salary Cap: {0} ", SalCapTotal.ToString("N0"))})
         SalaryCap.Inlines.Add(New LineBreak)
-        SalaryCap.Inlines.add(
+        SalaryCap.Inlines.Add(
             New Run() _
                                  With {.FontSize = 30, .Foreground = MyVM.MySecColor,
-                                 .Text = string.Format("Top 51 Contracts: {0} ", Top51Contracts.ToString("N0"))})
+                                 .Text = String.Format("Top 51 Contracts: {0} ", Top51Contracts.ToString("N0"))})
         SalaryCap.Inlines.Add(New LineBreak)
-        SalaryCap.Inlines.add(
+        SalaryCap.Inlines.Add(
             New Run() _
                                  With {.FontSize = 30, .Foreground = MyVM.MySecColor,
-                                 .Text = string.Format("Dead Cap Space: {0} ", DeadCap.ToString("N0"))})
+                                 .Text = String.Format("Dead Cap Space: {0} ", DeadCap.ToString("N0"))})
         SalaryCap.Inlines.Add(New LineBreak)
-        SalaryCap.Inlines.add(
+        SalaryCap.Inlines.Add(
             New Run() _
                                  With {.FontSize = 30, .Foreground = MyVM.MySecColor,
-                                 .Text = string.Format("Total Cap Spent: {0} ", TotContracts.ToString("N0"))})
+                                 .Text = String.Format("Total Cap Spent: {0} ", TotContracts.ToString("N0"))})
         SalaryCap.Inlines.Add(New LineBreak)
-        SalaryCap.Inlines.add(
+        SalaryCap.Inlines.Add(
             New Run() _
                                  With {.FontSize = 30, .Foreground = MyVM.MySecColor,
-                                 .Text = string.Format("Available Cap Space: {0} ", AvailCap.ToString("N0"))})
-    End sub
+                                 .Text = String.Format("Available Cap Space: {0} ", AvailCap.ToString("N0"))})
+    End Sub
 
-    private function GetDivPlace(DivStanding as integer) As String
+    Private Function GetDivPlace(DivStanding As Integer) As String
         Dim myString = ""
-        select case DivStanding
+        Select Case DivStanding
             Case 1 : myString = "st"
             Case 2 : myString = "nd"
             Case 3 : myString = "rd"
             Case 4 : myString = "th"
         End Select
-        return myString
-    End function
+        Return myString
+    End Function
 
     ''' <summary>
     '''     Returns a Queue of the following people: Owner, GM, Head Coach, DC and OC in format "First Name", "Last Name",
@@ -252,47 +251,47 @@ Public Class NewGame
     ''' <param name="TeamNum"></param>
     ''' <param name="myQueue"></param>
     ''' <returns></returns>
-    private Function GetPeople(TeamNum As integer, myQueue as Queue) As Queue
-        dim TeamID as Integer = TeamNum + 1
-        for i = 0 To ownerdt.Rows.Count - 1
-            if OwnerDT.Rows(i).Item("TeamID") = TeamID Then
+    Private Function GetPeople(TeamNum As Integer, myQueue As Queue) As Queue
+        Dim TeamID As Integer = TeamNum + 1
+        For i = 0 To OwnerDT.Rows.Count - 1
+            If OwnerDT.Rows(i).Item("TeamID") = TeamID Then
                 myQueue.Enqueue(OwnerDT.Rows(i).Item("FName"))
                 myQueue.Enqueue(OwnerDT.Rows(i).Item("LName"))
                 myQueue.Enqueue(OwnerDT.Rows(i).Item("Age"))
             End If
         Next i
-        for i = 0 to PersonnelDT.Rows.Count - 1
-            if PersonnelDT.rows(i).item("TeamID") = TeamID and PersonnelDT.Rows(i).Item("PersonnelType") = 1 Then
+        For i = 0 To PersonnelDT.Rows.Count - 1
+            If PersonnelDT.Rows(i).Item("TeamID") = TeamID And PersonnelDT.Rows(i).Item("PersonnelType") = 1 Then
                 myQueue.Enqueue(PersonnelDT.Rows(i).Item("FName"))
-                myQueue.Enqueue(personnelDT.rows(i).Item("LName"))
+                myQueue.Enqueue(PersonnelDT.Rows(i).Item("LName"))
                 myQueue.Enqueue(PersonnelDT.Rows(i).Item("Age"))
             End If
         Next i
 
-        for i = 0 To CoachDT.Rows.Count - 1
-            if coachdt.rows(i).item("TeamID") = TeamID And CoachDT.rows(i).item("CoachType") = 1 then
-                myqueue.enqueue(CoachDT.rows(i).item("FName"))
-                myqueue.enqueue(CoachDT.rows(i).item("LName"))
-                myqueue.enqueue(CoachDT.rows(i).item("Age"))
+        For i = 0 To CoachDT.Rows.Count - 1
+            If CoachDT.Rows(i).Item("TeamID") = TeamID And CoachDT.Rows(i).Item("CoachType") = 1 Then
+                myQueue.Enqueue(CoachDT.Rows(i).Item("FName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("LName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("Age"))
             End If
         Next i
 
-        for i = 0 To CoachDT.Rows.Count - 1
-            if coachdt.rows(i).item("TeamID") = TeamID And CoachDT.rows(i).item("CoachType") = 3 then
-                myqueue.enqueue(CoachDT.rows(i).item("FName"))
-                myqueue.enqueue(CoachDT.rows(i).item("LName"))
-                myqueue.enqueue(CoachDT.rows(i).item("Age"))
+        For i = 0 To CoachDT.Rows.Count - 1
+            If CoachDT.Rows(i).Item("TeamID") = TeamID And CoachDT.Rows(i).Item("CoachType") = 3 Then
+                myQueue.Enqueue(CoachDT.Rows(i).Item("FName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("LName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("Age"))
             End If
         Next i
 
-        for i = 0 To CoachDT.Rows.Count - 1
-            if coachdt.rows(i).item("TeamID") = TeamID And CoachDT.rows(i).item("CoachType") = 4 then
-                myqueue.enqueue(CoachDT.rows(i).item("FName"))
-                myqueue.enqueue(CoachDT.rows(i).item("LName"))
-                myqueue.enqueue(CoachDT.rows(i).item("Age"))
+        For i = 0 To CoachDT.Rows.Count - 1
+            If CoachDT.Rows(i).Item("TeamID") = TeamID And CoachDT.Rows(i).Item("CoachType") = 4 Then
+                myQueue.Enqueue(CoachDT.Rows(i).Item("FName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("LName"))
+                myQueue.Enqueue(CoachDT.Rows(i).Item("Age"))
             End If
         Next i
-        return myQueue
+        Return myQueue
     End Function
 
     ''' <summary>
@@ -303,48 +302,48 @@ Public Class NewGame
     Private Sub Helmet_OnClick(sender As Object, e As RoutedEventArgs)
         Dim res As MsgBoxResult = MsgBox("Are You Sure You Want To Select This Team?", MsgBoxStyle.YesNo, "Team Select")
 
-        if res = MsgBoxResult.Yes then
+        If res = MsgBoxResult.Yes Then
 
-            dim myTeam as New UserScreen(TeamCombo.SelectedIndex)
+            Dim myTeam As New UserScreen(TeamCombo.SelectedIndex)
             Close()
-            myteam.Show()
+            myTeam.Show()
             GetWindow(myTeam)
             SR.Dispose()
-        end if
+        End If
     End Sub
 
     ''' <summary>
     '''     Loads Team Schedule for team and displays on schedule pane
     ''' </summary>
     ''' <param name="TeamID"></param>
-    Private Sub LoadTeamSchedule(TeamID As integer)
+    Private Sub LoadTeamSchedule(TeamID As Integer)
         TeamID += 1 'increments the 0 based index to match
-        dim Week as integer
-        dim lineString as string
-        dim pos as Integer
-        dim opponent as Integer
-        Dim substring as string
+        Dim Week As Integer
+        Dim lineString As String
+        Dim pos As Integer
+        Dim opponent As Integer
+        Dim substring As String
 
-        TeamSchedule.Inlines.clear
+        TeamSchedule.Inlines.Clear()
         TeamSchedule.Inlines.Add(New Run() _
                                     With {.FontSize = 32, .Foreground = MyVM.MyTrimColor, .Text = "Team Schedule"})
         TeamSchedule.Inlines.Add(New LineBreak)
         SR.DiscardBufferedData()
         SR.BaseStream.Seek(0, SeekOrigin.Begin) 'resets streamreader to beginning of stream
 
-        while SR.EndOfStream <> True 'reads through the file
-            lineString = SR.Readline
+        While SR.EndOfStream <> True 'reads through the file
+            lineString = SR.ReadLine
             pos = 0
             opponent = 0
             substring = ""
 
-            if linestring.Contains(String.Format("({0}) vs.", TeamID)) then 'This is a home game
+            If lineString.Contains(String.Format("({0}) vs.", TeamID)) Then 'This is a home game
                 Week += 1
 
                 pos = lineString.IndexOfAny("vs. ")
-                if pos > 0 Then
+                If pos > 0 Then
 
-                    substring = New String(linestring.Substring(pos, linestring.Length - pos))
+                    substring = New String(lineString.Substring(pos, lineString.Length - pos))
                     opponent = Integer.Parse(Regex.Replace(substring, "[^\d]", ""))
                 End If
 
@@ -353,27 +352,27 @@ Public Class NewGame
                     New Run() _
                                             With {.FontSize = 26, .Foreground = MyVM.MyTrimColor,
                                             .Text =
-                                            string.Format("Week {0}: Vs. {1}", Week,
+                                            String.Format("Week {0}: Vs. {1}", Week,
                                                           GetEnumDescription(MyVM.TeamEnumList))})
                 TeamSchedule.Inlines.Add(New LineBreak)
 
-            ElseIf linestring.Contains("Teams On Bye:") then
-                if linestring.contains(String.Format("({0})", TeamID)) Then 'Team is on a Bye
+            ElseIf lineString.Contains("Teams On Bye:") Then
+                If lineString.Contains(String.Format("({0})", TeamID)) Then 'Team is on a Bye
                     Week += 1
                     TeamSchedule.Inlines.Add(
                         New Run() _
-                                                With {.FontSize = 26, .Foreground = MyVM.Mytrimcolor,
-                                                .Text = string.Format("Week {0}: ***BYE WEEK***", Week)})
+                                                With {.FontSize = 26, .Foreground = MyVM.MyTrimColor,
+                                                .Text = String.Format("Week {0}: ***BYE WEEK***", Week)})
                     TeamSchedule.Inlines.Add(New LineBreak)
-                end if
+                End If
 
-            ElseIf lineString.Contains(string.Format("({0})", TeamID)) Then 'Away game
+            ElseIf lineString.Contains(String.Format("({0})", TeamID)) Then 'Away game
                 Week += 1
 
                 pos = lineString.IndexOfAny("(")
-                if pos > 0 Then
+                If pos > 0 Then
 
-                    substring = New String(linestring.Substring(pos, 3))
+                    substring = New String(lineString.Substring(pos, 3))
                     opponent = Integer.Parse(Regex.Replace(substring, "[^\d]", ""))
                 End If
 
@@ -382,11 +381,11 @@ Public Class NewGame
                     New Run() _
                                             With {.FontSize = 26, .Foreground = MyVM.MySecColor,
                                             .Text =
-                                            string.Format("Week {0}: At {1}", Week,
+                                            String.Format("Week {0}: At {1}", Week,
                                                           GetEnumDescription(MyVM.TeamEnumList))})
                 TeamSchedule.Inlines.Add(New LineBreak)
 
             End If
-        end while
+        End While
     End Sub
 End Class

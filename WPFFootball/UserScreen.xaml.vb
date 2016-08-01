@@ -1,64 +1,123 @@
-﻿Imports Microsoft.Win32
+﻿Imports System.Globalization
+Imports Microsoft.Win32
+Imports WPFFootball.My.Resources
 
 Public Class UserScreen
-    Dim ReadOnly myTeam as integer
+    ReadOnly myTeam As Integer
+    ReadOnly MyVM As New UserScreenViewModel
+    Dim myList As New List(Of String)
+    Dim myRand As New Troschuetz.Random.TRandom
 
     ''' <summary>
     '''     TeamID gets the the team the user selected when creating the window passed in as a parameter
     ''' </summary>
     ''' <param name="TeamID"></param>
-    Sub New(TeamID As integer)
+    Sub New(TeamID As Integer)
+        Dim filepath = "pack://application:,,,/Project Files/"
+        Dim myNum As Integer
 
         ' This call is required by the designer.
         InitializeComponent()
-        GridBackground.ImageSource= New BitmapImage(New Uri(NewGameViewModel.GetBackgroundFilePath(TeamID),
-                                                             UriKind.RelativeOrAbsolute))
         ' Add any initialization after the InitializeComponent() call.
+
+        DataContext = MyVM
         myTeam = TeamID
+        LoadPics(myTeam)
+
+        myNum = myRand.NextUInt(0, myList.Count - 1)
+        MyVM.Image1 = New BitmapImage(New Uri(filepath + ResourceManager.GetObject(myList(myNum), CultureInfo.InvariantCulture).ToString(), UriKind.RelativeOrAbsolute))
+        myList.RemoveAt(myNum)
+        myNum = myRand.NextUInt(0, myList.Count - 1)
+        MyVM.Image2 = New BitmapImage(New Uri(filepath + ResourceManager.GetObject(myList(myNum), CultureInfo.InvariantCulture).ToString(), UriKind.RelativeOrAbsolute))
+        myList.RemoveAt(myNum)
+        myNum = myRand.NextUInt(0, myList.Count - 1)
+        MyVM.Image3 = New BitmapImage(New Uri(filepath + ResourceManager.GetObject(myList(myNum), CultureInfo.InvariantCulture).ToString(), UriKind.RelativeOrAbsolute))
+        myList.RemoveAt(myNum)
+        myNum = myRand.NextUInt(0, myList.Count - 1)
+        MyVM.Image4 = New BitmapImage(New Uri(filepath + ResourceManager.GetObject(myList(myNum), CultureInfo.InvariantCulture).ToString(), UriKind.RelativeOrAbsolute))
+        myList.RemoveAt(myNum)
+        myNum = myRand.NextUInt(0, myList.Count - 1)
+        MyVM.Image5 = New BitmapImage(New Uri(filepath + ResourceManager.GetObject(myList(myNum), CultureInfo.InvariantCulture).ToString(), UriKind.RelativeOrAbsolute))
+
     End Sub
 
+    Private Function LoadPics(ByVal TeamID) As List(Of String)
+        Dim dictEntry As New DictionaryEntry
+        Dim runTimeResourceSet As Object
+        Dim teamNick As String = NewGame.TeamDT.Rows(TeamID).Item("TeamNickname")
+
+        runTimeResourceSet = My.Resources.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, False, True)
+
+        For Each dictEntry In runTimeResourceSet
+            myRand.NextUInt()
+            If dictEntry.Key.ToString().StartsWith(teamNick) Then
+                myList.Add(dictEntry.Key)
+            End If
+        Next dictEntry
+
+        Return myList
+    End Function
     ''' <summary>
     '''     Loads Game from file
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub FileLoad_OnClick(sender As Object, e As RoutedEventArgs)
-        dim myFile as New OpenFileDialog
+        Dim myFile As New OpenFileDialog
         myFile.Filter = "GLS Save Game Files (*.gls)|*.gls"
-        dim result as Boolean = myFile.ShowDialog()
+        Dim result As Boolean = myFile.ShowDialog()
 
-        if result = True then
+        If result = True Then
             '#TODO need to figure out what gets loaded for the game
-        end if
+        End If
     End Sub
 
     Private Sub FileSave_OnClick(sender As Object, e As RoutedEventArgs)
-        dim myFile as new OpenFileDialog
-        dim result as Boolean = myFile.ShowDialog()
+        Dim myFile As New OpenFileDialog
+        Dim result As Boolean = myFile.ShowDialog()
 
         myFile.Filter = "GLS Save Game Files (*.gls)|*.gls"
 
-        if result = True Then
+        If result = True Then
             '#TODO need to figure out what to save so the file can then be loaded properly again and the game resumed.
         End If
     End Sub
 
     Private Sub FileHelp_OnClick(sender As Object, e As RoutedEventArgs)
-        'bring up help file 
+        'bring up help file
     End Sub
 
     Private Sub FileExit_OnClick(sender As Object, e As RoutedEventArgs)
-        dim res as MsgBoxResult = MsgBox("Are you sure you want to exit the game? Any unsaved data will be lost!",
+        Dim res As MsgBoxResult = MsgBox("Are you sure you want to exit the game? Any unsaved data will be lost!",
                                          MsgBoxStyle.YesNo, "Exit Game")
-        if res = MsgBoxResult.Yes Then
+        If res = MsgBoxResult.Yes Then
             End
         End If
     End Sub
 
-    Private Sub MenuItem_OnClick(sender As Object, e As RoutedEventArgs)
-        dim mySettings as new GameSettings(myTeam)
-        mysettings.Show()
-        GetWindow(mysettings)
-        Close
+    Private Sub LgSet_OnClick(sender As Object, e As RoutedEventArgs)
+        Dim mySettings As New GameSettings(myTeam)
+        mySettings.Show()
+        GetWindow(mySettings)
+        Close()
     End Sub
+
+    Private Sub LgHm_Click(sender As Object, e As RoutedEventArgs)
+        Dim LeagueHm As New LeagueHome
+        LeagueHm.Show()
+        GetWindow(LeagueHm)
+        Close()
+    End Sub
+    ''' <summary>
+    ''' Responds to the menu click event of the league news screen
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub LgNews_Click(sender As Object, e As RoutedEventArgs)
+        Dim LgNews As New LeagueNews
+        LgNews.Show()
+        GetWindow(LgNews)
+        Close()
+    End Sub
+
 End Class

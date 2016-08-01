@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cleveland_Browns_PHelmetJpg" xml:space="preserve">
     <value>Cleveland_Browns_PHelmet.jpg</value>
@@ -540,5 +543,148 @@
   </data>
   <data name="GlobalClass_GetBackgroundFilePath_FootballGoalLine_jpg" xml:space="preserve">
     <value>FootballGoalLine.jpg</value>
+  </data>
+  <data name="LeagueNewsMapJpg" xml:space="preserve">
+    <value>LeagueNewsMap.Jpg</value>
+    <comment>Team Helmet Map of the US</comment>
+  </data>
+  <data name="NFLWallpaperJpg" xml:space="preserve">
+    <value>NFLWallpaper.Jpg</value>
+    <comment>NFL Wallpaper LOGO</comment>
+  </data>
+  <data name="BillsDareusWilliamsJpg" xml:space="preserve">
+    <value>BillsDareusWilliams.Jpg</value>
+  </data>
+  <data name="BillsFans2Jpg" xml:space="preserve">
+    <value>BillsFans2.Jpg</value>
+  </data>
+  <data name="BillsFans3Jpg" xml:space="preserve">
+    <value>BillsFans3.Jpg</value>
+  </data>
+  <data name="BillsFansJpg" xml:space="preserve">
+    <value>BillsFans.Jpg</value>
+  </data>
+  <data name="BillsGreatsJpg" xml:space="preserve">
+    <value>BillsGreats.Jpg</value>
+  </data>
+  <data name="BillsLondonJpg" xml:space="preserve">
+    <value>BillsLondon.Jpg</value>
+  </data>
+  <data name="BillsMcCoy2Jpg" xml:space="preserve">
+    <value>BillsMcCoy2.Jpg</value>
+  </data>
+  <data name="BillsMcCoyJpg" xml:space="preserve">
+    <value>BillsMcCoy.Jpg</value>
+  </data>
+  <data name="BillsOneBuffaloJpg" xml:space="preserve">
+    <value>BillsOneBuffalo.Jpg</value>
+  </data>
+  <data name="BillsPassRushJpg" xml:space="preserve">
+    <value>BillsPassRush.Jpg</value>
+  </data>
+  <data name="BillsTaylorJpg" xml:space="preserve">
+    <value>BillsTaylor.Jpg</value>
+  </data>
+  <data name="BillsWatkinsTaylorJpg" xml:space="preserve">
+    <value>BillsWatkinsTaylor.Jpg</value>
+  </data>
+  <data name="DolphinsCelebrateJpg" xml:space="preserve">
+    <value>DolphinsCelebrate.Jpg</value>
+  </data>
+  <data name="DolphinsGreatsJpg" xml:space="preserve">
+    <value>DolphinsGreats.Jpg</value>
+  </data>
+  <data name="DolphinsMillerJpg" xml:space="preserve">
+    <value>DolphinsMiller.Jpg</value>
+  </data>
+  <data name="DolphinsPreSnapJpg" xml:space="preserve">
+    <value>DolphinsPreSnap.Jpg</value>
+  </data>
+  <data name="DolphinsRushingJpg" xml:space="preserve">
+    <value>DolphinsRushing.Jpg</value>
+  </data>
+  <data name="DolphinsStadiumJpg" xml:space="preserve">
+    <value>DolphinsStadium.Jpg</value>
+  </data>
+  <data name="DolphinsTannehill2Jpg" xml:space="preserve">
+    <value>DolphinsTannehill2.Jpg</value>
+  </data>
+  <data name="DolphinsTannehillJpg" xml:space="preserve">
+    <value>DolphinsTanehill.Jpg</value>
+  </data>
+  <data name="DolphinsTouchdownJpg" xml:space="preserve">
+    <value>DolphinsTouchdown.Jpg</value>
+  </data>
+  <data name="DolphinsTrainingCampJpg" xml:space="preserve">
+    <value>DolphinsTrainingCamp.Jpg</value>
+  </data>
+  <data name="JetsDeckerJpg" xml:space="preserve">
+    <value>JetsDecker.Jpg</value>
+  </data>
+  <data name="JetsFansJpg" xml:space="preserve">
+    <value>JetsFans.Jpg</value>
+  </data>
+  <data name="JetsFitzJpg" xml:space="preserve">
+    <value>JetsFitz.Jpg</value>
+  </data>
+  <data name="JetsIvoryJpg" xml:space="preserve">
+    <value>JetsIvory.Jpg</value>
+  </data>
+  <data name="JetsMarshall2Jpg" xml:space="preserve">
+    <value>JetsMarshall2.Jpg</value>
+  </data>
+  <data name="JetsMarshallJpg" xml:space="preserve">
+    <value>JetsMarshall.Jpg</value>
+  </data>
+  <data name="JetsMinicampJpg" xml:space="preserve">
+    <value>JetsMinicamp.Jpg</value>
+  </data>
+  <data name="JetsOverPileJpg" xml:space="preserve">
+    <value>JetsOverPile.Jpg</value>
+  </data>
+  <data name="JetsTouchdown2Jpg" xml:space="preserve">
+    <value>JetsTouchdown2.Jpg</value>
+  </data>
+  <data name="JetsTunnelJpg" xml:space="preserve">
+    <value>JetsTunnel.Jpg</value>
+  </data>
+  <data name="JetsWallpaperJpg" xml:space="preserve">
+    <value>JetsWallpaper.Jpg</value>
+  </data>
+  <data name="PatriotsBelichickJpg" xml:space="preserve">
+    <value>PatriotsBelichick.Jpg</value>
+  </data>
+  <data name="PatriotsBradyGronkJpg" xml:space="preserve">
+    <value>PatriotsBradyGronk.Jpg</value>
+  </data>
+  <data name="PatriotsBradyJpg" xml:space="preserve">
+    <value>PatriotsBrady.Jpg</value>
+  </data>
+  <data name="PatriotsCelebrateJpg" xml:space="preserve">
+    <value>PatriotsCelebrate.Jpg</value>
+  </data>
+  <data name="PatriotsDefenseJpg" xml:space="preserve">
+    <value>PatriotsDefense.Jpg</value>
+  </data>
+  <data name="PatriotsEdelmanJpg" xml:space="preserve">
+    <value>PatriotsEdelman.Jpg</value>
+  </data>
+  <data name="PatriotsFansJpg" xml:space="preserve">
+    <value>PatriotsFans.Jpg</value>
+  </data>
+  <data name="PatriotsGreatsJpg" xml:space="preserve">
+    <value>PatriotsGreats.Jpg</value>
+  </data>
+  <data name="PatriotsGronkJpg" xml:space="preserve">
+    <value>PatriotsGronk.Jpg</value>
+  </data>
+  <data name="PatriotsReceiversJpg" xml:space="preserve">
+    <value>PatriotsReceivers.Jpg</value>
+  </data>
+  <data name="PatriotsSuperBowlJpg" xml:space="preserve">
+    <value>PatriotsSuperBowl.Jpg</value>
+  </data>
+  <data name="PatriotsTunnelJpg" xml:space="preserve">
+    <value>PatriotsTunnel.Jpg</value>
   </data>
 </root>

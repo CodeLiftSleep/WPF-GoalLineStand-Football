@@ -151,6 +151,114 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to BillsDareusWilliams.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsDareusWilliamsJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsDareusWilliamsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsFans2.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsFans2Jpg() As String
+            Get
+                Return ResourceManager.GetString("BillsFans2Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsFans3.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsFans3Jpg() As String
+            Get
+                Return ResourceManager.GetString("BillsFans3Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsFans.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsFansJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsFansJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsGreats.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsGreatsJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsGreatsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsLondon.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsLondonJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsLondonJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsMcCoy2.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsMcCoy2Jpg() As String
+            Get
+                Return ResourceManager.GetString("BillsMcCoy2Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsMcCoy.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsMcCoyJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsMcCoyJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsOneBuffalo.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsOneBuffaloJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsOneBuffaloJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsPassRush.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsPassRushJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsPassRushJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsTaylor.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsTaylorJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsTaylorJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to BillsWatkinsTaylor.Jpg.
+        '''</summary>
+        Friend ReadOnly Property BillsWatkinsTaylorJpg() As String
+            Get
+                Return ResourceManager.GetString("BillsWatkinsTaylorJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Buffalo_Bills_PHelmet_2011.jpg.
         '''</summary>
         Friend ReadOnly Property Buffalo_Bills_PHelmet_2011Jpg() As String
@@ -340,6 +448,96 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to DolphinsCelebrate.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsCelebrateJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsCelebrateJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsGreats.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsGreatsJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsGreatsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsMiller.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsMillerJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsMillerJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsPreSnap.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsPreSnapJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsPreSnapJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsRushing.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsRushingJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsRushingJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsStadium.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsStadiumJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsStadiumJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsTannehill2.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsTannehill2Jpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsTannehill2Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsTanehill.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsTannehillJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsTannehillJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsTouchdown.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsTouchdownJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsTouchdownJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to DolphinsTrainingCamp.Jpg.
+        '''</summary>
+        Friend ReadOnly Property DolphinsTrainingCampJpg() As String
+            Get
+                Return ResourceManager.GetString("DolphinsTrainingCampJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to EverBankField.jpg.
         '''</summary>
         Friend ReadOnly Property EverBankFieldJpg() As String
@@ -493,6 +691,105 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to JetsDecker.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsDeckerJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsDeckerJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsFans.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsFansJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsFansJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsFitz.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsFitzJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsFitzJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsIvory.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsIvoryJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsIvoryJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsMarshall2.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsMarshall2Jpg() As String
+            Get
+                Return ResourceManager.GetString("JetsMarshall2Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsMarshall.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsMarshallJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsMarshallJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsMinicamp.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsMinicampJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsMinicampJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsOverPile.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsOverPileJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsOverPileJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsTouchdown2.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsTouchdown2Jpg() As String
+            Get
+                Return ResourceManager.GetString("JetsTouchdown2Jpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsTunnel.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsTunnelJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsTunnelJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to JetsWallpaper.Jpg.
+        '''</summary>
+        Friend ReadOnly Property JetsWallpaperJpg() As String
+            Get
+                Return ResourceManager.GetString("JetsWallpaperJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Kansas_City_Chiefs_PHelmet.jpg.
         '''</summary>
         Friend ReadOnly Property Kansas_City_Chiefs_PHelmetJpg() As String
@@ -534,6 +831,15 @@ Namespace My.Resources
         Friend ReadOnly Property LARamsJpg() As String
             Get
                 Return ResourceManager.GetString("LARamsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to LeagueNewsMap.Jpg.
+        '''</summary>
+        Friend ReadOnly Property LeagueNewsMapJpg() As String
+            Get
+                Return ResourceManager.GetString("LeagueNewsMapJpg", resourceCulture)
             End Get
         End Property
         
@@ -709,6 +1015,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to NFLWallpaper.Jpg.
+        '''</summary>
+        Friend ReadOnly Property NFLWallpaperJpg() As String
+            Get
+                Return ResourceManager.GetString("NFLWallpaperJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to NissanStadium.jpg.
         '''</summary>
         Friend ReadOnly Property NissanStadiumJpg() As String
@@ -759,6 +1074,114 @@ Namespace My.Resources
         Friend ReadOnly Property OaklandColiseumJpg() As String
             Get
                 Return ResourceManager.GetString("OaklandColiseumJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsBelichick.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsBelichickJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsBelichickJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsBradyGronk.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsBradyGronkJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsBradyGronkJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsBrady.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsBradyJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsBradyJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsCelebrate.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsCelebrateJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsCelebrateJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsDefense.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsDefenseJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsDefenseJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsEdelman.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsEdelmanJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsEdelmanJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsFans.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsFansJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsFansJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsGreats.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsGreatsJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsGreatsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsGronk.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsGronkJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsGronkJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsReceivers.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsReceiversJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsReceiversJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsSuperBowl.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsSuperBowlJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsSuperBowlJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to PatriotsTunnel.Jpg.
+        '''</summary>
+        Friend ReadOnly Property PatriotsTunnelJpg() As String
+            Get
+                Return ResourceManager.GetString("PatriotsTunnelJpg", resourceCulture)
             End Get
         End Property
         

@@ -105,6 +105,14 @@
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameSettingsViewModel.vb" />
+    <Compile Include="LeagueHome.xaml.vb">
+      <DependentUpon>LeagueHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeagueHomeViewModel.vb" />
+    <Compile Include="LeagueNews.xaml.vb">
+      <DependentUpon>LeagueNews.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeagueNewsViewModel.vb" />
     <Compile Include="NewGameViewModel.vb" />
     <Compile Include="HomeScreen.xaml.vb">
       <DependentUpon>HomeScreen.xaml</DependentUpon>
@@ -115,6 +123,7 @@
     <Compile Include="UserScreen.xaml.vb">
       <DependentUpon>UserScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserScreenViewModel.vb" />
     <Page Include="GameSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +131,14 @@
     <Page Include="HomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeagueHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LeagueNews.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +209,69 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="footballfield.jpg" />
+    <Resource Include="LeagueEvents.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="LeagueInj.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="LeagueMile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="LeagueTrans.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Project Files\LeageNewsMap.jpg" />
+    <Resource Include="LeagueNews.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Project Files\NFLWallpaper.jpg" />
+    <Resource Include="Project Files\BillsDareusWilliams.jpg" />
+    <Resource Include="Project Files\BillsFans.jpg" />
+    <Resource Include="Project Files\BillsFans2.jpg" />
+    <Resource Include="Project Files\BillsFans3.jpg" />
+    <Resource Include="Project Files\BillsGreats.jpg" />
+    <Resource Include="Project Files\BillsLondon.jpg" />
+    <Resource Include="Project Files\BillsMcCoy.jpg" />
+    <Resource Include="Project Files\BillsMcCoy2.jpg" />
+    <Resource Include="Project Files\BillsOneBuffalo.jpg" />
+    <Resource Include="Project Files\BillsPassRush.jpg" />
+    <Resource Include="Project Files\BillsTaylor.jpg" />
+    <Resource Include="Project Files\BillsWatkinsTaylor.jpg" />
+    <Resource Include="Project Files\DolphinsCelebrate.JPG" />
+    <Resource Include="Project Files\DolphinsGreats.jpg" />
+    <Resource Include="Project Files\DolphinsMiller.jpg" />
+    <Resource Include="Project Files\DolphinsPreSnap.jpg" />
+    <Resource Include="Project Files\DolphinsRushing.jpg" />
+    <Resource Include="Project Files\DolphinsStadium.jpg" />
+    <Resource Include="Project Files\DolphinsTannehill.jpg" />
+    <Resource Include="Project Files\DolphinsTannehill2.jpg" />
+    <Resource Include="Project Files\DolphinsTouchdown.jpg" />
+    <Resource Include="Project Files\DolphinsTrainingCamp.jpg" />
+    <Resource Include="Project Files\JetsDecker.jpg" />
+    <Resource Include="Project Files\JetsFans.jpg" />
+    <Resource Include="Project Files\JetsFitz.jpg" />
+    <Resource Include="Project Files\JetsIvory.jpg" />
+    <Resource Include="Project Files\JetsMarshall.jpg" />
+    <Resource Include="Project Files\JetsMarshall2.jpg" />
+    <Resource Include="Project Files\JetsMinicamp.jpg" />
+    <Resource Include="Project Files\JetsOverPile.jpg" />
+    <Resource Include="Project Files\JetsTouchdown2.jpg" />
+    <Resource Include="Project Files\JetsTunnel.jpg" />
+    <Resource Include="Project Files\JetsWallpaper.jpg" />
+    <Resource Include="Project Files\NFLWallpaper2.jpg" />
+    <Resource Include="Project Files\PatriotsBelichick.jpg" />
+    <Resource Include="Project Files\PatriotsBrady.jpg" />
+    <Resource Include="Project Files\PatriotsBradyGronk.jpg" />
+    <Resource Include="Project Files\PatriotsCelebrate.jpg" />
+    <Resource Include="Project Files\PatriotsDefense.jpg" />
+    <Resource Include="Project Files\PatriotsEdelman.jpg" />
+    <Resource Include="Project Files\PatriotsFans.jpg" />
+    <Resource Include="Project Files\PatriotsGreats.jpg" />
+    <Resource Include="Project Files\PatriotsGronk.jpg" />
+    <Resource Include="Project Files\PatriotsReceivers.jpg" />
+    <Resource Include="Project Files\PatriotsSuperBowl.jpg" />
+    <Resource Include="Project Files\PatriotsTunnel.jpg" />
     <Content Include="Project Files\Schedule4GamesMax.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

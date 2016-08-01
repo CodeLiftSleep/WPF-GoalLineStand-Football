@@ -1,0 +1,10 @@
+###FORMAT: DATE;TEAM;NEWS ITEM
+7/31/16;San Diego Chargers;Head Coach Mike McCoy tired of talking about RB Melvin Gordon.
+7/31/16;New York Giants;Odell Beckham Jr. says Giants have a chance to hang a banner.
+7/31/16;Houston Texans;DeAndre Hopkins has ended his holdout and has reported to Texans Training Camp sources tell us. 
+7/31/16;San Francisco 49ers;Head Coach Chip Kelly says QB's Colin Kaerpernick and Blaine Gabbert are splitting first team reps.
+7/31/16;Houston Texans;J.J. Watt, Texans Defensive End says "I can't put a solid date on my return" 
+7/31/16;New England Patriots;NFL Sources are reporting that Patriots Tight End Rob Gronkownsi could be on the verge of signing an extension with the team.
+7/31/16;Buffalo Bills;Bills WR Sammy Watkins has passed his conditioning test but still remains on the PUP list.
+7/31/16;Atlanta Falcons;WR Julio Jones could return to practice by Tuesday. Jones is recovering from a knee injury.
+7/31/16;Carolina Panthers;Head Coach Ron Rivera says DE Kony Early has been sidelined after a helmet-to-helmet hit in Saturday's practice and is in the concussion protocol.
