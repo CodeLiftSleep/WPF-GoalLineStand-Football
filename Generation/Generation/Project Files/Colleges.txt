@@ -1,0 +1,261 @@
+Abilene Christian,0,1
+Air Force,2,3
+Akron,4,10
+Alabama,11,33
+Alabama A&M,34,36
+Alabama State,37,40
+Albany,41,42
+Alcorn State,43,46
+Appalachian State,47,50
+Arizona,51,67
+Arizona State,68,87
+Arkansas,88,103
+Arkansas State,104,108
+Arkansas-Pine Bluff,109,112
+Auburn,113,144
+Augustana SD,145,146
+Ball State,147,148
+Baylor,149,157
+Bethune-Cookman,158,160
+Bloomsburg,161,162
+Boise State,163,172
+Boston College,173,192
+Bowling Green,193,196
+Bradley,197,198
+Brigham Young,199,213
+Brown,214,216
+Bucknell,217,218
+Buffalo,219,220
+Cal Poly,221,224
+Cal State Bakersfield,225,226
+Calgary,227,228
+California,229,257
+California-Davis,258,260
+Carroll MT,261,262
+Carson-Newman,263,265
+Central Arkansas,266,267
+Central Florida CC,268,269
+Central Michigan,270,277
+Central Missouri State,278,280
+Central Oklahoma,281,282
+Central Washington,283,284
+Chattanooga,285,287
+Cincinnati,288,300
+Citadel,301,302
+Clarion,303,304
+Clemson,305,318
+Coastal Carolina,319,321
+Coe,322,323
+Colorado,324,342
+Colorado State,343,352
+Columbia,353,354
+Connecticut,355,359
+Cornell,360,361
+Dartmouth,362,363
+Delaware,364,367
+Delaware State,368,369
+Delta State,370,371
+Duke,372,375
+Duquesne,376,377
+East Carolina,378,384
+Eastern Illinois,385,386
+Eastern Kentucky,387,388
+Eastern Michigan,389,395
+Eastern Oregon,396,397
+Eastern Washington,398,400
+Elon,401,402
+Florida,403,440
+Florida A&M,441,442
+Florida International,443,444
+Florida State,445,485
+Fort Valley State,486,487
+Fresno State,488,509
+Georgia,510,552
+Gerogia Southern,553,556
+Georgia Tech,557,575
+Grambling State,576,580
+Hampton,581,584
+Harvard,585,589
+Hawaii,590,602
+Hofstra,603,608
+Houston,609,613
+Howard,614,618
+Idaho,619,620
+Idaho State,621,625
+Illinois,626,644
+Illinois State,645,649
+Indiana,650,661
+Indiana(PA),662,664
+Iowa,665,689
+Iowa State,690,698
+Itawamba MS JC,699,700
+Jackson State,701,702
+James Madison,703,704
+John Carroll,705,706
+Kansas,707,712
+Kansas State,713,732
+Kent State,733,739
+Kentucky,740,745
+Knoxville,746,747
+Lambuth,748,749
+Lane,750,751
+Liberty,752,753
+Lindenwood,754,755
+Louisiana Tech,756,764
+Louisiana-Lafayette,765,773
+Louisiana-Monroe,774,778
+Louisville,779,801
+LSU,802,837
+Maine,838,844
+Manitoba,845,846
+Marshall,847,856
+Maryland,857,881
+Massachusetts,882,884
+McGill,885,886
+McNeese State,887,889
+Memphis,890,901
+Menlo,902,903
+Miami FL,904,952
+Miami OH,953,958
+Michigan,959,1001
+Michigan State,1002,1023
+Michigan Tech,1024,1025
+Middle Tennessee State,1026,1027
+Midwestern State,1028,1030
+Minnesota,1031,1045
+Mississippi,1046,1067
+Mississippi State,1068,1088
+Missouri,1089,1096
+Missouri Southern State,1097,1100
+Missouri State,1101,1103
+Monmouth,1104,1105
+Montana,1106,1110
+Montana State,1111,1112
+Morgan State,1113,1114
+Morris Brown,1115,1116
+Mount San Antonio JC,1117,1118
+Navy,1119,1121
+Nebraska,1122,1151
+Nebraska-Omaha,1152,1155
+Nevada,1156,1161
+New Hampshire,1162,1164
+New Mexico,1165,1170
+New Mexico State,1171,1175
+Nicholls State,1176,1177
+North Alabama,1178,1180
+North Carolina,1181,1205
+North Carolina A&T,1206,1210
+North Carolina Central,1211,1212
+North Carolina State,1213,1233
+North Dakota,1234,1237
+North Dakota State,1238,1240
+North Texas,1241,1246
+Northern Arizona,1247,1248
+Northern Colorado,1249,1252
+Northern Illinois,1253,1261
+Northern Iowa,1262,1267
+Northwest Missouri State,1268,1271
+Northwestern,1272,1283
+Northwestern Oklahoma State,1284,1285
+Northwestern State,1286,1290
+Northwood MI,1291,1292
+Notre Dame,1293,1330
+Ohio,1331,1332
+Ohio Northern,1333,1334
+Ohio State,1335,1382
+Oklahoma,1383,1410
+Oklahoma State,1411,1421
+Oregon,1422,1438
+Oregon State,1439,1451
+Ottawa,1452,1453
+Penn State,1454,1480
+Pennsylvania,1481,1482
+Pittsburg State,1483,1484
+Pittsburgh,1485,1501
+Portland State,1502,1505
+Princeton,1506,1509
+Purdue,1510,1533
+Regina,1534,1535
+Rice,1536,1541
+Richmond,1542,1545
+Robert Morris,1546,1547
+Rutgers,1548,1558
+Sacramento State,1559,1560
+Saginaw Valley,1561,1566
+Sam Houston State,1567,1570
+Samford,1571,1572
+San Diego State,1573,1588
+San Jose State,1589,1596
+Shippensburg,1597,1599
+Sonoma State,1600,1601
+South Carolina,1602,1621
+South Carolina State,1622,1623
+South Dakota,1624,1626
+South Dakota State,1627,1629
+South Florida,1630,1636
+Southeast Missouri State,1637,1639
+Southern Arkansas,1640,1641
+Southern Connecticut State,1642,1643
+Southern Illinois,1644,1646
+Southern Methodist,1647,1648
+Southern Miss,1649,1658
+Southern Utah,1659,1660
+Stanford,1661,1681
+Stephen F. Austin,1682,1685
+Syracuse,1686,1707
+Tarleton State,1708,1709
+TCU,1710,1720
+Temple,1721,1724
+Tennessee,1725,1764
+Tennessee Tech,1765,1766
+Tennessee-Martin,1767,1768
+Texas,1769,1802
+Texas A&M,1803,1825
+Texas A&M Kingsville,1826,1828
+Texas Southern,1829,1831
+Texas State,1832,1833
+Texas Tech,1834,1844
+Tiffin,1845,1846
+Toledo,1847,1853
+Towson,1854,1855
+Trinity TX,1856,1857
+Troy,1858,1862
+Tulane,1863,1868
+Tulsa,1869,1873
+Tusculum,1874,1875
+Tuskegee,1876,1879
+UAB,1880,1883
+UCF,1884,1897
+UCLA,1898,1922
+UNLV,1923,1927
+USC,1928,1957
+Utah,1958,1973
+Utah State,1974,1979
+UTEP,1980,1985
+Valdosta State,1986,1987
+Vanderbilt,1988,1995
+Villanova,1996,1999
+Virginia,2000,2021
+Virginia Tech,2022,2044
+Wake Forest,2045,2057
+Walla Walla CC,2058,2059
+Washburn,2060,2061
+Washington,2062,2072
+Washington State,2073,2092
+Weber state,2093,2096
+West Georgia,2097,2098
+West Texas A&M,2099,2100
+West Virginia,2101,2110
+Western Carolina,2111,2114
+Western Illinois,2115,2121
+Western Kentucky,2122,2126
+Western Michigan,2127,2130
+Western Oregon,2131,2132
+Western Washington,2133,2134
+William & Mary,2135,2137
+Wingate,2138,2139
+Wisconsin,2140,2167
+Wisconsin Stevens Point,2168,2169
+Wisconsin Stout,2170,2171
+Wisconsin Whitewater,2172,2173
+Wyoming,2174,2182
