@@ -1,0 +1,78 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Mersenne
+</name>
+</assembly>
+<members>
+<member name="T:Mersenne.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Mersenne.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Mersenne.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:Mersenne.MersenneTwister">
+ <summary>
+ A random number generator With a uniform distribution Using the Mersenne 
+ Twister algorithm.
+ </summary>
+</member>
+<member name="M:Mersenne.MersenneTwister.#ctor">
+ 
+ Create a new Mersenne Twister random number generator.
+ 
+</member>
+<member name="M:Mersenne.MersenneTwister.#ctor(System.UInt32)">
+ 
+ Create a new Mersenne Twister random number generator with a
+ particular seed.
+ 
+ The seed for the generator. 
+</member>
+<member name="M:Mersenne.MersenneTwister.#ctor(System.UInt32[])">
+ ''' Create a new Mersenne Twister random number generator with a ''' 
+ particular initial key. 
+ ''' ''' The initial key. 
+</member>
+<member name="M:Mersenne.MersenneTwister.GenerateUInt32">
+ ''' Generates a random number between 0 and System.UInt32.MaxValue. 
+</member>
+<member name="M:Mersenne.MersenneTwister.GenerateInt32">
+ ''' Generates a random integer between 0 and System.Int32.MaxValue.
+</member>
+<member name="M:Mersenne.MersenneTwister.GenerateInt32(System.Int32)">
+ <summary>
+   Generates a random Integer between 0 And maxValue. 
+   The maximum value. Must be greater than zero. 
+ </summary>
+</member>
+<member name="M:Mersenne.MersenneTwister.GenerateInt32(System.Int32,System.Int32)">
+ ''' Generates a random integer between minValue and maxValue. ''' 
+ ''' The lower bound. 
+ ''' The upper bound. 
+</member>
+<member name="M:Mersenne.MersenneTwister.GenerateDouble">
+ ''' Generates a random floating point number between 0 and 1. 
+</member>
+<member name="M:Mersenne.MersenneTwister.GetGaussian(System.Double,System.Double)">
+ <summary>
+ Returns a number based on a gaussian curve
+ Takes the mean and the STD
+ </summary>
+ <param name="Mean"></param>
+ <param name="StDev"></param>
+ <returns></returns>
+</member>
+</members>
+</doc>
