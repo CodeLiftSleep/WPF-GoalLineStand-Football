@@ -8,11 +8,11 @@ Imports Troschuetz.Random
 Public Class NewGame
     Private ReadOnly SQLTable As New SQLiteDataFunctions
     Public Shared ReadOnly TeamDT As New DataTable
-    Public ReadOnly OwnerDT As New DataTable
-    Public ReadOnly PersonnelDT As New DataTable
-    Public ReadOnly CoachDT As New DataTable
-    Public ReadOnly PlayerDT As New DataTable
-    Public ReadOnly Football As New DataSet
+    Public Shared ReadOnly OwnerDT As New DataTable
+    Public Shared ReadOnly PersonnelDT As New DataTable
+    Public Shared ReadOnly CoachDT As New DataTable
+    Public Shared ReadOnly PlayerDT As New DataTable
+    Public Shared ReadOnly Football As New DataSet
     Public TempDT As New DataTable
 
     ReadOnly MyVM As New NewGameViewModel
@@ -121,7 +121,7 @@ Public Class NewGame
         Dim TotContracts As Integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
         Dim DeadCap As Integer = myRand.NextUInt(3000000, 12000000)
         Dim AvailCap As Integer = SalCapTotal - TotContracts - DeadCap
-
+        Dim ColNames As String() = New String() {"FName", "LName", "College", "Age", "DOB", "Height", "Weight", "Pos", "PosType", "FortyYardTime", "Dominant", "Weakest"}
         MyDiv = TeamDT.Rows(TeamNum).Item("DivID")
 
         MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(TeamNum).Item("StadiumName"))
@@ -190,7 +190,7 @@ Public Class NewGame
         TeamRatings.Text = String.Format("Team Ratings: OFF: {0}  DEF: {1}  ST: {2}  Overall: {3} ", Off, Def, ST,
                                          CInt((Off * 0.4) + (Def * 0.4) + (ST * 0.2)))
 
-        TempDT = SQLTable.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1),
+        TempDT = SQLFunctions.SQLiteDataFunctions.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1), ColNames,
                                       "Pos")
 
         MyVM.MyDTProperty.Clear()
@@ -304,7 +304,7 @@ Public Class NewGame
 
         If res = MsgBoxResult.Yes Then
 
-            Dim myTeam As New UserScreen(TeamCombo.SelectedIndex)
+            Dim myTeam As New NewGame2 'UserScreen(TeamCombo.SelectedIndex)
             Close()
             myTeam.Show()
             GetWindow(myTeam)

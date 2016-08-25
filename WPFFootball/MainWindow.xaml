@@ -5,10 +5,9 @@
         xmlns:local="clr-namespace:WPFFootball"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
-        d:DesignHeight="800"
-        d:DesignWidth="1200"
-        WindowState="Maximized"
-        mc:Ignorable="d">
+        Width="1200"
+        Height="800"
+        WindowState="Maximized">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="footballfield.jpg" Opacity="0.8" />
@@ -45,4 +44,4 @@
                     Style="{DynamicResource SimpleButton}" />
         </StackPanel>
     </Grid>
-</Window>
+</Window> 

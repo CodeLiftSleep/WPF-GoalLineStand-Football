@@ -687,4 +687,12 @@
   <data name="PatriotsTunnelJpg" xml:space="preserve">
     <value>PatriotsTunnel.Jpg</value>
   </data>
+  <data name="AFCLogoJpg" xml:space="preserve">
+    <value>AFCLogo.Jpg</value>
+    <comment>AFC Logo</comment>
+  </data>
+  <data name="NFCLogoJpg" xml:space="preserve">
+    <value>NFCLogo.Jpg</value>
+    <comment>NFCLogo</comment>
+  </data>
 </root>

@@ -61,6 +61,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to AFCLogo.Jpg.
+        '''</summary>
+        Friend ReadOnly Property AFCLogoJpg() As String
+            Get
+                Return ResourceManager.GetString("AFCLogoJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Arizona_Cardinals_Helmet.jpg.
         '''</summary>
         Friend ReadOnly Property Arizona_Cardinals_HelmetJpg() As String
@@ -1011,6 +1020,15 @@ Namespace My.Resources
         Friend ReadOnly Property New_York_JetsJpg() As String
             Get
                 Return ResourceManager.GetString("New_York_JetsJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to NFCLogo.Jpg.
+        '''</summary>
+        Friend ReadOnly Property NFCLogoJpg() As String
+            Get
+                Return ResourceManager.GetString("NFCLogoJpg", resourceCulture)
             End Get
         End Property
         

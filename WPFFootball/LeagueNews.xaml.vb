@@ -17,7 +17,7 @@ Public Class LeagueNews
         Dim TempDT As New DataTable
 
         Dim ColNames() As String = {"Date", "Team", "News"}
-        SQLFunctions.SQLiteDataFunctions.ReadFile("LeagueNews.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
+        Generation.ReadFile("LeagueNews.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
 
         MyVM.MyDT.Add(TempDT)
     End Sub

@@ -63,7 +63,6 @@
                         </Button.Background>
                     </Button>
                 </StackPanel>
-
             </TabItem>
             <TabItem x:Name="TabSettings"
                      Width="Auto"
@@ -585,7 +584,6 @@
                             Content="Reset To Default"
                             Style="{DynamicResource SimpleButton}" />
                 </StackPanel>
-
             </TabItem>
         </TabControl>
     </Grid>

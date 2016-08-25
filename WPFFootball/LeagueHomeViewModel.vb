@@ -93,7 +93,7 @@ Public Class LeagueHomeViewModel
         Dim ColNames() As String = {"Date", "Event Scheduled", "Location"}
 
         MyDT.Clear()
-        SQLFunctions.SQLiteDataFunctions.ReadFile("LeagueEvents.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
+        Generation.ReadFile("LeagueEvents.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
         MyDT.Add(TempDT)
 
     End Sub
@@ -154,7 +154,7 @@ Public Class LeagueHomeViewModel
         MyDT.Clear()
         Dim TempDT As New DataTable
         Dim ColumnNames() As String = {"Team", "Trans Date", "Player Name", "Position", "Transaction Type"}
-        SQLFunctions.SQLiteDataFunctions.ReadFile("LeagueTrans.Txt", ColumnNames, TempDT, "M/dd", 1, "Trans Date DESC")
+        Generation.ReadFile("LeagueTrans.Txt", ColumnNames, TempDT, "M/dd", 1, "Trans Date DESC")
         MyDT.Add(TempDT)
     End Sub
     ''' <summary>
@@ -164,7 +164,7 @@ Public Class LeagueHomeViewModel
         MyDT.Clear()
         Dim TempDT As New DataTable
         Dim ColumnNames() As String = {"Team", "Inj Date", "Player Name", "Position", "Body Part", "Prognosis"}
-        SQLFunctions.SQLiteDataFunctions.ReadFile("LeagueInj.Txt", ColumnNames, TempDT, "M/dd", 1, "Inj Date DESC")
+        Generation.ReadFile("LeagueInj.Txt", ColumnNames, TempDT, "M/dd", 1, "Inj Date DESC")
         MyDT.Add(TempDT)
     End Sub
 
@@ -172,7 +172,7 @@ Public Class LeagueHomeViewModel
         MyDT.Clear()
         Dim TempDT As New DataTable
         Dim ColumnNames() As String = {"Team", "Milestone Date", "Player Name", "Position", "Milestone Achieved"}
-        SQLFunctions.SQLiteDataFunctions.ReadFile("LeagueMile.Txt", ColumnNames, TempDT, "M/dd", 1, "Milestone Date DESC")
+        Generation.ReadFile("LeagueMile.Txt", ColumnNames, TempDT, "M/dd", 1, "Milestone Date DESC")
         MyDT.Add(TempDT)
     End Sub
 
