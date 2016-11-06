@@ -4,9 +4,8 @@ Class MainWindow
     Public Shared NewGameScreen As New NewGame
 
     Private Sub NewGameBtn_Click(sender As Object, e As RoutedEventArgs) Handles NewGameBtn.Click
-
         NewGameScreen.Show()
-        GetWindow(NewGameScreen)
+        Me.Close()
     End Sub
 
     Private Sub QuitGameBtn_Click(sender As Object, e As RoutedEventArgs) Handles QuitGameBtn.Click

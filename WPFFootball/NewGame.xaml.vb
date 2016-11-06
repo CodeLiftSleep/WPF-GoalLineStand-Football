@@ -296,11 +296,9 @@ Public Class NewGame
         Dim res As MsgBoxResult = MsgBox("Are You Sure You Want To Select This Team?", MsgBoxStyle.YesNo, "Team Select")
 
         If res = MsgBoxResult.Yes Then
-
             Dim myTeam As New UserScreen(TeamCombo.SelectedIndex)
-            Close()
             myTeam.Show()
-            GetWindow(myTeam)
+            Close()
             SR.Dispose()
         End If
     End Sub

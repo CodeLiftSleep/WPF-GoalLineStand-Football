@@ -11,7 +11,6 @@ Public Class LeagueHome
         ' Add any initialization after the InitializeComponent() call.
         DataContext = MyVM
         MyVM.Leaguedate = "2/16/16"
-
     End Sub
 
     Private Sub Button_Click(sender As Object, e As RoutedEventArgs)

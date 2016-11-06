@@ -1,10 +1,10 @@
-﻿using Generation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using static Generation.FilesAndDataTables.PersonnelType; //allows use of PersonnelType Enum's without having to declare the full name
 using static GlobalResources.SharedFiles; //allows use of Global resource files without having to declare the full name
 
 namespace AIEvaluation.Draft
@@ -16,16 +16,8 @@ namespace AIEvaluation.Draft
         public DraftAIEval()
         {
             var gradesList = new List<string>();
-            var files = new List<string>(Directory.EnumerateFiles(Directory.GetCurrentDirectory() + @"\Grading System", "*.*", SearchOption.AllDirectories)); //load grade files
-            /*var employeeGroups = Employee.GetAllEmployees()
-                                .GroupBy(x => new { x.Department, x.Gender })
-                                .OrderBy(g => g.Key.Department).ThenBy(g => g.Key.Gender)
-                                .Select(g => new
-                                {
-                                    Dept = g.Key.Department,
-                                    Gender = g.Key.Gender,
-                                    Employees = g.OrderBy(x => x.Name)
-                                });*/
+            var files = new List<string>(Directory.EnumerateFiles(@"..\..\..AIEvaluation\Draft\Grading System", "*.*", SearchOption.AllDirectories)); //load grade files
+
             var draftDTGroups =  //groups players by Scout Region then by Position, ordered by Grade
                     from player in DraftDT.AsEnumerable()
                     orderby player.Field<decimal>("ActualGrade") descending
@@ -82,36 +74,36 @@ namespace AIEvaluation.Draft
                         role = (int)PersonnelDT.Rows[j]["PersonnelType"];
                         switch (role)
                         {
-                            case (int)FilesAndDataTables.PersonnelType.GM: //check to make sure its a player with a high enough grade
+                            case (int)GM: //check to make sure its a player with a high enough grade
                                 if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top150)
                                 {
                                     DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.AssistantGM:
+                            case (int)AssistantGM:
                                 if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top250)
                                 {
                                     DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.DirectorPlayerPersonnel:
+                            case (int)DirectorPlayerPersonnel:
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.AssistantDirPlayerPersonnel:
+                            case (int)AssistantDirPlayerPersonnel:
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.DirectorCollegeScouting:  //determine how many players they scout
+                            case (int)DirectorCollegeScouting:  //determine how many players they scout
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.AssistantDirCollegeScouting:
+                            case (int)AssistantDirCollegeScouting:
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.NationalCollegeScout:
+                            case (int)NationalCollegeScout:
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.AreaScout: //Check to make sure its the proper region
+                            case (int)AreaScout: //Check to make sure its the proper region
                                 if (PersonnelDT.Rows[j]["ScoutRegion"].ToString() == region)
                                 {
                                     DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
@@ -119,7 +111,7 @@ namespace AIEvaluation.Draft
 
                                 break;
 
-                            case (int)FilesAndDataTables.PersonnelType.NatScoutingOrgScout:
+                            case (int)NatScoutingOrgScout:
                                 break;
                         }
                         //make sure the player is from the same region as the scout and they have a base grade higher than a 7th round prospect

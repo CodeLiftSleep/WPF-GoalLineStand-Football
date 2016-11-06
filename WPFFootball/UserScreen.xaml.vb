@@ -103,7 +103,6 @@ Public Class UserScreen
     Private Sub LgSet_OnClick(sender As Object, e As RoutedEventArgs)
         Dim mySettings As New GameSettings(myTeam)
         mySettings.Show()
-        GetWindow(mySettings)
         Close()
     End Sub
 
