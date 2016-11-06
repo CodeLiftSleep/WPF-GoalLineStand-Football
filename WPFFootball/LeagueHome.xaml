@@ -44,6 +44,16 @@
                    FontSize="28"
                    Text="{Binding Path=Leaguedate,
                                   StringFormat={}{0:dddd MMMM dd yyyy}}" />
+        <Button Grid.Column="5"
+                Width="115"
+                Height="50"
+                Margin="50,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Command="{Binding DraftBtn}"
+                Content="Go To Draft"
+                Style="{DynamicResource SimpleButton}" />
         <Border x:Name="LgNewsBdr"
                 Grid.Row="1"
                 Grid.Column="0"

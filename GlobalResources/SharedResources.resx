@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ArizonaCardinals3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ArizonaCardinals3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arizona_Cardinals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Arizona_Cardinals.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arizona_Cardinals2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Arizona_Cardinals2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arizona_Cardinals_Helmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Arizona_Cardinals_Helmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowheadStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ArrowheadStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Atlanta_Falcons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Atlanta_Falcons.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Atlanta_Falcons2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Atlanta_Falcons2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Atlanta_Falcons_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Atlanta_Falcons_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ATTStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ATTStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Baltimore_Ravens" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Baltimore_Ravens.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Baltimore_Ravens3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Baltimore_Ravens3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Baltimore_Ravens_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Baltimore_Ravens_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BankOfAmericaStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BankOfAmericaStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsDareusWilliams" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsDareusWilliams.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsFans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsFans.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsFans2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsFans2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsFans3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsFans3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsGreats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsGreats.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsLondon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsLondon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsMcCoy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsMcCoy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsMcCoy2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsMcCoy2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsOneBuffalo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsOneBuffalo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsPassRush" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsPassRush.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsTaylor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsTaylor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BillsWatkinsTaylor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BillsWatkinsTaylor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Buffalo_Bills" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Buffalo_Bills.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Buffalo_Bills02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Buffalo_Bills02.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Buffalo_Bills3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Buffalo_Bills3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Buffalo_Bills_PHelmet_2011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Buffalo_Bills_PHelmet_2011.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carolina_Panthers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Carolina_Panthers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carolina_Panthers2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Carolina_Panthers2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carolina_Panthers_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Carolina_Panthers_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CenturyLinkField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CenturyLinkField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chicago_Bears" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Chicago_Bears.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chicago_Bears4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Chicago_Bears4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chicago_Bears_PHelmet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Chicago_Bears_PHelmet2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cincinnati_Bengals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cincinnati_Bengals.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cincinnati_Bengals3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cincinnati_Bengals3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cincinnati_Bengals_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cincinnati_Bengals_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClevelandBrowns2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ClevelandBrowns2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cleveland_Browns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cleveland_Browns.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cleveland_Browns2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cleveland_Browns2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cleveland_Browns_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Cleveland_Browns_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dallas_Cowboys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Dallas_Cowboys.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dallas_Cowboys3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Dallas_Cowboys3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dallas_Cowboys_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Dallas_Cowboys_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Denver_Broncos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Denver_Broncos.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Denver_Broncos2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Denver_Broncos2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Denver_Broncos_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Denver_Broncos_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DetroitLions2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DetroitLions2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detroit_Lions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Detroit_Lions.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detroit_Lions3a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Detroit_Lions3a.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detroit_Lions_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Detroit_Lions_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsCelebrate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsCelebrate.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsGreats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsGreats.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsMiller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsMiller.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsPreSnap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsPreSnap.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsRushing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsRushing.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsTannehill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsTannehill.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsTannehill2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsTannehill2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsTouchdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsTouchdown.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DolphinsTrainingCamp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DolphinsTrainingCamp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EverBankField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\EverBankField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fedex_field" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fedex-field.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FirstEnergyStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\FirstEnergyStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="footballfield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\footballfield.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FootballGoalLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\FootballGoalLine.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fordfield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fordfield.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Georgia_Dome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Georgia-Dome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="georgia_dome1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\georgia_dome.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gillette_stadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\gillette-stadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Green_Bay_Packers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Green_Bay_Packers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Green_Bay_Packers5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Green_Bay_Packers5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Green_Bay_Packers_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Green_Bay_Packers_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeinzField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HeinzField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Houston_Texans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Houston_Texans.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Houston_Texans2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Houston_Texans2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Houston_Texans_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Houston_Texans_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Indianapolis_Colts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Indianapolis_Colts.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Indianapolis_Colts2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Indianapolis_Colts2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Indianapolis_Colts_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Indianapolis_Colts_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jacksonville_Jaguars2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Jacksonville_Jaguars2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jacksonville_Jaguars_2013a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Jacksonville_Jaguars_2013a.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Jacksonville_Jaguars_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Jacksonville_Jaguars_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsDecker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsDecker.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsFans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsFans.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsFitz" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsFitz.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsIvory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsIvory.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsMarshall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsMarshall.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsMarshall2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsMarshall2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsMinicamp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsMinicamp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsOverPile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsOverPile.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsTouchdown2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsTouchdown2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsTunnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsTunnel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JetsWallpaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\JetsWallpaper.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kansas_City_Chiefs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Kansas_City_Chiefs.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kansas_City_Chiefs3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Kansas_City_Chiefs3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kansas_City_Chiefs_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Kansas_City_Chiefs_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lambeaufield" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\lambeaufield.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LARams" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LARams.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LARams1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LARams1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="levis_stadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\levis-stadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LincolnFinancialField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LincolnFinancialField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LosAngelesColiseum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LosAngelesColiseum.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LucasOilStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LucasOilStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MetLife_Stadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\MetLife_Stadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Miami_Dolphins2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Miami_Dolphins2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Miami_Dolphins_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Miami_Dolphins_2013.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Miami_Dolphins_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Miami_Dolphins_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Minnesota_Vikings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Minnesota_Vikings.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Minnesota_Vikings_2013_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Minnesota_Vikings_2013_06.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Minnesota_Vikings_PHelmet_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Minnesota_Vikings_PHelmet_2013.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="M_TBankStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\M&amp;TBankStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_England_Patriots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_England_Patriots.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_England_Patriots2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_England_Patriots2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_England_Patriots_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_England_Patriots_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_Orleans_Saints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_Orleans_Saints.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_Orleans_Saints2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_Orleans_Saints2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_Orleans_Saints_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_Orleans_Saints_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Giants" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Giants.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Giants5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Giants5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Giants_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Giants_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Jets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Jets.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Jets2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Jets2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="New_York_Jets_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\New_York_Jets_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NFLWallpaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NFLWallpaper.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NFLWallpaper2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NFLWallpaper2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NissanStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NissanStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NRGStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NRGStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OaklandColiseum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\OaklandColiseum.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Oakland_Raiders" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Oakland_Raiders.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Oakland_Raiders_Helmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Oakland_Raiders_Helmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Oakland_Raiders_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Oakland_Raiders_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsBelichick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsBelichick.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsBrady" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsBrady.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsBradyGronk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsBradyGronk.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsCelebrate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsCelebrate.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsDefense" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsDefense.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsEdelman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsEdelman.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsFans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsFans.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsGreats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsGreats.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsGronk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsGronk.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsReceivers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsReceivers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsSuperBowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsSuperBowl.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatriotsTunnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PatriotsTunnel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PaulBrownStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PaulBrownStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Philadelphia_Eagles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Philadelphia_Eagles.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Philadelphia_Eagles2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Philadelphia_Eagles2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Philadelphia_Eagles_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Philadelphia_Eagles_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pittsburgh_Steelers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Pittsburgh_Steelers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pittsburgh_Steelers2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Pittsburgh_Steelers2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pittsburgh_Steelers3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Pittsburgh_Steelers3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pittsburgh_Steelers_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Pittsburgh_Steelers_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QualcommStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\QualcommStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RalphWilsonStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\RalphWilsonStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RaymondJamesStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\RaymondJamesStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Diego_Chargers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Diego_Chargers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Diego_Chargers5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Diego_Chargers5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Diego_Chargers_PHelmet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Diego_Chargers_PHelmet2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Francisco_49ers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Francisco_49ers.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Francisco_49ers04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Francisco_49ers04.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="San_Francisco_49ers_PHelmet_New" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\San_Francisco_49ers_PHelmet_New.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Schedule4GamesMax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Schedule4GamesMax.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Seattle_Seahawks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seattle_Seahawks.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Seattle_Seahawks2_2012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seattle_Seahawks2_2012.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Seattle_Seahawks_PHelmet_2012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seattle_Seahawks_PHelmet_2012.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SoldierField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\SoldierField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SportsAuthorityField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\SportsAuthorityField.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sports_Authority_Field" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Sports-Authority-Field.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SunLifeStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\SunLifeStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="superdome_saints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\superdome_saints.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tampa_Bay_Buccaneers2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tampa_Bay_Buccaneers2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tampa_Bay_Buccaneers_2014" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tampa_Bay_Buccaneers_2014.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tampa_Bay_Buccaneers_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tampa_Bay_Buccaneers_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tennessee_Titans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tennessee_Titans.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tennessee_Titans2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tennessee_Titans2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tennessee_Titans_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Tennessee_Titans_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="university_of_phoenix_stadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\university_of_phoenix_stadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="university_phoenix_stadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\university_phoenix_stadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="USBankStadium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\USBankStadium.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WashingtonRedskins3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\WashingtonRedskins3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Washington_Redskins" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Washington_Redskins.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Washington_Redskins2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Washington_Redskins2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Washington_Redskins_PHelmet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Washington_Redskins_PHelmet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

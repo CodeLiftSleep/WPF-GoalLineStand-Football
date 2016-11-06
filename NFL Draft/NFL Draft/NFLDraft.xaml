@@ -1,0 +1,539 @@
+﻿<Window x:Class="NFLDraft"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:NFL_Draft"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainWindow"
+        Width="1200"
+        Height="800"
+        Opacity="0.8"
+        ResizeMode="CanResize"
+        WindowState="Maximized"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="Checks" TargetType="CheckBox">
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="Height" Value="15" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="DockPanel.Dock" Value="Left" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DraftButtons" TargetType="Button">
+            <Setter Property="DockPanel.Dock" Value="Left" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Slicker" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush MappingMode="RelativeToBoundingBox" SpreadMethod="Reflect" StartPoint="0.25,1" EndPoint="0.5,1.5">
+                        <GradientStop Offset="0" Color="#FF1D3014" />
+                        <GradientStop Offset="1" Color="#FF6AAA4C" />
+                        <GradientStop Offset="0.5" Color="#FF475B3D" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2.1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/NFLDraftBackground.jpg" />
+        </Grid.Background>
+        <Button Name="btnDraftTicker"
+                Width="125"
+                Height="50"
+                Margin="10,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF95A4BF"
+                Click="Button_Click">
+            Start DraftTicker
+        </Button>
+        <StackPanel Name="stkTest"
+                    Grid.ColumnSpan="3"
+                    Width="Auto"
+                    Height="125"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal" />
+        <TextBlock Margin="0,130,0,0"
+                   HorizontalAlignment="Center"
+                   FontFamily="Slicker"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   Foreground="White">
+            League Draft News
+        </TextBlock>
+        <Border Grid.Column="0"
+                Width="{Binding ElementName=DockLeftButtons,
+                                Path=ActualWidth}"
+                Height="{Binding ElementName=button,
+                                 Path=ActualHeight}"
+                Margin="0,75,0,0"
+                VerticalAlignment="Top"
+                BorderBrush="Black"
+                BorderThickness="3"
+                CornerRadius="5">
+            <DockPanel Name="DockLeftButtons"
+                       Width="286"
+                       Height="{Binding ElementName=BtnTrade,
+                                        Path=ActualHeight}"
+                       VerticalAlignment="Top"
+                       DockPanel.Dock="Top">
+                <Button x:Name="BtnStart"
+                        Width="93"
+                        Height="45"
+                        VerticalAlignment="Top"
+                        Content="Start Draft"
+                        DockPanel.Dock="Left"
+                        Style="{DynamicResource DraftButtons}"
+                        ToolTip="Click This Button To Start The Draft" />
+                <Button x:Name="BtnTrade"
+                        Width="93"
+                        Height="45"
+                        Margin="2,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Explore Trade"
+                        DockPanel.Dock="Left"
+                        Style="{DynamicResource DraftButtons}"
+                        ToolTip="Contact Another Team Regarding a Trade for Picks or Players" />
+                <Button x:Name="BtnSettings"
+                        Width="93"
+                        Height="45"
+                        Margin="2,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Content="Draft Settings"
+                        DockPanel.Dock="Left"
+                        Style="{DynamicResource DraftButtons}"
+                        ToolTip="Choose Your Draft Settings" />
+            </DockPanel>
+        </Border>
+        <Border Grid.Column="0"
+                Height="{Binding ElementName=LstNews,
+                                 Path=ActualHeight}"
+                Margin="0,147,0,0"
+                VerticalAlignment="Top"
+                BorderBrush="Black"
+                BorderThickness="3"
+                CornerRadius="5">
+            <ListView Name="LstNews"
+                      Height="550"
+                      Background="#FF114691"
+                      Opacity="0.7"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Yellow" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="Minnesota has let teams know they are shopping the 14th pick in the draft."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Red" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Minnesota Vikings are now on the clock."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Aqua" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Cincinnati Bengals have selected Walter Jamison, OT, Florida State with the 13th pick in the draft"
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Red" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Cincinnati Bengals are now on the clock."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Aqua" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Indianapolis Colts have selected Jim Savisa, ILB, Lousville with the 12th pick in the draft"
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Red" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Indianapolis Colts are now on the clock."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="LawnGreen" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="TRADE: The Indianapolis Colts have made a trade with the Atlanta Falcons and have acquired the 12th pick in the draft. Atlanta receives the Colts 21st pick, 44th pick and a 2017 3rd round pick."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+                <ListViewItem>
+                    <BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Ellipse Width="7"
+                                     Height="7"
+                                     Fill="Red" />
+                        </BulletDecorator.Bullet>
+                        <TextBlock Margin="10,0,0,0"
+                                   FontFamily="Slicker"
+                                   Foreground="White"
+                                   Text="The Atlanta Falcons are now on the clock."
+                                   TextWrapping="Wrap" />
+                    </BulletDecorator>
+                </ListViewItem>
+            </ListView>
+        </Border>
+        <Grid x:Name="DlgReplacement"
+              Grid.Column="1"
+              Panel.ZIndex="100"
+              Visibility="Collapsed">
+            <Grid Background="Black" Opacity="0.5" />
+            <Border Grid.Column="1"
+                    Width="{Binding ElementName=TxtDraft,
+                                    Path=ActualWidth}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#FF55A1D4"
+                    BorderBrush="Black"
+                    BorderThickness="3"
+                    CornerRadius="5">
+                <StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+
+                        <TextBlock x:Name="TxtDraft"
+                                   Width="600"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Slicker"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   Padding="5,0,5,0"
+                                   TextWrapping="WrapWithOverflow">
+                            Welcome to the NFL Draft!
+                        </TextBlock>
+                        <TextBlock Width="600"
+                                   Margin="0,20,0,0"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Slicker"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="WhiteSmoke"
+                                   Padding="5,0,5,0"
+                                   TextWrapping="WrapWithOverflow">
+                            Here you can simulate a real, live draft and experience what every GM in the NFL experiences!  Trades, picks, failed trades, multiple teams offering you a ransom to move up to get &quot;their guy&quot;.  Is it worth it, or should you stay put and draft the franchise's next great player?
+                        </TextBlock>
+                        <TextBlock Width="600"
+                                   Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Slicker"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="WhiteSmoke"
+                                   Padding="5,0,5,0"
+                                   TextWrapping="WrapWithOverflow">
+                            Or perhaps the next great disappointment who is out of the league in 3 years, having never played a down for your team...your scouts have done their homework, you've cross checked everything and you have your draft board set-up.
+                        </TextBlock>
+                        <TextBlock Width="600"
+                                   Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Slicker"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="WhiteSmoke"
+                                   Padding="5,0,5,0"
+                                   TextWrapping="WrapWithOverflow">
+                            Choose your draft settings and then get ready to experience all the thrills and excitement of a real live draft with all its twists and turns!  And with that....
+                        </TextBlock>
+
+                        <TextBlock Width="600"
+                                   Margin="0,15,0,0"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="Slicker"
+                                   FontSize="20"
+                                   FontWeight="ExtraBold"
+                                   Foreground="#FFEC5E0D"
+                                   Padding="5,0,5,0"
+                                   TextWrapping="WrapWithOverflow">
+                            The Cleveland Browns are now on the clock!
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Button x:Name="BtnOK"
+                            Width="60"
+                            Margin="8"
+                            HorizontalAlignment="Right"
+                            Background="Black"
+                            Content="OK"
+                            Foreground="White"
+                            Padding="3,0,3,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+        <TextBlock Grid.Column="1"
+                   Margin="43,0,10,0"
+                   HorizontalAlignment="Center"
+                   FontFamily="MotorWerk Regular"
+                   FontSize="36"
+                   Foreground="White">
+            Welcome to the 2016 NFL Draft
+        </TextBlock>
+
+        <DockPanel Grid.Column="1">
+            <Border Width="{Binding ElementName=ButtonsDock,
+                                    Path=Width}"
+                    Height="{Binding ElementName=ButtonsDock,
+                                     Path=Height}"
+                    Margin="0,75,0,0"
+                    HorizontalAlignment="Center"
+                    BorderBrush="Black"
+                    BorderThickness="3"
+                    CornerRadius="5"
+                    DockPanel.Dock="Top">
+                <DockPanel Name="ButtonsDock"
+                           Height="50"
+                           DockPanel.Dock="Top">
+                    <Button Content="View Available"
+                            Style="{DynamicResource DraftButtons}"
+                            ToolTip="View All Players Still Available To Be Drafted" />
+                    <Button Margin="2,0,0,0"
+                            Content="View Scouted"
+                            Style="{DynamicResource DraftButtons}"
+                            ToolTip="View All Players Your Team Has Scouted" />
+                    <Button Margin="2,0,0,0"
+                            Content="View Drafted"
+                            Style="{DynamicResource DraftButtons}"
+                            ToolTip="View All Players That Have Already Been Drafted" />
+                    <Button Margin="2,0,0,0"
+                            Content="View Team Needs"
+                            Style="{DynamicResource DraftButtons}"
+                            ToolTip="View Your Positional Team Needs" />
+                    <Button Margin="2,0,0,0"
+                            Content="View Roster"
+                            Style="{DynamicResource DraftButtons}"
+                            ToolTip="View Your Team Roster As It Currently Stands" />
+                </DockPanel>
+            </Border>
+
+            <DockPanel Height="20"
+                       Margin="0,20,0,0"
+                       HorizontalAlignment="Stretch"
+                       Background="DodgerBlue"
+                       DockPanel.Dock="Top">
+
+                <Label HorizontalAlignment="Stretch"
+                       VerticalAlignment="Top"
+                       DockPanel.Dock="Left"
+                       FontFamily="MotorWerk Regular"
+                       FontSize="10.5"
+                       Foreground="White">
+                    Filter By Position--Offense:
+                </Label>
+                <CheckBox Name="ChkQB" Style="{StaticResource Checks}">QB</CheckBox>
+                <CheckBox Name="ChkRB" Style="{StaticResource Checks}">RB</CheckBox>
+                <CheckBox Name="ChkFB" Style="{StaticResource Checks}">FB</CheckBox>
+                <CheckBox Name="ChkWR" Style="{StaticResource Checks}">WR</CheckBox>
+                <CheckBox Name="ChkTE" Style="{StaticResource Checks}">TE</CheckBox>
+                <CheckBox Name="ChkOT" Style="{StaticResource Checks}">OT</CheckBox>
+                <CheckBox Name="ChkOG" Style="{StaticResource Checks}">OG</CheckBox>
+                <CheckBox Name="ChkC" Style="{StaticResource Checks}">C</CheckBox>
+                <CheckBox Name="ChkK" Style="{StaticResource Checks}">K</CheckBox>
+                <CheckBox Name="ChkP" Style="{StaticResource Checks}">P</CheckBox>
+            </DockPanel>
+
+            <DockPanel Height="20"
+                       Margin="0,0,0,0"
+                       HorizontalAlignment="Stretch"
+                       Background="SlateGray"
+                       DockPanel.Dock="Top">
+                <Label HorizontalAlignment="Stretch"
+                       VerticalContentAlignment="Center"
+                       DockPanel.Dock="Left"
+                       FontFamily="MotorWerk Regular"
+                       FontSize="10.5"
+                       Foreground="White">
+                    Filter By Position--Defense:
+                </Label>
+                <CheckBox Name="ChkDE" Style="{StaticResource Checks}">DE</CheckBox>
+                <CheckBox Name="ChkDT" Style="{StaticResource Checks}">DT</CheckBox>
+                <CheckBox Name="ChkOLB" Style="{StaticResource Checks}">OLB</CheckBox>
+                <CheckBox Name="ChkILB" Style="{StaticResource Checks}">ILB</CheckBox>
+                <CheckBox Name="ChkCB" Style="{StaticResource Checks}">CB</CheckBox>
+                <CheckBox Name="ChkFS" Style="{StaticResource Checks}">FS</CheckBox>
+                <CheckBox Name="ChkSS" Style="{StaticResource Checks}">SS</CheckBox>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+                <Border HorizontalAlignment="Stretch"
+                        BorderBrush="Black"
+                        BorderThickness="3"
+                        CornerRadius="5">
+                    <DataGrid Name="DGDraft"
+                              Height="425"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              AlternatingRowBackground="SlateGray"
+                              AutoGenerateColumns="True"
+                              ColumnWidth="Auto"
+                              DockPanel.Dock="Top"
+                              FontFamily="Pescadero"
+                              Opacity="0.7"
+                              RowBackground="DodgerBlue">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="Firebrick" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Border>
+            </DockPanel>
+            <DockPanel Grid.Column="1"
+                       Width="550"
+                       Height="75"
+                       Margin="0,10,0,0"
+                       VerticalAlignment="Top"
+                       Background="Black"
+                       DockPanel.Dock="Top">
+                <TextBlock Width="Auto"
+                           Height="40"
+                           Margin="25,20,0,0"
+                           HorizontalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           FontFamily="Slicker"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Text="Currently On The Clock:"
+                           TextWrapping="Wrap" />
+                <Image x:Name="imgOnClock"
+                       Width="125"
+                       Height="65"
+                       Margin="40,0,0,0"
+                       HorizontalAlignment="Center"
+                       DockPanel.Dock="Left"
+                       Source="Resources/Minnesota_Vikings_2013_06.jpg"
+                       Stretch="Fill" />
+                <TextBlock x:Name="CurTeam"
+                           Width="100"
+                           Margin="20,0,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           FontFamily="Slicker"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Text="{Binding UpdateTime}" />
+            </DockPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="2"
+                   HorizontalAlignment="Stretch"
+                   DockPanel.Dock="Top">
+            <TextBlock Height="20"
+                       Margin="10,125,0,0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Background="Black"
+                       DockPanel.Dock="Top"
+                       FontFamily="Slicker"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Text="Central Scouting Best Available Players" />
+            <Border HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    BorderBrush="Black"
+                    BorderThickness="3"
+                    CornerRadius="5"
+                    DockPanel.Dock="Left">
+                <ListView Name="LstDraft"
+                          Height="545"
+                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
+                          Background="#FF114691"
+                          DockPanel.Dock="Left"
+                          FontFamily="Slicker"
+                          FontWeight="Bold"
+                          Foreground="#FFF1F3F7"
+                          Opacity=".7">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="160"
+                                            DisplayMemberBinding="{Binding Path=Player}"
+                                            Header="Player" />
+                            <GridViewColumn Width="135"
+                                            DisplayMemberBinding="{Binding Path=College}"
+                                            Header="College" />
+                            <GridViewColumn Width="40"
+                                            DisplayMemberBinding="{Binding Path=POS}"
+                                            Header="Pos" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Grade}" Header="Grade" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </DockPanel>
+    </Grid>
+</Window>

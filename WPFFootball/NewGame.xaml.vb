@@ -5,16 +5,11 @@ Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports SQLFunctions
 Imports Troschuetz.Random
+Imports GlobalResources
+
 Public Class NewGame
     Private ReadOnly SQLTable As New SQLiteDataFunctions
     Private TempDT As New DataTable
-
-    Public Shared TeamDT As New DataTable
-    Public Shared OwnerDT As New DataTable
-    Public Shared PersonnelDT As New DataTable
-    Public Shared CoachDT As New DataTable
-    Public Shared PlayerDT As New DataTable
-    Public Shared Football As New DataSet
 
     ReadOnly MyVM As New NewGameViewModel
     ReadOnly MyDB As String = "Football"
@@ -40,6 +35,7 @@ Public Class NewGame
         SQLTable.LoadTable(MyDB, PersonnelDT, "Personnel")
         SQLTable.LoadTable(MyDB, CoachDT, "Coaches")
         SQLTable.LoadTable(MyDB, PlayerDT, "RosterPlayers")
+        SQLTable.LoadTable(MyDB, DraftDT, "DraftPlayers")
 
         'Add DataTables to the Football DataSet for operations without having to continuously load tables
         Football.Tables.Add(CoachDT)
@@ -47,6 +43,7 @@ Public Class NewGame
         Football.Tables.Add(PersonnelDT)
         Football.Tables.Add(PlayerDT)
         Football.Tables.Add(TeamDT)
+        Football.Tables.Add(DraftDT)
     End Sub
 
     Public Shared Function EnumToList(Of T)() As IEnumerable(Of T)
@@ -118,7 +115,7 @@ Public Class NewGame
         Dim TotContracts As Integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
         Dim DeadCap As Integer = myRand.NextUInt(3000000, 12000000)
         Dim AvailCap As Integer = SalCapTotal - TotContracts - DeadCap
-
+        Dim ColNames As String() = {"Height", "Weight", "ArmLength", "HandLength", "FortyYardTime"}
         MyDiv = TeamDT.Rows(TeamNum).Item("DivID")
 
         MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(TeamNum).Item("StadiumName"))
@@ -187,8 +184,7 @@ Public Class NewGame
         TeamRatings.Text = String.Format("Team Ratings: OFF: {0}  DEF: {1}  ST: {2}  Overall: {3} ", Off, Def, ST,
                                          CInt((Off * 0.4) + (Def * 0.4) + (ST * 0.2)))
 
-        TempDT = SQLTable.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1),
-                                      "Pos")
+        TempDT = SQLiteDataFunctions.FilterTable(PlayerDT, TempDT, String.Format("TeamID = {0}", TeamCombo.SelectedIndex + 1), ColNames, "Pos")
 
         MyVM.MyDTProperty.Clear()
         MyVM.MyDTProperty.Add(TempDT)

@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="DraftTickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:NFL_Draft"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Height="147"
+             VerticalContentAlignment="Center"
+             d:DesignHeight="200"
+             d:DesignWidth="1200"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="DraftScroll">
+            <DoubleAnimation Duration="0:0:0:50"
+                             From="200"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="DraftTicker"
+                             Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
+                             To="-7900" />
+        </Storyboard>
+        <Style x:Key="TickerText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Firebrick" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="DockPanel.Dock" Value="Left" />
+            <Setter Property="Margin" Value="40,0,60,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <DockPanel x:Name="DraftTicker"
+                   Width="Auto"
+                   Height="125"
+                   Background="#FFD5D5DC"
+                   DockPanel.Dock="Left"
+                   Opacity="0.75">
+
+            <TextBlock Margin="10,0,40,0"
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Left"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Text="2016 NFL Draft" />
+
+            <TextBlock Name="TxtRound"
+                       Margin="0,0,60,0"
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Left"
+                       FontSize="26"
+                       FontWeight="Bold">
+                Round 1
+            </TextBlock>
+            <TextBlock Name="TxtDraft" Style="{DynamicResource TickerText}">
+                <InlineUIContainer>
+                    <Image Name="ImgPick1"
+                           Height="50"
+                           DockPanel.Dock="Left" />
+                </InlineUIContainer>
+            </TextBlock>
+
+            <Image Name="ImgOnClock"
+                   Height="50"
+                   Source="Resources/Minnesota_Vikings_2013_06.jpg" />
+            <TextBlock Margin="20,0,20,0"
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Left"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="Firebrick"
+                       Text="ON THE CLOCK:" />
+            <TextBlock Name="txtClock"
+                       Margin="10,0,20,0"
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Left"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="Firebrick"
+                       Text="{Binding UpdateTime}" />
+            <DockPanel.RenderTransform>
+                <TranslateTransform />
+            </DockPanel.RenderTransform>
+        </DockPanel>
+    </Grid>
+</UserControl>

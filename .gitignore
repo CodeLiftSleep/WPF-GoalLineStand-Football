@@ -243,3 +243,16 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/AIEvaluation/Draft/Grading Sheets/WCR-RB.csv
+/AIEvaluation/Draft/Grading Sheets/WCP-RB.csv
+/AIEvaluation/Draft/Grading Sheets/WCB-RB.csv
+/AIEvaluation/Draft/Grading Sheets/SPR-RB.csv
+/AIEvaluation/Draft/Grading Sheets/SPP-RB.csv
+/AIEvaluation/Draft/Grading Sheets/SPB-RB.csv
+/AIEvaluation/Draft/Grading Sheets/SMA-RB.csv
+/AIEvaluation/Draft/Grading Sheets/MOR-RB.csv
+/AIEvaluation/Draft/Grading Sheets/MOP-RB.csv
+/AIEvaluation/Draft/Grading Sheets/MOB-RB.csv
+/AIEvaluation/Draft/Grading Sheets/BAR-RB.csv
+/AIEvaluation/Draft/Grading Sheets/BAP-RB.csv
+/LeagueCalendar/

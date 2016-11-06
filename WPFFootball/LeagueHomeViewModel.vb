@@ -3,6 +3,8 @@ Imports System.ComponentModel
 Imports System.Data
 Imports System.IO
 Imports System.Linq
+Imports WPFFootball
+Imports GlobalResources
 
 Public Class LeagueHomeViewModel
     Inherits NewGameViewModel
@@ -26,6 +28,7 @@ Public Class LeagueHomeViewModel
     Private _transBtn As New Command(AddressOf LgTrans)
     Private _injuriesBtn As New Command(AddressOf LgInjuries)
     Private _milestonesBtn As New Command(AddressOf LgMilestones)
+    Private _draftBtn As New Command(AddressOf Draft)
 
 #End Region
 #Region "Public Properties"
@@ -72,6 +75,11 @@ Public Class LeagueHomeViewModel
             Return _milestonesBtn
         End Get
     End Property
+    Public ReadOnly Property DraftBtn As Command
+        Get
+            Return _draftBtn
+        End Get
+    End Property
 #End Region
 
 #Region "Commands"
@@ -101,7 +109,7 @@ Public Class LeagueHomeViewModel
         While DivId < 9
             'LINQ Query to get DB info
             Dim GetDiv =
-                From myrow In NewGame.TeamDT
+                From myrow In TeamDT
                 Where myrow.Item("DivID") = DivId
                 Order By (myrow.Item("DivStanding"))
                 Select New With {
@@ -199,6 +207,11 @@ Public Class LeagueHomeViewModel
                 DT.Select("", OrderBy, DataViewRowState.CurrentRows)
             End While
         End Using
+    End Sub
+    Private Sub Draft()
+        Dim MyDraft As New NFL_Draft.NFLDraft(DraftDT)
+        MyDraft.ShowDialog()
+
     End Sub
     ''' <summary>
     ''' Takes a string parameter array for the column names and then adds the columns by looping through the array

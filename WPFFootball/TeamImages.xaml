@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFFootball">
+    <Image x:Key="Bills" Source="Project Files/Buffalo_Bills.jpg" />
+    <Image x:Key="Patriots" Source="Project Files/New_England_Patriots.jpg" />
+    <Image x:Key="Jets" Source="Project Files/New_York_Jets.jpg" />
+    <Image x:Key="Dolphins" Source="Project Files/Miami_Dolphins_2013.jpg" />
+    <Image x:Key="Ravens" Source="Project Files/Baltimore_Ravens.jpg" />
+    <Image x:Key="Bengals" Source="Project Files/Cincinnati_Bengals.jpg" />
+    <Image x:Key="Browns" Source="Project Files/Cleveland_Browns.jpg" />
+    <Image x:Key="Steelers" Source="Project Files/Pittsburgh_Steelers.jpg" />
+    <Image x:Key="Colts" Source="Project Files/Indianapolis_Colts.jpg" />
+    <Image x:Key="Jaguars" Source="Project Files/Jacksonville_Jaguars_2013a.jpg" />
+    <Image x:Key="Texans" Source="Project Files/Houston_Texans.jpg" />
+    <Image x:Key="Titans" Source="Project Files/Tennessee_Titans.jpg" />
+    <Image x:Key="Broncos" Source="Project Files/Denver_Broncos.jpg" />
+    <Image x:Key="Raiders" Source="Project Files/Oakland_Raiders.jpg" />
+    <Image x:Key="Chiefs" Source="Project Files/Kansas_City_Chiefs.jpg" />
+    <Image x:Key="Chargers" Source="Project Files/San_Diego_Chargers.jpg" />
+    <Image x:Key="Giants" Source="Project Files/New_York_Giants.jpg" />
+    <Image x:Key="Cowboys" Source="Project Files/Dallas_Cowboys.jpg" />
+    <Image x:Key="Redskins" Source="Project Files/Washington_Redskins.jpg" />
+    <Image x:Key="Eagles" Source="Project Files/Philadelphia_Eagles.jpg" />
+    <Image x:Key="Packers" Source="Project Files/Green_Bay_Packers.jpg" />
+    <Image x:Key="Vikings" Source="Project Files/Minnesota_Vikings.jpg" />
+    <Image x:Key="Lions" Source="Project Files/Detroit_Lions.jpg" />
+    <Image x:Key="Bears" Source="Project Files/Chicago_Bears.jpg" />
+    <Image x:Key="Saints" Source="Project Files/New_Orleans_Saints.jpg" />
+    <Image x:Key="Buccaneers" Source="Project Files/Tampa_Bay_Buccaneers_2014.jpg" />
+    <Image x:Key="Falcons" Source="Project Files/Atlanta_Falcons.jpg" />
+    <Image x:Key="Panthers" Source="Project Files/Carolina_Panthers.jpg" />
+    <Image x:Key="_49ers" Source="Project Files/San_Francisco_49ers.jpg" />
+    <Image x:Key="Rams" Source="Project Files/LARams.jpg" />
+    <Image x:Key="Cardinals" Source="Project Files/Arizona_Cardinals.jpg" />
+    <Image x:Key="Seahawks" Source="Project Files/Seattle_Seahawks.jpg" />
+</ResourceDictionary> 
