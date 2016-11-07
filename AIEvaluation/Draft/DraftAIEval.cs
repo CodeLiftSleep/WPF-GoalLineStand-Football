@@ -16,7 +16,7 @@ namespace AIEvaluation.Draft
         public DraftAIEval()
         {
             var gradesList = new List<string>();
-            var files = new List<string>(Directory.EnumerateFiles(@"..\..\..AIEvaluation\Draft\Grading System", "*.*", SearchOption.AllDirectories)); //load grade files
+            var files = new List<string>(Directory.EnumerateFiles(@"..\..\..\AIEvaluation\Draft\Grading Sheets", "*.*", SearchOption.AllDirectories)); //load grade files
 
             var draftDTGroups =  //groups players by Scout Region then by Position, ordered by Grade
                     from player in DraftDT.AsEnumerable()

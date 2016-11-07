@@ -296,6 +296,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="DraftPickValueChart.txt" />
+    <Resource Include="LeagueNews.txt" />
     <Content Include="Project Files\Schedule4GamesMax.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

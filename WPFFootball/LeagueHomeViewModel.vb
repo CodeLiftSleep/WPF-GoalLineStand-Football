@@ -21,7 +21,8 @@ Public Class LeagueHomeViewModel
 #End Region
 
 #Region "Private Variables"
-    Private _leaguedate As Date
+    Private _leagueDate As Date
+    Private _leagueNews As New ObservableCollection(Of DataTable)
     Private _myDT As New ObservableCollection(Of DataTable)
     Private _eventBtn As New Command(AddressOf LgEvent)
     Private _standingsBtn As New Command(AddressOf LgStandings)
@@ -32,13 +33,22 @@ Public Class LeagueHomeViewModel
 
 #End Region
 #Region "Public Properties"
-    Public Property Leaguedate As Date
+    Public Property leagueDate As Date
         Get
-            Return _leaguedate
+            Return _leagueDate
         End Get
         Set(value As Date)
-            _leaguedate = value
+            _leagueDate = value
             OnPropertyChanged("Leaguedate")
+        End Set
+    End Property
+    Public Property leagueNews As ObservableCollection(Of DataTable)
+        Get
+            Return _leagueNews
+        End Get
+        Set(value As ObservableCollection(Of DataTable))
+            _leagueNews = value
+            OnPropertyChanged("leagueNews")
         End Set
     End Property
     Public Property MyDT As ObservableCollection(Of DataTable)
@@ -86,14 +96,13 @@ Public Class LeagueHomeViewModel
     ''' <summary>
     ''' Controls what happens when Event Button is clicked
     ''' </summary>
-    Private Sub LgEvent()
+    Public Sub LgEvent()
         Dim TempDT As New DataTable
         Dim ColNames() As String = {"Date", "Event Scheduled", "Location"}
 
         MyDT.Clear()
         ReadFile("LeagueEvents.Txt", ColNames, TempDT, "ddd MMMM dd, yyyy", 0)
         MyDT.Add(TempDT)
-
     End Sub
 
     ''' <summary>
@@ -182,7 +191,7 @@ Public Class LeagueHomeViewModel
     ''' <param name="DT"></param>
     ''' <param name="DateFormatPattern"></param>
     ''' <param name="DateFormatIndex"></param>
-    Private Sub ReadFile(ByVal FileName As String, ByVal ColumnNames() As String, ByVal DT As DataTable, Optional DateFormatPattern As String = "",
+    Public Sub ReadFile(ByVal FileName As String, ByVal ColumnNames() As String, ByVal DT As DataTable, Optional DateFormatPattern As String = "",
                          Optional DateFormatIndex As Integer = -1, Optional OrderBy As String = "")
         Dim str As String = ""
         Dim myarray() As String
@@ -224,7 +233,6 @@ Public Class LeagueHomeViewModel
         Next i
     End Sub
 #End Region
-
     Public Class Command
         Implements ICommand
 

@@ -42,7 +42,7 @@
                    Grid.ColumnSpan="6"
                    FontFamily="Motorwerk Bold"
                    FontSize="28"
-                   Text="{Binding Path=Leaguedate,
+                   Text="{Binding Path=leagueDate,
                                   StringFormat={}{0:dddd MMMM dd yyyy}}" />
         <Button Grid.Column="5"
                 Width="115"
@@ -60,20 +60,45 @@
                 Grid.ColumnSpan="5"
                 Margin="2,0,0,0"
                 Style="{StaticResource MyBorder2}">
-            <TextBlock x:Name="LgNews"
-                       Grid.Row="1"
-                       Width="{Binding ElementName=LgNewsBdr,
-                                       Path=ActualWidth}"
-                       Height="{Binding ElementName=LgNewsBdr,
-                                        Path=ActualHeight}"
-                       Margin="0,0,0,0"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       Background="White"
-                       FontFamily="Motorwerk Bold"
-                       FontSize="18"
-                       Opacity="0.5"
-                       Text=" League News" />
+            <DataGrid x:Name="LgNews"
+                      Grid.Row="1"
+                      Width="{Binding ElementName=LgNewsBdr,
+                                      Path=ActualWidth}"
+                      Height="{Binding ElementName=LgNewsBdr,
+                                       Path=ActualHeight}"
+                      Margin="0,0,0,0"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Center"
+                      AlternatingRowBackground="SlateGray"
+                      AlternationCount="1"
+                      AutoGenerateColumns="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="True"
+                      ColumnWidth="Auto"
+                      FontSize="11"
+                      FontWeight="ExtraBold"
+                      ItemsSource="{Binding Path=leagueNews[0]}"
+                      Opacity="0.6"
+                      RowBackground="CornflowerBlue"
+                      RowHeight="25">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Background" Value="LightGoldenrodYellow" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
         </Border>
 
         <Button x:Name="LgEventsBtn"
