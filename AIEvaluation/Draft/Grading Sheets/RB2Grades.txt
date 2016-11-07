@@ -1,5 +1,6 @@
 #FORMAT:OffSys;AdjBall;BallSec;BodCat;BrkTck;COD;ConBal;DelBlw;Dur;Expl;Flex;Footwk;Hands;JumpAb;LowStr;PBPwr;PBSpd;PlySpd;QAB;Pat;RunVis;SetUpBlk;React;ReadKey;RelOffLine;RouteRun;RunBlk;Stam;Tough;UppStr
-#POS:RB#ROLE:2nd
+#POS:RB
+#ROLE:2nd
 WCP;0.8;1.5;0.8;0.6;1.5;0.8;0.0;1.0;1.5;1.5;0.7;1.5;0.5;0.3;0.5;0.5;0.8;1.5;1.5;1.5;1.5;1.5;0.7;1.0;2.0;0.5;1.0;1.0;0.5
 WCR;0.8;1.5;0.9;0.6;1.0;0.8;0.7;1.0;1.5;1.5;0.7;1.4;0.5;0.6;0.5;0.5;0.8;1.1;1.7;1.7;1.7;1.5;0.7;1.0;1.3;0.5;1.0;1.0;0.5
 WCB;0.8;1.5;0.9;0.8;1.2;1.0;0.3;1.0;1.5;1.5;1.0;1.0;0.5;1.0;0.5;0.5;0.8;1.2;1.5;1.6;1.5;1.5;0.8;1.0;1.1;0.5;1.0;1.0;0.5

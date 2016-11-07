@@ -115,7 +115,7 @@ Public Class NewGame
         Dim TotContracts As Integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
         Dim DeadCap As Integer = myRand.NextUInt(3000000, 12000000)
         Dim AvailCap As Integer = SalCapTotal - TotContracts - DeadCap
-        Dim ColNames As String() = {"Height", "Weight", "ArmLength", "HandLength", "FortyYardTime"}
+        Dim ColNames As String() = {"FName", "LName", "College", "Pos", "PosType", "Age", "Height", "Weight", "ArmLength", "HandLength", "FortyYardTime"}
         MyDiv = TeamDT.Rows(TeamNum).Item("DivID")
 
         MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(TeamNum).Item("StadiumName"))
