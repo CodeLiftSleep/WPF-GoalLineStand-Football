@@ -2,6 +2,13 @@
 
 Class MainWindow
     Public Shared NewGameScreen As New NewGame
+    Sub New()
+        Try
+            InitializeComponent()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 
     Private Sub NewGameBtn_Click(sender As Object, e As RoutedEventArgs) Handles NewGameBtn.Click
         NewGameScreen.Show()

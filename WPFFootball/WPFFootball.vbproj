@@ -159,34 +159,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameSettings.xaml.vb">
+    <Compile Include="Game_Settings\GameSettings.xaml.vb">
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameSettingsViewModel.vb" />
-    <Compile Include="LeagueHome.xaml.vb">
+    <Compile Include="Game_Settings\GameSettingsViewModel.vb" />
+    <Compile Include="League_Home\LeagueHome.xaml.vb">
       <DependentUpon>LeagueHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeagueHomeViewModel.vb" />
-    <Compile Include="NewGameViewModel.vb" />
-    <Compile Include="HomeScreen.xaml.vb">
+    <Compile Include="League_Home\LeagueHomeViewModel.vb" />
+    <Compile Include="New_Game\NewGameViewModel.vb" />
+    <Compile Include="Start_Screen\HomeScreen.xaml.vb">
       <DependentUpon>HomeScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewGame.xaml.vb">
+    <Compile Include="New_Game\NewGame.xaml.vb">
       <DependentUpon>NewGame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserScreen.xaml.vb">
+    <Compile Include="User_Screen\UserScreen.xaml.vb">
       <DependentUpon>UserScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserScreenViewModel.vb" />
-    <Page Include="GameSettings.xaml">
+    <Compile Include="User_Screen\UserScreenViewModel.vb" />
+    <Page Include="Game_Settings\GameSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomeScreen.xaml">
+    <Page Include="Start_Screen\HomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeagueHome.xaml">
+    <Page Include="League_Home\LeagueHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,7 +202,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewGame.xaml">
+    <Page Include="New_Game\NewGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,7 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserScreen.xaml">
+    <Page Include="User_Screen\UserScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,93 +256,92 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="GLSDefaultSettings.txt">
+    <Resource Include="Data_Files\GLSDefaultSettings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="GLSSettings.txt">
+    <Resource Include="Data_Files\GLSSettings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="footballfield.jpg" />
-    <Resource Include="Project Files\BillsFans.jpg">
+    <Resource Include="Project_Files\BillsFans.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Project Files\BillsMcCoy.jpg">
+    <Resource Include="Project_Files\BillsMcCoy.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Project Files\BillsPassRush.jpg">
+    <Resource Include="Project_Files\BillsPassRush.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Project Files\BillsFans2.jpg" />
-    <Resource Include="Project Files\BillsFans3.jpg" />
-    <Resource Include="Project Files\BillsGreats.jpg" />
-    <Resource Include="Project Files\BillsLondon.jpg" />
-    <Resource Include="Project Files\BillsMcCoy2.jpg" />
-    <Resource Include="Project Files\BillsOneBuffalo.jpg" />
-    <Resource Include="Project Files\BillsTaylor.jpg" />
-    <Resource Include="Project Files\BillsWatkinsTaylor.jpg" />
-    <Resource Include="Project Files\DolphinsCelebrate.JPG" />
-    <Resource Include="Project Files\DolphinsGreats.jpg" />
-    <Resource Include="Project Files\DolphinsMiller.jpg" />
-    <Resource Include="Project Files\DolphinsPreSnap.jpg" />
-    <Resource Include="Project Files\DolphinsStadium.jpg" />
-    <Resource Include="Project Files\DolphinsTannehill.jpg" />
-    <Resource Include="Project Files\DolphinsTrainingCamp.jpg" />
-    <Resource Include="Project Files\JetsDecker.jpg" />
-    <Resource Include="Project Files\JetsFans.jpg" />
-    <Resource Include="Project Files\JetsIvory.jpg" />
-    <Resource Include="Project Files\JetsMarshall.jpg" />
-    <Resource Include="Project Files\JetsOverPile.jpg" />
-    <Resource Include="Project Files\JetsTouchdown2.jpg" />
-    <Resource Include="Project Files\JetsTunnel.jpg" />
-    <Resource Include="Project Files\JetsWallpaper.jpg" />
-    <Resource Include="Project Files\PatriotsBelichick.jpg" />
-    <Resource Include="Project Files\PatriotsBrady.jpg" />
-    <Resource Include="Project Files\PatriotsBradyGronk.jpg" />
-    <Resource Include="Project Files\PatriotsCelebrate.jpg" />
-    <Resource Include="Project Files\PatriotsDefense.jpg" />
-    <Resource Include="Project Files\PatriotsEdelman.jpg" />
-    <Resource Include="Project Files\PatriotsFans.jpg" />
-    <Resource Include="Project Files\PatriotsGreats.jpg" />
-    <Resource Include="Project Files\PatriotsGronk.jpg" />
-    <Resource Include="Project Files\PatriotsReceivers.jpg" />
-    <Resource Include="Project Files\PatriotsSuperBowl.jpg" />
-    <Resource Include="Project Files\PatriotsTunnel.jpg" />
-    <Resource Include="Project Files\NFLWallpaper.jpg" />
-    <Resource Include="Project Files\NFLWallpaper2.jpg" />
-    <Resource Include="LeagueEvents.txt">
+    <Resource Include="Project_Files\BillsFans2.jpg" />
+    <Resource Include="Project_Files\BillsFans3.jpg" />
+    <Resource Include="Project_Files\BillsGreats.jpg" />
+    <Resource Include="Project_Files\BillsLondon.jpg" />
+    <Resource Include="Project_Files\BillsMcCoy2.jpg" />
+    <Resource Include="Project_Files\BillsOneBuffalo.jpg" />
+    <Resource Include="Project_Files\BillsTaylor.jpg" />
+    <Resource Include="Project_Files\BillsWatkinsTaylor.jpg" />
+    <Resource Include="Project_Files\DolphinsCelebrate.JPG" />
+    <Resource Include="Project_Files\DolphinsGreats.jpg" />
+    <Resource Include="Project_Files\DolphinsMiller.jpg" />
+    <Resource Include="Project_Files\DolphinsPreSnap.jpg" />
+    <Resource Include="Project_Files\DolphinsStadium.jpg" />
+    <Resource Include="Project_Files\DolphinsTannehill.jpg" />
+    <Resource Include="Project_Files\DolphinsTrainingCamp.jpg" />
+    <Resource Include="Project_Files\JetsDecker.jpg" />
+    <Resource Include="Project_Files\JetsFans.jpg" />
+    <Resource Include="Project_Files\JetsIvory.jpg" />
+    <Resource Include="Project_Files\JetsMarshall.jpg" />
+    <Resource Include="Project_Files\JetsOverPile.jpg" />
+    <Resource Include="Project_Files\JetsTouchdown2.jpg" />
+    <Resource Include="Project_Files\JetsTunnel.jpg" />
+    <Resource Include="Project_Files\JetsWallpaper.jpg" />
+    <Resource Include="Project_Files\PatriotsBelichick.jpg" />
+    <Resource Include="Project_Files\PatriotsBrady.jpg" />
+    <Resource Include="Project_Files\PatriotsBradyGronk.jpg" />
+    <Resource Include="Project_Files\PatriotsCelebrate.jpg" />
+    <Resource Include="Project_Files\PatriotsDefense.jpg" />
+    <Resource Include="Project_Files\PatriotsEdelman.jpg" />
+    <Resource Include="Project_Files\PatriotsFans.jpg" />
+    <Resource Include="Project_Files\PatriotsGreats.jpg" />
+    <Resource Include="Project_Files\PatriotsGronk.jpg" />
+    <Resource Include="Project_Files\PatriotsReceivers.jpg" />
+    <Resource Include="Project_Files\PatriotsSuperBowl.jpg" />
+    <Resource Include="Project_Files\PatriotsTunnel.jpg" />
+    <Resource Include="Project_Files\NFLWallpaper.jpg" />
+    <Resource Include="Project_Files\NFLWallpaper2.jpg" />
+    <Resource Include="Data_Files\LeagueEvents.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="LeagueTrans.txt" />
-    <Resource Include="LeagueInj.txt">
+    <Resource Include="Data_Files\LeagueTrans.txt" />
+    <Resource Include="Data_Files\LeagueInj.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="LeagueMile.txt">
+    <Resource Include="Data_Files\LeagueMile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="DraftPickValueChart.txt" />
-    <Resource Include="LeagueNews.txt" />
-    <Content Include="Project Files\Schedule4GamesMax.txt">
+    <Resource Include="Data_Files\DraftPickValueChart.txt" />
+    <Resource Include="Data_Files\LeagueNews.txt" />
+    <Content Include="Project_Files\Schedule4GamesMax.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="My Project\app.manifest" />
     <None Include="packages.config" />
-    <Resource Include="Project Files\BankOfAmericaStadium.jpg" />
-    <Resource Include="Project Files\CenturyLinkField.jpg" />
-    <Resource Include="Project Files\ATTStadium.jpg" />
-    <Resource Include="Project Files\fedex-field.jpg" />
-    <Resource Include="Project Files\fordfield.jpg" />
-    <Resource Include="Project Files\Georgia-Dome.png" />
-    <Resource Include="Project Files\lambeaufield.jpg" />
-    <Resource Include="Project Files\levis-stadium.jpg" />
-    <Resource Include="Project Files\LincolnFinancialField.jpg" />
-    <Resource Include="Project Files\LosAngelesColiseum.jpg" />
-    <Resource Include="Project Files\RaymondJamesStadium.jpg" />
-    <Resource Include="Project Files\SoldierField.jpg" />
-    <Resource Include="Project Files\superdome_saints.jpg" />
-    <Resource Include="Project Files\university_phoenix_stadium.jpg" />
-    <Resource Include="Project Files\USBankStadium.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders_Helmet.jpg" />
-    <Resource Include="Project Files\Sports-Authority-Field.jpg" />
+    <Resource Include="Project_Files\BankOfAmericaStadium.jpg" />
+    <Resource Include="Project_Files\CenturyLinkField.jpg" />
+    <Resource Include="Project_Files\ATTStadium.jpg" />
+    <Resource Include="Project_Files\fedex-field.jpg" />
+    <Resource Include="Project_Files\fordfield.jpg" />
+    <Resource Include="Project_Files\Georgia-Dome.png" />
+    <Resource Include="Project_Files\lambeaufield.jpg" />
+    <Resource Include="Project_Files\levis-stadium.jpg" />
+    <Resource Include="Project_Files\LincolnFinancialField.jpg" />
+    <Resource Include="Project_Files\LosAngelesColiseum.jpg" />
+    <Resource Include="Project_Files\RaymondJamesStadium.jpg" />
+    <Resource Include="Project_Files\SoldierField.jpg" />
+    <Resource Include="Project_Files\superdome_saints.jpg" />
+    <Resource Include="Project_Files\university_phoenix_stadium.jpg" />
+    <Resource Include="Project_Files\USBankStadium.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders_Helmet.jpg" />
+    <Resource Include="Project_Files\Sports-Authority-Field.jpg" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -354,7 +353,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <AppDesigner Include="My Project\" />
-    <Content Include="Project Files\Football.sqlite">
+    <Content Include="Project_Files\Football.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -362,128 +361,128 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Project Files\footballfield.jpg" />
+    <Resource Include="Project_Files\footballfield.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Project Files\ArizonaCardinals3.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals2.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals_Helmet.jpg" />
-    <Resource Include="Project Files\ArrowheadStadium.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons2.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons_PHelmet.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens3.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens_PHelmet.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills02.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills3.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills_PHelmet_2011.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers2.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers_PHelmet.jpg" />
-    <Resource Include="Project Files\Chicago_Bears.jpg" />
-    <Resource Include="Project Files\Chicago_Bears4.jpg" />
-    <Resource Include="Project Files\Chicago_Bears_PHelmet2.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals3.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals_PHelmet.jpg" />
-    <Resource Include="Project Files\ClevelandBrowns2.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns2.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns_PHelmet.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys3.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys_PHelmet.jpg" />
-    <Resource Include="Project Files\Denver_Broncos.jpg" />
-    <Resource Include="Project Files\Denver_Broncos2.jpg" />
-    <Resource Include="Project Files\Denver_Broncos_PHelmet.jpg" />
-    <Resource Include="Project Files\DetroitLions2.jpg" />
-    <Resource Include="Project Files\Detroit_Lions.jpg" />
-    <Resource Include="Project Files\Detroit_Lions3a.jpg" />
-    <Resource Include="Project Files\Detroit_Lions_PHelmet.jpg" />
-    <Resource Include="Project Files\EverBankField.jpg" />
-    <Resource Include="Project Files\FirstEnergyStadium.jpg" />
-    <Resource Include="Project Files\FootballGoalLine.jpg" />
-    <Resource Include="Project Files\georgia_dome.jpg" />
-    <Resource Include="Project Files\gillette-stadium.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers5.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers_PHelmet.jpg" />
-    <Resource Include="Project Files\HeinzField.jpg" />
-    <Resource Include="Project Files\Houston_Texans.jpg" />
-    <Resource Include="Project Files\Houston_Texans2.jpg" />
-    <Resource Include="Project Files\Houston_Texans_PHelmet.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts2.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts_PHelmet.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars2.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars_2013a.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars_PHelmet.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs3.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs_PHelmet.jpg" />
-    <Resource Include="Project Files\LARams.jpg" />
-    <Resource Include="Project Files\LARams1.png" />
-    <Resource Include="Project Files\LucasOilStadium.jpg" />
-    <Resource Include="Project Files\M&amp;TBankStadium.jpg" />
-    <Resource Include="Project Files\MetLife_Stadium.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins2.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins_2013.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins_PHelmet.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings_2013_06.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings_PHelmet_2013.jpg" />
-    <Resource Include="Project Files\New_England_Patriots.jpg" />
-    <Resource Include="Project Files\New_England_Patriots2.jpg" />
-    <Resource Include="Project Files\New_England_Patriots_PHelmet.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints2.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints_PHelmet.jpg" />
-    <Resource Include="Project Files\New_York_Giants.jpg" />
-    <Resource Include="Project Files\New_York_Giants5.jpg" />
-    <Resource Include="Project Files\New_York_Giants_PHelmet.jpg" />
-    <Resource Include="Project Files\New_York_Jets.jpg" />
-    <Resource Include="Project Files\New_York_Jets2.jpg" />
-    <Resource Include="Project Files\New_York_Jets_PHelmet.jpg" />
-    <Resource Include="Project Files\NissanStadium.jpg" />
-    <Resource Include="Project Files\NRGStadium.jpg" />
-    <Resource Include="Project Files\OaklandColiseum.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders_PHelmet.jpg" />
-    <Resource Include="Project Files\PaulBrownStadium.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles2.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles_PHelmet.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers2.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers3.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers_PHelmet.jpg" />
-    <Resource Include="Project Files\QualcommStadium.jpg" />
-    <Resource Include="Project Files\RalphWilsonStadium.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers5.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers_PHelmet2.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers04.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers_PHelmet_New.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks2_2012.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks_PHelmet_2012.jpg" />
-    <Resource Include="Project Files\SportsAuthorityField.jpg" />
-    <Resource Include="Project Files\SunLifeStadium.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers2.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers_2014.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers_PHelmet.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans2.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans_PHelmet.jpg" />
-    <Resource Include="Project Files\university_of_phoenix_stadium.jpg" />
-    <Resource Include="Project Files\WashingtonRedskins3.jpg" />
-    <Resource Include="Project Files\Washington_Redskins.jpg" />
-    <Resource Include="Project Files\Washington_Redskins2.jpg" />
-    <Resource Include="Project Files\Washington_Redskins_PHelmet.jpg" />
+    <Resource Include="Project_Files\ArizonaCardinals3.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals2.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals_Helmet.jpg" />
+    <Resource Include="Project_Files\ArrowheadStadium.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons2.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons_PHelmet.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens3.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens_PHelmet.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills02.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills3.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills_PHelmet_2011.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers2.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers_PHelmet.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears4.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears_PHelmet2.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals3.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals_PHelmet.jpg" />
+    <Resource Include="Project_Files\ClevelandBrowns2.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns2.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns_PHelmet.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys3.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys_PHelmet.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos2.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos_PHelmet.jpg" />
+    <Resource Include="Project_Files\DetroitLions2.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions3a.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions_PHelmet.jpg" />
+    <Resource Include="Project_Files\EverBankField.jpg" />
+    <Resource Include="Project_Files\FirstEnergyStadium.jpg" />
+    <Resource Include="Project_Files\FootballGoalLine.jpg" />
+    <Resource Include="Project_Files\georgia_dome.jpg" />
+    <Resource Include="Project_Files\gillette-stadium.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers5.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers_PHelmet.jpg" />
+    <Resource Include="Project_Files\HeinzField.jpg" />
+    <Resource Include="Project_Files\Houston_Texans.jpg" />
+    <Resource Include="Project_Files\Houston_Texans2.jpg" />
+    <Resource Include="Project_Files\Houston_Texans_PHelmet.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts2.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts_PHelmet.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars2.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars_2013a.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars_PHelmet.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs3.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs_PHelmet.jpg" />
+    <Resource Include="Project_Files\LARams.jpg" />
+    <Resource Include="Project_Files\LARams1.png" />
+    <Resource Include="Project_Files\LucasOilStadium.jpg" />
+    <Resource Include="Project_Files\M&amp;TBankStadium.jpg" />
+    <Resource Include="Project_Files\MetLife_Stadium.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins2.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins_2013.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins_PHelmet.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings_2013_06.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings_PHelmet_2013.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots2.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints2.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_York_Giants.jpg" />
+    <Resource Include="Project_Files\New_York_Giants5.jpg" />
+    <Resource Include="Project_Files\New_York_Giants_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_York_Jets.jpg" />
+    <Resource Include="Project_Files\New_York_Jets2.jpg" />
+    <Resource Include="Project_Files\New_York_Jets_PHelmet.jpg" />
+    <Resource Include="Project_Files\NissanStadium.jpg" />
+    <Resource Include="Project_Files\NRGStadium.jpg" />
+    <Resource Include="Project_Files\OaklandColiseum.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders_PHelmet.jpg" />
+    <Resource Include="Project_Files\PaulBrownStadium.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles2.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles_PHelmet.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers2.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers3.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers_PHelmet.jpg" />
+    <Resource Include="Project_Files\QualcommStadium.jpg" />
+    <Resource Include="Project_Files\RalphWilsonStadium.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers5.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers_PHelmet2.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers04.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers_PHelmet_New.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks2_2012.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks_PHelmet_2012.jpg" />
+    <Resource Include="Project_Files\SportsAuthorityField.jpg" />
+    <Resource Include="Project_Files\SunLifeStadium.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers2.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers_2014.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers_PHelmet.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans2.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans_PHelmet.jpg" />
+    <Resource Include="Project_Files\university_of_phoenix_stadium.jpg" />
+    <Resource Include="Project_Files\WashingtonRedskins3.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins2.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins_PHelmet.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -534,6 +533,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\RefactoringEssentials.4.4.0\analyzers\dotnet\RefactoringEssentials.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

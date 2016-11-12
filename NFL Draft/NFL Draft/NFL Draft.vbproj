@@ -135,13 +135,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DraftPick.vb" />
-    <Compile Include="NFLDraftViewModel.vb" />
-    <Page Include="DraftTickerControl.xaml">
+    <Compile Include="Draft Pick\DraftPick.vb" />
+    <Compile Include="NFL Draft\NFLDraftViewModel.vb" />
+    <Page Include="Draft Ticker Control\DraftTickerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NFLDraft.xaml">
+    <Page Include="NFL Draft\NFLDraft.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -149,10 +149,10 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DraftTickerControl.xaml.vb">
+    <Compile Include="Draft Ticker Control\DraftTickerControl.xaml.vb">
       <DependentUpon>DraftTickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NFLDraft.xaml.vb">
+    <Compile Include="NFL Draft\NFLDraft.xaml.vb">
       <DependentUpon>NFLDraft.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

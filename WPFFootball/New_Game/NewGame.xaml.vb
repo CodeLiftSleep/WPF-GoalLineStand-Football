@@ -15,7 +15,7 @@ Public Class NewGame
     ReadOnly MyDB As String = "Football"
     ReadOnly myQueue As New Queue
     ReadOnly myRand As New TRandom
-    ReadOnly filepath As String = "Project Files/"
+    ReadOnly filepath As String = "Project_Files/"
     ReadOnly SR As New StreamReader(filepath + My.Resources.Schedule4GamesMaxTxt)
 
     Sub New()

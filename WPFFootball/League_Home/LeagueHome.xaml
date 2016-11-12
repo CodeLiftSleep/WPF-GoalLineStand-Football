@@ -35,7 +35,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="Project Files/NFLWallpaper.jpg" Opacity="0.5" />
+            <ImageBrush ImageSource="/WPFFootball;component/Project_Files/NFLWallpaper.jpg" Opacity="0.5" />
         </Grid.Background>
         <TextBlock x:Name="LgDate"
                    Grid.RowSpan="4"

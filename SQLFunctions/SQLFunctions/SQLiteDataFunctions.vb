@@ -7,7 +7,7 @@ Imports System.Windows
 
 Public Class SQLiteDataFunctions
     'Dim Conn As SQLite.SQLiteConnection = New SQLite.SQLiteConnection()
-    Dim filepath As String = "Project Files/"
+    Dim filepath As String = "Project_Files/"
 
     ''' <summary>
     '''     Opens a connection to this DB--Must Explicitly pass the connection string before returning it, otherwise it will

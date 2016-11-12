@@ -21,66 +21,66 @@ Public Class NewGameViewModel
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-    private Sub OnPropertyChanged(name As String)
+    Private Sub OnPropertyChanged(name As String)
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
     End Sub
 
 #End Region
 
 #Region "Private Variables"
-    Private _myhelmet as Imagesource
-    private _primcolor as Brush
-    Private _seccolor as Brush
-    private _trimcolor as Brush
-    private _mystadiumname as string
-    private _mystadiumcapacity As String
-    private _mycitystate As String
-    private _mystadiumpic as ImageSource
-    private _myavgattendance as string
-    private _myteamrecord as string
-    private _mybackgroundimg as imagesource
-    private _MyDT as New ObservableCollection(Of DataTable)
+    Private _myhelmet As ImageSource
+    Private _primcolor As Brush
+    Private _seccolor As Brush
+    Private _trimcolor As Brush
+    Private _mystadiumname As String
+    Private _mystadiumcapacity As String
+    Private _mycitystate As String
+    Private _mystadiumpic As ImageSource
+    Private _myavgattendance As String
+    Private _myteamrecord As String
+    Private _mybackgroundimg As ImageSource
+    Private _MyDT As New ObservableCollection(Of DataTable)
 
 #End Region
 
 #Region "Public Properties"
 
-    public Property MyStadiumName as String
+    Public Property MyStadiumName As String
         Get
-            return _mystadiumname
+            Return _mystadiumname
         End Get
         Set
-            _mystadiumname = value
+            _mystadiumname = Value
             OnPropertyChanged("MyStadiumName")
         End Set
     End Property
 
-    public Property MyPrimColor as Brush
+    Public Property MyPrimColor As Brush
         Get
             Return _primcolor
         End Get
         Set
-            _primcolor = value
+            _primcolor = Value
             OnPropertyChanged("MyPrimColor")
         End Set
     End Property
 
-    public Property MyTrimColor as Brush
+    Public Property MyTrimColor As Brush
         Get
             Return _trimcolor
         End Get
         Set
-            _trimcolor = value
+            _trimcolor = Value
             OnPropertyChanged("MyTrimColor")
         End Set
     End Property
 
-    Public Property MySecColor as Brush
+    Public Property MySecColor As Brush
         Get
             Return _seccolor
         End Get
         Set
-            _seccolor = value
+            _seccolor = Value
             OnPropertyChanged("MySecColor")
         End Set
     End Property
@@ -90,38 +90,38 @@ Public Class NewGameViewModel
             Return _MyDT
         End Get
         Set
-            _MyDT = value
+            _MyDT = Value
             OnPropertyChanged("MyDTProperty")
         End Set
     End Property
 
-    public Property MyStadiumCapacity as String
+    Public Property MyStadiumCapacity As String
         Get
 
-            return _MyStadiumCapacity
+            Return _mystadiumcapacity
         End Get
         Set
-            _MyStadiumCapacity = value
+            _mystadiumcapacity = Value
             OnPropertyChanged("MyStadiumCapacity")
         End Set
     End Property
 
-    public Property MyCityState as String
-        get
-            return _mycitystate
+    Public Property MyCityState As String
+        Get
+            Return _mycitystate
         End Get
         Set
-            _mycitystate = value
+            _mycitystate = Value
             OnPropertyChanged("MyCityState")
         End Set
     End Property
 
-    public Property MyStadiumPic as ImageSource
+    Public Property MyStadiumPic As ImageSource
         Get
             Return _mystadiumpic
         End Get
         Set
-            _mystadiumpic = value
+            _mystadiumpic = Value
             OnPropertyChanged("MyStadiumPic")
         End Set
     End Property
@@ -136,33 +136,33 @@ Public Class NewGameViewModel
         End Set
     End Property
 
-    public Property MyAvgAttendance as String
+    Public Property MyAvgAttendance As String
         Get
-            return _myavgattendance
+            Return _myavgattendance
         End Get
         Set
-            _myavgattendance = value
+            _myavgattendance = Value
             OnPropertyChanged("MyAvgAttendance")
         End Set
     End Property
 
-    public Property MyTeamRecord as string
+    Public Property MyTeamRecord As String
         Get
-            return _myteamrecord
+            Return _myteamrecord
         End Get
         Set
-            _myteamrecord = value
+            _myteamrecord = Value
             OnPropertyChanged("MyTeamRecord")
         End Set
     End Property
 
-    public property MyBackgroundImg as imagesource
-        get
-            return _mybackgroundimg
+    Public Property MyBackgroundImg As ImageSource
+        Get
+            Return _mybackgroundimg
         End Get
         Set
-            _mybackgroundimg = value
-            OnPropertychanged("MyBackgroundImg")
+            _mybackgroundimg = Value
+            OnPropertyChanged("MyBackgroundImg")
         End Set
     End Property
 
@@ -170,7 +170,7 @@ Public Class NewGameViewModel
 
 #Region "Enums"
 
-    public Enum DivisionNames
+    Public Enum DivisionNames
         <Description("AFC East")> AFCE = 1
         <Description("AFC North")> AFCN = 2
         <Description("AFC South")> AFCS = 3
@@ -224,8 +224,8 @@ Public Class NewGameViewModel
     ''' </summary>
     ''' <param name="TeamNum"></param>
     ''' <returns></returns>
-    Public Shared Function GetBackgroundFilePath(optional byval TeamNum As Integer = 32) As String
-        Dim filepath = "pack://application:,,,/Project Files/"
+    Public Shared Function GetBackgroundFilePath(Optional ByVal TeamNum As Integer = 32) As String
+        Dim filepath = "pack://application:,,,/Project_Files/"
 
         Select Case TeamNum
             Case 0 : filepath += Bills02Jpg
@@ -244,23 +244,23 @@ Public Class NewGameViewModel
             Case 13 : filepath += Chiefs3Jpg
             Case 14 : filepath += RaidersJpg
             Case 15 : filepath += Chargers5Jpg
-            case 16 : filepath += Redskins2Jpg
-            case 17 : filepath += Eagles2Jpg
-            case 18 : filepath += Giants5Jpg
-            case 19 : filepath += Cowboys3Jpg
-            case 20 : filepath += Vikings_2013_06Jpg
-            case 21 : filepath += Packers5Jpg
-            case 22 : filepath += Lions2Jpg
-            case 23 : filepath += Bears4Jpg
+            Case 16 : filepath += Redskins2Jpg
+            Case 17 : filepath += Eagles2Jpg
+            Case 18 : filepath += Giants5Jpg
+            Case 19 : filepath += Cowboys3Jpg
+            Case 20 : filepath += Vikings_2013_06Jpg
+            Case 21 : filepath += Packers5Jpg
+            Case 22 : filepath += Lions2Jpg
+            Case 23 : filepath += Bears4Jpg
             Case 24 : filepath += Panthers2Jpg
-            case 25 : filepath += FalconsJpg
-            case 26 : filepath += Saints2Jpg
-            case 27 : filepath += Buccaneers2Jpg
-            case 28 : filepath += Cardinals3Jpg
-            case 29 : filepath += Seahawks2_2012Jpg
-            case 30 : filepath += RamsJpg
-            case 31 : filepath += _49ers04Jpg
-            case 32 : filepath += GlobalClass_GetBackgroundFilePath_FootballGoalLine_jpg
+            Case 25 : filepath += FalconsJpg
+            Case 26 : filepath += Saints2Jpg
+            Case 27 : filepath += Buccaneers2Jpg
+            Case 28 : filepath += Cardinals3Jpg
+            Case 29 : filepath += Seahawks2_2012Jpg
+            Case 30 : filepath += RamsJpg
+            Case 31 : filepath += _49ers04Jpg
+            Case 32 : filepath += GlobalClass_GetBackgroundFilePath_FootballGoalLine_jpg
         End Select
 
         Return filepath
@@ -274,7 +274,7 @@ Public Class NewGameViewModel
 
     Public Shared Function GetImage(TeamNum As Integer) As Image
         Dim MyImage As New Image
-        Dim filepath = "Project Files/"
+        Dim filepath = "pack://application:,,,/Project_Files/"
 
         Select Case TeamNum
             Case 0 : filepath += Bills_PHelmet_2011Jpg
@@ -310,7 +310,7 @@ Public Class NewGameViewModel
             Case 30 : filepath += Rams1Png
             Case 31 : filepath += _49ers_PHelmet_NewJpg
         End Select
-        MyImage.Source = New BitmapImage(New Uri(filepath, UriKind.Relative))
+        MyImage.Source = New BitmapImage(New Uri(filepath, UriKind.RelativeOrAbsolute))
         Return MyImage
     End Function
 
@@ -319,63 +319,62 @@ Public Class NewGameViewModel
     ''' </summary>
     ''' <param name="TeamNum"></param>
     ''' <returns></returns>
-    Public Shared Function GetStadiumPic(TeamNum As integer) As String
-        dim FilePath = "pack://application:,,,/Project Files/"
-        select case TeamNum
+    Public Shared Function GetStadiumPic(TeamNum As Integer) As String
+        Dim FilePath = "pack://application:,,,/Project_Files/"
+        Select Case TeamNum
             Case 0 : FilePath += RalphWilsonStadiumJpg
             Case 1 : FilePath += GilletteStadiumJpg
-            case 2, 18 : FilePath += MetLife_StadiumJpg
-            case 3 : FilePath += SunLifeStadiumJpg
-            case 4 : FilePath += PaulBrownStadiumJpg
-            case 5 : FilePath += HeinzFieldJpg
-            case 6 : FilePath += MTBankStadiumJpg
-            case 7 : FilePath += FirstEnergyStadiumJpg
-            case 8 : FilePath += NRGStadiumJpg
-            case 9 : FilePath += LucasOilStadiumJpg
-            case 10 : FilePath += EverBankFieldJpg
-            case 11 : FilePath += NissanStadiumJpg
-            case 12 : Filepath += SportsAuthorityFieldJpg
-            case 13 : FilePath += ArrowheadStadiumJpg
-            case 14 : FilePath += OaklandColiseumJpg
-            case 15 : FilePath += QualcommStadiumJpg
-            case 16 : FilePath += FedexFieldJpg
-            case 17 : FilePath += LincolnFinancialFieldJpg
-            case 19 : FilePath += ATTStadiumJpg
-            case 20 : FilePath += USBankStadiumJpg
-            case 21 : FilePath += LambeaufieldJpg
-            case 22 : FilePath += FordfieldJpg
-            case 23 : FilePath += SoldierFieldJpg
-            case 24 : FilePath += BankOfAmericaStadiumJpg
-            case 25 : FilePath += GeorgiaDomePng
-            case 26 : FilePath += Superdome_saintsJpg
-            case 27 : FilePath += RaymondJamesStadiumJpg
-            case 28 : FilePath += University_phoenix_stadiumJpg
-            case 29 : FilePath += CenturyLinkFieldJpg
-            case 30 : FilePath += LosAngelesColiseumJpg
-            case 31 : FilePath += LevisStadiumJpg
+            Case 2, 18 : FilePath += MetLife_StadiumJpg
+            Case 3 : FilePath += SunLifeStadiumJpg
+            Case 4 : FilePath += PaulBrownStadiumJpg
+            Case 5 : FilePath += HeinzFieldJpg
+            Case 6 : FilePath += MTBankStadiumJpg
+            Case 7 : FilePath += FirstEnergyStadiumJpg
+            Case 8 : FilePath += NRGStadiumJpg
+            Case 9 : FilePath += LucasOilStadiumJpg
+            Case 10 : FilePath += EverBankFieldJpg
+            Case 11 : FilePath += NissanStadiumJpg
+            Case 12 : FilePath += SportsAuthorityFieldJpg
+            Case 13 : FilePath += ArrowheadStadiumJpg
+            Case 14 : FilePath += OaklandColiseumJpg
+            Case 15 : FilePath += QualcommStadiumJpg
+            Case 16 : FilePath += FedexFieldJpg
+            Case 17 : FilePath += LincolnFinancialFieldJpg
+            Case 19 : FilePath += ATTStadiumJpg
+            Case 20 : FilePath += USBankStadiumJpg
+            Case 21 : FilePath += LambeaufieldJpg
+            Case 22 : FilePath += FordfieldJpg
+            Case 23 : FilePath += SoldierFieldJpg
+            Case 24 : FilePath += BankOfAmericaStadiumJpg
+            Case 25 : FilePath += GeorgiaDomePng
+            Case 26 : FilePath += Superdome_saintsJpg
+            Case 27 : FilePath += RaymondJamesStadiumJpg
+            Case 28 : FilePath += University_phoenix_stadiumJpg
+            Case 29 : FilePath += CenturyLinkFieldJpg
+            Case 30 : FilePath += LosAngelesColiseumJpg
+            Case 31 : FilePath += LevisStadiumJpg
         End Select
-        return filepath
+        Return FilePath
     End Function
 
-    Public shared function GetBrush(TeamNum As integer, MyQueue As Queue, TeamDT As datatable) As Queue
+    Public Shared Function GetBrush(TeamNum As Integer, MyQueue As Queue, TeamDT As DataTable) As Queue
         TeamNum += 1
-        for i = 0 To TeamDT.Rows.Count - 1
-            if TeamDT.Rows(i).Item("TeamID") = TeamNum Then
-                myQueue.enqueue(TeamDT.Rows(i).Item("MainColor"))
-                myQueue.Enqueue(TeamDT.Rows(i).Item("SecondaryColor"))
-                myQueue.Enqueue(TeamDT.Rows(i).Item("TrimColor"))
+        For i = 0 To TeamDT.Rows.Count - 1
+            If TeamDT.Rows(i).Item("TeamID") = TeamNum Then
+                MyQueue.Enqueue(TeamDT.Rows(i).Item("MainColor"))
+                MyQueue.Enqueue(TeamDT.Rows(i).Item("SecondaryColor"))
+                MyQueue.Enqueue(TeamDT.Rows(i).Item("TrimColor"))
                 Exit For
             End If
         Next i
-        Return myQueue
-    End function
+        Return MyQueue
+    End Function
 
     Public Shared Function ConvertColor(HexString As String) As Brush
         Dim converter = New BrushConverter()
-        dim myBrush As Brush
+        Dim myBrush As Brush
         myBrush = DirectCast(converter.ConvertFromString(HexString), Brush)
-        return MyBrush
+        Return myBrush
     End Function
-
 
 End Class

@@ -14,7 +14,7 @@ Public Class UserScreen
     ''' </summary>
     ''' <param name="TeamID"></param>
     Sub New(TeamID As Integer)
-        Dim filepath = "pack://application:,,,/Project Files/"
+        Dim filepath = "pack://application:,,,/Project_Files/"
         Dim myNum As Integer
 
         ' This call is required by the designer.

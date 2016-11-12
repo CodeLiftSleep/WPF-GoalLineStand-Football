@@ -23,7 +23,7 @@ Public Module FilesAndDataTables
     Public MyScoutAssignment As New ScoutAssignment
     Public MyPersonnel As New PersonnelType
     Public MyTrainer As New TrainerType
-    Dim filepath As String = "Project Files/"
+    Dim filepath As String = "Project_Files/"
     Public ReadFName As StreamReader = New StreamReader(filepath + "FName.txt")
     Public ReadLName As StreamReader = New StreamReader(filepath + "LName.txt")
     Public ReadCollege As StreamReader = New StreamReader(filepath + "Colleges.txt")
