@@ -71,14 +71,14 @@ Namespace My
             End Get
         End Property
 
-        <EditorBrowsable(EditorBrowsableState.Never)>
+        <EditorBrowsable(EditorBrowsableState.Never)> _
         <
             MyGroupCollection _
                 ("System.Windows.Window", "Create__Instance__", "Dispose__Instance__",
                  "My.MyWpfExtenstionModule.Windows")>
         Friend NotInheritable Class MyWindows
             <DebuggerHidden>
-            Private Shared Function Create__Instance__(Of T As {New, Window})(Instance As T) As T
+            Private Shared Function Create__Instance__ (Of T As {New, Window})(Instance As T) As T
                 If Instance Is Nothing Then
                     If s_WindowBeingCreated IsNot Nothing Then
                         If s_WindowBeingCreated.ContainsKey(GetType(T)) = True Then
@@ -97,13 +97,13 @@ Namespace My
                 End If
             End Function
 
-            <SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
+            <SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>  _
             <DebuggerHidden>
-            Private Sub Dispose__Instance__(Of T As Window)(ByRef instance As T)
+            Private Sub Dispose__Instance__ (Of T As Window)(ByRef instance As T)
                 instance = Nothing
             End Sub
 
-            <DebuggerHidden>
+            <DebuggerHidden> _
             <EditorBrowsable(EditorBrowsableState.Never)>
             Public Sub New()
                 MyBase.New()
@@ -121,7 +121,7 @@ Namespace My
                 Return MyBase.GetHashCode
             End Function
 
-            <SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
+            <SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>  _
             <EditorBrowsable(EditorBrowsableState.Never)>
             Friend Overloads Function [GetType]() As Type
                 Return GetType(MyWindows)
@@ -138,13 +138,12 @@ End Namespace
 Partial Class Application
     Inherits Windows.Application
 
-    <SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")>
+    <SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")> _
     <SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
     Friend ReadOnly Property Info As AssemblyInfo
         <DebuggerHidden>
         Get
             Return New AssemblyInfo(Assembly.GetExecutingAssembly())
-
         End Get
     End Property
 End Class

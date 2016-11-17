@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -62,7 +77,6 @@
       <HintPath>..\packages\DevExpressMvvm.16.1.4.0\lib\net40-client\DevExpress.Mvvm.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -71,62 +85,34 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluidKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluidKit.1.0\lib\net35\FluidKit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Generation">
-      <HintPath>..\..\Generation\Generation\bin\Debug\Generation.dll</HintPath>
-    </Reference>
-    <Reference Include="Mersenne">
-      <HintPath>..\..\Random\Random\bin\Debug\Mersenne.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NFLScheduler">
-      <HintPath>..\..\NFLScheduler\NFLScheduler\bin\Debug\NFLScheduler.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PommaLabs.Thrower, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2f204b7110a52060, processorArchitecture=MSIL">
-      <HintPath>..\packages\Thrower.3.0.1\lib\net46\PommaLabs.Thrower.dll</HintPath>
+      <HintPath>..\packages\Thrower.3.0.4\lib\net46\PommaLabs.Thrower.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Prism.Wpf, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\Prism.Wpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SQLFunctions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SQLFunctions\SQLFunctions\bin\Debug\SQLFunctions.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.102.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.102.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.103.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.103\lib\net46\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.102.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.102.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.103.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.103\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.102.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.102.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.103.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.103\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -136,61 +122,73 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Troschuetz.Random, Version=4.0.3.0, Culture=neutral, PublicKeyToken=2f204b7110a52060, processorArchitecture=MSIL">
-      <HintPath>..\packages\Troschuetz.Random.4.0.5\lib\net46\Troschuetz.Random.dll</HintPath>
+      <HintPath>..\packages\Troschuetz.Random.4.0.7\lib\net46\Troschuetz.Random.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="Application.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameSettings.xaml.vb">
+    <Compile Include="Game_Settings\GameSettings.xaml.vb">
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameSettingsViewModel.vb" />
-    <Compile Include="LeagueHome.xaml.vb">
+    <Compile Include="Game_Settings\GameSettingsViewModel.vb" />
+    <Compile Include="League_Home\LeagueHome.xaml.vb">
       <DependentUpon>LeagueHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeagueHomeViewModel.vb" />
-    <Compile Include="LeagueNews.xaml.vb">
-      <DependentUpon>LeagueNews.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LeagueNewsViewModel.vb" />
-    <Compile Include="NewGame2.xaml.vb">
-      <DependentUpon>NewGame2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NewGame2VM.vb" />
-    <Compile Include="NewGameViewModel.vb" />
-    <Compile Include="HomeScreen.xaml.vb">
+    <Compile Include="League_Home\LeagueHomeViewModel.vb" />
+    <Compile Include="New_Game\NewGameViewModel.vb" />
+    <Compile Include="Start_Screen\HomeScreen.xaml.vb">
       <DependentUpon>HomeScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewGame.xaml.vb">
+    <Compile Include="New_Game\NewGame.xaml.vb">
       <DependentUpon>NewGame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserScreen.xaml.vb">
+    <Compile Include="User_Screen\UserScreen.xaml.vb">
       <DependentUpon>UserScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserScreenViewModel.vb" />
-    <Page Include="GameSettings.xaml">
+    <Compile Include="User_Screen\UserScreenViewModel.vb" />
+    <Page Include="Game_Settings\GameSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomeScreen.xaml">
+    <Page Include="Start_Screen\HomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeagueHome.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="League_Home\LeagueHome.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="LeagueNews.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -204,11 +202,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewGame.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NewGame2.xaml">
+    <Page Include="New_Game\NewGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,7 +210,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserScreen.xaml">
+    <Page Include="TeamImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User_Screen\UserScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,106 +256,94 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="GLSDefaultSettings.txt">
+    <Resource Include="Data_Files\GLSDefaultSettings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="GLSSettings.txt">
+    <Resource Include="Data_Files\GLSSettings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="footballfield.jpg" />
-    <Resource Include="LeagueEvents.txt">
+    <Resource Include="Project_Files\BillsFans.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Project_Files\BillsMcCoy.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Project_Files\BillsPassRush.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Project_Files\BillsFans2.jpg" />
+    <Resource Include="Project_Files\BillsFans3.jpg" />
+    <Resource Include="Project_Files\BillsGreats.jpg" />
+    <Resource Include="Project_Files\BillsLondon.jpg" />
+    <Resource Include="Project_Files\BillsMcCoy2.jpg" />
+    <Resource Include="Project_Files\BillsOneBuffalo.jpg" />
+    <Resource Include="Project_Files\BillsTaylor.jpg" />
+    <Resource Include="Project_Files\BillsWatkinsTaylor.jpg" />
+    <Resource Include="Project_Files\DolphinsCelebrate.JPG" />
+    <Resource Include="Project_Files\DolphinsGreats.jpg" />
+    <Resource Include="Project_Files\DolphinsMiller.jpg" />
+    <Resource Include="Project_Files\DolphinsPreSnap.jpg" />
+    <Resource Include="Project_Files\DolphinsStadium.jpg" />
+    <Resource Include="Project_Files\DolphinsTannehill.jpg" />
+    <Resource Include="Project_Files\DolphinsTrainingCamp.jpg" />
+    <Resource Include="Project_Files\JetsDecker.jpg" />
+    <Resource Include="Project_Files\JetsFans.jpg" />
+    <Resource Include="Project_Files\JetsIvory.jpg" />
+    <Resource Include="Project_Files\JetsMarshall.jpg" />
+    <Resource Include="Project_Files\JetsOverPile.jpg" />
+    <Resource Include="Project_Files\JetsTouchdown2.jpg" />
+    <Resource Include="Project_Files\JetsTunnel.jpg" />
+    <Resource Include="Project_Files\JetsWallpaper.jpg" />
+    <Resource Include="Project_Files\PatriotsBelichick.jpg" />
+    <Resource Include="Project_Files\PatriotsBrady.jpg" />
+    <Resource Include="Project_Files\PatriotsBradyGronk.jpg" />
+    <Resource Include="Project_Files\PatriotsCelebrate.jpg" />
+    <Resource Include="Project_Files\PatriotsDefense.jpg" />
+    <Resource Include="Project_Files\PatriotsEdelman.jpg" />
+    <Resource Include="Project_Files\PatriotsFans.jpg" />
+    <Resource Include="Project_Files\PatriotsGreats.jpg" />
+    <Resource Include="Project_Files\PatriotsGronk.jpg" />
+    <Resource Include="Project_Files\PatriotsReceivers.jpg" />
+    <Resource Include="Project_Files\PatriotsSuperBowl.jpg" />
+    <Resource Include="Project_Files\PatriotsTunnel.jpg" />
+    <Resource Include="Project_Files\NFLWallpaper.jpg" />
+    <Resource Include="Project_Files\NFLWallpaper2.jpg" />
+    <Resource Include="Data_Files\LeagueEvents.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="LeagueInj.txt">
+    <Resource Include="Data_Files\LeagueTrans.txt" />
+    <Resource Include="Data_Files\LeagueInj.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="LeagueMile.txt">
+    <Resource Include="Data_Files\LeagueMile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="LeagueTrans.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Project Files\LeageNewsMap.jpg" />
-    <Resource Include="LeagueNews.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Project Files\NFLWallpaper.jpg" />
-    <Resource Include="Project Files\BillsDareusWilliams.jpg" />
-    <Resource Include="Project Files\BillsFans.jpg" />
-    <Resource Include="Project Files\BillsFans2.jpg" />
-    <Resource Include="Project Files\BillsFans3.jpg" />
-    <Resource Include="Project Files\BillsGreats.jpg" />
-    <Resource Include="Project Files\BillsLondon.jpg" />
-    <Resource Include="Project Files\BillsMcCoy.jpg" />
-    <Resource Include="Project Files\BillsMcCoy2.jpg" />
-    <Resource Include="Project Files\BillsOneBuffalo.jpg" />
-    <Resource Include="Project Files\BillsPassRush.jpg" />
-    <Resource Include="Project Files\BillsTaylor.jpg" />
-    <Resource Include="Project Files\BillsWatkinsTaylor.jpg" />
-    <Resource Include="Project Files\DolphinsCelebrate.JPG" />
-    <Resource Include="Project Files\DolphinsGreats.jpg" />
-    <Resource Include="Project Files\DolphinsMiller.jpg" />
-    <Resource Include="Project Files\DolphinsPreSnap.jpg" />
-    <Resource Include="Project Files\DolphinsRushing.jpg" />
-    <Resource Include="Project Files\DolphinsStadium.jpg" />
-    <Resource Include="Project Files\DolphinsTannehill.jpg" />
-    <Resource Include="Project Files\DolphinsTannehill2.jpg" />
-    <Resource Include="Project Files\DolphinsTouchdown.jpg" />
-    <Resource Include="Project Files\DolphinsTrainingCamp.jpg" />
-    <Resource Include="Project Files\JetsDecker.jpg" />
-    <Resource Include="Project Files\JetsFans.jpg" />
-    <Resource Include="Project Files\JetsFitz.jpg" />
-    <Resource Include="Project Files\JetsIvory.jpg" />
-    <Resource Include="Project Files\JetsMarshall.jpg" />
-    <Resource Include="Project Files\JetsMarshall2.jpg" />
-    <Resource Include="Project Files\JetsMinicamp.jpg" />
-    <Resource Include="Project Files\JetsOverPile.jpg" />
-    <Resource Include="Project Files\JetsTouchdown2.jpg" />
-    <Resource Include="Project Files\JetsTunnel.jpg" />
-    <Resource Include="Project Files\JetsWallpaper.jpg" />
-    <Resource Include="Project Files\NFLWallpaper2.jpg" />
-    <Resource Include="Project Files\PatriotsBelichick.jpg" />
-    <Resource Include="Project Files\PatriotsBrady.jpg" />
-    <Resource Include="Project Files\PatriotsBradyGronk.jpg" />
-    <Resource Include="Project Files\PatriotsCelebrate.jpg" />
-    <Resource Include="Project Files\PatriotsDefense.jpg" />
-    <Resource Include="Project Files\PatriotsEdelman.jpg" />
-    <Resource Include="Project Files\PatriotsFans.jpg" />
-    <Resource Include="Project Files\PatriotsGreats.jpg" />
-    <Resource Include="Project Files\PatriotsGronk.jpg" />
-    <Resource Include="Project Files\PatriotsReceivers.jpg" />
-    <Resource Include="Project Files\PatriotsSuperBowl.jpg" />
-    <Resource Include="Project Files\PatriotsTunnel.jpg" />
-    <Resource Include="Project Files\AFCLogo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Project Files\NFCLogo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Project Files\Schedule4GamesMax.txt">
+    <Resource Include="Data_Files\DraftPickValueChart.txt" />
+    <Resource Include="Data_Files\LeagueNews.txt" />
+    <Content Include="Project_Files\Schedule4GamesMax.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="My Project\app.manifest" />
     <None Include="packages.config" />
-    <Resource Include="Project Files\BankOfAmericaStadium.jpg" />
-    <Resource Include="Project Files\CenturyLinkField.jpg" />
-    <Resource Include="Project Files\ATTStadium.jpg" />
-    <Resource Include="Project Files\fedex-field.jpg" />
-    <Resource Include="Project Files\fordfield.jpg" />
-    <Resource Include="Project Files\Georgia-Dome.png" />
-    <Resource Include="Project Files\lambeaufield.jpg" />
-    <Resource Include="Project Files\levis-stadium.jpg" />
-    <Resource Include="Project Files\LincolnFinancialField.jpg" />
-    <Resource Include="Project Files\LosAngelesColiseum.jpg" />
-    <Resource Include="Project Files\RaymondJamesStadium.jpg" />
-    <Resource Include="Project Files\SoldierField.jpg" />
-    <Resource Include="Project Files\superdome_saints.jpg" />
-    <Resource Include="Project Files\university_phoenix_stadium.jpg" />
-    <Resource Include="Project Files\USBankStadium.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders_Helmet.jpg" />
-    <Resource Include="Project Files\Sports-Authority-Field.jpg" />
+    <Resource Include="Project_Files\BankOfAmericaStadium.jpg" />
+    <Resource Include="Project_Files\CenturyLinkField.jpg" />
+    <Resource Include="Project_Files\ATTStadium.jpg" />
+    <Resource Include="Project_Files\fedex-field.jpg" />
+    <Resource Include="Project_Files\fordfield.jpg" />
+    <Resource Include="Project_Files\Georgia-Dome.png" />
+    <Resource Include="Project_Files\lambeaufield.jpg" />
+    <Resource Include="Project_Files\levis-stadium.jpg" />
+    <Resource Include="Project_Files\LincolnFinancialField.jpg" />
+    <Resource Include="Project_Files\LosAngelesColiseum.jpg" />
+    <Resource Include="Project_Files\RaymondJamesStadium.jpg" />
+    <Resource Include="Project_Files\SoldierField.jpg" />
+    <Resource Include="Project_Files\superdome_saints.jpg" />
+    <Resource Include="Project_Files\university_phoenix_stadium.jpg" />
+    <Resource Include="Project_Files\USBankStadium.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders_Helmet.jpg" />
+    <Resource Include="Project_Files\Sports-Authority-Field.jpg" />
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
@@ -367,7 +353,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <AppDesigner Include="My Project\" />
-    <Content Include="Project Files\Football.sqlite">
+    <Content Include="Project_Files\Football.sqlite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -375,145 +361,185 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Project Files\footballfield.jpg" />
+    <Resource Include="Project_Files\footballfield.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Project Files\ArizonaCardinals3.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals2.jpg" />
-    <Resource Include="Project Files\Arizona_Cardinals_Helmet.jpg" />
-    <Resource Include="Project Files\ArrowheadStadium.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons2.jpg" />
-    <Resource Include="Project Files\Atlanta_Falcons_PHelmet.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens3.jpg" />
-    <Resource Include="Project Files\Baltimore_Ravens_PHelmet.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills02.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills3.jpg" />
-    <Resource Include="Project Files\Buffalo_Bills_PHelmet_2011.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers2.jpg" />
-    <Resource Include="Project Files\Carolina_Panthers_PHelmet.jpg" />
-    <Resource Include="Project Files\Chicago_Bears.jpg" />
-    <Resource Include="Project Files\Chicago_Bears4.jpg" />
-    <Resource Include="Project Files\Chicago_Bears_PHelmet2.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals3.jpg" />
-    <Resource Include="Project Files\Cincinnati_Bengals_PHelmet.jpg" />
-    <Resource Include="Project Files\ClevelandBrowns2.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns2.jpg" />
-    <Resource Include="Project Files\Cleveland_Browns_PHelmet.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys3.jpg" />
-    <Resource Include="Project Files\Dallas_Cowboys_PHelmet.jpg" />
-    <Resource Include="Project Files\Denver_Broncos.jpg" />
-    <Resource Include="Project Files\Denver_Broncos2.jpg" />
-    <Resource Include="Project Files\Denver_Broncos_PHelmet.jpg" />
-    <Resource Include="Project Files\DetroitLions2.jpg" />
-    <Resource Include="Project Files\Detroit_Lions.jpg" />
-    <Resource Include="Project Files\Detroit_Lions3a.jpg" />
-    <Resource Include="Project Files\Detroit_Lions_PHelmet.jpg" />
-    <Resource Include="Project Files\EverBankField.jpg" />
-    <Resource Include="Project Files\FirstEnergyStadium.jpg" />
-    <Resource Include="Project Files\FootballGoalLine.jpg" />
-    <Resource Include="Project Files\georgia_dome.jpg" />
-    <Resource Include="Project Files\gillette-stadium.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers5.jpg" />
-    <Resource Include="Project Files\Green_Bay_Packers_PHelmet.jpg" />
-    <Resource Include="Project Files\HeinzField.jpg" />
-    <Resource Include="Project Files\Houston_Texans.jpg" />
-    <Resource Include="Project Files\Houston_Texans2.jpg" />
-    <Resource Include="Project Files\Houston_Texans_PHelmet.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts2.jpg" />
-    <Resource Include="Project Files\Indianapolis_Colts_PHelmet.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars2.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars_2013a.jpg" />
-    <Resource Include="Project Files\Jacksonville_Jaguars_PHelmet.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs3.jpg" />
-    <Resource Include="Project Files\Kansas_City_Chiefs_PHelmet.jpg" />
-    <Resource Include="Project Files\LARams.jpg" />
-    <Resource Include="Project Files\LARams1.png" />
-    <Resource Include="Project Files\LucasOilStadium.jpg" />
-    <Resource Include="Project Files\M&amp;TBankStadium.jpg" />
-    <Resource Include="Project Files\MetLife_Stadium.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins2.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins_2013.jpg" />
-    <Resource Include="Project Files\Miami_Dolphins_PHelmet.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings_2013_06.jpg" />
-    <Resource Include="Project Files\Minnesota_Vikings_PHelmet_2013.jpg" />
-    <Resource Include="Project Files\New_England_Patriots.jpg" />
-    <Resource Include="Project Files\New_England_Patriots2.jpg" />
-    <Resource Include="Project Files\New_England_Patriots_PHelmet.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints2.jpg" />
-    <Resource Include="Project Files\New_Orleans_Saints_PHelmet.jpg" />
-    <Resource Include="Project Files\New_York_Giants.jpg" />
-    <Resource Include="Project Files\New_York_Giants5.jpg" />
-    <Resource Include="Project Files\New_York_Giants_PHelmet.jpg" />
-    <Resource Include="Project Files\New_York_Jets.jpg" />
-    <Resource Include="Project Files\New_York_Jets2.jpg" />
-    <Resource Include="Project Files\New_York_Jets_PHelmet.jpg" />
-    <Resource Include="Project Files\NissanStadium.jpg" />
-    <Resource Include="Project Files\NRGStadium.jpg" />
-    <Resource Include="Project Files\OaklandColiseum.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders.jpg" />
-    <Resource Include="Project Files\Oakland_Raiders_PHelmet.jpg" />
-    <Resource Include="Project Files\PaulBrownStadium.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles2.jpg" />
-    <Resource Include="Project Files\Philadelphia_Eagles_PHelmet.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers2.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers3.jpg" />
-    <Resource Include="Project Files\Pittsburgh_Steelers_PHelmet.jpg" />
-    <Resource Include="Project Files\QualcommStadium.jpg" />
-    <Resource Include="Project Files\RalphWilsonStadium.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers5.jpg" />
-    <Resource Include="Project Files\San_Diego_Chargers_PHelmet2.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers04.jpg" />
-    <Resource Include="Project Files\San_Francisco_49ers_PHelmet_New.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks2_2012.jpg" />
-    <Resource Include="Project Files\Seattle_Seahawks_PHelmet_2012.jpg" />
-    <Resource Include="Project Files\SportsAuthorityField.jpg" />
-    <Resource Include="Project Files\SunLifeStadium.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers2.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers_2014.jpg" />
-    <Resource Include="Project Files\Tampa_Bay_Buccaneers_PHelmet.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans2.jpg" />
-    <Resource Include="Project Files\Tennessee_Titans_PHelmet.jpg" />
-    <Resource Include="Project Files\university_of_phoenix_stadium.jpg" />
-    <Resource Include="Project Files\WashingtonRedskins3.jpg" />
-    <Resource Include="Project Files\Washington_Redskins.jpg" />
-    <Resource Include="Project Files\Washington_Redskins2.jpg" />
-    <Resource Include="Project Files\Washington_Redskins_PHelmet.jpg" />
+    <Resource Include="Project_Files\ArizonaCardinals3.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals2.jpg" />
+    <Resource Include="Project_Files\Arizona_Cardinals_Helmet.jpg" />
+    <Resource Include="Project_Files\ArrowheadStadium.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons2.jpg" />
+    <Resource Include="Project_Files\Atlanta_Falcons_PHelmet.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens3.jpg" />
+    <Resource Include="Project_Files\Baltimore_Ravens_PHelmet.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills02.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills3.jpg" />
+    <Resource Include="Project_Files\Buffalo_Bills_PHelmet_2011.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers2.jpg" />
+    <Resource Include="Project_Files\Carolina_Panthers_PHelmet.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears4.jpg" />
+    <Resource Include="Project_Files\Chicago_Bears_PHelmet2.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals3.jpg" />
+    <Resource Include="Project_Files\Cincinnati_Bengals_PHelmet.jpg" />
+    <Resource Include="Project_Files\ClevelandBrowns2.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns2.jpg" />
+    <Resource Include="Project_Files\Cleveland_Browns_PHelmet.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys3.jpg" />
+    <Resource Include="Project_Files\Dallas_Cowboys_PHelmet.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos2.jpg" />
+    <Resource Include="Project_Files\Denver_Broncos_PHelmet.jpg" />
+    <Resource Include="Project_Files\DetroitLions2.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions3a.jpg" />
+    <Resource Include="Project_Files\Detroit_Lions_PHelmet.jpg" />
+    <Resource Include="Project_Files\EverBankField.jpg" />
+    <Resource Include="Project_Files\FirstEnergyStadium.jpg" />
+    <Resource Include="Project_Files\FootballGoalLine.jpg" />
+    <Resource Include="Project_Files\georgia_dome.jpg" />
+    <Resource Include="Project_Files\gillette-stadium.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers5.jpg" />
+    <Resource Include="Project_Files\Green_Bay_Packers_PHelmet.jpg" />
+    <Resource Include="Project_Files\HeinzField.jpg" />
+    <Resource Include="Project_Files\Houston_Texans.jpg" />
+    <Resource Include="Project_Files\Houston_Texans2.jpg" />
+    <Resource Include="Project_Files\Houston_Texans_PHelmet.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts2.jpg" />
+    <Resource Include="Project_Files\Indianapolis_Colts_PHelmet.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars2.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars_2013a.jpg" />
+    <Resource Include="Project_Files\Jacksonville_Jaguars_PHelmet.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs3.jpg" />
+    <Resource Include="Project_Files\Kansas_City_Chiefs_PHelmet.jpg" />
+    <Resource Include="Project_Files\LARams.jpg" />
+    <Resource Include="Project_Files\LARams1.png" />
+    <Resource Include="Project_Files\LucasOilStadium.jpg" />
+    <Resource Include="Project_Files\M&amp;TBankStadium.jpg" />
+    <Resource Include="Project_Files\MetLife_Stadium.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins2.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins_2013.jpg" />
+    <Resource Include="Project_Files\Miami_Dolphins_PHelmet.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings_2013_06.jpg" />
+    <Resource Include="Project_Files\Minnesota_Vikings_PHelmet_2013.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots2.jpg" />
+    <Resource Include="Project_Files\New_England_Patriots_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints2.jpg" />
+    <Resource Include="Project_Files\New_Orleans_Saints_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_York_Giants.jpg" />
+    <Resource Include="Project_Files\New_York_Giants5.jpg" />
+    <Resource Include="Project_Files\New_York_Giants_PHelmet.jpg" />
+    <Resource Include="Project_Files\New_York_Jets.jpg" />
+    <Resource Include="Project_Files\New_York_Jets2.jpg" />
+    <Resource Include="Project_Files\New_York_Jets_PHelmet.jpg" />
+    <Resource Include="Project_Files\NissanStadium.jpg" />
+    <Resource Include="Project_Files\NRGStadium.jpg" />
+    <Resource Include="Project_Files\OaklandColiseum.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders.jpg" />
+    <Resource Include="Project_Files\Oakland_Raiders_PHelmet.jpg" />
+    <Resource Include="Project_Files\PaulBrownStadium.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles2.jpg" />
+    <Resource Include="Project_Files\Philadelphia_Eagles_PHelmet.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers2.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers3.jpg" />
+    <Resource Include="Project_Files\Pittsburgh_Steelers_PHelmet.jpg" />
+    <Resource Include="Project_Files\QualcommStadium.jpg" />
+    <Resource Include="Project_Files\RalphWilsonStadium.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers5.jpg" />
+    <Resource Include="Project_Files\San_Diego_Chargers_PHelmet2.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers04.jpg" />
+    <Resource Include="Project_Files\San_Francisco_49ers_PHelmet_New.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks2_2012.jpg" />
+    <Resource Include="Project_Files\Seattle_Seahawks_PHelmet_2012.jpg" />
+    <Resource Include="Project_Files\SportsAuthorityField.jpg" />
+    <Resource Include="Project_Files\SunLifeStadium.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers2.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers_2014.jpg" />
+    <Resource Include="Project_Files\Tampa_Bay_Buccaneers_PHelmet.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans2.jpg" />
+    <Resource Include="Project_Files\Tennessee_Titans_PHelmet.jpg" />
+    <Resource Include="Project_Files\university_of_phoenix_stadium.jpg" />
+    <Resource Include="Project_Files\WashingtonRedskins3.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins2.jpg" />
+    <Resource Include="Project_Files\Washington_Redskins_PHelmet.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LeagueCalendar\LeagueCalendar\LeagueCalendar.vbproj">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIEvaluation\AIEvaluation.csproj">
+      <Project>{3ed11144-74a7-48ca-ba2a-c3b159f04e19}</Project>
+      <Name>AIEvaluation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Generation\Generation\Generation.vbproj">
+      <Project>{daea933c-6441-46a4-9f89-b012bae9a27a}</Project>
+      <Name>Generation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GlobalResources\GlobalResources.vbproj">
+      <Project>{1dd3f2d7-795b-4c6f-a609-c8e626a6d542}</Project>
+      <Name>GlobalResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LeagueCalendar\LeagueCalendar\LeagueCalendar.vbproj">
       <Project>{9c902e87-3016-425f-a581-95dfdce5bd7f}</Project>
       <Name>LeagueCalendar</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NFL Draft\NFL Draft\NFL Draft.vbproj">
+    <ProjectReference Include="..\NFL Draft\NFL Draft\NFL Draft.vbproj">
       <Project>{dea6fb90-3130-4c77-991d-1b43f29f3e9b}</Project>
       <Name>NFL Draft</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NFLScheduler\NFLScheduler\NFLScheduler.vbproj">
+      <Project>{3a3ebcab-97d5-49d5-8592-e754b1379384}</Project>
+      <Name>NFLScheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Random\Random\Mersenne.vbproj">
+      <Project>{9fcefa45-842d-4c59-a1fd-35fd5e1bc55f}</Project>
+      <Name>Mersenne</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLFunctions\SQLFunctions\SQLFunctions.vbproj">
+      <Project>{5a4a94c5-fc1d-4301-a83f-810d1961f4ba}</Project>
+      <Name>SQLFunctions</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\RefactoringEssentials.4.4.0\analyzers\dotnet\RefactoringEssentials.dll" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.102.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.103\build\net46\System.Data.SQLite.Core.targets'))" />
   </Target>
 </Project>

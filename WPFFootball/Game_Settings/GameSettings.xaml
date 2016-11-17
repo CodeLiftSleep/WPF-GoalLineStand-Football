@@ -1,0 +1,594 @@
+﻿<Window x:Class="GameSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:WPFFootball"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="GameSettings"
+        Width="1200"
+        Height="800"
+        WindowState="Maximized"
+        mc:Ignorable="d">
+    <Grid x:Name="LgSettingsGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding Path=MyBackgroundImg}" Opacity="0.6" />
+        </Grid.Background>
+        <TabControl x:Name="LgSettingsTabControl"
+                    Width="Auto"
+                    Height="Auto"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+            <TabControl.Background>
+                <ImageBrush x:Name="LgSettingsTabControlBG" Opacity="0.7" />
+            </TabControl.Background>
+            <TabItem x:Name="TabVisual"
+                     Width="Auto"
+                     Height="Auto"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     FontFamily="Motorwerk Bold"
+                     FontSize="14"
+                     Header="Visual Settings">
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="DisplayLbl"
+                           Width="120"
+                           Height="25"
+                           Margin="0,15,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Content="Display Mode:" />
+                    <ComboBox x:Name="Display"
+                              Width="120"
+                              Height="20"
+                              Margin="0,18,0,0"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Text="Display Mode">
+                        <ComboBoxItem Name="Maximized">Maximized</ComboBoxItem>
+                        <ComboBoxItem Name="Windowed">Windowed</ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="Accept"
+                            Width="Auto"
+                            Height="20"
+                            Margin="-235,80,0,0"
+                            HorizontalAlignment="Left"
+                            Click="Accept_OnClick"
+                            Content="Accept Changes"
+                            FontSize="14">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="#FFEEEEEE" />
+                                <GradientStop Offset="1" Color="#FF1F4BC1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="TabSettings"
+                     Width="Auto"
+                     Height="Auto"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     FontFamily="Motorwerk Bold"
+                     FontSize="14"
+                     Header="League Settings">
+                <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left">
+                    <Label Content="Starting Year:" />
+                    <TextBox x:Name="StartingYear"
+                             Width="50"
+                             Height="Auto"
+                             Margin="120,-22,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyStartYear}" />
+                    <Label Content="League Rules" />
+                    <ComboBox x:Name="LeagueRules"
+                              Width="150"
+                              Margin="120,-22,0,0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="0"
+                              Text="{Binding Path=MyLeagueRules,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="NFL Rules" Tag="NFL Rules" />
+                        <ComboBoxItem Content="CFL Rules" Tag="CFL Rules" />
+                        <ComboBoxItem Content="NCAA Rules" Tag="NCAA Rules" />
+                        <ComboBoxItem Content="Arena Rules" Tag="Arena Rules" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0" Content="League Type:" />
+                    <ComboBox x:Name="LeagueType"
+                              Width="150"
+                              Height="Auto"
+                              Margin="120,-22,0,0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="0"
+                              Text="{Binding Path=MyLeagueType,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem x:Name="Career"
+                                      Content="Career Simulation"
+                                      Tag="Career" />
+                        <ComboBoxItem x:Name="SingleSeason"
+                                      Content="Single Season"
+                                      Tag="Single Season" />
+                        <ComboBoxItem x:Name="QuickGame"
+                                      Content="Quick Game"
+                                      Tag="Quick Game" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0" Content="Roster Size:" />
+                    <ComboBox x:Name="RosterSize"
+                              Width="110"
+                              Height="Auto"
+                              Margin="160,-22,0,0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="7"
+                              Text="{Binding Path=MyRosterSize,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="60" Tag="60" />
+                        <ComboBoxItem Content="59" Tag="59" />
+                        <ComboBoxItem Content="58" Tag="58" />
+                        <ComboBoxItem Content="57" Tag="57" />
+                        <ComboBoxItem Content="56" Tag="56" />
+                        <ComboBoxItem Content="55" Tag="55" />
+                        <ComboBoxItem Content="54" Tag="54" />
+                        <ComboBoxItem Content="53 NFL" Tag="53" />
+                        <ComboBoxItem Content="52" Tag="52" />
+                        <ComboBoxItem Content="51" Tag="51" />
+                        <ComboBoxItem Content="50" Tag="50" />
+                        <ComboBoxItem Content="49" Tag="49" />
+                        <ComboBoxItem Content="48" Tag="48" />
+                        <ComboBoxItem Content="47" Tag="47" />
+                        <ComboBoxItem Content="46" Tag="46" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0" Content="GameDay Inactive #:" />
+                    <ComboBox x:Name="GameInactives"
+                              Width="90"
+                              Height="Auto"
+                              Margin="180,-22, 0, 0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="7"
+                              Text="{Binding Path=MyInactives,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="14" Tag="14" />
+                        <ComboBoxItem Content="13" Tag="13" />
+                        <ComboBoxItem Content="12" Tag="12" />
+                        <ComboBoxItem Content="11" Tag="11" />
+                        <ComboBoxItem Content="10" Tag="10" />
+                        <ComboBoxItem Content="9" Tag="9" />
+                        <ComboBoxItem Content="8" Tag="8" />
+                        <ComboBoxItem Content="7 NFL" Tag="7" />
+                        <ComboBoxItem Content="6" Tag="6" />
+                        <ComboBoxItem Content="5" Tag="5" />
+                        <ComboBoxItem Content="4" Tag="4" />
+                        <ComboBoxItem Content="3" Tag="3" />
+                        <ComboBoxItem Content="2" Tag="2" />
+                        <ComboBoxItem Content="1" Tag="1" />
+                        <ComboBoxItem Content="0" Tag="0" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0" Content="Practice Squad Size:" />
+                    <ComboBox x:Name="PracSquad"
+                              Width="130"
+                              Margin="150,-22,0,0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="8"
+                              Text="{Binding Path=MyPracSquadSize,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="0" Tag="0" />
+                        <ComboBoxItem Content="1" Tag="1" />
+                        <ComboBoxItem Content="2" Tag="2" />
+                        <ComboBoxItem Content="3" Tag="3" />
+                        <ComboBoxItem Content="4" Tag="4" />
+                        <ComboBoxItem Content="5" Tag="5" />
+                        <ComboBoxItem Content="6" Tag="6" />
+                        <ComboBoxItem Content="7" Tag="7" />
+                        <ComboBoxItem Content="8 NFL" Tag="8" />
+                        <ComboBoxItem Content="9" Tag="9" />
+                        <ComboBoxItem Content="10" Tag="10" />
+                        <ComboBoxItem Content="11" Tag="11" />
+                        <ComboBoxItem Content="12" Tag="12" />
+                        <ComboBoxItem Content="13" Tag="13" />
+                        <ComboBoxItem Content="14" Tag="14" />
+                        <ComboBoxItem Content="15" Tag="15" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0" Content="OT Format:" />
+                    <ComboBox x:Name="OTFormat"
+                              Width="130"
+                              Height="Auto"
+                              Margin="140,-22, 0, 0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="2"
+                              Text="{Binding Path=MyOTFormat,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="Sudden Death" Tag="Sudden Death" />
+                        <ComboBoxItem Content="College Rules" Tag="College OT" />
+                        <ComboBoxItem Content="NFL Rules" Tag="NFL OT" />
+                        <ComboBoxItem Content="No Sudden Death" Tag="No Sudden Death" />
+                        <ComboBoxItem Content="No Overtime" Tag="No Overtime" />
+                    </ComboBox>
+
+                    <Label Margin="0,10,0,0" Content="Field Type" />
+                    <ComboBox x:Name="FieldType"
+                              Width="100"
+                              Margin="170,-20,0,0"
+                              HorizontalAlignment="Right"
+                              SelectedIndex="0"
+                              Text="{Binding Path=MyFieldType,
+                                             Mode=TwoWay}">
+                        <ComboBoxItem Content="NFL Field" Tag="NFL Field" />
+                        <ComboBoxItem Content="CFL Field" Tag="CFL Field" />
+                        <ComboBoxItem Content="College Field" Tag="College Field" />
+                        <ComboBoxItem Content="Arena Lg Field" Tag="Arena League Field" />
+                    </ComboBox>
+                    <Label Margin="0,10,0,0"
+                           HorizontalAlignment="Left"
+                           Content="Penalties" />
+                    <Slider x:Name="PenaltySlider"
+                            Width="140"
+                            Height="Auto"
+                            Margin="30,-20,0,0"
+                            IsSnapToTickEnabled="True"
+                            Maximum="100"
+                            TickPlacement="BottomRight"
+                            Value="{Binding Path=MyPenalties,
+                                            Mode=TwoWay}" />
+                    <TextBox x:Name="PenaltyValue"
+                             Width="40"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             FontSize="18"
+                             Text="{Binding ElementName=PenaltySlider,
+                                            Path=Value,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                             TextAlignment="Center" />
+                    <Label Content="# of Teams" />
+                    <TextBox x:Name="NumTeams"
+                             Width="40"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             FontSize="18"
+                             Text="{Binding Path=MyNumTeams,
+                                            Mode=TwoWay}"
+                             TextAlignment="Center" />
+                    <Label Content="# of Conferences" />
+                    <TextBox x:Name="NumConf"
+                             Width="40"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             FontSize="18"
+                             Text="{Binding Path=MyNumConf,
+                                            Mode=TwoWay}"
+                             TextAlignment="Center" />
+                    <Label Content="# of Divsions" />
+                    <TextBox x:Name="NumDivs"
+                             Width="40"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             FontSize="18"
+                             Text="{Binding Path=MyNumDiv,
+                                            Mode=TwoWay}"
+                             TextAlignment="Center" />
+                    <CheckBox x:Name="ChkBxFantasyDraft"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Start With Fantasy Draft?"
+                              IsChecked="{Binding Path=MyFantasyDraft,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxFired"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="User Can be Fired"
+                              IsChecked="{Binding Path=MyUserFired,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxExpansion"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Allow Expansion?"
+                              IsChecked="{Binding Path=MyAllowExpansion,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxRelocation"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Allow Relocation?"
+                              IsChecked="{Binding Path=MyAllowRelocation,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxAllowFA"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Allow Free Agency?"
+                              IsChecked="{Binding Path=MyAllowFA,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxCollegeDraft"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Allow Yearly College Draft?"
+                              IsChecked="{Binding Path=MyAllowDraft,
+                                                  Mode=TwoWay}" />
+                    <Label Margin="0,10,0,0"
+                           HorizontalAlignment="Left"
+                           Content="Number Of Draft Rounds" />
+                    <TextBox x:Name="NumDraftRounds"
+                             Width="30"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyNumDraftRounds,
+                                            Mode=TwoWay}"
+                             TextAlignment="Center" />
+                    <CheckBox x:Name="ChkBxSupDraft"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Hold Supplemental Draft?"
+                              IsChecked="{Binding Path=AllowSuppDraft,
+                                                  Mode=TwoWay}" />
+                    <CheckBox x:Name="ChkBxCompPicks"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Compensatory Picks for FA Losses?"
+                              IsChecked="{Binding Path=CompPicksForFALoss,
+                                                  Mode=TwoWay}" />
+                    <Button x:Name="AcceptBtn"
+                            Width="100"
+                            Height="Auto"
+                            Margin="0,15,0,0"
+                            HorizontalAlignment="Left"
+                            Click="LgFinAcceptBtn_Click"
+                            Content="Accept"
+                            Style="{DynamicResource SimpleButton}" />
+                    <Button x:Name="DefaultBtn"
+                            Width="125"
+                            Height="Auto"
+                            Margin="80,-23,0,0"
+                            Click="LgFinResetBtn_Click"
+                            Content="Reset Default"
+                            Style="{DynamicResource SimpleButton}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="TabFinances"
+                     Width="Auto"
+                     Height="Auto"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     FontFamily="Motorwerk Bold"
+                     FontSize="14"
+                     Header="League Finances">
+                <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left">
+                    <CheckBox x:Name="ChkBxSalCap"
+                              Content="Enable Salary Cap?"
+                              IsChecked="{Binding Path=MySalCap}" />
+                    <Label Content="Salary Cap Type:" />
+                    <ComboBox x:Name="SalCapType"
+                              Width="120"
+                              Margin="260,-25,0,0"
+                              HorizontalAlignment="Right"
+                              Text="{Binding Path=MySalCapType}">
+                        <ComboBoxItem Content="Hard Cap" Tag="Hard Cap" />
+                        <ComboBoxItem Content="Soft Cap" Tag="Soft Cap" />
+                    </ComboBox>
+                    <CheckBox x:Name="ChkBxLuxTax"
+                              Margin="0,10,0,0"
+                              Content="Luxury Tax For Going Over Cap?"
+                              IsChecked="{Binding Path=MyLuxuryTax}" />
+                    <CheckBox x:Name="ChkBxAdjustCap"
+                              Margin="0,10,0,0"
+                              Content="Auto Adjust Cap Based On League revenues?"
+                              IsChecked="{Binding Path=MyAdjustCap}" />
+                    <CheckBox x:Name="ChkBxRookiePool"
+                              Margin="0,10,0,0"
+                              Content="Use Rookie Pool CBA as Basis for Draft Pick Contracts?"
+                              IsChecked="{Binding Path=MyRookiePool}" />
+                    <CheckBox x:Name="ChkBxCapCarryover"
+                              Margin="0,10,0,0"
+                              Content="Allow Unused Cap Dollars To Carryover To Next Year?"
+                              IsChecked="{Binding Path=MyCapCarryOver}" />
+                    <Label Margin="0,10,0,0" Content="Home Team Percentage of Gate Revenue" />
+                    <TextBox x:Name="GateRev"
+                             Width="50"
+                             Margin="330,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyHomeTeamGate}"
+                             TextAlignment="Center" />
+                    <Label Margin="0,10,0,0" Content="League Salary Cap" />
+                    <TextBox x:Name="LgSalCap"
+                             Width="100"
+                             Margin="260,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyLeagueSalCap}"
+                             TextAlignment="Center" />
+                    <CheckBox x:Name="ChkBxLuxBoxSharedRev"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Share Luxury Box Revenue Among Teams"
+                              IsChecked="{Binding Path=MyShareLuxBoxRev}" />
+                    <CheckBox x:Name="ChkBxShareMerchRev"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Content="Share Merchandise Revenue Among Teams"
+                              IsChecked="{Binding Path=MyShareMerchRev}" />
+                    <Label Content="Minimum Contract Value Based on Experience:" />
+                    <ComboBox x:Name="MinConExp"
+                              Width="100"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              SelectedIndex="{Binding Path=MyPosConMin,
+                                                      Mode=TwoWay}">
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="0"
+                                      Tag="0" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="1"
+                                      Tag="1" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="2"
+                                      Tag="2" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="3"
+                                      Tag="3" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="4"
+                                      Tag="4" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="5"
+                                      Tag="5" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="6"
+                                      Tag="6" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="7"
+                                      Tag="7" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="8"
+                                      Tag="8" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="9"
+                                      Tag="9" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="10"
+                                      Tag="10" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="11"
+                                      Tag="11" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="12"
+                                      Tag="12" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="13"
+                                      Tag="13+" />
+                    </ComboBox>
+                    <TextBox x:Name="MinSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyMinConValue}"
+                             TextAlignment="Center" />
+                    <CheckBox x:Name="ChkBxAllowVetDisc"
+                              Margin="0,10,0,0"
+                              Content="Allow Veteran Min Contract At Lower Cap Number"
+                              IsChecked="{Binding Path=MyAllowLowerVetMin}" />
+                    <Label Margin="0,10,0,0" Content="Minimum Years Exp To Be Eligible" />
+                    <TextBox x:Name="MinExp"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyVetMinNumYears}"
+                             TextAlignment="Center" />
+                    <Label Content="Contract Cap Hit Becomes" />
+                    <TextBox x:Name="VetMinConCapHit"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyVetMinContract}"
+                             TextAlignment="Center" />
+                    <Label Content="Positional Contract Values:" />
+                    <ComboBox x:Name="PosConValues"
+                              Width="100"
+                              HorizontalAlignment="Center"
+                              SelectedIndex="{Binding Path=MyPosition,
+                                                      Mode=TwoWay}">
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="QB"
+                                      Tag="0" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="RB"
+                                      Tag="1" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="FB"
+                                      Tag="2" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="WR"
+                                      Tag="3" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="TE"
+                                      Tag="4" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="OT"
+                                      Tag="5" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="OG"
+                                      Tag="6" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="C"
+                                      Tag="7" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="DE"
+                                      Tag="8" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="DT"
+                                      Tag="9" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="OLB"
+                                      Tag="10" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="ILB"
+                                      Tag="11" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="FS"
+                                      Tag="12" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="SS"
+                                      Tag="13" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="K"
+                                      Tag="14" />
+                        <ComboBoxItem HorizontalContentAlignment="Center"
+                                      Content="P"
+                                      Tag="15" />
+                    </ComboBox>
+                    <Label Content="Franchise Player" />
+                    <TextBox x:Name="FranSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyFranchise}"
+                             TextAlignment="Center" />
+                    <Label Content="Very Good Player" />
+                    <TextBox x:Name="VeryGoodSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyVeryGood}"
+                             TextAlignment="Center" />
+                    <Label Content="Good Player" />
+                    <TextBox x:Name="GoodSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyGood}"
+                             TextAlignment="Center" />
+                    <Label Content="Average Player" />
+                    <TextBox x:Name="AvgSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyAverage}"
+                             TextAlignment="Center" />
+                    <Label Content="Backup Player" />
+                    <TextBox x:Name="BackUpSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyBelowAvg}"
+                             TextAlignment="Center" />
+                    <Label Content="Depth Player" />
+                    <TextBox x:Name="DepthSal"
+                             Width="120"
+                             Margin="240,-25,0,0"
+                             HorizontalAlignment="Right"
+                             Text="{Binding Path=MyDepth}"
+                             TextAlignment="Center" />
+                    <Button x:Name="LgFinAcceptBtn"
+                            Width="100"
+                            Height="Auto"
+                            Margin="0,30,0,0"
+                            HorizontalAlignment="Left"
+                            Click="LgFinAcceptBtn_Click"
+                            Content="Accept"
+                            Style="{DynamicResource SimpleButton}" />
+                    <Button x:Name="LgFinResetBtn"
+                            Width="150"
+                            Height="Auto"
+                            Margin="120,-23,0,0"
+                            HorizontalAlignment="Left"
+                            Click="LgFinResetBtn_Click"
+                            Content="Reset To Default"
+                            Style="{DynamicResource SimpleButton}" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

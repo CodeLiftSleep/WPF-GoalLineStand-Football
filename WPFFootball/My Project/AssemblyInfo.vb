@@ -1,5 +1,4 @@
-﻿Imports System.Resources
-Imports System.Reflection
+﻿Imports System.Reflection
 Imports System.Runtime.InteropServices
 
 ' General Information about an assembly is controlled through the following 
@@ -14,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyProduct("WPFFootball")>
 <Assembly: AssemblyCopyright("Copyright ©  2016")>
 <Assembly: AssemblyTrademark("")>
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(false)>
 
 'In order to begin building localizable applications, set 
 '<UICulture>CultureYouAreCodingWith</UICulture> in your .vbproj file
@@ -53,4 +52,3 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("1.0.0.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
-<Assembly: NeutralResourcesLanguage("en-US")>

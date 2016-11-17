@@ -1,0 +1,366 @@
+﻿<Window x:Class="UserScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:WPFFootball"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="UserScreen"
+        Width="1200"
+        Height="800"
+        WindowState="Maximized"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="MyHeader" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Motorwerk Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Background" Value="DarkSlateBlue" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+        </Style>
+        <Style x:Key="MyHeaderBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+        </Style>
+        <Style x:Key="UserText" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="UserGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="240*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="200*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="200*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="200*" />
+        </Grid.RowDefinitions>
+        <Border x:Name="UserBorder"
+                Grid.ColumnSpan="5"
+                Opacity="0.7">
+            <Border.Background>
+                <ImageBrush x:Name="UserBackground" Opacity="0.7" />
+            </Border.Background>
+        </Border>
+        <Menu x:Name="UserMenu"
+              Width="223"
+              Height="18"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              AllowDrop="True"
+              FontFamily="Motorwerk Bold"
+              FontSize="14">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="FileLoad"
+                          Click="FileLoad_OnClick"
+                          Header="_Load" />
+                <MenuItem x:Name="FileSave"
+                          Click="FileSave_OnClick"
+                          Header="_Save" />
+                <MenuItem x:Name="FileHelp"
+                          Click="FileHelp_OnClick"
+                          Header="_Help" />
+                <MenuItem x:Name="FileExit"
+                          Click="FileExit_OnClick"
+                          Header="_Exit GLS" />
+            </MenuItem>
+            <MenuItem Header="_Game">
+                <MenuItem x:Name="LgHm"
+                          Click="LgHm_Click"
+                          Header="_League Home" />
+                <MenuItem Header="_League News" />
+                <MenuItem Header="_League Scores" />
+                <MenuItem Header="_League Schedule" />
+                <MenuItem Header="_League History" />
+                <MenuItem Header="_League Almanac" />
+                <Separator />
+                <MenuItem x:Name="LgSet"
+                          Click="LgSet_OnClick"
+                          Header="_League Settings" />
+            </MenuItem>
+            <MenuItem Header="_Head Coach">
+                <MenuItem Header="_Game Plans" />
+                <MenuItem Header="_Practice Schedule" />
+                <MenuItem Header="_Staff Assignments" />
+            </MenuItem>
+            <MenuItem Header="_Team">
+                <MenuItem Header="_Home Screen" />
+                <MenuItem Header="_Roster" />
+                <MenuItem Header="_Free Agents" />
+                <MenuItem Header="_Statistics" />
+                <MenuItem Header="_Coaching Staff" />
+                <MenuItem Header="_Front Office" />
+                <MenuItem Header="_Scouting" />
+                <MenuItem Header="_Team History" />
+                <MenuItem Header="" />
+            </MenuItem>
+        </Menu>
+        <Image Grid.Row="0"
+               Grid.Column="0"
+               Margin="0,18,0,0"
+               Opacity="0.4"
+               Source="{Binding Path=Image1}"
+               Stretch="Fill" />
+        <Image Grid.Row="0"
+               Grid.Column="1"
+               Opacity="0.4"
+               Source="{Binding Path=Image2}"
+               Stretch="Fill" />
+        <Image Grid.Row="0"
+               Grid.Column="2"
+               Opacity="0.4"
+               Source="{Binding Path=Image3}"
+               Stretch="Fill" />
+        <Image Grid.Row="0"
+               Grid.Column="3"
+               Opacity="0.4"
+               Source="{Binding Path=Image4}"
+               Stretch="Fill" />
+        <Image Grid.Row="0"
+               Grid.Column="4"
+               Opacity="0.4"
+               Source="{Binding Path=Image5}"
+               Stretch="Fill" />
+
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="NotesTasks"
+                       Style="{StaticResource MyHeader}"
+                       Text="Notes and Tasks" />
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="Inbox"
+                       Style="{StaticResource MyHeader}"
+                       Text="Inbox" />
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="NextGame"
+                       Style="{StaticResource MyHeader}"
+                       Text="Next Game" />
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="LgStandings"
+                       Style="{StaticResource MyHeader}"
+                       Text="League Standings" />
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="LgEvents"
+                       Style="{StaticResource MyHeader}"
+                       Text="League Events" />
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxNotesTasks"
+                     Style="{StaticResource UserText}"
+                     Text="Welcome to Goal Line Stand Football! You will see information related to any tasks to perform in this box. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling.                      These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling. These boxes are scrollable so they can display more information by scrolling."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxInbox"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see any correspondence from emails in this box. These could be from your owner, from the league, from your coaches or from your scouting staff regarding various things."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxNextGame"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see information about your next game to be played."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxLgStandings"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see the League Standings. It will first default to your division and then your conference standings."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="2"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxLgEvents"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see upcoming league events such as the Scouting Combine, Key Offseason Dates, Training Camp Information, and Preseason/Regular Season Dates."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="3"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="LgNews"
+                       Style="{StaticResource MyHeader}"
+                       Text="League News" />
+        </Border>
+        <Border Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="TmFinances"
+                       Style="{StaticResource MyHeader}"
+                       Text="Team Finances" />
+        </Border>
+        <Border Grid.Row="3"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="PersInfo"
+                       Style="{StaticResource MyHeader}"
+                       Text="Personal Info" />
+        </Border>
+        <Border Grid.Row="3"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="LgTrans"
+                       Style="{StaticResource MyHeader}"
+                       Text="League Transactions" />
+        </Border>
+        <Border Grid.Row="3"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="TmRoster"
+                       Style="{StaticResource MyHeader}"
+                       Text="Team Roster" />
+        </Border>
+        <Border Grid.Row="4"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxLgNews"
+                     Style="{StaticResource UserText}"
+                     Text="Here You will see any relevant League News updated, such as Great performances highlighted, league suspensions, etc."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="4"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxTmFinances"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see Salary Cap information related to your team, Luxury Box Revenue, Stadium Naming Rights Contracts, Merchandise Sales, etc."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="4"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxPersonalInfo"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will have any personal information, Coaching history, won-loss record, playoff performances, your 'overall score' in your career, current team score, etc."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="4"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxLgTransactions"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will find all transactions across the league updating.  Player signings, player cuts, waiver claims, Coach Hirings, Coach Firings, etc."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="4"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxTmRoster"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see a breakdown of your team roster by position with basic information displayed."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="5"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="TmInjuries"
+                       Style="{StaticResource MyHeader}"
+                       Text="Team Injuries" />
+        </Border>
+        <Border Grid.Row="5"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="TeamLeaders"
+                       Style="{StaticResource MyHeader}"
+                       Text="Team Leaders" />
+        </Border>
+        <Border Grid.Row="5"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="LgLeaders"
+                       Style="{StaticResource MyHeader}"
+                       Text="League Leaders" />
+        </Border>
+        <Border Grid.Row="5"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="TmStats"
+                       Style="{StaticResource MyHeader}"
+                       Text="Team Stat Rankings" />
+        </Border>
+        <Border Grid.Row="5"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBlock x:Name="HotCold"
+                       Style="{StaticResource MyHeader}"
+                       Text="Who's Hot?/Who's Not?" />
+        </Border>
+        <Border Grid.Row="6"
+                Grid.Column="0"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxTmInjuries"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will find any current team injuries and any updates regarding them."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="6"
+                Grid.Column="1"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxTmLeaders"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will find out who your team statistical leaders are"
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="6"
+                Grid.Column="2"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxLgLeaders"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will find out who are your league wide statistical leaders."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="6"
+                Grid.Column="3"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxTmStatRankings"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will find out Current rankings for your team in Offense, Defense and Special Teams Categories."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+        <Border Grid.Row="6"
+                Grid.Column="4"
+                Style="{StaticResource MyHeaderBorder}">
+            <TextBox x:Name="TxtBxHotNot"
+                     Style="{StaticResource UserText}"
+                     Text="Here you will see players on your team that are currently on Hot Streaks or Cold Streaks."
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+    </Grid>
+</Window>
