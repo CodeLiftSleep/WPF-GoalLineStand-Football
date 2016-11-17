@@ -61,30 +61,30 @@ Public Class LeagueCalendar
     ''' <summary>
     ''' checks to see if we need to raise an event
     ''' </summary>
-    Public Sub CheckDate(ByVal CurDate As Date)
-        Select Case CurDate.ToShortDateString
+    Public Sub CheckDate(ByVal curDate As Date)
+        Select Case curDate.ToShortDateString
             Case OffseasonStartDate
-                LeagueCalendarEvents.RaiseOffseason(CurDate)
+                LeagueCalendarEvents.RaiseOffseason(curDate)
             Case CombineStartDate
-                LeagueCalendarEvents.RaiseCombine(CurDate)
+                LeagueCalendarEvents.RaiseCombine(curDate)
             Case FreeAgencyStartDate
-                LeagueCalendarEvents.RaiseFreeAgency(CurDate)
+                LeagueCalendarEvents.RaiseFreeAgency(curDate)
             Case PreDraftStartDate
-                LeagueCalendarEvents.RaisePreDraft(CurDate)
+                LeagueCalendarEvents.RaisePreDraft(curDate)
             Case DraftStartDate
-                LeagueCalendarEvents.RaiseDraft(CurDate)
+                LeagueCalendarEvents.RaiseDraft(curDate)
             Case PostDraftStartDate
-                LeagueCalendarEvents.RaisePostDraft(CurDate)
+                LeagueCalendarEvents.RaisePostDraft(curDate)
             Case MiniCampOTAStartDate
-                LeagueCalendarEvents.RaiseMiniCampOTA(CurDate)
+                LeagueCalendarEvents.RaiseMiniCampOTA(curDate)
             Case TrainingCampStartDate
-                LeagueCalendarEvents.RaiseTrainingCamp(CurDate)
+                LeagueCalendarEvents.RaiseTrainingCamp(curDate)
             Case PreSeasonStartDate
-                LeagueCalendarEvents.RaisePreSeason(CurDate)
+                LeagueCalendarEvents.RaisePreSeason(curDate)
             Case RegSeasonStartDate
-                LeagueCalendarEvents.RaiseRegSeason(CurDate)
+                LeagueCalendarEvents.RaiseRegSeason(curDate)
             Case PostSeasonStartDate
-                LeagueCalendarEvents.RaisePostSeason(CurDate)
+                LeagueCalendarEvents.RaisePostSeason(curDate)
         End Select
     End Sub
     ''' <summary>

@@ -21,73 +21,73 @@ Public Class LeagueHomeViewModel
 #End Region
 
 #Region "Private Variables"
-    Private _leagueDate As Date
-    Private _leagueNews As New ObservableCollection(Of DataTable)
-    Private _myDT As New ObservableCollection(Of DataTable)
-    Private _eventBtn As New Command(AddressOf LgEvent)
-    Private _standingsBtn As New Command(AddressOf LgStandings)
-    Private _transBtn As New Command(AddressOf LgTrans)
-    Private _injuriesBtn As New Command(AddressOf LgInjuries)
-    Private _milestonesBtn As New Command(AddressOf LgMilestones)
-    Private _draftBtn As New Command(AddressOf Draft)
+    Private _LeagueDate As Date
+    Private _LeagueNews As New ObservableCollection(Of DataTable)
+    Private _MyDT As New ObservableCollection(Of DataTable)
+    Private _EventBtn As New Command(AddressOf LgEvent)
+    Private _StandingsBtn As New Command(AddressOf LgStandings)
+    Private _TransBtn As New Command(AddressOf LgTrans)
+    Private _InjuriesBtn As New Command(AddressOf LgInjuries)
+    Private _MilestonesBtn As New Command(AddressOf LgMilestones)
+    Private _DraftBtn As New Command(AddressOf Draft)
 
 #End Region
 #Region "Public Properties"
-    Public Property leagueDate As Date
+    Public Property LeagueDate As Date
         Get
-            Return _leagueDate
+            Return _LeagueDate
         End Get
         Set(value As Date)
-            _leagueDate = value
+            _LeagueDate = value
             OnPropertyChanged("Leaguedate")
         End Set
     End Property
-    Public Property leagueNews As ObservableCollection(Of DataTable)
+    Public Property LeagueNews As ObservableCollection(Of DataTable)
         Get
-            Return _leagueNews
+            Return _LeagueNews
         End Get
         Set(value As ObservableCollection(Of DataTable))
-            _leagueNews = value
+            _LeagueNews = value
             OnPropertyChanged("leagueNews")
         End Set
     End Property
     Public Property MyDT As ObservableCollection(Of DataTable)
         Get
-            Return _myDT
+            Return _MyDT
         End Get
         Set(value As ObservableCollection(Of DataTable))
-            _myDT = value
+            _MyDT = value
             OnPropertyChanged("MyDT")
         End Set
     End Property
     Public ReadOnly Property EventBtn As ICommand
         Get
-            Return _eventBtn
+            Return _EventBtn
         End Get
     End Property
     Public ReadOnly Property StandingsBtn As ICommand
         Get
-            Return _standingsBtn
+            Return _StandingsBtn
         End Get
     End Property
     Public ReadOnly Property TransBtn As ICommand
         Get
-            Return _transBtn
+            Return _TransBtn
         End Get
     End Property
     Public ReadOnly Property InjuriesBtn As Command
         Get
-            Return _injuriesBtn
+            Return _InjuriesBtn
         End Get
     End Property
     Public ReadOnly Property MilestonesBtn As Command
         Get
-            Return _milestonesBtn
+            Return _MilestonesBtn
         End Get
     End Property
     Public ReadOnly Property DraftBtn As Command
         Get
-            Return _draftBtn
+            Return _DraftBtn
         End Get
     End Property
 #End Region
@@ -237,16 +237,16 @@ Public Class LeagueHomeViewModel
         Implements ICommand
 
 #Region "Private Variables"
-        Private ReadOnly _action As Action
+        Private ReadOnly _Action As Action
 #End Region
         Sub New(myAction As Action)
-            _action = myAction
+            _Action = myAction
         End Sub
 
         Public Event CanExecuteChanged As EventHandler Implements ICommand.CanExecuteChanged
 
         Public Sub Execute(parameter As Object) Implements ICommand.Execute
-            _action()
+            _Action()
         End Sub
 
         Public Function CanExecute(parameter As Object) As Boolean Implements ICommand.CanExecute

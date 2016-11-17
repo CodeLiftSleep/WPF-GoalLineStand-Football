@@ -119,13 +119,13 @@ Public Module FilesAndDataTables
         PoorAgent = 6 'represents no clients
     End Enum
 
-    Public Sub Initialize(ByVal DBName As String, ByVal DT As DataTable, ByVal TableName As String, SQLFieldNames As String, Optional ByVal MyFilePath As String = "")
+    Public Sub Initialize(ByVal dbName As String, ByVal dt As DataTable, ByVal tableName As String, sqlFieldNames As String, Optional ByVal myFilePath As String = "")
         Try
-            SQLiteTables.CreateTable(DBName, DT, TableName, SQLFieldNames, MyFilePath)
-            SQLiteTables.DeleteTable(DBName, DT, TableName, MyFilePath)
-            SQLiteTables.LoadTable(DBName, DT, TableName, MyFilePath)
+            SQLiteTables.CreateTable(dbName, dt, tableName, sqlFieldNames, myFilePath)
+            SQLiteTables.DeleteTable(dbName, dt, tableName, myFilePath)
+            SQLiteTables.LoadTable(dbName, dt, tableName, myFilePath)
 
-            DT.Rows.Add(0)
+            dt.Rows.Add(0)
             LoadData()
         Catch ex As System.ArgumentException
             Console.WriteLine(ex.Message)
@@ -133,9 +133,9 @@ Public Module FilesAndDataTables
         End Try
     End Sub
 
-    Public Sub Update(ByVal DBName As String, ByVal DT As DataTable, ByVal TableName As String, Optional ByVal MyFilePath As String = "")
+    Public Sub Update(ByVal dbName As String, ByVal dt As DataTable, ByVal tableName As String, Optional ByVal myFilePath As String = "")
         Try
-            SQLiteTables.BulkInsert(DBName, DT, TableName, MyFilePath)
+            SQLiteTables.BulkInsert(dbName, dt, tableName, myFilePath)
         Catch ex As System.InvalidOperationException
             Console.WriteLine(ex.Message)
             Console.WriteLine(ex.Data)
@@ -156,29 +156,29 @@ Public Module FilesAndDataTables
     ''' <param name="DT"></param>
     ''' <param name="DateFormatPattern"></param>
     ''' <param name="DateFormatIndex"></param>
-    Public Sub ReadFile(ByVal FileName As String, ByVal ColumnNames() As String, ByVal DT As DataTable, Optional DateFormatPattern As String = "",
-                         Optional DateFormatIndex As Integer = -1, Optional OrderBy As String = "")
-        Dim str As String = ""
-        Dim myarray() As String
+    Public Sub ReadFile(ByVal fileName As String, ByVal columnNames() As String, ByVal dt As DataTable, Optional dateFormatPattern As String = "",
+                         Optional dateFormatIndex As Integer = -1, Optional orderBy As String = "")
+        Dim Str As String = ""
+        Dim MyArray() As String
 
-        SQLFunctions.SQLiteDataFunctions.GetColumnNames(DT, ColumnNames)
+        SQLFunctions.SQLiteDataFunctions.GetColumnNames(dt, columnNames)
         'Automatically dispose of the StreamReader once its completed.
-        Using myreader As New StreamReader(FileName)
+        Using MyReader As New StreamReader(fileName)
             'First Line contains information about formatting and not actual content
-            myreader.ReadLine()
-            While myreader.EndOfStream = False
-                str = myreader.ReadLine()
-                myarray = str.Split(";")
+            MyReader.ReadLine()
+            While MyReader.EndOfStream = False
+                Str = MyReader.ReadLine()
+                MyArray = Str.Split(";")
                 'Checks to see if there is a Date involved and if there is, formats it to its proper form before returning it back to the array
-                If DateFormatPattern <> "" Then
+                If dateFormatPattern <> "" Then
                     Dim MyDate As New Date
-                    MyDate = myarray(DateFormatIndex)
-                    myarray(DateFormatIndex) = MyDate.ToString(DateFormatPattern)
+                    MyDate = MyArray(dateFormatIndex)
+                    MyArray(dateFormatIndex) = MyDate.ToString(dateFormatPattern)
                 End If
 
                 'Adds the array to the data row and sorts it according to the parameter supplied
-                DT.Rows.Add().ItemArray = myarray
-                DT.Select("", OrderBy, DataViewRowState.CurrentRows)
+                dt.Rows.Add().ItemArray = MyArray
+                dt.Select("", orderBy, DataViewRowState.CurrentRows)
             End While
         End Using
     End Sub

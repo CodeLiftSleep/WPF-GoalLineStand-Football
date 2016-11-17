@@ -9,26 +9,26 @@ RelTeam25 int NULL, RelTeam26 int NULL, RelTeam27 int NULL, RelTEam28 int NULL, 
 
     End Sub
 
-    Public Sub GenAgents(ByVal AgentNum As Integer, ByVal XAgent As Agent, ByVal AgentDT As DataTable, ByVal PlayerDT As DataTable)
+    Public Sub GenAgents(ByVal agentNum As Integer, ByVal xAgent As Agent, ByVal agentDT As DataTable, ByVal playerDT As DataTable)
 
-        XAgent = New Agent 'intializes a new instance of this class
+        xAgent = New Agent 'intializes a new instance of this class
 
-        AgentDT.Rows.Add(AgentNum)
+        agentDT.Rows.Add(agentNum)
 
-        GenNames(AgentDT, AgentNum, "Agent")
-        GetPersonalityStats(AgentDT, AgentNum, XAgent)
+        GenNames(agentDT, agentNum, "Agent")
+        GetPersonalityStats(agentDT, agentNum, xAgent)
 
-        AgentDT.Rows(AgentNum).Item("Experience") = MT.GenerateInt32(0, (AgentDT.Rows(AgentNum).Item("Age") - 24))
-        AgentDT.Rows(AgentNum).Item("AgentType") = String.Format("'{0}'", GetAgentType(AgentNum, AgentDT, PlayerDT))
-        AgentDT.Rows(AgentNum).Item("ClientList") = String.Format("'{0}'", AssignClientList(AgentNum, AgentDT, PlayerDT, AgentDT.Rows(AgentNum).Item("AgentType")))
-        For i As Integer = 0 To AgentDT.Columns.Count - 1
-            If AgentDT.Rows(AgentNum).Item(i) Is DBNull.Value Then
-                AgentDT.Rows(AgentNum).Item(i) = MT.GetGaussian(49.5, 16.5) 'Fills out the team relationships as this is the only field not filled in
+        agentDT.Rows(agentNum).Item("Experience") = MT.GenerateInt32(0, (agentDT.Rows(agentNum).Item("Age") - 24))
+        agentDT.Rows(agentNum).Item("AgentType") = String.Format("'{0}'", GetAgentType(agentNum, agentDT, playerDT))
+        agentDT.Rows(agentNum).Item("ClientList") = String.Format("'{0}'", AssignClientList(agentNum, agentDT, playerDT, agentDT.Rows(agentNum).Item("AgentType")))
+        For i As Integer = 0 To agentDT.Columns.Count - 1
+            If agentDT.Rows(agentNum).Item(i) Is DBNull.Value Then
+                agentDT.Rows(agentNum).Item(i) = MT.GetGaussian(49.5, 16.5) 'Fills out the team relationships as this is the only field not filled in
             End If
         Next i
 
     End Sub
-    Public Function GetAgentType(ByVal AgentNum As Integer, ByVal AgentDT As DataTable, ByVal PlayerDT As DataTable) As String
+    Public Function GetAgentType(ByVal agentNum As Integer, ByVal agentDT As DataTable, ByVal playerDT As DataTable) As String
         Dim result As AgentType = 1
         Select Case MT.GenerateInt32(1, 1000)
             Case 1 To 420 'No clients
@@ -54,15 +54,15 @@ RelTeam25 int NULL, RelTeam26 int NULL, RelTeam27 int NULL, RelTEam28 int NULL, 
     ''' <param name="AgentDT"></param>
     ''' <param name="PlayerDT"></param>
     ''' <returns></returns>
-    Public Function AssignClientList(ByVal AgentNum As Integer, ByVal AgentDT As DataTable, ByVal PlayerDT As DataTable, ByVal AType As String) As String
-        Dim result As String = ""
+    Public Function AssignClientList(ByVal agentNum As Integer, ByVal agentDT As DataTable, ByVal playerDT As DataTable, ByVal aType As String) As String
+        Dim Result As String = ""
         Dim NumClients As Integer
-        Static PlayersLeft As Integer = PlayerDT.Rows.Count 'Keeps a Static count of how many players are left
+        Static PlayersLeft As Integer = playerDT.Rows.Count 'Keeps a Static count of how many players are left
         Dim RowNum As Integer
 
-        If AType <> "'PoorAgent'" Then
+        If aType <> "'PoorAgent'" Then
 
-            Select Case AType
+            Select Case aType
 
                 Case "'AverageAgent'" '1 to 4 clients
                     NumClients = MT.GenerateInt32(1, 4)
@@ -81,22 +81,22 @@ RelTeam25 int NULL, RelTeam26 int NULL, RelTeam27 int NULL, RelTEam28 int NULL, 
             End If
 
             For i As Integer = 1 To NumClients
-                RowNum = MT.GenerateInt32(1, PlayerDT.Rows.Count - 1)
-                Do While PlayerDT.Rows(RowNum).Item("AgentID") <> 0
-                    RowNum = MT.GenerateInt32(1, PlayerDT.Rows.Count - 1)
+                RowNum = MT.GenerateInt32(1, playerDT.Rows.Count - 1)
+                Do While playerDT.Rows(RowNum).Item("AgentID") <> 0
+                    RowNum = MT.GenerateInt32(1, playerDT.Rows.Count - 1)
                 Loop
                 PlayersLeft -= 1
-                result += RowNum.ToString + "," 'comma between PlayerID's
-                PlayerDT.Rows(RowNum).Item("AgentID") = AgentNum
+                Result += RowNum.ToString + "," 'comma between PlayerID's
+                playerDT.Rows(RowNum).Item("AgentID") = agentNum
             Next i
         Else
-            result = ""
+            Result = ""
         End If
 
-        If result <> "" Then
-            result = result.Remove(result.Length - 1, 1) 'removes the last comma
+        If Result <> "" Then
+            Result = Result.Remove(Result.Length - 1, 1) 'removes the last comma
         End If
-        Return result
+        Return Result
 
     End Function
 End Class

@@ -15,10 +15,10 @@ namespace AIEvaluation.Draft
     {
         public DraftAIEval()
         {
-            var gradesList = new List<string>();
-            var files = new List<string>(Directory.EnumerateFiles(@"..\..\..\AIEvaluation\Draft\Grading Sheets", "*.*", SearchOption.AllDirectories)); //load grade files
+            var GradesList = new List<string>();
+            var Files = new List<string>(Directory.EnumerateFiles(@"..\..\..\AIEvaluation\Draft\Grading Sheets", "*.*", SearchOption.AllDirectories)); //load grade files
 
-            var draftDTGroups =  //groups players by Scout Region then by Position, ordered by Grade
+            var DraftDTGroups =  //groups players by Scout Region then by Position, ordered by Grade
                     from player in DraftDT.AsEnumerable()
                     orderby player.Field<decimal>("ActualGrade") descending
                     group player by player.Field<string>("ScoutRegion") into draftGroups
@@ -27,24 +27,24 @@ namespace AIEvaluation.Draft
                      group player by player.Field<string>("CollegePOS"))
                     group posGroups by draftGroups.Key;
 
-            foreach (var file in files) //open each file
+            foreach (var file in Files) //open each file
             {
-                using (StreamReader reader = new StreamReader(file)) //read each file then loop through the grading system
+                using (StreamReader Reader = new StreamReader(file)) //read each file then loop through the grading system
                 {
-                    gradesList.Clear(); //clears the list
-                    reader.ReadLine(); //skips the formatting line
-                    var pos = reader.ReadLine().Remove(0, 5).ToString();
-                    gradesList.Add(pos); //gets the position for this file on the second like
-                    var playerRole = reader.ReadLine().Remove(0, 6).ToString();
-                    gradesList.Add(playerRole); //gets the role of this position on the 3rd line
-                    while (!reader.EndOfStream) //continues going while not at the end of the file
+                    GradesList.Clear(); //clears the list
+                    Reader.ReadLine(); //skips the formatting line
+                    var pos = Reader.ReadLine().Remove(0, 5).ToString();
+                    GradesList.Add(pos); //gets the position for this file on the second like
+                    var playerRole = Reader.ReadLine().Remove(0, 6).ToString();
+                    GradesList.Add(playerRole); //gets the role of this position on the 3rd line
+                    while (!Reader.EndOfStream) //continues going while not at the end of the file
                     {
-                        gradesList.Add(reader.ReadLine()); //reads each line into a file
+                        GradesList.Add(Reader.ReadLine()); //reads each line into a file
                     }
 
                     for (int i = 0; i < PersonnelDT.Rows.Count; i++) //cycles through the scouts
                     {
-                        gradeProspects((int)DraftDT.Rows[i]["DraftID"], DraftDT.Rows[i]["ScoutRegion"].ToString(), gradesList);
+                        GradeProspects((int)DraftDT.Rows[i]["DraftID"], DraftDT.Rows[i]["ScoutRegion"].ToString(), GradesList);
                     }
                 }
             }
@@ -54,16 +54,16 @@ namespace AIEvaluation.Draft
         /// Grades are generated for each prospect by each scout
         /// </summary>
         /// <returns></returns>
-        private void gradeProspects(int playerId, string region, List<string> gradesList)
+        private void GradeProspects(int playerId, string region, List<string> gradesList)
         {
-            int role;
-            decimal top150 = 0.0m; //grade cutoff for 150th player
-            decimal top250 = 0.0m; //grade cutoff for 250th player
-            decimal top350 = 0.0m; //grade cutoff for 350th player
-            decimal top450 = 0.0m; //grade cutoff for 450th player
+            int Role;
+            decimal Top150 = 0.0m; //grade cutoff for 150th player
+            decimal Top250 = 0.0m; //grade cutoff for 250th player
+            decimal Top350 = 0.0m; //grade cutoff for 350th player
+            decimal Top450 = 0.0m; //grade cutoff for 450th player
 
             var pos = gradesList[0];
-            var playerRole = gradesList[1];
+            var PlayerRole = gradesList[1];
             gradesList.RemoveRange(0, 2); //removes the position and role from the list
 
             for (int i = 0; i < gradesList.Count; i++) //cycle through the gradesList to run each list
@@ -71,18 +71,18 @@ namespace AIEvaluation.Draft
                 Parallel.For(0, PersonnelDT.Rows.Count, j =>
                 { //runs this loop in parallel to check each row of the DT for the position
                     {
-                        role = (int)PersonnelDT.Rows[j]["PersonnelType"];
-                        switch (role)
+                        Role = (int)PersonnelDT.Rows[j]["PersonnelType"];
+                        switch (Role)
                         {
                             case (int)GM: //check to make sure its a player with a high enough grade
-                                if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top150)
+                                if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= Top150)
                                 {
                                     DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
                                 break;
 
                             case (int)AssistantGM:
-                                if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top250)
+                                if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= Top250)
                                 {
                                     DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
