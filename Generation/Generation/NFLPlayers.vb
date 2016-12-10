@@ -8,7 +8,7 @@ Public Class NFLPlayers
     Dim MyPos As String
 
 
-    Public Sub PutPlayerOnTeam(ByVal Pos As Integer, ByVal PlayerDT As DataTable)
+    Public Sub PutPlayerOnTeam(ByVal pos As Integer, ByVal playerDT As DataTable)
         'determines what team player is on via generic position limits
 
         Dim NumAllowed As Integer
@@ -23,7 +23,7 @@ Public Class NFLPlayers
         Count = 0
         NumAllowed = 0
 
-        Select Case Pos
+        Select Case pos
             Case 1, 2, 5, 7 : NumAllowed = 4 : MinAllowed = 3 '1 QB, 2 RB, 5 TE
             Case 6, 12 : NumAllowed = 3 : MinAllowed = 2 '6 C, 12 ILB
             Case 8, 9, 10, 11 : NumAllowed = 5 : MinAllowed = 3 '7 OG, 8 OT, 9 DE, 10 DT, 11 OLB
@@ -33,7 +33,7 @@ Public Class NFLPlayers
             Case 4, 13 : NumAllowed = 6 : MinAllowed = 4 '4 WR, 13 CB
         End Select
 
-        Select Case Pos
+        Select Case pos
             Case 1 : PosString = "'QB'"
             Case 2 : PosString = "'RB'"
             Case 3 : PosString = "'FB'"
@@ -53,8 +53,8 @@ Public Class NFLPlayers
             Case 17 : PosString = "'P'"
         End Select
 
-        For x As Integer = 1 To PlayerDT.Rows.Count - 1
-            If PlayerDT.Rows(x).Item("POS") = PosString Then
+        For x As Integer = 1 To playerDT.Rows.Count - 1
+            If playerDT.Rows(x).Item("POS") = PosString Then
                 RowArray.Add(x) 'adds all rows to an arraylist
             End If
         Next x
@@ -67,43 +67,43 @@ Public Class NFLPlayers
                     Dim ChooseArray As Integer = MT.GenerateInt32(0, RowArray.Count - 1)
                     Dim GetRow As Integer = RowArray.Item(ChooseArray)
                     RowArray.RemoveAt(ChooseArray)
-                    PlayerDT.Rows(GetRow).Item("TeamID") = i
+                    playerDT.Rows(GetRow).Item("TeamID") = i
                 End If
             Next n
         Next i
 
     End Sub
-    Public Sub GetRosterPlayers(ByVal PlayerNum As Integer, ByVal XNFLPlayer As NFLPlayers, ByVal PlayerDT As DataTable)
+    Public Sub GetRosterPlayers(ByVal playerNum As Integer, ByVal xNFLPlayer As NFLPlayers, ByVal playerDT As DataTable)
 
-        XNFLPlayer = New NFLPlayers
+        xNFLPlayer = New NFLPlayers
 
         Try
-            PlayerDT.Rows.Add(PlayerNum)
+            playerDT.Rows.Add(playerNum)
 
-            MyPos = GetCollegePos(PlayerNum, PlayerDT) 'returns the "normal" version without the  ' '
-            PlayerDT.Rows(PlayerNum).Item("POS") = String.Format("'{0}'", MyPos)
-            GenNames(PlayerDT, PlayerNum, "NFLPlayer", MyPos)
-            GetPersonalityStats(PlayerDT, PlayerNum, XNFLPlayer)
-            PlayerDT.Rows(PlayerNum).Item("AgentID") = 0
-            PlayerDT.Rows(PlayerNum).Item("TeamID") = 0
-            PlayerDT.Rows(PlayerNum).Item("FortyYardTime") = Get40Time(MyPos, PlayerNum, PlayerDT)
-            PlayerDT.Rows(PlayerNum).Item("RETKickReturn") = GetKickRetAbility(MyPos, PlayerNum)
-            PlayerDT.Rows(PlayerNum).Item("RETPuntReturn") = GetPuntRetAbility(MyPos, PlayerNum, PlayerDT)
-            GetSTAbility(MyPos, PlayerNum, PlayerDT)
-            GetLSAbility(MyPos, PlayerNum, PlayerDT)
-            PlayerDT.Rows(PlayerNum).Item("PosType") = String.Format("'{0}'", GetPosType(MyPos, PlayerNum, PlayerDT))
+            MyPos = GetCollegePos(playerNum, playerDT) 'returns the "normal" version without the  ' '
+            playerDT.Rows(playerNum).Item("POS") = String.Format("'{0}'", MyPos)
+            GenNames(playerDT, playerNum, "NFLPlayer", MyPos)
+            GetPersonalityStats(playerDT, playerNum, xNFLPlayer)
+            playerDT.Rows(playerNum).Item("AgentID") = 0
+            playerDT.Rows(playerNum).Item("TeamID") = 0
+            playerDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, playerDT)
+            playerDT.Rows(playerNum).Item("RETKickReturn") = GetKickRetAbility(MyPos, playerNum)
+            playerDT.Rows(playerNum).Item("RETPuntReturn") = GetPuntRetAbility(MyPos, playerNum, playerDT)
+            GetSTAbility(MyPos, playerNum, playerDT)
+            GetLSAbility(MyPos, playerNum, playerDT)
+            playerDT.Rows(playerNum).Item("PosType") = String.Format("'{0}'", GetPosType(MyPos, playerNum, playerDT))
 
-            PlayerDT.Rows(PlayerNum).Item("DLPrimaryTech") = "'NONE'"
-            PlayerDT.Rows(PlayerNum).Item("DLSecondaryTech") = "'NONE'"
-            PlayerDT.Rows(PlayerNum).Item("DLPassRushTech") = "'NONE'"
+            playerDT.Rows(playerNum).Item("DLPrimaryTech") = "'NONE'"
+            playerDT.Rows(playerNum).Item("DLSecondaryTech") = "'NONE'"
+            playerDT.Rows(playerNum).Item("DLPassRushTech") = "'NONE'"
 
-            For col As Integer = 0 To PlayerDT.Columns.Count - 1
-                If PlayerDT.Rows(PlayerNum).Item(col) Is DBNull.Value Then
-                    PlayerDT.Rows(PlayerNum).Item(col) = MT.GetGaussian(49.5, 16.5)
+            For col As Integer = 0 To playerDT.Columns.Count - 1
+                If playerDT.Rows(playerNum).Item(col) Is DBNull.Value Then
+                    playerDT.Rows(playerNum).Item(col) = MT.GetGaussian(49.5, 16.5)
                 End If
             Next col
 
-            GetPosRatings(MyPos, PlayerDT.Rows(PlayerNum).Item("PosType"), PlayerNum, PlayerDT)
+            GetPosRatings(MyPos, playerDT.Rows(playerNum).Item("PosType"), playerNum, playerDT)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             Console.WriteLine(ex.Data)

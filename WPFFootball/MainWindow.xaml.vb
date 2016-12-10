@@ -17,9 +17,9 @@ Class MainWindow
 
     Private Sub QuitGameBtn_Click(sender As Object, e As RoutedEventArgs) Handles QuitGameBtn.Click
 
-        Dim res As MsgBoxResult = MsgBox("Are You Sure You Want To Exit The Game? Any Unsaved Data will be lost!",
+        Dim Res As MsgBoxResult = MsgBox("Are You Sure You Want To Exit The Game? Any Unsaved Data will be lost!",
                                          MsgBoxStyle.OkCancel, "Exit Game")
-        If res = MsgBoxResult.Ok Then
+        If Res = MsgBoxResult.Ok Then
             End
         End If
     End Sub

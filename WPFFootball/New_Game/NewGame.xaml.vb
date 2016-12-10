@@ -13,19 +13,19 @@ Public Class NewGame
 
     ReadOnly MyVM As New NewGameViewModel
     ReadOnly MyDB As String = "Football"
-    ReadOnly myQueue As New Queue
-    ReadOnly myRand As New TRandom
-    ReadOnly filepath As String = "Project_Files/"
-    ReadOnly SR As New StreamReader(filepath + My.Resources.Schedule4GamesMaxTxt)
+    ReadOnly MyQueue As New Queue
+    ReadOnly MyRand As New TRandom
+    ReadOnly FilePath As String = "Project_Files/"
+    ReadOnly SR As New StreamReader(FilePath + My.Resources.Schedule4GamesMaxTxt)
 
     Sub New()
         ' This call is required by the designer.
         InitializeComponent()
 
-        For Each team As NewGameViewModel.Teams In EnumToList(Of NewGameViewModel.Teams)()
-            TeamCombo.Items.Add(GetEnumDescription(team))
-            myRand.NextUInt() 'Initiate the random number generator to get good randomness
-        Next team
+        For Each Team As NewGameViewModel.Teams In EnumToList(Of NewGameViewModel.Teams)()
+            TeamCombo.Items.Add(GetEnumDescription(Team))
+            MyRand.NextUInt() 'Initiate the random number generator to get good randomness
+        Next Team
 
         'Sets the DataContext of the Model to the ViewModel
         DataContext = MyVM
@@ -47,30 +47,30 @@ Public Class NewGame
     End Sub
 
     Public Shared Function EnumToList(Of T)() As IEnumerable(Of T)
-        Dim enumType As Type = GetType(T)
+        Dim EnumType As Type = GetType(T)
 
         ' Can't use generic type constraints on value types,
         ' so have to do check like this
-        If enumType.BaseType <> GetType([Enum]) Then
+        If EnumType.BaseType <> GetType([Enum]) Then
             Throw New ArgumentException("T must be of type System.Enum")
         End If
 
-        Dim enumValArray As Array = [Enum].GetValues(enumType)
-        Dim enumValList As New List(Of T)(enumValArray.Length)
+        Dim EnumValArray As Array = [Enum].GetValues(EnumType)
+        Dim EnumValList As New List(Of T)(EnumValArray.Length)
 
-        For Each val As Integer In enumValArray
-            enumValList.Add(DirectCast([Enum].Parse(enumType, val.ToString()), T))
+        For Each val As Integer In EnumValArray
+            EnumValList.Add(DirectCast([Enum].Parse(EnumType, val.ToString()), T))
         Next
 
-        Return enumValList
+        Return EnumValList
     End Function
 
     Public Shared Function GetEnumDescription(value As [Enum]) As String
-        Dim fi As FieldInfo = value.[GetType]().GetField(value.ToString())
-        Dim attributes = DirectCast(fi.GetCustomAttributes(GetType(DescriptionAttribute), False), DescriptionAttribute())
+        Dim FI As FieldInfo = value.[GetType]().GetField(value.ToString())
+        Dim Attributes = DirectCast(FI.GetCustomAttributes(GetType(DescriptionAttribute), False), DescriptionAttribute())
 
-        If attributes IsNot Nothing AndAlso attributes.Length > 0 Then
-            Return attributes(0).Description
+        If Attributes IsNot Nothing AndAlso Attributes.Length > 0 Then
+            Return Attributes(0).Description
         Else
             Return value.ToString()
         End If
@@ -89,11 +89,11 @@ Public Class NewGame
         Helmet.Visibility = 0
         MyVM.MyBackgroundImg = New BitmapImage(New Uri(NewGameViewModel.GetBackgroundFilePath(TeamCombo.SelectedIndex),
                                                        UriKind.RelativeOrAbsolute))
-        NewGameViewModel.GetBrush(TeamCombo.SelectedIndex, myQueue, TeamDT)
-        MyVM.MyPrimColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
-        MyVM.MySecColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
-        MyVM.MyTrimColor = NewGameViewModel.ConvertColor(myQueue.Dequeue())
-        GetPeople(TeamCombo.SelectedIndex, myQueue)
+        NewGameViewModel.GetBrush(TeamCombo.SelectedIndex, MyQueue, TeamDT)
+        MyVM.MyPrimColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
+        MyVM.MySecColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
+        MyVM.MyTrimColor = NewGameViewModel.ConvertColor(MyQueue.Dequeue())
+        GetPeople(TeamCombo.SelectedIndex, MyQueue)
         GetTeamValues(TeamCombo.SelectedIndex)
         LoadTeamSchedule(TeamCombo.SelectedIndex)
     End Sub
@@ -101,37 +101,37 @@ Public Class NewGame
     ''' <summary>
     '''     This updates the team information when a user selects a team via the IndexChanged propert of the combobox
     ''' </summary>
-    ''' <param name="TeamNum"></param>
-    Private Sub GetTeamValues(TeamNum As Integer)
+    ''' <param name="teamNum"></param>
+    Private Sub GetTeamValues(teamNum As Integer)
         Dim MyDiv As New NewGameViewModel.DivisionNames
-        Dim MyAvg As Integer = TeamDT.Rows(TeamNum).Item("AvgAttendance")
-        Dim MyCap As Integer = TeamDT.Rows(TeamNum).Item("StadiumCapacity")
+        Dim MyAvg As Integer = TeamDT.Rows(teamNum).Item("AvgAttendance")
+        Dim MyCap As Integer = TeamDT.Rows(teamNum).Item("StadiumCapacity")
         Dim PerOfCap As Single = Math.Round(((MyAvg / MyCap) * 100), 1)
-        Dim Off As Integer = myRand.NextUInt(75, 99)
-        Dim Def As Integer = myRand.NextUInt(75, 99)
-        Dim ST As Integer = myRand.NextUInt(75, 99)
-        Dim SalCapTotal As Integer = myRand.NextUInt(151000000, 159000000)
-        Dim Top51Contracts As Integer = SalCapTotal * (myRand.NextDouble(0.8, 0.93))
-        Dim TotContracts As Integer = Top51Contracts * (myRand.NextDouble(1.02, 1.06))
-        Dim DeadCap As Integer = myRand.NextUInt(3000000, 12000000)
+        Dim Off As Integer = MyRand.NextUInt(75, 99)
+        Dim Def As Integer = MyRand.NextUInt(75, 99)
+        Dim ST As Integer = MyRand.NextUInt(75, 99)
+        Dim SalCapTotal As Integer = MyRand.NextUInt(151000000, 159000000)
+        Dim Top51Contracts As Integer = SalCapTotal * (MyRand.NextDouble(0.8, 0.93))
+        Dim TotContracts As Integer = Top51Contracts * (MyRand.NextDouble(1.02, 1.06))
+        Dim DeadCap As Integer = MyRand.NextUInt(3000000, 12000000)
         Dim AvailCap As Integer = SalCapTotal - TotContracts - DeadCap
         Dim ColNames As String() = {"FName", "LName", "College", "Pos", "PosType", "Age", "Height", "Weight", "ArmLength", "HandLength", "FortyYardTime"}
-        MyDiv = TeamDT.Rows(TeamNum).Item("DivID")
+        MyDiv = TeamDT.Rows(teamNum).Item("DivID")
 
-        MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(TeamNum).Item("StadiumName"))
+        MyVM.MyStadiumName = String.Format("Stadium Name: {0}", TeamDT.Rows(teamNum).Item("StadiumName"))
         MyVM.MyStadiumCapacity = String.Format("Stadium Capacity: {0}", MyCap)
         MyVM.MyStadiumPic = New BitmapImage(New Uri(NewGameViewModel.GetStadiumPic(TeamCombo.SelectedIndex),
                                                     UriKind.RelativeOrAbsolute))
-        MyVM.MyCityState = String.Format("{0}, {1}", TeamDT.Rows(TeamNum).Item("City"),
-                                         TeamDT.Rows(TeamNum).Item("State"))
+        MyVM.MyCityState = String.Format("{0}, {1}", TeamDT.Rows(teamNum).Item("City"),
+                                         TeamDT.Rows(teamNum).Item("State"))
         MyVM.MyAvgAttendance = String.Format("Last Year Avg. Attendance: {0}{1}({2}% of Capacity)",
                                              Environment.NewLine, MyAvg, PerOfCap)
         MyVM.MyTeamRecord =
             String.Format("Last Year Record: {0} Wins  {1} Losses  {2} Ties  {3}{4}{5} Place in the {6}",
-                          TeamDT.Rows(TeamNum).Item("Wins"), TeamDT.Rows(TeamNum).Item("Losses"),
-                          TeamDT.Rows(TeamNum).Item("Ties"), Environment.NewLine,
-                          TeamDT.Rows(TeamNum).Item("DivStanding"),
-                          GetDivPlace(TeamDT.Rows(TeamNum).Item("DivStanding")), GetEnumDescription(MyDiv))
+                          TeamDT.Rows(teamNum).Item("Wins"), TeamDT.Rows(teamNum).Item("Losses"),
+                          TeamDT.Rows(teamNum).Item("Ties"), Environment.NewLine,
+                          TeamDT.Rows(teamNum).Item("DivStanding"),
+                          GetDivPlace(TeamDT.Rows(teamNum).Item("DivStanding")), GetEnumDescription(MyDiv))
         TeamStaff.Inlines.Clear()
         TeamStaff.Inlines.Add(New Run() With {.FontSize = 40, .Text = "Team Information "})
         TeamStaff.Inlines.Add(New LineBreak)
@@ -141,8 +141,8 @@ Public Class NewGame
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
-                                 (String.Format("{0} {1} Age {2} ", myQueue.Dequeue(), myQueue.Dequeue(),
-                                                myQueue.Dequeue()))})
+                                 (String.Format("{0} {1} Age {2} ", MyQueue.Dequeue(), MyQueue.Dequeue(),
+                                                MyQueue.Dequeue()))})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "General Manager "})
         TeamStaff.Inlines.Add(New LineBreak)
@@ -150,8 +150,8 @@ Public Class NewGame
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
-                                 String.Format("{0} {1}  Age {2} ", myQueue.Dequeue(), myQueue.Dequeue(),
-                                               myQueue.Dequeue())})
+                                 String.Format("{0} {1}  Age {2} ", MyQueue.Dequeue(), MyQueue.Dequeue(),
+                                               MyQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Head Coach "})
         TeamStaff.Inlines.Add(New LineBreak)
@@ -159,8 +159,8 @@ Public Class NewGame
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
-                                 String.Format("{0} {1}  Age {2} ", myQueue.Dequeue(), myQueue.Dequeue(),
-                                               myQueue.Dequeue())})
+                                 String.Format("{0} {1}  Age {2} ", MyQueue.Dequeue(), MyQueue.Dequeue(),
+                                               MyQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Off. Coordinator "})
         TeamStaff.Inlines.Add(New LineBreak)
@@ -168,8 +168,8 @@ Public Class NewGame
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
-                                 String.Format("{0} {1}  Age {2} ", myQueue.Dequeue(), myQueue.Dequeue(),
-                                               myQueue.Dequeue())})
+                                 String.Format("{0} {1}  Age {2} ", MyQueue.Dequeue(), MyQueue.Dequeue(),
+                                               MyQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
         TeamStaff.Inlines.Add(New Run() With {.Foreground = MyVM.MyTrimColor, .Text = "Def. Coordinator "})
         TeamStaff.Inlines.Add(New LineBreak)
@@ -177,8 +177,8 @@ Public Class NewGame
             New Run() _
                                  With {.FontSize = 24,
                                  .Text =
-                                 String.Format("{0} {1}  Age {2} ", myQueue.Dequeue(), myQueue.Dequeue(),
-                                               myQueue.Dequeue())})
+                                 String.Format("{0} {1}  Age {2} ", MyQueue.Dequeue(), MyQueue.Dequeue(),
+                                               MyQueue.Dequeue())})
         TeamStaff.Inlines.Add(New LineBreak)
 
         TeamRatings.Text = String.Format("Team Ratings: OFF: {0}  DEF: {1}  ST: {2}  Overall: {3} ", Off, Def, ST,
@@ -226,26 +226,26 @@ Public Class NewGame
                                  .Text = String.Format("Available Cap Space: {0} ", AvailCap.ToString("N0"))})
     End Sub
 
-    Private Function GetDivPlace(DivStanding As Integer) As String
-        Dim myString = ""
-        Select Case DivStanding
-            Case 1 : myString = "st"
-            Case 2 : myString = "nd"
-            Case 3 : myString = "rd"
-            Case 4 : myString = "th"
+    Private Function GetDivPlace(divStanding As Integer) As String
+        Dim MyString = ""
+        Select Case divStanding
+            Case 1 : MyString = "st"
+            Case 2 : MyString = "nd"
+            Case 3 : MyString = "rd"
+            Case 4 : MyString = "th"
         End Select
-        Return myString
+        Return MyString
     End Function
 
     ''' <summary>
     '''     Returns a Queue of the following people: Owner, GM, Head Coach, DC and OC in format "First Name", "Last Name",
     '''     "Age"
     ''' </summary>
-    ''' <param name="TeamNum"></param>
+    ''' <param name="teamNum"></param>
     ''' <param name="myQueue"></param>
     ''' <returns></returns>
-    Private Function GetPeople(TeamNum As Integer, myQueue As Queue) As Queue
-        Dim TeamID As Integer = TeamNum + 1
+    Private Function GetPeople(teamNum As Integer, myQueue As Queue) As Queue
+        Dim TeamID As Integer = teamNum + 1
         For i = 0 To OwnerDT.Rows.Count - 1
             If OwnerDT.Rows(i).Item("TeamID") = TeamID Then
                 myQueue.Enqueue(OwnerDT.Rows(i).Item("FName"))
@@ -293,11 +293,11 @@ Public Class NewGame
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Helmet_OnClick(sender As Object, e As RoutedEventArgs)
-        Dim res As MsgBoxResult = MsgBox("Are You Sure You Want To Select This Team?", MsgBoxStyle.YesNo, "Team Select")
+        Dim Res As MsgBoxResult = MsgBox("Are You Sure You Want To Select This Team?", MsgBoxStyle.YesNo, "Team Select")
 
-        If res = MsgBoxResult.Yes Then
-            Dim myTeam As New UserScreen(TeamCombo.SelectedIndex)
-            myTeam.Show()
+        If Res = MsgBoxResult.Yes Then
+            Dim MyTeam As New UserScreen(TeamCombo.SelectedIndex)
+            MyTeam.Show()
             Close()
             SR.Dispose()
         End If
@@ -306,14 +306,14 @@ Public Class NewGame
     ''' <summary>
     '''     Loads Team Schedule for team and displays on schedule pane
     ''' </summary>
-    ''' <param name="TeamID"></param>
-    Private Sub LoadTeamSchedule(TeamID As Integer)
-        TeamID += 1 'increments the 0 based index to match
+    ''' <param name="teamID"></param>
+    Private Sub LoadTeamSchedule(teamID As Integer)
+        teamID += 1 'increments the 0 based index to match
         Dim Week As Integer
-        Dim lineString As String
-        Dim pos As Integer
-        Dim opponent As Integer
-        Dim substring As String
+        Dim LineString As String
+        Dim Pos As Integer
+        Dim Opponent As Integer
+        Dim Substring As String
 
         TeamSchedule.Inlines.Clear()
         TeamSchedule.Inlines.Add(New Run() _
@@ -323,22 +323,22 @@ Public Class NewGame
         SR.BaseStream.Seek(0, SeekOrigin.Begin) 'resets streamreader to beginning of stream
 
         While SR.EndOfStream <> True 'reads through the file
-            lineString = SR.ReadLine
-            pos = 0
-            opponent = 0
-            substring = ""
+            LineString = SR.ReadLine
+            Pos = 0
+            Opponent = 0
+            Substring = ""
 
-            If lineString.Contains(String.Format("({0}) vs.", TeamID)) Then 'This is a home game
+            If LineString.Contains(String.Format("({0}) vs.", teamID)) Then 'This is a home game
                 Week += 1
 
-                pos = lineString.IndexOfAny("vs. ")
-                If pos > 0 Then
+                Pos = LineString.IndexOfAny("vs. ")
+                If Pos > 0 Then
 
-                    substring = New String(lineString.Substring(pos, lineString.Length - pos))
-                    opponent = Integer.Parse(Regex.Replace(substring, "[^\d]", ""))
+                    Substring = New String(LineString.Substring(Pos, LineString.Length - Pos))
+                    Opponent = Integer.Parse(Regex.Replace(Substring, "[^\d]", ""))
                 End If
 
-                MyVM.TeamEnumList = opponent
+                MyVM.TeamEnumList = Opponent
                 TeamSchedule.Inlines.Add(
                     New Run() _
                                             With {.FontSize = 26, .Foreground = MyVM.MyTrimColor,
@@ -347,8 +347,8 @@ Public Class NewGame
                                                           GetEnumDescription(MyVM.TeamEnumList))})
                 TeamSchedule.Inlines.Add(New LineBreak)
 
-            ElseIf lineString.Contains("Teams On Bye:") Then
-                If lineString.Contains(String.Format("({0})", TeamID)) Then 'Team is on a Bye
+            ElseIf LineString.Contains("Teams On Bye:") Then
+                If LineString.Contains(String.Format("({0})", teamID)) Then 'Team is on a Bye
                     Week += 1
                     TeamSchedule.Inlines.Add(
                         New Run() _
@@ -357,17 +357,17 @@ Public Class NewGame
                     TeamSchedule.Inlines.Add(New LineBreak)
                 End If
 
-            ElseIf lineString.Contains(String.Format("({0})", TeamID)) Then 'Away game
+            ElseIf LineString.Contains(String.Format("({0})", teamID)) Then 'Away game
                 Week += 1
 
-                pos = lineString.IndexOfAny("(")
-                If pos > 0 Then
+                Pos = LineString.IndexOfAny("(")
+                If Pos > 0 Then
 
-                    substring = New String(lineString.Substring(pos, 3))
-                    opponent = Integer.Parse(Regex.Replace(substring, "[^\d]", ""))
+                    Substring = New String(LineString.Substring(Pos, 3))
+                    Opponent = Integer.Parse(Regex.Replace(Substring, "[^\d]", ""))
                 End If
 
-                MyVM.TeamEnumList = opponent
+                MyVM.TeamEnumList = Opponent
                 TeamSchedule.Inlines.Add(
                     New Run() _
                                             With {.FontSize = 26, .Foreground = MyVM.MySecColor,

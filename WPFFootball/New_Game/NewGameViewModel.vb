@@ -222,106 +222,106 @@ Public Class NewGameViewModel
     ''' <summary>
     '''     Sets the background picture of the screen
     ''' </summary>
-    ''' <param name="TeamNum"></param>
+    ''' <param name="teamNum"></param>
     ''' <returns></returns>
-    Public Shared Function GetBackgroundFilePath(Optional ByVal TeamNum As Integer = 32) As String
-        Dim filepath = "pack://application:,,,/Project_Files/"
+    Public Shared Function GetBackgroundFilePath(Optional ByVal teamNum As Integer = 32) As String
+        Dim FilePath = "pack://application:,,,/Project_Files/"
 
-        Select Case TeamNum
-            Case 0 : filepath += Bills02Jpg
-            Case 1 : filepath += Patriots2Jpg
-            Case 2 : filepath += JetsJpg
-            Case 3 : filepath += Dolphins_2013Jpg
-            Case 4 : filepath += Bengals3Jpg
-            Case 5 : filepath += Steelers2Jpg
-            Case 6 : filepath += Ravens3Jpg
-            Case 7 : filepath += Browns2Jpg1
-            Case 8 : filepath += Texans2Jpg
-            Case 9 : filepath += Colts2Jpg
-            Case 10 : filepath += Jaguars2Jpg
-            Case 11 : filepath += Titans2Jpg
-            Case 12 : filepath += Broncos2Jpg
-            Case 13 : filepath += Chiefs3Jpg
-            Case 14 : filepath += RaidersJpg
-            Case 15 : filepath += Chargers5Jpg
-            Case 16 : filepath += Redskins2Jpg
-            Case 17 : filepath += Eagles2Jpg
-            Case 18 : filepath += Giants5Jpg
-            Case 19 : filepath += Cowboys3Jpg
-            Case 20 : filepath += Vikings_2013_06Jpg
-            Case 21 : filepath += Packers5Jpg
-            Case 22 : filepath += Lions2Jpg
-            Case 23 : filepath += Bears4Jpg
-            Case 24 : filepath += Panthers2Jpg
-            Case 25 : filepath += FalconsJpg
-            Case 26 : filepath += Saints2Jpg
-            Case 27 : filepath += Buccaneers2Jpg
-            Case 28 : filepath += Cardinals3Jpg
-            Case 29 : filepath += Seahawks2_2012Jpg
-            Case 30 : filepath += RamsJpg
-            Case 31 : filepath += _49ers04Jpg
-            Case 32 : filepath += GlobalClass_GetBackgroundFilePath_FootballGoalLine_jpg
+        Select Case teamNum
+            Case 0 : FilePath += Bills02Jpg
+            Case 1 : FilePath += Patriots2Jpg
+            Case 2 : FilePath += JetsJpg
+            Case 3 : FilePath += Dolphins_2013Jpg
+            Case 4 : FilePath += Bengals3Jpg
+            Case 5 : FilePath += Steelers2Jpg
+            Case 6 : FilePath += Ravens3Jpg
+            Case 7 : FilePath += Browns2Jpg1
+            Case 8 : FilePath += Texans2Jpg
+            Case 9 : FilePath += Colts2Jpg
+            Case 10 : FilePath += Jaguars2Jpg
+            Case 11 : FilePath += Titans2Jpg
+            Case 12 : FilePath += Broncos2Jpg
+            Case 13 : FilePath += Chiefs3Jpg
+            Case 14 : FilePath += RaidersJpg
+            Case 15 : FilePath += Chargers5Jpg
+            Case 16 : FilePath += Redskins2Jpg
+            Case 17 : FilePath += Eagles2Jpg
+            Case 18 : FilePath += Giants5Jpg
+            Case 19 : FilePath += Cowboys3Jpg
+            Case 20 : FilePath += Vikings_2013_06Jpg
+            Case 21 : FilePath += Packers5Jpg
+            Case 22 : FilePath += Lions2Jpg
+            Case 23 : FilePath += Bears4Jpg
+            Case 24 : FilePath += Panthers2Jpg
+            Case 25 : FilePath += FalconsJpg
+            Case 26 : FilePath += Saints2Jpg
+            Case 27 : FilePath += Buccaneers2Jpg
+            Case 28 : FilePath += Cardinals3Jpg
+            Case 29 : FilePath += Seahawks2_2012Jpg
+            Case 30 : FilePath += RamsJpg
+            Case 31 : FilePath += _49ers04Jpg
+            Case 32 : FilePath += GlobalClass_GetBackgroundFilePath_FootballGoalLine_jpg
         End Select
 
-        Return filepath
+        Return FilePath
     End Function
 
     ''' <summary>
     '''     Sets the helmet image of the team on the button
     ''' </summary>
-    ''' <param name="TeamNum"></param>
+    ''' <param name="teamNum"></param>
     ''' <returns></returns>
 
-    Public Shared Function GetImage(TeamNum As Integer) As Image
+    Public Shared Function GetImage(teamNum As Integer) As Image
         Dim MyImage As New Image
-        Dim filepath = "pack://application:,,,/Project_Files/"
+        Dim FilePath = "pack://application:,,,/Project_Files/"
 
-        Select Case TeamNum
-            Case 0 : filepath += Bills_PHelmet_2011Jpg
-            Case 1 : filepath += Patriots_PHelmetJpg
-            Case 2 : filepath += Jets_PHelmetJpg
-            Case 3 : filepath += Dolphins_PHelmetJpg
-            Case 4 : filepath += Bengals_PHelmetJpg
-            Case 5 : filepath += Steelers_PHelmetJpg
-            Case 6 : filepath += Ravens_PHelmetJpg
-            Case 7 : filepath += Browns_PHelmetJpg
-            Case 8 : filepath += Texans_PHelmetJpg
-            Case 9 : filepath += Colts_PHelmetJpg
-            Case 10 : filepath += Jaguars_PHelmetJpg
-            Case 11 : filepath += Titans_PHelmetJpg
-            Case 12 : filepath += Broncos_PHelmetJpg
-            Case 13 : filepath += Chiefs_PHelmetJpg
-            Case 14 : filepath += Raiders_HelmetJpg
-            Case 15 : filepath += Chargers_PHelmet2Jpg
-            Case 16 : filepath += Redskins_PHelmetJpg
-            Case 17 : filepath += Eagles_PHelmetJpg
-            Case 18 : filepath += Giants_PHelmetJpg
-            Case 19 : filepath += Cowboys_PhelmetJpg
-            Case 20 : filepath += Vikings_PHelmet_2013Jpg
-            Case 21 : filepath += Packers_PHelmetJpg
-            Case 22 : filepath += Lions_PHelmetJpg
-            Case 23 : filepath += Bears_PHelmet2Jpg
-            Case 24 : filepath += Panthers_PHelmetJpg
-            Case 25 : filepath += Falcons_PHelmetJpg
-            Case 26 : filepath += Saints_PHelmetJpg
-            Case 27 : filepath += Buccaneers_PHelmetJpg
-            Case 28 : filepath += Cardinals_HelmetJpg
-            Case 29 : filepath += Seahawks_PHelmet_2012Jpg
-            Case 30 : filepath += Rams1Png
-            Case 31 : filepath += _49ers_PHelmet_NewJpg
+        Select Case teamNum
+            Case 0 : FilePath += Bills_PHelmet_2011Jpg
+            Case 1 : FilePath += Patriots_PHelmetJpg
+            Case 2 : FilePath += Jets_PHelmetJpg
+            Case 3 : FilePath += Dolphins_PHelmetJpg
+            Case 4 : FilePath += Bengals_PHelmetJpg
+            Case 5 : FilePath += Steelers_PHelmetJpg
+            Case 6 : FilePath += Ravens_PHelmetJpg
+            Case 7 : FilePath += Browns_PHelmetJpg
+            Case 8 : FilePath += Texans_PHelmetJpg
+            Case 9 : FilePath += Colts_PHelmetJpg
+            Case 10 : FilePath += Jaguars_PHelmetJpg
+            Case 11 : FilePath += Titans_PHelmetJpg
+            Case 12 : FilePath += Broncos_PHelmetJpg
+            Case 13 : FilePath += Chiefs_PHelmetJpg
+            Case 14 : FilePath += Raiders_HelmetJpg
+            Case 15 : FilePath += Chargers_PHelmet2Jpg
+            Case 16 : FilePath += Redskins_PHelmetJpg
+            Case 17 : FilePath += Eagles_PHelmetJpg
+            Case 18 : FilePath += Giants_PHelmetJpg
+            Case 19 : FilePath += Cowboys_PhelmetJpg
+            Case 20 : FilePath += Vikings_PHelmet_2013Jpg
+            Case 21 : FilePath += Packers_PHelmetJpg
+            Case 22 : FilePath += Lions_PHelmetJpg
+            Case 23 : FilePath += Bears_PHelmet2Jpg
+            Case 24 : FilePath += Panthers_PHelmetJpg
+            Case 25 : FilePath += Falcons_PHelmetJpg
+            Case 26 : FilePath += Saints_PHelmetJpg
+            Case 27 : FilePath += Buccaneers_PHelmetJpg
+            Case 28 : FilePath += Cardinals_HelmetJpg
+            Case 29 : FilePath += Seahawks_PHelmet_2012Jpg
+            Case 30 : FilePath += Rams1Png
+            Case 31 : FilePath += _49ers_PHelmet_NewJpg
         End Select
-        MyImage.Source = New BitmapImage(New Uri(filepath, UriKind.RelativeOrAbsolute))
+        MyImage.Source = New BitmapImage(New Uri(FilePath, UriKind.RelativeOrAbsolute))
         Return MyImage
     End Function
 
     ''' <summary>
     '''     Loads picture of the proper stadium by team
     ''' </summary>
-    ''' <param name="TeamNum"></param>
+    ''' <param name="teamNum"></param>
     ''' <returns></returns>
-    Public Shared Function GetStadiumPic(TeamNum As Integer) As String
+    Public Shared Function GetStadiumPic(teamNum As Integer) As String
         Dim FilePath = "pack://application:,,,/Project_Files/"
-        Select Case TeamNum
+        Select Case teamNum
             Case 0 : FilePath += RalphWilsonStadiumJpg
             Case 1 : FilePath += GilletteStadiumJpg
             Case 2, 18 : FilePath += MetLife_StadiumJpg
@@ -357,24 +357,24 @@ Public Class NewGameViewModel
         Return FilePath
     End Function
 
-    Public Shared Function GetBrush(TeamNum As Integer, MyQueue As Queue, TeamDT As DataTable) As Queue
-        TeamNum += 1
-        For i = 0 To TeamDT.Rows.Count - 1
-            If TeamDT.Rows(i).Item("TeamID") = TeamNum Then
-                MyQueue.Enqueue(TeamDT.Rows(i).Item("MainColor"))
-                MyQueue.Enqueue(TeamDT.Rows(i).Item("SecondaryColor"))
-                MyQueue.Enqueue(TeamDT.Rows(i).Item("TrimColor"))
+    Public Shared Function GetBrush(teamNum As Integer, myQueue As Queue, teamDT As DataTable) As Queue
+        teamNum += 1
+        For i = 0 To teamDT.Rows.Count - 1
+            If teamDT.Rows(i).Item("TeamID") = teamNum Then
+                myQueue.Enqueue(teamDT.Rows(i).Item("MainColor"))
+                myQueue.Enqueue(teamDT.Rows(i).Item("SecondaryColor"))
+                myQueue.Enqueue(teamDT.Rows(i).Item("TrimColor"))
                 Exit For
             End If
         Next i
-        Return MyQueue
+        Return myQueue
     End Function
 
     Public Shared Function ConvertColor(HexString As String) As Brush
-        Dim converter = New BrushConverter()
-        Dim myBrush As Brush
-        myBrush = DirectCast(converter.ConvertFromString(HexString), Brush)
-        Return myBrush
+        Dim Converter = New BrushConverter()
+        Dim MyBrush As Brush
+        MyBrush = DirectCast(Converter.ConvertFromString(HexString), Brush)
+        Return MyBrush
     End Function
 
 End Class

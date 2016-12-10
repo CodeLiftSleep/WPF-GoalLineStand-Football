@@ -11,29 +11,29 @@
     ''' <param name="XOwner"></param>
     ''' <param name="OwnerDT"></param>
 
-    Public Sub GenOwners(ByVal OwnerNum As Integer, ByVal XOwner As Owner, ByVal OwnerDT As DataTable)
+    Public Sub GenOwners(ByVal ownerNum As Integer, ByVal xOwner As Owner, ByVal ownerDT As DataTable)
 
-        XOwner = New Owner
+        xOwner = New Owner
 
-        OwnerDT.Rows.Add(OwnerNum)
-        GenNames(OwnerDT, OwnerNum, "Owner") 'Gets first and last name, college, Age, DOB, Height and Weight
-        GetPersonalityStats(OwnerDT, OwnerNum, XOwner)
+        ownerDT.Rows.Add(ownerNum)
+        GenNames(ownerDT, ownerNum, "Owner") 'Gets first and last name, college, Age, DOB, Height and Weight
+        GetPersonalityStats(ownerDT, ownerNum, xOwner)
 
-        OwnerDT.Rows(OwnerNum).Item("TeamID") = 0
-        OwnerDT.Rows(OwnerNum).Item("OwnerRep") = MT.GetGaussian(49.5, 16.5)
-        OwnerDT.Rows(OwnerNum).Item("Experience") = MT.GenerateInt32(1, 50)
-        OwnerDT.Rows(OwnerNum).Item("PersonalWealth") = MT.GetGaussian(49.5, 16.5) '<---affects how much money he has for signing bonuses
+        ownerDT.Rows(ownerNum).Item("TeamID") = 0
+        ownerDT.Rows(ownerNum).Item("OwnerRep") = MT.GetGaussian(49.5, 16.5)
+        ownerDT.Rows(ownerNum).Item("Experience") = MT.GenerateInt32(1, 50)
+        ownerDT.Rows(ownerNum).Item("PersonalWealth") = MT.GetGaussian(49.5, 16.5) '<---affects how much money he has for signing bonuses
 
     End Sub
-    Public Sub GetTeamOwner(ByVal OwnerDT As DataTable)
-        Dim result As Integer = MT.GenerateInt32(1, OwnerDT.Rows.Count - 1)
+    Public Sub GetTeamOwner(ByVal ownerDT As DataTable)
+        Dim Result As Integer = MT.GenerateInt32(1, ownerDT.Rows.Count - 1)
         For i As Integer = 1 To 32
 
-            While OwnerDT.Rows(result).Item("TeamID") <> 0
-                result = MT.GenerateInt32(1, OwnerDT.Rows.Count - 1)
+            While ownerDT.Rows(Result).Item("TeamID") <> 0
+                Result = MT.GenerateInt32(1, ownerDT.Rows.Count - 1)
             End While
 
-            OwnerDT.Rows(result).Item("TeamID") = i
+            ownerDT.Rows(Result).Item("TeamID") = i
         Next i
 
     End Sub

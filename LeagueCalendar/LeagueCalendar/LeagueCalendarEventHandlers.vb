@@ -2,52 +2,52 @@
 ''' Handles the League Calendar Events
 ''' </summary>
 Public Class LeagueCalendarEventHandlers
-    Public Event OffseasonDate(ByVal CurDate As Date)
-    Public Event CombineDate(ByVal CurDate As Date)
-    Public Event FreeAgencyDate(ByVal CurDate As Date)
-    Public Event PreDraftDate(ByVal CurDate As Date)
-    Public Event DraftDate(ByVal CurDate As Date)
-    Public Event PostDraftDate(ByVal CurDate As Date)
-    Public Event MiniCampOTADate(ByVal CurDate As Date)
-    Public Event TrainingCampDate(ByVal CurDate As Date)
-    Public Event PreSeasonDate(ByVal CurDate As Date)
-    Public Event RegSeasonDate(ByVal CurDate As Date)
-    Public Event PostSeasonDate(ByVal CurDate As Date)
-    Public Sub RaiseOffseason(ByVal CurDate As Date)
-        RaiseEvent OffseasonDate(CurDate)
+    Public Event OffseasonDate(ByVal curDate As Date)
+    Public Event CombineDate(ByVal curDate As Date)
+    Public Event FreeAgencyDate(ByVal curDate As Date)
+    Public Event PreDraftDate(ByVal curDate As Date)
+    Public Event DraftDate(ByVal curDate As Date)
+    Public Event PostDraftDate(ByVal curDate As Date)
+    Public Event MiniCampOTADate(ByVal curDate As Date)
+    Public Event TrainingCampDate(ByVal curDate As Date)
+    Public Event PreSeasonDate(ByVal curDate As Date)
+    Public Event RegSeasonDate(ByVal curDate As Date)
+    Public Event PostSeasonDate(ByVal curDate As Date)
+    Public Sub RaiseOffseason(ByVal curDate As Date)
+        RaiseEvent OffseasonDate(curDate)
     End Sub
-    Public Sub RaiseCombine(ByVal CurDate As Date)
-        RaiseEvent CombineDate(CurDate)
+    Public Sub RaiseCombine(ByVal curDate As Date)
+        RaiseEvent CombineDate(curDate)
     End Sub
-    Public Sub RaisePreDraft(ByVal CurDate As Date)
-        RaiseEvent PreDraftDate(CurDate)
+    Public Sub RaisePreDraft(ByVal curDate As Date)
+        RaiseEvent PreDraftDate(curDate)
     End Sub
-    Public Sub RaiseFreeAgency(ByVal Curdate As Date)
-        RaiseEvent FreeAgencyDate(Curdate)
+    Public Sub RaiseFreeAgency(ByVal curDate As Date)
+        RaiseEvent FreeAgencyDate(curDate)
     End Sub
-    Public Sub RaiseDraft(ByVal CurDate As Date)
-        RaiseEvent DraftDate(CurDate)
+    Public Sub RaiseDraft(ByVal curDate As Date)
+        RaiseEvent DraftDate(curDate)
     End Sub
-    Public Sub RaisePostDraft(ByVal CurDate As Date)
-        RaiseEvent PostDraftDate(CurDate)
-    End Sub
-
-    Public Sub RaiseMiniCampOTA(ByVal CurDate As Date)
-        RaiseEvent MiniCampOTADate(CurDate)
+    Public Sub RaisePostDraft(ByVal curDate As Date)
+        RaiseEvent PostDraftDate(curDate)
     End Sub
 
-    Public Sub RaiseTrainingCamp(ByVal CurDate As Date)
-        RaiseEvent TrainingCampDate(CurDate)
-    End Sub
-    Public Sub RaisePreSeason(ByVal CurDate As Date)
-        RaiseEvent PreSeasonDate(CurDate)
+    Public Sub RaiseMiniCampOTA(ByVal curDate As Date)
+        RaiseEvent MiniCampOTADate(curDate)
     End Sub
 
-    Public Sub RaiseRegSeason(ByVal CurDate As Date)
-        RaiseEvent RegSeasonDate(CurDate)
+    Public Sub RaiseTrainingCamp(ByVal curDate As Date)
+        RaiseEvent TrainingCampDate(curDate)
     End Sub
-    Public Sub RaisePostSeason(ByVal CurDate As Date)
-        RaiseEvent PostSeasonDate(CurDate)
+    Public Sub RaisePreSeason(ByVal curDate As Date)
+        RaiseEvent PreSeasonDate(curDate)
+    End Sub
+
+    Public Sub RaiseRegSeason(ByVal curDate As Date)
+        RaiseEvent RegSeasonDate(curDate)
+    End Sub
+    Public Sub RaisePostSeason(ByVal curDate As Date)
+        RaiseEvent PostSeasonDate(curDate)
     End Sub
 
 End Class

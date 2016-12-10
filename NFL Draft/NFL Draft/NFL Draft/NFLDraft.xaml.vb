@@ -8,12 +8,12 @@ Imports AIEvaluation.Draft
 
 Class NFLDraft
     Dim MyDraft As New DraftTickerControl
-    Dim tempDT As New DataTable
+    Dim TempDT As New DataTable
     Dim TeamDraftInfo(32) As TeamDraftClass
     Dim DraftEval As New DraftAIEval 'Creates a new class to evaluate players and get their grades
 
     'Dim MyVM As New NFLDraftViewModel
-    Sub New(ByVal DT As DataTable)
+    Sub New(ByVal dt As DataTable)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -22,9 +22,9 @@ Class NFLDraft
         DlgReplacement.BringIntoView()
         MyDraft.Visibility = Visibility.Visible
         DataContext = MyDraft
-        DisplayDataGrid(DT)
+        DisplayDataGrid(dt)
         Dim ColNames As String() = {"Fname", "LName", "College", "CollegePOS", "ActualGrade"}
-        Dim query = From DraftPlayers In DT.AsEnumerable()
+        Dim Query = From DraftPlayers In dt.AsEnumerable()
                     Order By DraftPlayers.Field(Of Decimal)("ActualGrade") Descending
                     Take (25)
                     Select New With
@@ -33,9 +33,9 @@ Class NFLDraft
                         .POS = DraftPlayers.Field(Of String)("CollegePOS"),
                         .Grade = DraftPlayers.Field(Of Decimal)("ActualGrade")}
 
-        tempDT = SQLFunctions.SQLiteDataFunctions.FilterTable(DT, tempDT, "ActualGrade > 7", ColNames, "ActualGrade DESC").AsEnumerable().Take(25).CopyToDataTable()
-        LstDraft.ItemsSource = query
-        MyDraft.LstGrid.Add(tempDT)
+        TempDT = SQLFunctions.SQLiteDataFunctions.FilterTable(dt, TempDT, "ActualGrade > 7", ColNames, "ActualGrade DESC").AsEnumerable().Take(25).CopyToDataTable()
+        LstDraft.ItemsSource = Query
+        MyDraft.LstGrid.Add(TempDT)
         UpdateDraftGrid()
         AddHandler DraftPick.PickMade, AddressOf UpdateDraftGrid
 
@@ -45,8 +45,8 @@ Class NFLDraft
 
     End Sub
 
-    Private Sub DisplayDataGrid(ByVal DT As DataTable)
-        MyDraft.MyDT.Add(DT)
+    Private Sub DisplayDataGrid(ByVal dt As DataTable)
+        MyDraft.MyDT.Add(dt)
     End Sub
     Private Async Sub Button_Click(sender As Object, e As RoutedEventArgs)
         stkTest.Children.Add(MyDraft)
@@ -133,12 +133,12 @@ Class NFLDraft
     ''' Builds the properties for each team
     ''' </summary>
     Private Sub LoadTeamDraftInfo()
-        Dim myList As New List(Of Single)
-        Dim str As String = ""
-        Using sr As New StreamReader("DraftPickValueChart.txt")
-            sr.ReadLine()
-            str = sr.ReadLine
-            myList = str.Split(";"c).[Select](Function(s) CType(Single.Parse(s), Single)).ToList()
+        Dim MyList As New List(Of Single)
+        Dim Str As String = ""
+        Using SR As New StreamReader("DraftPickValueChart.txt")
+            SR.ReadLine()
+            Str = SR.ReadLine
+            MyList = Str.Split(";"c).[Select](Function(s) CType(Single.Parse(s), Single)).ToList()
         End Using
         For i As Integer = 1 To 32
             TeamDraftInfo(i).TeamNum = 1
@@ -172,9 +172,9 @@ Class NFLDraft
     ''' Removes the Player from the DraftGrid
     ''' </summary>
     Private Sub UpdateDraftGrid()
-        Dim myUI(32) As InlineUIContainer
+        Dim MyUI(32) As InlineUIContainer
         For i As Integer = 0 To 32
-            myUI(i) = New InlineUIContainer
+            MyUI(i) = New InlineUIContainer
         Next i
 
         'Dim Pick1Txt As New TextBlock
@@ -191,8 +191,8 @@ Class NFLDraft
         Img2.Height = 67
         Img2.Margin = New Thickness(40, 0, 60, 0)
 
-        myUI(0).Child = Img1
-        myUI(1).Child = Img2
+        MyUI(0).Child = Img1
+        MyUI(1).Child = Img2
 
         MyDraft.TxtDraft.Inlines.Add(myUI(0))
         MyDraft.TxtDraft.Inlines.Add(New Run With {.Text = "Laphonse Ellis DE USC", .Foreground = Brushes.Firebrick, .FontWeight = FontWeights.Bold})
