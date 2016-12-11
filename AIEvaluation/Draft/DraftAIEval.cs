@@ -40,19 +40,61 @@ namespace AIEvaluation.Draft
                     group personnel by personnel.Field<int>("PersonnelType"))
                    group posGroups by personnelGroups.Key;
 
+            var getCutoff =
+                from player in DraftDT.AsEnumerable()
+                orderby player.Field<decimal>("ActualGrade") descending
+                select player.Field<decimal>("ActualGrade");
+
+            decimal top150 = getCutoff.ElementAt(149); //grade cutoff for 150th player
+            decimal top250 = getCutoff.ElementAt(249); //grade cutoff for 250th player
+            decimal top350 = getCutoff.ElementAt(349); //grade cutoff for 350th player
+            decimal top450 = getCutoff.ElementAt(449); //grade cutoff for 450th player
+            decimal top600 = getCutoff.ElementAt(599); //grade cutoff for 600th player
+            decimal top750 = getCutoff.ElementAt(749); //grade cutoff for 750th player
+            decimal top1000 = getCutoff.ElementAt(999); //grade cutoff for the 1000th player
+
             for (var i = 0; i < 7; i++)
             {
                 foreach (var region in draftDTGroups)
                 {
                     foreach (var persReg in personnelDTGroups)
                     {
-                        if (region.Key == persReg.Key) //regions are the same
+                        if (region.Key == persReg.Key) //area scout---regions are the same
                         {
                             foreach (var pos in region) //cycle through the positions
                             {
                                 foreach (var personnel in persReg) //cycle through each scout
                                 {
-                                    GetGrade(pos, personnel, pos.Key);
+                                    GetGrade(pos, personnel, pos.Key, region.Key);
+                                }
+                            }
+                        }
+                        else if (persReg.Key == "National") //These personnel evaluate all regions but based on how good the player is
+                        {
+                            foreach (var pos in region)
+                            {
+                                foreach (var personnel in persReg)
+                                {
+                                    foreach (var player in pos)
+                                    {
+                                        switch (personnel.Key)
+                                        {
+                                            case (int)GM:
+                                                if (player.Field<decimal>("ActualGrade") > top150) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)AssistantGM:
+                                                if (player.Field<decimal>("ActualGrade") > top250) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)DirectorPlayerPersonnel:
+                                                if (player.Field<decimal>("ActualGrade") > top350) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)AssistantDirPlayerPersonnel:
+                                                if (player.Field<decimal>("ActualGrade") > top450) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)DirectorCollegeScouting:
+                                                if (player.Field<decimal>("ActualGrade") > top600) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)AssistantDirCollegeScouting:
+                                                if (player.Field<decimal>("ActualGrade") > top750) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                            case (int)NationalCollegeScout:
+                                                if (player.Field<decimal>("ActualGrade") > top1000) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -165,106 +207,35 @@ namespace AIEvaluation.Draft
         /// <param name="playerID"></param>
         /// <param name="scoutID"></param>
         /// <returns></returns>
-        private decimal GetGrade(IGrouping<int, DataRow> playerGroup, IGrouping<int, DataRow> personnelGroup, string pos)
+        private decimal GetGrade(IGrouping<string, DataRow> playerGroup, IGrouping<int, DataRow> personnelGroup, string pos, string region)
         {
-            switch (pos.ToString())
+            foreach (var player in playerGroup) //cycle through each player
             {
-                case "QB":
-
-                    foreach (var player in playerGroup) //cycle through each player
+                foreach (var personnel in personnelGroup) //cycle through each personnel
+                {
+                    switch (pos) //get the position and then grade the player based on the position
                     {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeQB(player, personnel);
-                        }
+                        case "QB": GradeQB(player, personnel); break;
+                        case "RB": GradeRB(player, personnel); break;
+                        case "FB": GradeFB(player, personnel); break;
+                        case "WR": GradeWR(player, personnel); break;
+                        case "TE": GradeTE(player, personnel); break;
+                        case "OT": GradeOT(player, personnel); break;
+                        case "OG": GradeOG(player, personnel); break;
+                        case "C": GradeOC(player, personnel); break;
+                        case "DE": GradeDE(player, personnel); break;
+                        case "DT": GradeDT(player, personnel); break;
+                        case "OLB": GradeOLB(player, personnel); break;
+                        case "ILB": GradeILB(player, personnel); break;
+                        case "CB": GradeCB(player, personnel); break;
+                        case "FS": case "SS": GradeSF(player, personnel); break;
+                        case "P": GradeP(player, personnel); break;
+                        default: GradeK(player, personnel); break;
                     }
-                    break;
-
-                case "RB":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeRB(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "FB":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeFB(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "WR":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeWR(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "TE":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeTE(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "OT":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeOT(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "OG":
-
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeOG(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "C":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeOC(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "DE":
-                    foreach (var player in playerGroup) //cycle through each player
-                    {
-                        foreach (var personnel in personnelGroup) //cycle through each personnel
-                        {
-                            GradeDE(player, personnel);
-                        }
-                    }
-                    break;
-
-                case "DT"
+                }
             }
-            decimal grade = 0m;
 
+            decimal grade = 0m;
             return grade;
         }
 
