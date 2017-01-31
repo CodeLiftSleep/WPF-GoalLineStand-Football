@@ -862,6 +862,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to NewEraField.jpg.
+        '''</summary>
+        Public ReadOnly Property NewEraFieldJpg() As String
+            Get
+                Return ResourceManager.GetString("NewEraFieldJpg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to NFLWallpaper2.jpg.
         '''</summary>
         Public ReadOnly Property NFLWallpaper2Jpg() As String
@@ -1119,15 +1128,6 @@ Namespace My.Resources
         Public ReadOnly Property RaidersJpg() As String
             Get
                 Return ResourceManager.GetString("RaidersJpg", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to RalphWilsonStadium.jpg.
-        '''</summary>
-        Public ReadOnly Property RalphWilsonStadiumJpg() As String
-            Get
-                Return ResourceManager.GetString("RalphWilsonStadiumJpg", resourceCulture)
             End Get
         End Property
         

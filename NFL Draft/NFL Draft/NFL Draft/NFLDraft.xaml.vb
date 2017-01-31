@@ -1,6 +1,6 @@
 ﻿Imports System.Data
 Imports GlobalResources
-Imports GlobalResources.My.Resources.SharedResources
+Imports GlobalResources.My.Resources
 Imports NFL_Draft
 Imports System.IO
 Imports System.Linq
@@ -181,12 +181,12 @@ Class NFLDraft
         Dim Img1 As New Image
         Dim Img2 As New Image
 
-        Img1.Source = SQLFunctions.SQLiteDataFunctions.BitMapToImage(New System.Drawing.Bitmap(Arizona_Cardinals))
+        Img1.Source = SQLFunctions.SQLiteDataFunctions.BitMapToImage(New System.Drawing.Bitmap(Arizona_CardinalsJpg))
         Img1.Height = 50
         Img1.Width = 67
         Img1.Margin = New Thickness(0, 0, 60, 0)
 
-        Img2.Source = SQLFunctions.SQLiteDataFunctions.BitMapToImage(New System.Drawing.Bitmap(Buffalo_Bills))
+        Img2.Source = SQLFunctions.SQLiteDataFunctions.BitMapToImage(New System.Drawing.Bitmap(Bills02Jpg))
         Img2.Height = 50
         Img2.Height = 67
         Img2.Margin = New Thickness(40, 0, 60, 0)
@@ -194,9 +194,9 @@ Class NFLDraft
         MyUI(0).Child = Img1
         MyUI(1).Child = Img2
 
-        MyDraft.TxtDraft.Inlines.Add(myUI(0))
+        MyDraft.TxtDraft.Inlines.Add(MyUI(0))
         MyDraft.TxtDraft.Inlines.Add(New Run With {.Text = "Laphonse Ellis DE USC", .Foreground = Brushes.Firebrick, .FontWeight = FontWeights.Bold})
-        MyDraft.TxtDraft.Inlines.Add(myUI(1))
+        MyDraft.TxtDraft.Inlines.Add(MyUI(1))
         MyDraft.TxtDraft.Inlines.Add(New Run With {.Text = "Jimmy Lakowski QB Michigan", .Foreground = Brushes.Firebrick, .FontWeight = FontWeights.Bold})
 
     End Sub

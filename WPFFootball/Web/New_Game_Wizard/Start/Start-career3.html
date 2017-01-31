@@ -1,0 +1,26 @@
+<link rel="stylesheet" type="text/css" href="content/flex.css" />
+<link rel="stylesheet" type="text/css" href="content/toggleSwitch.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/new_game.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/slider.css"/>
+
+      <form ng-submit="vm.onSubmit()" novalidate class="start-career3 animated bounceInRight">
+            <div class="panel panel-primary">
+                <div class="panel-heading px-nested-panel-heading clearfix mainPanelHeader">
+                    <strong class="control-label">Choose Career Settings</strong>
+                </div>
+                <div class="panel-body px-nested-panel-body"> 
+                    <div class="sectionLabel"><strong class="control-label">Owner Settings</strong></div>      
+                    <formly-form model="vm.model" fields="vm.careerOwner" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <div class="sectionLabel"><strong class="control-label">Player Contract Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerPlayerCon" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <button type="button" class="btn btn-primary pull-left hvr-grow-shadow" onclick="$('.start-career3').removeClass('bounceInRight').addClass('bounceOutLeft')" 
+                        ng-click="$state.go('Start.career2', {model: vm.model})"><span style="margin-right: 3px;" class="glyphicon glyphicon-circle-arrow-left pull-left">
+                        </span>Prev Page</button>
+                    <button type="button" class="btn btn-primary pull-right hvr-grow-shadow" ng-click="$state.go('Start.teamSelect', {model: model})" 
+                        onclick="$('.start-career3').removeClass('bounceInRight').addClass('bounceOutLeft')">
+                        Next Page<span style="margin-left: 3px;" class="glyphicon glyphicon-circle-arrow-right pull-right"></span></button>
+                </div>
+            </div>
+     </form>
+
+   

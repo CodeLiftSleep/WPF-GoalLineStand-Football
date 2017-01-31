@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="content/flex.css" />
+<link rel="stylesheet" type="text/css" href="content/toggleSwitch.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/new_game.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/slider.css"/>
+
+     <form ng-submit="vm.onSubmit()" novalidate class="start-career2 animated bounceInRight">
+            <div class="panel panel-primary">
+                <div class="panel-heading px-nested-panel-heading clearfix mainPanelHeader">
+                    <strong class="control-label">Choose Career Settings</strong>
+                </div>
+                <div class="panel-body px-nested-panel-body"> 
+                    <div class="sectionLabel"><strong class="control-label">Expansion Settings</strong></div>      
+                    <formly-form model="vm.model" fields="vm.careerExpansion" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <div class="sectionLabel"><strong class="control-label">Relocation Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerRelocation" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <div class="sectionLabel"><strong class="control-label" >Draft Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerColDraft" form="vm.form" hide-directive="ng-show"></formly-form>
+                    <div class="sectionLabel"><strong class="control-label">Financial Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerFinancials" form="vm.form" hide-directive="ng-show"></formly-form>
+                    <button type="button" class="btn btn-primary pull-left hvr-grow-shadow" onclick="$('.start-career2').removeClass('bounceInRight').addClass('bounceOutLeft')" 
+                        ng-click="$state.go(Start.career, {model: vm.model})"><span style="margin-right: 3px;" class="glyphicon glyphicon-circle-arrow-left pull-left"></span>Prev Page</button>
+                    <button type="button" class="btn btn-primary pull-right hvr-grow-shadow" onclick="$('.start-career2').removeClass('bounceInRight').addClass('bounceOutLeft')"
+                    ng-click="$state.go('Start.career3', {model: vm.model})">Next Page<span style="margin-left: 3px;" class="glyphicon glyphicon-circle-arrow-right pull-right"></span></button>
+                </div>
+            </div>
+     </form>
+    <div>
+        <hr />
+        <pre>{{vm.model | json}}</pre>
+        <!--<pre>{{vm.originalFields | json}}</pre>
+        <pre>{{vm.form | json}}</pre>
+    </div>-->

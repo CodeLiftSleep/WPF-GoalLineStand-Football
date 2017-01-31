@@ -9,8 +9,8 @@ using static GlobalResources.SharedFiles; //allows use of Global resource files 
 
 namespace AIEvaluation.Draft
 {
-    //Need to pull grades from the players and then evaluate them and stick them in a DB.  Grades will be updated at various points of the season
-
+    //Need to pull grades from the players, evaluate them and stick them in a DB.  Grades will be updated at various points of the season
+    //TODO: Determine when grades get updated by scouts during the season/year
     public class DraftAIEval
     {/// <summary>
      /// 1) group the players
@@ -53,47 +53,44 @@ namespace AIEvaluation.Draft
             decimal top750 = getCutoff.ElementAt(749); //grade cutoff for 750th player
             decimal top1000 = getCutoff.ElementAt(999); //grade cutoff for the 1000th player
 
-            for (var i = 0; i < 7; i++)
+            foreach (var region in draftDTGroups) //cycle through each region for the players
             {
-                foreach (var region in draftDTGroups)
+                foreach (var persReg in personnelDTGroups) //cycle through each region for the personnel
                 {
-                    foreach (var persReg in personnelDTGroups)
+                    if (region.Key == persReg.Key) //area scout---regions are the same
                     {
-                        if (region.Key == persReg.Key) //area scout---regions are the same
+                        foreach (var pos in region) //cycle through the positions
                         {
-                            foreach (var pos in region) //cycle through the positions
+                            foreach (var personnel in persReg) //cycle through each scout
                             {
-                                foreach (var personnel in persReg) //cycle through each scout
-                                {
-                                    GetGrade(pos, personnel, pos.Key, region.Key);
-                                }
+                                GetGrade(pos, personnel, pos.Key, region.Key);
                             }
                         }
-                        else if (persReg.Key == "National") //These personnel evaluate all regions but based on how good the player is
+                    }
+                    else if (persReg.Key == "National") //These personnel evaluate all regions but based on how good the player is
+                    {
+                        foreach (var pos in region)
                         {
-                            foreach (var pos in region)
+                            foreach (var personnel in persReg)
                             {
-                                foreach (var personnel in persReg)
+                                foreach (var player in pos)
                                 {
-                                    foreach (var player in pos)
+                                    switch (personnel.Key)
                                     {
-                                        switch (personnel.Key)
-                                        {
-                                            case (int)GM:
-                                                if (player.Field<decimal>("ActualGrade") > top150) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)AssistantGM:
-                                                if (player.Field<decimal>("ActualGrade") > top250) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)DirectorPlayerPersonnel:
-                                                if (player.Field<decimal>("ActualGrade") > top350) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)AssistantDirPlayerPersonnel:
-                                                if (player.Field<decimal>("ActualGrade") > top450) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)DirectorCollegeScouting:
-                                                if (player.Field<decimal>("ActualGrade") > top600) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)AssistantDirCollegeScouting:
-                                                if (player.Field<decimal>("ActualGrade") > top750) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                            case (int)NationalCollegeScout:
-                                                if (player.Field<decimal>("ActualGrade") > top1000) GetGrade(pos, personnel, pos.Key, region.Key); break;
-                                        }
+                                        case (int)GM:
+                                            if (player.Field<decimal>("ActualGrade") > top150) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)AssistantGM:
+                                            if (player.Field<decimal>("ActualGrade") > top250) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)DirectorPlayerPersonnel:
+                                            if (player.Field<decimal>("ActualGrade") > top350) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)AssistantDirPlayerPersonnel:
+                                            if (player.Field<decimal>("ActualGrade") > top450) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)DirectorCollegeScouting:
+                                            if (player.Field<decimal>("ActualGrade") > top600) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)AssistantDirCollegeScouting:
+                                            if (player.Field<decimal>("ActualGrade") > top750) GetGrade(pos, personnel, pos.Key, region.Key); break;
+                                        case (int)NationalCollegeScout:
+                                            if (player.Field<decimal>("ActualGrade") > top1000) GetGrade(pos, personnel, pos.Key, region.Key); break;
                                     }
                                 }
                             }

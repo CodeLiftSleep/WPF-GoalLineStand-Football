@@ -1,0 +1,118 @@
+#carousel figure {
+background:rgba(220, 220, 220, 0.05);
+}
+span {
+    text-align: center;
+}
+
+#carousel figure h2 {
+  position: relative;
+  font-size: 3.50vw;
+  line-height: 4vw;
+  margin: 0;
+  left: 0;
+  margin-top: -10%;
+  margin-bottom: 35%;
+  color: gainsboro;
+}
+
+#carousel figure img {
+  border-radius: 50%;
+  max-height: 65%;
+  max-width: 65%;
+  margin-right: 1.5vw;
+  width: 55%;
+  height: 55%;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 8px 30px 10px rgba(0, 0, 0, 0.8);
+}
+
+#carousel figure hr {
+  display: block;
+  margin: 8px 0;
+}
+
+#carousel figure ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.5vw;
+}
+
+#carousel figure ul li {
+  padding-top: 2px;
+}
+
+#carousel figure button {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  width: 30%;
+  height: 6vh;
+  font-size: 1.5vw;
+}
+
+h1 {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 5vh;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.modal-dialog {
+  width: 80%;
+}
+
+.modal-body {
+  width: 100% !important;
+}
+
+.ui-grid {
+  width: 100%;
+}
+.viewRoster {
+  margin-top: 32%;
+  margin-left: 25%;
+  position: relative;
+}
+
+ .teamInfo {
+  margin-top: 32%;
+  margin-left: 40%;
+  position: relative;
+}
+
+button.controls {
+  position: absolute;
+  z-index: 999;
+  padding: 10px 15px;
+  background: tomato;
+  cursor: pointer;
+}
+
+button.controls:nth-of-type(1) {
+  top: 0;
+  left: 0;
+}
+
+button.controls:nth-of-type(2) {
+  top: 0;
+  right: 0;
+}
+
+.animated {
+-webkit-animation-fill-mode: backwards;
+animation-fill-mode: backwards;
+animation-duration: 2.5s;
+}
+
+.ui-grid-header-cell, .ui-grid-cell, .ui-grid-cell-contents{
+text-align:center;
+position: relative;
+}

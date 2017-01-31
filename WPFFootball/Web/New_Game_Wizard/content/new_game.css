@@ -1,0 +1,80 @@
+.main-inner {
+    height: 700px;
+    border: 2px solid darkslategray;
+    border-radius: 5px;
+}
+.btn-sm {
+    width: 115px;
+}
+.btn-lg {
+    margin-top: 15px;
+    margin-right: 15px;
+    padding-top: 50px;
+    color: white;
+    vertical-align: bottom;
+    opacity: 0.55;
+    width: 165px;    
+}
+.dropdown-toggle {
+    margin-top: 6px;
+     border: 1px solid white;    
+}
+
+input {
+    background-color: #337ab7 !important;
+    color: white !important;
+       
+}
+.career {
+    background: url('../assets/GM_Career.png');
+}
+.single {
+    background: url('../assets/QB_Season.png');
+}
+.quick {
+    background: url('../assets/WR_Quick.png');
+}
+.situation {
+    background: url('../assets/Coach_Situation.png');
+}
+.settings {
+    background-color: silver;
+}
+hr {
+    border-width: 1px;
+    border-color: darkslategray; 
+}
+h4 {
+    margin-top: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.container {
+width: 100%;
+}
+.panel {
+    height: auto;  
+}
+.panel-body {
+    padding: 10px;
+    border: 5px, solid, #004488;
+    text-align: center;
+    font-weight: bold;
+    background-color: silver;
+}
+.sectionLabel {
+    margin: 25px auto;
+    font-size: 18px;
+    color: steelblue;
+}
+.mainPanelHeader {
+    font-size: 24px;
+}
+
+.check-element {
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+

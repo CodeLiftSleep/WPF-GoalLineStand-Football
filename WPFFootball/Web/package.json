@@ -1,0 +1,31 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "@lordfriend/nya-bootstrap-select": "^2.1.10",
+    "angular-formly-templates-bootstrap": "^6.4.0",
+    "angular-ui-router": "^0.3.2",
+    "gulp": "^3.5.6",
+    "gulp-sass": "^2.0.4",
+    "normalize.css": "^5.0.0"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.12",
+    "gulp-util": "^2.2.14"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeLiftSleep/Electron-GoalLineStand-Football.git"
+  },
+  "author": "Matt Erman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeLiftSleep/Electron-GoalLineStand-Football/issues"
+  },
+  "homepage": "https://github.com/CodeLiftSleep/Electron-GoalLineStand-Football#readme"
+}

@@ -322,7 +322,7 @@ Public Class NewGameViewModel
     Public Shared Function GetStadiumPic(teamNum As Integer) As String
         Dim FilePath = "pack://application:,,,/Project_Files/"
         Select Case teamNum
-            Case 0 : FilePath += RalphWilsonStadiumJpg
+            Case 0 : FilePath += NewEraFieldJpg
             Case 1 : FilePath += GilletteStadiumJpg
             Case 2, 18 : FilePath += MetLife_StadiumJpg
             Case 3 : FilePath += SunLifeStadiumJpg

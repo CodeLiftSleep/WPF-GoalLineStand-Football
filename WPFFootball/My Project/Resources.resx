@@ -417,9 +417,9 @@
     <value>Schedule4GamesMax.txt</value>
     <comment>Schedule4GamesMaxTxt description</comment>
   </data>
-  <data name="RalphWilsonStadiumJpg" xml:space="preserve">
-    <value>RalphWilsonStadium.jpg</value>
-    <comment>RalphWilsonStadiumJpg description</comment>
+  <data name="NewEraFieldJpg" xml:space="preserve">
+    <value>NewEraField.jpg</value>
+    <comment>NewEraFieldJpg description</comment>
   </data>
   <data name="GilletteStadiumJpg" xml:space="preserve">
     <value>gillette-stadium.jpg</value>

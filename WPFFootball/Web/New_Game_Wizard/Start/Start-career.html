@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="content/flex.css" />
+<link rel="stylesheet" type="text/css" href="content/toggleSwitch.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/new_game.css"/>
+<link rel="stylesheet" type="text/css" href="New_Game_Wizard/content/slider.css"/>
+
+      <form ng-submit="vm.onSubmit()" novalidate class="start-career animated bounceInRight">
+            <div class="panel panel-primary">
+                <div class="panel-heading px-nested-panel-heading clearfix mainPanelHeader">
+                    <strong class="control-label">Choose Career Settings</strong>
+                </div>
+                <div class="panel-body px-nested-panel-body"> 
+                    <div class="sectionLabel"><strong class="control-label">General League Settings</strong></div>      
+                    <formly-form model="vm.model" fields="vm.careerLeague" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <div class="sectionLabel"><strong class="control-label">Gameday Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerGameday" form="vm.form" hide-directive="ng-show"></formly-form>                            
+                    <div class="sectionLabel"><strong class="control-label" >Schedule Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerSchedule" form="vm.form" hide-directive="ng-show"></formly-form>
+                    <div class="sectionLabel"><strong class="control-label">User Settings</strong></div>
+                    <formly-form model="vm.model" fields="vm.careerUser" form="vm.form" hide-directive="ng-show"></formly-form>
+                    <button type="button" onclick="$('.start-career').removeClass('bounceInRight').addClass('bounceOutLeft')" class="btn btn-primary pull-right hvr-grow-shadow" 
+                        ng-click="$state.go('Start.career2', {model: vm.model})">Next Page<span style="margin-left: 3px;" class="glyphicon glyphicon-circle-arrow-right pull-right"></span></button> 
+                </div>
+            </div>
+     </form>
+        <hr />
+        <pre>{{vm.model | json}}</pre>
+        <!--<pre>{{vm.originalFields | json}}</pre>
+        <pre>{{vm.form | json}}</pre>-->  
+
+                           
+                    
+                    
+               
+                
+
+
+
+
+
+<!--TURN ON FOR DEBUGGING!
+<div>   
+    <hr />
+    <pre>{{vm.model | json}}</pre>
+    <pre>{{vm.originalFields | json}}</pre>
+    <pre>{{vm.form | json}}</pre>
+</div>-->
+
+
+
