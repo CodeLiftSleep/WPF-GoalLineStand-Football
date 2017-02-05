@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.props')" />
-  <Import Project="..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -126,10 +124,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNetBrowser">
-      <HintPath>..\..\..\..\..\..\..\DotNetBrowser\Library\DotNetBrowser.dll</HintPath>
+      <HintPath>..\..\..\..\..\DotNetBrowser\Library\DotNetBrowser.dll</HintPath>
     </Reference>
     <Reference Include="DotNetBrowser.Chromium">
-      <HintPath>..\..\..\..\..\..\..\DotNetBrowser\Library\DotNetBrowser.Chromium.dll</HintPath>
+      <HintPath>..\..\..\..\..\DotNetBrowser\Library\DotNetBrowser.Chromium.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -255,6 +253,7 @@
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game_Settings\GameSettingsViewModel.vb" />
+    <Compile Include="JStoNETLookups.vb" />
     <Compile Include="League_Home\LeagueHome.xaml.vb">
       <DependentUpon>LeagueHome.xaml</DependentUpon>
     </Compile>
@@ -429,6 +428,7 @@
     <Content Include="Web\Scripts\nya-bs-select.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\Scripts\require.js" />
     <Content Include="Web\Scripts\restangular.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -450,6 +450,7 @@
     <Content Include="Web\Scripts\velocity.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\server.js" />
     <Content Include="Web\sqlite.js" />
     <None Include="Web\package.json" />
     <Resource Include="Web\Main\assets\fileupload\files\2V_vkjfD5Gg.jpg" />
@@ -1941,15 +1942,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.104.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.104.0\build\net46\System.Data.SQLite.Core.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2883.1545\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2883.1545\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2883.1545\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2883.1545\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.targets'))" />
   </Target>
-  <Import Project="..\packages\cef.redist.x64.3.2883.1545\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2883.1545\build\cef.redist.x64.targets')" />
-  <Import Project="..\packages\cef.redist.x86.3.2883.1545\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2883.1545\build\cef.redist.x86.targets')" />
-  <Import Project="..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.55.0.0-pre01\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.targets" Condition="Exists('..\packages\CefSharp.Wpf.55.0.0-pre01\build\CefSharp.Wpf.targets')" />
 </Project>

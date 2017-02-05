@@ -4,7 +4,7 @@
         <div class="row animated zoomInRight" ng-cloak>
             <span class="col-md-12 pull-right" style="font-size: 48px; font-weight: bold; color: white;">Select Your Team:</span>
             <div>
-                <carousel sides="vm.sides" team-selected="teamSelected" team-id="teamId"></carousel>
+                <carousel sides="vm.sides.all" current="vm.sides.current"></carousel>
                 <button type="button" class="btn btn-primary pull-left viewRoster" ng-click="vm.ViewRoster(teamSelected, teamId)">View Roster</button>
                 <button type="button" class="btn btn-primary pull-left teamInfo"  ng-click="vm.TeamInfo(teamSelected, teamId)">Team Info</button>
             </div>

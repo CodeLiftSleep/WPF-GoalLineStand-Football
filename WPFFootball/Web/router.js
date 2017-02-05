@@ -2,85 +2,56 @@
 (function () {
     'use strict';
     angular
-    .module('routerApp', ['ui.router', 'formly', 'formlyBootstrap', 'ngAnimate', 'ui.bootstrap', 'ngMessages',
-     'ui.grid', 'restangular', 'formly_templates', 'nya.bootstrap.select',
-    'rzModule', 'ui.mask', 'angular-3d-carousel', 'ui.grid.autoResize'])
+        .module('routerApp', ['ui.router', 'formly', 'formlyBootstrap', 'ngAnimate', 'ui.bootstrap', 'ngMessages',
+            'ui.grid', 'restangular', 'formly_templates', 'nya.bootstrap.select',
+            'rzModule', 'ui.mask', 'angular-3d-carousel', 'ui.grid.autoResize'])
 
-    .service('DB', function ($q) {
-        this.load = {
-            isLoading: false,
-            data: []
-        };
+        .service('DB', function ($q) {
+            this.load = {
+                isLoading: false,
+                data: []
+            };
 
-        this.setIsLoading = function (value) {
-            this.load.isLoading = value;
-        };
+            this.setIsLoading = function (value) {
+                this.load.isLoading = value;
+            };
 
-        this.setData = function (data) {
-            this.load.data = data;
-        };
+            this.setData = function (data) {
+                this.load.data = data;
+            };
 
-        this.getNumEnding = function (number) {
-            var defer = $q.defer();
-            var num = number.toString();
-            var result = '';
-            switch (num[num.length - 1]) { //gets the last digit of the number
-                case '1': result = 'st'; break;
-                case '2': result = 'nd'; break;
-                case '3': result = 'rd'; break;
-                default: result = 'th';
-            }
-            defer.resolve(result);
-            return result;
-        };
-    })
+            this.getNumEnding = function (number) {
+                var defer = $q.defer();
+                var num = number.toString();
+                var result = '';
+                switch (num[num.length - 1]) { //gets the last digit of the number
+                    case '1': result = 'st'; break;
+                    case '2': result = 'nd'; break;
+                    case '3': result = 'rd'; break;
+                    default: result = 'th';
+                }
+                defer.resolve(result);
+                return result;
+            };
+        })
 
-    .service('dataService', ['$timeout', '$q', function ($timeout, $q) {
+        .service('dataService', ['$timeout', '$q', function ($timeout, $q) {
+            //var fs = window.fs;
+            var sql = window.SQL;
+         
+            define(function (require) {
+                //fs = require('fs');
+                sql = require('sql');
+            });
+
         this.getData = function () {
             var defer = $q.defer();
             $timeout(function () {
-                //console.log(personnel)
-                //        var fs = require('fs');
-                //        var sql = require('sql.js');
-                //        var filebuffer = fs.readFileSync('app/assets/football.sqlite');
-                //        var db = new sql.Database(filebuffer);
-                //        var agentTemp = db.prepare('SELECT * FROM Agents');
-                //        for(var agents = []; agentTemp.step();) agents.push(agentTemp.getAsObject());
-                //        var coachTemp = db.prepare('SELECT * FROM Coaches');
-                //        for(var coaches = []; coachTemp.step();) coaches.push(coachTemp.getAsObject());
-                //        var draftTemp = db.prepare('SELECT * FROM DraftPlayers');
-                //        for(var draftPlayers = []; draftTemp.step();) draftPlayers.push(draftTemp.getAsObject());
-                //        var ownerTemp = db.prepare('SELECT * FROM Owners');
-                //        for(var owners = []; ownerTemp.step();) owners.push(ownerTemp.getAsObject());
-                //        var personnelTemp = db.prepare('SELECT * FROM Personnel');
-                //        for(var personnel = []; personnelTemp.step();) personnel.push(personnelTemp.getAsObject());
-                //        var rosterTemp = db.prepare('SELECT * FROM RosterPlayers');
-                //        for(var rosterPlayers = []; rosterTemp.step();) rosterPlayers.push(rosterTemp.getAsObject());
-                //        var teamTemp = db.prepare('SELECT * FROM Teams ORDER BY TeamName');
-                //        for(var teams = []; teamTemp.step();) teams.push(teamTemp.getAsObject());
-                //        var trainerTemp = db.prepare('SELECT * FROM TRAINERS');
-                //        for(var trainers = []; trainerTemp.step();) trainers.push(trainerTemp.getAsObject());
 
-                //        var teamOffTemp = db.prepare('SELECT * FROM TeamOffense ORDER BY TotalYards DESC');
-                //        for(var teamOffense = []; teamOffTemp.step();) teamOffense.push(teamOffTemp.getAsObject());
-                //        var teamDefTemp = db.prepare('SELECT * FROM TeamDefense ORDER BY TotalYards');
-                //        for(var teamDefense = []; teamDefTemp.step();) teamDefense.push(teamDefTemp.getAsObject());
-                //console.log(cefCustomObject.teams);
-                var DB = {};    
-                console.log(window.Teams);
-                DB.Teams = JSON.parse(window.Teams);
-                window.Teams = undefined;
-                //DB.Agents = agents;
-                //DB.Coaches = cefCustomObject.coaches;
-                //DB.Draft = cefCustomObject.draft;
-               //DB.Owners = cefCustomObject.owners;
-                //DB.Personnel = cefCustomObject.personnel;
-                //DB.Players = cefCustomObject.players,
-                //DB.Teams = JSON.parse(cefCustomObject.teams);
-                //console.log(DB.Teams);
-                //DB.Trainers = trainers;
-                //DB.TeamOffense = teamOffense;
-                //DB.TeamDefense = teamDefense;
+                var DB = [];
+                //DB.Teams = window.Teams;
+
+
 
                 defer.resolve(DB);
             }, 0);
@@ -97,6 +68,8 @@
 
     .controller('loadCtrl', ["$scope", "DB", function loadCtrl($scope, DB) {
         $scope.appState = DB.load;
+        //$scope.Teams = DBTeams; // still not getting the Data....
+        //console.log(DBTeams);
     }])
 
     .config(['$stateProvider', '$urlRouterProvider',
@@ -108,7 +81,12 @@
             // HOME STATES AND NESTED VIEWS ========================================
             .state('home', {
                 url: '/home',
-                templateUrl: 'home.html'
+                templateUrl: 'home.html',
+                //resolve: { //attempting to ensure data loads before it finishes getting the page, still not working
+                    //DBTeams: function () {
+                        //return window.Teams;
+                    //}
+                //}
             })
             //START GAME--MAIN
             .state('Start', {

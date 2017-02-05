@@ -1,100 +1,94 @@
 <!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
 <html>
 
- <head>
-     <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-     <base href="" />
-     <!-- CSS STYLESHEETS-->
-     <link data-require="fontawesome@4.5.0" data-semver="4.5.0" rel="stylesheet" href="content/font-awesome.css" />
-     <link rel="stylesheet" type="text/css" href="content/bootstrap.css" />
-     <link rel="stylesheet" type="text/css" href="content/nya-bs-select.css" />
-     <link rel="stylesheet" type="text/css" href="content/normalize.css" />
-     <link rel="stylesheet" type="text/css" href="content/rzslider.css" />
-     <link rel="stylesheet" type="text/css" href="content/UI-grid.css" />
-     <link rel="stylesheet" type="text/css" href="content/index.css" />
-     <link rel="stylesheet" type="text/css" href="content/effects/animate.css" />
-     <link rel="stylesheet" type="text/css" href="content/effects/hover.css" />
-     <link rel="stylesheet" type="text/css" href="content/3DCarousel.css" />
-    
-     <!-- JS FILES-->
-     <script src="Scripts/api-check.min.js"></script>
-     <script src="Scripts/jquery.min.js"></script>
-     <script src="Scripts/angular.min.js"></script>
-     <script src="Scripts/angular-animate.min.js"></script>
-     <script src="Scripts/ui-bootstrap-tpls.js"></script>
-     <script src="Scripts/formly.min.js"></script>
-     <script src="Scripts/angular-formly-templates-bootstrap.min.js"></script>
-     <script src="Scripts/angular-ui-router.min.js"></script>
-     <script src="Scripts/angular-messages.min.js"></script>
-     <script src="Scripts/bootstrap.min.js"></script>
-     <script src="Scripts/nya-bs-select.min.js"></script>
-     <script src="Scripts/ui-grid.min.js"></script>
-     <script src="Scripts/lodash.min.js"></script>
-     <script src="Scripts/angular-3d-carousel.js"></script>
-     <script src="Scripts/rzslider.min.js"></script>
-     <script src="Scripts/restangular.min.js"></script>
-     <script src="Scripts/mask.min.js"></script>
-     <script src="router.js"></script>
-     <script src="New_Game_Wizard/new_game.js"></script>
-     <script src="New_Game_Wizard/Start/Start-teamSelect.js"></script>
-     <script src="formly_templates/formly_templates.js"></script>
-     <script src="New_Game_Wizard/Start/Start-career.js"></script>
-     <script src="New_Game_Wizard/Start/Start-career2.js"></script>
-     <script src="New_Game_Wizard/Start/Start-career3.js"></script>
-     <script src="Main/js/index.js"></script>
+<head>
+    <base href="" />
+    <!-- CSS STYLESHEETS-->
+    <link data-require="fontawesome@4.5.0" data-semver="4.5.0" rel="stylesheet" href="content/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="content/nya-bs-select.css" />
+    <link rel="stylesheet" type="text/css" href="content/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="content/rzslider.css" />
+    <link rel="stylesheet" type="text/css" href="content/UI-grid.css" />
+    <link rel="stylesheet" type="text/css" href="content/index.css" />
+    <link rel="stylesheet" type="text/css" href="content/effects/animate.css" />
+    <link rel="stylesheet" type="text/css" href="content/effects/hover.css" />
+    <link rel="stylesheet" type="text/css" href="content/3DCarousel.css" />
 
-<title ng-show="!appState.isLoading" class="fadein fadeout">GoalLine Stand Football</title>
- </head>
+    <!-- JS FILES-->
+    <script src="Scripts/api-check.min.js"></script>
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls.js"></script>
+    <script src="Scripts/formly.min.js"></script>
+    <script src="Scripts/angular-formly-templates-bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/angular-messages.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/nya-bs-select.min.js"></script>
+    <script src="Scripts/ui-grid.min.js"></script>
+    <script src="Scripts/lodash.min.js"></script>
+    <script src="Scripts/angular-3d-carousel.js"></script>
+    <script src="Scripts/rzslider.min.js"></script>
+    <script src="Scripts/restangular.min.js"></script>
+    <script src="Scripts/mask.min.js"></script>
+    <script src="Scripts/require.js"></script>
+    <script src="Scripts/sql.js"></script>
+    <script src="router.js"></script>
+    <script src="New_Game_Wizard/new_game.js"></script>
+    <script src="New_Game_Wizard/Start/Start-teamSelect.js"></script>
+    <script src="formly_templates/formly_templates.js"></script>
+    <script src="New_Game_Wizard/Start/Start-career.js"></script>
+    <script src="New_Game_Wizard/Start/Start-career2.js"></script>
+    <script src="New_Game_Wizard/Start/Start-career3.js"></script>
+    <script src="Main/js/index.js"></script>
+
+    <title ng-show="!appState.isLoading" class="fadein fadeout">GoalLine Stand Football</title>
+</head>
 
 <!-- apply our angular app to our site -->
- <body ng-app="routerApp" background="assets/footballfield.jpg">
+<body ng-app="routerApp" background="assets/footballfield.jpg">
 
- <!-- NAVIGATION -->
- <nav class="navbar navbar-inverse" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="#">Goal Line Stand Football</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a ui-sref="home" class="hvr-bounce-to-bottom">Home</a></li>
-        <li><a ui-sref="settings" class="hvr-bounce-to-bottom">Settings</a></li>
-        <li><a ui-sref="menu" class="hvr-bounce-to-bottom">Menu</a></li>
-    </ul>    
-</nav>
-<!-- MAIN CONTENT -->
-<div class="container">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="#">Goal Line Stand Football</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="home" class="hvr-bounce-to-bottom">Home</a></li>
+            <li><a ui-sref="settings" class="hvr-bounce-to-bottom">Settings</a></li>
+            <li><a ui-sref="menu" class="hvr-bounce-to-bottom">Menu</a></li>
+        </ul>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <div class="container">
 
-    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ------------------- -->
-    
-    <div ng-controller="loadCtrl">
-        <div ng-show="appState.isLoading" class="fadeout">
-            <button class="btn btn-primary" onclick="showDevTools()">Show Dev Tools</button>
-            <span class="title col-md-11 pull-right" style="color: white; font-size: 42px; margin-bottom: 20px;">
-                Please Wait...Goal Line Stand is Loading...</span>
-            <div class="spinner">                
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
+        <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ------------------- -->
+
+        <div ng-controller="loadCtrl">
+            <div ng-show="appState.isLoading" class="fadeout">
+                <button class="btn btn-primary" onclick="showDevTools()">Show Dev Tools</button>
+                <span class="title col-md-11 pull-right" style="color: white; font-size: 42px; margin-bottom: 20px;">
+                    Please Wait...Goal Line Stand is Loading...
+                </span>
+                <div class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+
+            <div ng-show="!appState.isLoading" class=" loadScreen animated zoomInDown">
+                <div ui-view></div>
             </div>
         </div>
-            
-        <div ng-show="!appState.isLoading" class=" loadScreen animated zoomInDown">         
-            <div ui-view></div>
-        </div>
+
+        <!--<h3>current state name: <var>{{$state.current.name}}</var></h3>
+         <h5>params</h5>
+          <pre>{{$stateParams | json}}</pre>
+          <h5>state</h5>
+          <pre>{{$state.current | json}}</pre>-->
     </div>
-
-    
-<!--<h3>current state name: <var>{{$state.current.name}}</var></h3>
- <h5>params</h5>
-  <pre>{{$stateParams | json}}</pre>
-  <h5>state</h5>
-  <pre>{{$state.current | json}}</pre>-->
-</div>
-
-
-
-
-
- </body>
-
+</body>
 </html>
