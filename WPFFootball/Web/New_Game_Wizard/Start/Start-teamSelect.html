@@ -5,11 +5,11 @@
     <span class="col-md-12 pull-right" style="font-size: 48px; font-weight: bold; color: white;">Select Your Team:</span>
     <div>
         <carousel sides="vm.sides" current="vm.sides.current"></carousel>
-        <button type="button" class="btn btn-primary pull-left viewRoster" ng-click="vm.ViewRoster(teamSelected, teamId)">View Roster</button>
-        <button type="button" class="btn btn-primary pull-left teamInfo" ng-click="vm.TeamInfo(teamSelected, teamId)">Team Info</button>
+        <button type="button" class="btn btn-primary pull-left viewRoster" ng-click="vm.ViewRoster(vm.sides[vm.sides.current].title, vm.sides[vm.sides.current].teamID)">View Roster</button>
+        <button type="button" class="btn btn-primary pull-left teamInfo" ng-click="vm.TeamInfo(vm.sides[vm.sides.current].title, vm.sides[vm.sides.current].teamID)">Team Info</button>
     </div>
 </div>
-<div class="col-md-12" style="font-size: 48px; font-weight: bold; color: white; margin-top: 3%; left:25%;">Team Selected: {{teamSelected}}</div>
+<div class="col-md-12" style="font-size: 48px; font-weight: bold; color: white; margin-top: 3%; left:25%;">Team Selected: {{vm.sides[vm.sides.current].title}}</div>
 
 <button type="button" class="btn btn-primary pull-left" ui-sref="Start.career3"><span style="margin-right: 3px;" class="glyphicon glyphicon-circle-arrow-left pull-left"></span>Prev Page</button>
 <button type="button" class="btn btn-primary pull-right" ui-sref="Main" ng-click="Save()">
