@@ -1,5 +1,7 @@
 ﻿Public Module SharedFiles
     Public TeamDT As New DataTable
+    Public TeamOffenseDT As New DataTable
+    Public TeamDefenseDT As New DataTable
     Public OwnerDT As New DataTable
     Public PersonnelDT As New DataTable
     Public CoachDT As New DataTable

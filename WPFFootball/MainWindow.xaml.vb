@@ -9,8 +9,7 @@ Imports GlobalResources
 Imports Newtonsoft.Json
 Imports DotNetBrowser
 Imports DotNetBrowser.WPF
-'Imports Awesomium.Core
-'Imports Awesomium.Windows.Controls
+
 Imports Microsoft.Win32
 Imports Newtonsoft.Json.Linq
 
@@ -98,8 +97,12 @@ Public Class DBObject
         SQLTable.LoadTable(MyDB, CoachDT, "Coaches")
         SQLTable.LoadTable(MyDB, PlayerDT, "RosterPlayers")
         SQLTable.LoadTable(MyDB, DraftDT, "DraftPlayers")
+        SQLTable.LoadTable(MyDB, TeamOffenseDT, "TeamOffense")
+        SQLTable.LoadTable(MyDB, TeamDefenseDT, "TeamDefense")
         'We need to remove duplicates from the DT---unsure why this is happening...
         RemoveDuplicateRows(TeamDT, 32)
+        RemoveDuplicateRows(TeamOffenseDT, 32)
+        RemoveDuplicateRows(TeamDefenseDT, 32)
         RemoveDuplicateRows(OwnerDT, 100)
         RemoveDuplicateRows(PersonnelDT, 1800)
         RemoveDuplicateRows(CoachDT, 1800)

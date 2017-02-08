@@ -47,6 +47,60 @@ Public NotInheritable Class JStoNETLookups
         Return JsonConvert.SerializeObject(myDT).ToString()
 
     End Function
+    Public Shared Function GetTeam(ByVal teamId As Integer) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDT, $"TeamID = '{teamId}'", "TeamName")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+#End Region
+
+#Region "Team Offense"
+    Public Shared Function GetTeamOff(ByVal teamName As String) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDT, $"TeamName = '{teamName}'", "TeamName")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetTeamOff(ByVal teamId As Integer) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDT, $"TeamID = '{teamId}'", "TeamName")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetRankTeamOff() As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamOffenseDT, $"TeamID < 33", "TotalYards")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+#End Region
+#Region "Team Defense"
+    Public Shared Function GetTeamDef(ByVal teamName As String) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDT, $"TeamName = '{teamName}'", "TeamName")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetTeamDef(ByVal teamId As Integer) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDT, $"TeamID = '{teamId}'", "TeamName")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetRankTeamDef() As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(TeamDefenseDT, $"TeamID < 33", "TotalYards")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
 #End Region
 #Region "Draft Players"
     ''' <summary>
@@ -146,6 +200,71 @@ Public NotInheritable Class JStoNETLookups
     End Function
 #End Region
 
+#Region "Roster Players"
+    ''' <summary>
+    ''' Returns all players in the draft at this position
+    ''' </summary>
+    ''' <param name="pos"></param>
+    ''' <returns></returns>
+    Public Shared Function GetRosterPosition(ByVal pos As String) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(PlayerDT, $"CollegePos = '{pos}'", "ActualGrade DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    ''' <summary>
+    ''' Returns players by team
+    ''' </summary>
+    ''' <param name="teamName"></param>
+    ''' <returns></returns>
+    Public Shared Function GetRosterPlayers(ByVal teamName As String) As String
+        Dim myDT As New DataTable
+        Dim TeamID = TeamDT.AsEnumerable().Where(Function(t) t.Item("TeamName") = teamName).[Select](Function(i) i.Item("TeamID"))
+        myDT = FilterTable(PlayerDT, $"TeamID = '{TeamID}'", "Age DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetRosterPlayers(ByVal teamName As String, pos As String) As String
+        Dim myDT As New DataTable
+        Dim TeamID = TeamDT.AsEnumerable().Where(Function(t) t.Item("TeamName") = teamName).[Select](Function(i) i.Item("TeamID"))
+        myDT = FilterTable(PlayerDT, $"TeamID = '{TeamID}' and Pos = '{pos}'", "Age DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+    End Function
+    Public Shared Function GetRosterPositionType(ByVal posType As String) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(PlayerDT, $"PosType = '{posType}'", "Age DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+    End Function
+    ''' <summary>
+    ''' Returns all players that share the same team ID
+    ''' </summary>
+    ''' <param name="teamId"></param>
+    ''' <returns></returns>
+    Public Shared Function GetRosterPlayers(ByVal teamId As Integer) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(PlayerDT, $"TeamID = '{teamId}'", "Age DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+    End Function
+
+    ''' <summary>
+    ''' Returns a single player in the draft by their Id
+    ''' </summary>
+    ''' <param name="Id"></param>
+    ''' <returns></returns>
+    Public Shared Function GetRosterPlayer(ByVal Id As Integer) As String
+        Dim myDT As New DataTable
+        myDT = FilterTable(PlayerDT, $"PlayerId = {Id}", "ActualGrade DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+#End Region
+
 #Region "Owners"
     ''' <summary>
     ''' Returns a single owner by team name---there is only a TeamID in the owner table so we need to look up the team name and get the ID
@@ -157,6 +276,14 @@ Public NotInheritable Class JStoNETLookups
         Dim myDT As New DataTable
         Dim TeamID = TeamDT.AsEnumerable().Where(Function(t) t.Item("TeamName") = teamName).[Select](Function(i) i.Item("TeamID"))
         myDT = FilterTable(OwnerDT, $"TeamID = {TeamID.ElementAt(0)}", "OwnerId DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetOwner(ByVal teamId As Integer) As String
+
+        Dim myDT As New DataTable
+        myDT = FilterTable(OwnerDT, $"TeamID = {teamId}", "OwnerId DESC")
 
         Return JsonConvert.SerializeObject(myDT).ToString()
 
@@ -173,6 +300,14 @@ Public NotInheritable Class JStoNETLookups
         Dim myDT As New DataTable
         Dim TeamID = TeamDT.AsEnumerable().Where(Function(t) t.Item("TeamName") = teamName).[Select](Function(i) i.Item("TeamID"))
         myDT = FilterTable(CoachDT, $"TeamID = {TeamID.ElementAt(0)}", "CoachId DESC")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+    Public Shared Function GetCoaches(ByVal teamId As Integer) As String
+
+        Dim myDT As New DataTable
+        myDT = FilterTable(CoachDT, $"TeamID = {teamId}", "CoachId DESC")
 
         Return JsonConvert.SerializeObject(myDT).ToString()
 
@@ -261,6 +396,27 @@ Public NotInheritable Class JStoNETLookups
 
         myDT = FilterTable(CoachDT, $"DefPhil = '{defPhil}'", "CoachTypeStr")
         Return JsonConvert.SerializeObject(myDT).ToString()
+    End Function
+#End Region
+
+#Region "Personnel Lookups"
+    Public Shared Function GetPersonnel(ByVal teamName As String) As String
+
+        Dim myDT As New DataTable
+        Dim TeamID = TeamDT.AsEnumerable().Where(Function(t) t.Item("TeamName") = teamName).[Select](Function(i) i.Item("TeamID"))
+        myDT = FilterTable(PersonnelDT, $"TeamID = {TeamID.ElementAt(0)}", "PersonnelType")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
+    End Function
+
+    Public Shared Function GetPersonnel(ByVal teamId As Integer) As String
+
+        Dim myDT As New DataTable
+        myDT = FilterTable(PersonnelDT, $"TeamID = {teamId}", "PersonnelType")
+
+        Return JsonConvert.SerializeObject(myDT).ToString()
+
     End Function
 #End Region
 

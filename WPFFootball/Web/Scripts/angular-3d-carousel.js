@@ -174,7 +174,7 @@
 
                         currentSide = Math.round(currentSide);
 
-                        alert('You got ' + scope.sides[currentSide].title);
+                        //alert('You got ' + scope.sides[currentSide].title);
 
                         scope.$apply(function () {
                             scope.current = currentSide;
