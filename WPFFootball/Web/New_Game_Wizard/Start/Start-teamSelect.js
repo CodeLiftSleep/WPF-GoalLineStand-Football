@@ -9,8 +9,13 @@
         var vm = this;
         $scope.teamSelected = 'Arizona Cardinals'; //starts out as default team
         $scope.teamId = 29; //default ID for Arizona
-        vm.model = $stateParams.model; //retrieves the model passed in by the state
 
+        vm.model = $stateParams.model; //retrieves the model passed in by the state
+        console.log(vm.model);
+        //save the model to the User File
+        vm.Save = function (teamId) {
+            window.Lookup.Save(teamId, JSON.stringify(vm.model));
+        };
         //opens the roster of this team, loaded via sqlite;
         vm.ViewRoster = function (teamSelected, teamId) {
             var roster = [];
