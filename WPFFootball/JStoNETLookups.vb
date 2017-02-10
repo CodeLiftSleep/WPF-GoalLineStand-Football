@@ -420,19 +420,4 @@ Public NotInheritable Class JStoNETLookups
     End Function
 #End Region
 
-#Region "CRUD Operations"
-    ''' <summary>
-    ''' Passes a JSON string over and saves to a file
-    ''' </summary>
-    ''' <param name="model"></param>
-    ''' <returns></returns>
-    Public Shared Function Save(ByVal teamId As Integer, ByVal model As String) As String
-        Dim myList As New List(Of String)
-        Dim myObj As JObject = JsonConvert.DeserializeObject(model)
-
-        For Each item In myObj.Children
-            myList.Add(item)
-        Next
-    End Function
-#End Region
 End Class

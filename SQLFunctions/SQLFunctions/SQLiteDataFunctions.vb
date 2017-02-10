@@ -84,7 +84,7 @@ Public Class SQLiteDataFunctions
     ''' <param name="dbName"></param>
     ''' <param name="dt"></param>
     ''' <param name="tableName"></param>
-    Public Sub DeleteTable(dbName As String, dt As DataTable, tableName As String,
+    Public Sub DeleteTable(dbName As String, tableName As String,
                            Optional ByVal MyFilePath As String = "")
         Dim Conn As New SQLiteConnection()
         GetConnectionString(dbName, Conn, MyFilePath)
@@ -111,7 +111,15 @@ Public Class SQLiteDataFunctions
             Cmd.ExecuteNonQuery()
         End Using
     End Sub
-
+    Public Sub InsertInto(dbName As String, tableName As String, SQLCmd As String, Optional ByVal myFilePath As String = "")
+        Dim Conn As New SQLiteConnection()
+        GetConnectionString(dbName, Conn, myFilePath)
+        Using Conn
+            Dim SQL As String = SQLCmd
+            Dim Cmd As New SQLiteCommand(SQL, Conn)
+            Cmd.ExecuteNonQuery()
+        End Using
+    End Sub
     ''' <summary>
     '''     Since there is no UpdateTable command like SQL Server, Bulk Insert Into will put all the rows from the DT into the
     '''     DB

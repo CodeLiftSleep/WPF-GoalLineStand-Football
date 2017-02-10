@@ -163,7 +163,7 @@ DevLB int NULL, DevCB int NULL, DevSF int NULL, LowerBodyTrain int NULL, UpperBo
                     Case 6 : Result = 11
                 End Select
             Case < 39
-                result = MT.GenerateInt32(1, 100)
+                Result = MT.GenerateInt32(1, 100)
                 Select Case Result
                     Case 1 '1% chance of being Assistant GM
                         Result = 2
@@ -646,7 +646,7 @@ DevLB int NULL, DevCB int NULL, DevSF int NULL, LowerBodyTrain int NULL, UpperBo
         'End If
         'Next ScoutID
 
-        SQLiteTables.DeleteTable(MyDB, ScoutGradeDT, "ScoutsGrade")
+        SQLiteTables.DeleteTable(MyDB, "ScoutsGrade")
         SQLiteTables.LoadTable(MyDB, ScoutGradeDT, "ScoutsGrade")
 
         ScoutGradeDT.Rows.Add(0)

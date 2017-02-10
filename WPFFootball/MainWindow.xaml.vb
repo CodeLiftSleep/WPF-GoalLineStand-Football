@@ -69,7 +69,8 @@ Class MainWindow
         If e.IsMainFrame Then
             'Wait for the browser to finish loading, then load the page
             window = browserView1.Browser.ExecuteJavaScriptAndReturnValue("window")
-            window.AsObject().SetProperty("Lookup", New JStoNETLookups())
+            window.AsObject().SetProperty("Lookup", New JStoNETLookups()) 'Creates a new JStoNETLookup object for any query operations to return filtered data
+            window.AsObject().SetProperty("CRUD", New CRUD()) 'Creates a new CRUD object for any file operations
             browserView2.Browser.LoadURL(browserView2.Browser.GetRemoteDebuggingURL())
         End If
     End Sub

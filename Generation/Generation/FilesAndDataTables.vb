@@ -122,7 +122,7 @@ Public Module FilesAndDataTables
     Public Sub Initialize(ByVal dbName As String, ByVal dt As DataTable, ByVal tableName As String, sqlFieldNames As String, Optional ByVal myFilePath As String = "")
         Try
             SQLiteTables.CreateTable(dbName, dt, tableName, sqlFieldNames, myFilePath)
-            SQLiteTables.DeleteTable(dbName, dt, tableName, myFilePath)
+            SQLiteTables.DeleteTable(dbName, tableName, myFilePath)
             SQLiteTables.LoadTable(dbName, dt, tableName, myFilePath)
 
             dt.Rows.Add(0)

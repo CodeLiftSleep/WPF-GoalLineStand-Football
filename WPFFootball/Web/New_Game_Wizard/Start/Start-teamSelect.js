@@ -11,11 +11,10 @@
         $scope.teamId = 29; //default ID for Arizona
 
         vm.model = $stateParams.model; //retrieves the model passed in by the state
+        vm.fileName = '';
         console.log(vm.model);
         //save the model to the User File
-        vm.Save = function (teamId) {
-            window.Lookup.Save(teamId, JSON.stringify(vm.model));
-        };
+
         //opens the roster of this team, loaded via sqlite;
         vm.ViewRoster = function (teamSelected, teamId) {
             var roster = [];
@@ -386,7 +385,39 @@
                 },
             });
         };
-
+        //Save Game Modal that pops up asking for fileName
+        vm.Save = function (teamId) {
+            var modalInstance = $uibModal.open({
+                backdrop: 'static',
+                size: 'sm',
+                template: `
+                            <div class="modal-header" ng-style="teamPri">
+                                <h3 class="modal-title" id="modal-title">Create a New Save Game</h3>
+                            </div>
+                            <div class="modal-body" id="modal-body" ng-style="teamSec">
+                            <label>Enter a name for your save game: </label>
+                                <input class="col-md-3" type="text" ng-model="vm.fileName" />
+                            </div>
+                            <div class="modal-footer" ng-style="teamTer">
+                                <button class="btn btn-primary" type="button" ng-click="ok(vm.fileName)">OK</button>
+                            </div>
+                       `,
+                controller: function ($scope, $uibModalInstance) {
+                    $scope.ok = function (fileName) {
+                        window.CRUD.Save(teamId, fileName, JSON.stringify(vm.model)).then(function (response) {
+                            if (response === "Duplicate!") alertify.alert("File Name already in use!  Please choose another file name.");
+                            else setTimeout(function () {
+                                alertify.success("Game successfully saved!");
+                                $uibModalInstance.close();
+                            }, 2000);
+                        });
+                    };
+                }
+            });
+            modalInstance.result.then(function (fileName) {
+                $state.go("Main");
+            });
+        };
         vm.sides = [];
 
         //load the teams from the DB.Teams object
