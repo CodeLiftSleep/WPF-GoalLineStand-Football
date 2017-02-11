@@ -7,7 +7,7 @@ Imports System.Windows
 
 Public Class SQLiteDataFunctions
     'Dim Conn As SQLite.SQLiteConnection = New SQLite.SQLiteConnection()
-    Dim FilePath As String = "Project_Files/"
+    Dim FilePath As String = AppDomain.CurrentDomain.BaseDirectory() + "\Project_Files\"
 
     ''' <summary>
     '''     Opens a connection to this DB--Must Explicitly pass the connection string before returning it, otherwise it will
@@ -20,16 +20,35 @@ Public Class SQLiteDataFunctions
 
         If myFilePath <> "" Then
             FilePath = myFilePath 'changes the filepath if a new location is supplied
+        Else
+            FilePath = FilePath.Replace("bin\x86\Debug\\", "")
         End If
         conn.Close()
         If conn.State <> ConnectionState.Open Then
             conn.ConnectionString = "Data Source=" & FilePath & dbName & ".sqlite;Version=3"
             '= "Data Source=|DataDirectory|\" & DBName & ".sqlite;Version=3"
             conn.Open()
-            Return conn.ConnectionString
+            'Return conn.ConnectionString
         Else
             conn.ConnectionString = "Data Source=" & FilePath & dbName & ".sqlite;Version=3"
         End If
+        Return conn.ConnectionString
+    End Function
+    Public Function GetConnectionString(dbName As String, Optional ByVal myFilePath As String = "") As String
+        Dim conn As New SQLiteConnection
+        If myFilePath <> "" Then
+            FilePath = myFilePath 'changes the filepath if a new location is supplied
+        End If
+        conn.Close()
+        If conn.State <> ConnectionState.Open Then
+            conn.ConnectionString = "Data Source=" & FilePath & dbName & ".sqlite;Version=3"
+            '= "Data Source=|DataDirectory|\" & DBName & ".sqlite;Version=3"
+            conn.Open()
+            'Return conn.ConnectionString
+        Else
+            conn.ConnectionString = "Data Source=" & FilePath & dbName & ".sqlite;Version=3"
+        End If
+        Return conn.ConnectionString
     End Function
 
     ''' <summary>
@@ -112,13 +131,14 @@ Public Class SQLiteDataFunctions
         End Using
     End Sub
     Public Sub InsertInto(dbName As String, tableName As String, SQLCmd As String, Optional ByVal myFilePath As String = "")
-        Dim Conn As New SQLiteConnection()
+        Dim Conn As New SQLiteConnection
         GetConnectionString(dbName, Conn, myFilePath)
-        Using Conn
-            Dim SQL As String = SQLCmd
-            Dim Cmd As New SQLiteCommand(SQL, Conn)
-            Cmd.ExecuteNonQuery()
-        End Using
+        'Conn.Open()
+        'Using Conn
+        Dim Cmd As New SQLiteCommand(SQLCmd, Conn)
+        Cmd.ExecuteNonQuery()
+        'Conn.Close()
+        'End Using
     End Sub
     ''' <summary>
     '''     Since there is no UpdateTable command like SQL Server, Bulk Insert Into will put all the rows from the DT into the

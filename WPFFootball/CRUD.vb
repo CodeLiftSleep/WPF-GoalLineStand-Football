@@ -26,15 +26,7 @@ Public NotInheritable Class CRUD
 
         'Save row---no matching values
         If DupRow Is Nothing Then
-            'TempDT.Clear() 'Clear the Table of any rows....we are only inserting this one
-            'Dim newRow As DataRow = TempDT.NewRow()
-            'newRow("FileName") = fileName
-            'newRow("SaveGameJSONString") = model
-            'TempDT.Rows.Add(newRow)
-            'SQLTables.DeleteTable(MyDB, "SaveGames")
-            SQLTables.InsertInto(MyDB, "SaveGames", "INSERT INTO SaveGames(FileName,SaveGameJSONString) VALUES " & "('" & fileName & "', 'Test')")
-            'SQLTables.BulkInsert(MyDB, TempDT, "SaveGames")
-
+            SQLTables.InsertInto(MyDB, "SaveGames", $"INSERT INTO SaveGames(FileName,SaveGameJSONString) VALUES ('{fileName}', '{model}')")
         Else 'Return Error---duplicate
             MyStr = "Duplicate!"
         End If
