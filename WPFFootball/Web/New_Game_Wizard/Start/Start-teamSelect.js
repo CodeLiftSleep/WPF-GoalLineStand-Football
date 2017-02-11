@@ -3,8 +3,8 @@
 
     angular
     .module('routerApp')
-    .controller('teamSelectCtrl', ['$scope', '$stateParams', '$uibModal', 'DB', 'uiGridConstants',
-    function teamSelectCtrl($scope, $stateParams, $uibModal, DB, uiGridConstants) {
+    .controller('teamSelectCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'DB', 'uiGridConstants',
+    function teamSelectCtrl($scope, $stateParams, $state, $uibModal, DB, uiGridConstants) {
         //DB is the database service object holding all the tables
         var vm = this;
         $scope.teamSelected = 'Arizona Cardinals'; //starts out as default team
@@ -394,28 +394,34 @@
                             <div class="modal-header" ng-style="teamPri">
                                 <h3 class="modal-title" id="modal-title">Create a New Save Game</h3>
                             </div>
-                            <div class="modal-body" id="modal-body" ng-style="teamSec">
-                            <label>Enter a name for your save game: </label>
-                                <input class="col-md-3" type="text" ng-model="vm.fileName" />
+                            <div class ="modal-body" id="modal-body" ng-style="teamSec">
+                                <label for="saveTB">Please Enter A Save Game File Name: </label>
+                                <input id="saveTB" type="text" ng-model="vm.fileName" />
                             </div>
                             <div class="modal-footer" ng-style="teamTer">
                                 <button class="btn btn-primary" type="button" ng-click="ok(vm.fileName)">OK</button>
+                                <button class="btn btn-primary" type="button" ng-click="cancel()">Cancel</button>
                             </div>
                        `,
                 controller: function ($scope, $uibModalInstance) {
                     $scope.ok = function (fileName) {
-                        window.CRUD.Save(teamId, fileName, JSON.stringify(vm.model)).then(function (response) {
-                            if (response === "Duplicate!") alertify.alert("File Name already in use!  Please choose another file name.");
-                            else setTimeout(function () {
-                                alertify.success("Game successfully saved!");
+                        if (fileName !== undefined) {
+                            var value = window.CRUD.Save(teamId, fileName, JSON.stringify(vm.model))
+                            if (value === "Duplicate!") alertify.alert('Duplicate File Name Error!', 'File Name already in use!  Please choose another file name.');
+                            else {
+                                alertify.success("Game successfully saved! Loading Team Dashboard...");
+                                setTimeout(function () {
+                                    $state.go("Main"); //redirect to Team Dashboard
+                                }, 5000);
                                 $uibModalInstance.close();
-                            }, 2000);
-                        });
+                            };
+                        }
+                        else alertify.alert('No File Name Specified', 'Please enter a file name.');
+                    };
+                    $scope.cancel = function () {
+                        $uibModalInstance.close();
                     };
                 }
-            });
-            modalInstance.result.then(function (fileName) {
-                $state.go("Main");
             });
         };
         vm.sides = [];

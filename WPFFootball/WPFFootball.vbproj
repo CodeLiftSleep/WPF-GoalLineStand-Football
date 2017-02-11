@@ -352,6 +352,7 @@
     <Content Include="Web\Angular_Modules\CRUD.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\content\alertify.css" />
     <Content Include="Web\content\bootstrap.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -367,6 +368,7 @@
     <Content Include="Web\content\rzslider.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\content\themes\bootstrap.css" />
     <Content Include="Web\home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -384,6 +386,7 @@
     <Resource Include="Web\router.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Web\Scripts\alertify.min.js" />
     <Content Include="Web\Scripts\angular-3d-carousel.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

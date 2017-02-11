@@ -18,7 +18,7 @@ Imports Newtonsoft.Json.Linq
 ''' </summary>
 Class MainWindow
     Public Shared NewGameScreen As New NewGame
-    Public window As JSValue
+    Public Shared window As JSValue
     Public Shared DBObj As New DBObject
     Public Team As JSObject
     Public page As String = AppDomain.CurrentDomain.BaseDirectory()

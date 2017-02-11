@@ -5,6 +5,11 @@ span {
     text-align: center;
 }
 
+.modal-content {
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+}
 #carousel figure h2 {
   position: relative;
   font-size: 3.50vw;
