@@ -17,7 +17,6 @@ Imports Newtonsoft.Json.Linq
 ''' Need to expose the DB objects here so we can have register them as JS Objects for the browser to use.
 ''' </summary>
 Class MainWindow
-    Public Shared NewGameScreen As New NewGame
     Public Shared window As JSValue
     Public Shared DBObj As New DBObject
     Public Team As JSObject
@@ -34,8 +33,14 @@ Class MainWindow
             '##########################################################################
             '##########################################################################
 
-            'Replace the absolute path with the relative path
-            page = page.Replace("bin\x86\Debug\", "Web\index.html")
+            'Replace the absolute path with the relative path---need to set this per version being ran or it leads to wrong page
+            If page.Contains("bin\x86\Debug") Then
+                page = page.Replace("bin\x86\Debug\", "Web\index.html")
+            ElseIf page.Contains("bin\x64\Debug") Then
+                page = page.Replace("bin\x64\Debug\", "Web\index.html")
+            Else
+                page = page.Replace("bin\Debug\", "Web\index.html")
+            End If
 
             browserView1.Preferences.JavaScriptEnabled = True
             browserView1.Preferences.ImagesEnabled = True
@@ -47,7 +52,7 @@ Class MainWindow
             'Dim rtnTeam As JSArray = GetTeam()
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show($"{ex.Message}:  {ex.InnerException}")
         End Try
 
     End Sub

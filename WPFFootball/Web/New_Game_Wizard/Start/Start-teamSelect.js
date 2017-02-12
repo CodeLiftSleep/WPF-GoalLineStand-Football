@@ -211,11 +211,11 @@
                     $scope.TeamDefense = JSON.parse(window.Lookup.GetRankTeamDef());
                     $scope.record = $scope.team.Wins + '-' + $scope.team.Losses;
                     $scope.record += $scope.team.Ties > 0 ? '-' + $scope.team.Ties : '';
-                    $scope.teamOffYds = JSON.parse(window.Lookup.GetTeamOff(teamId))[0].TotalYards / 16;
+                    $scope.teamOffYds = _.filter($scope.TeamOffense, { 'TeamID': teamId })[0].TotalYards / 16;
 
                     $scope.teamOffRank = _.findIndex($scope.TeamOffense, { 'TeamID': teamId }) + 1; //lodash function
                     $scope.passOff = _.orderBy($scope.TeamOffense, ['PassingYards'], ['desc']);
-                    $scope.passOffYds = _.filter($scope.TeamOffense, { TeamID: teamId })[0].PassingYards / 16;
+                    $scope.passOffYds = _.filter($scope.TeamOffense, { 'TeamID': teamId })[0].PassingYards / 16;
                     $scope.passOffRank = _.findIndex($scope.passOff, { 'TeamID': teamId }) + 1;
                     $scope.rushOff = _.orderBy($scope.TeamOffense, ['RushingYards'], ['desc']);
                     $scope.rushOffYds = _.filter($scope.TeamOffense, { 'TeamID': teamId })[0].RushingYards / 16;
@@ -223,10 +223,10 @@
                     $scope.pointsOff = _.orderBy($scope.TeamOffense, ['PointsFor'], ['desc']);
                     $scope.teamPointsOff = _.filter($scope.TeamOffense, { 'TeamID': teamId })[0].PointsFor / 16;
                     $scope.pointsOffRank = _.findIndex($scope.pointsOff, { 'TeamID': teamId }) + 1;
-                    $scope.teamDefYds = $filter('filter')($scope.TeamDefense, { TeamID: teamId }, true)[0].TotalYards / 16;
+                    $scope.teamDefYds = _.filter($scope.TeamDefense, { 'TeamID': teamId })[0].TotalYards / 16;
                     $scope.teamDefRank = _.findIndex($scope.TeamDefense, { 'TeamID': teamId }) + 1; //Lodash function
                     $scope.passDef = _.orderBy($scope.TeamDefense, ['PassingYards'], ['asc']);
-                    $scope.passDefYds = _.filter($scope.TeamDefense, { TeamID: teamId })[0].PassingYards / 16;
+                    $scope.passDefYds = _.filter($scope.TeamDefense, { 'TeamID': teamId })[0].PassingYards / 16;
                     $scope.passDefRank = _.findIndex($scope.passDef, { 'TeamID': teamId }) + 1;
                     $scope.rushDef = _.orderBy($scope.TeamDefense, ['RushingYards'], ['asc']);
                     $scope.rushDefYds = _.filter($scope.TeamDefense, { 'TeamID': teamId })[0].RushingYards / 16;
@@ -391,6 +391,7 @@
                 backdrop: 'static',
                 size: 'sm',
                 template: `
+                    <div class="saveGame">
                             <div class="modal-header" ng-style="teamPri">
                                 <h3 class="modal-title" id="modal-title">Create a New Save Game</h3>
                             </div>
@@ -402,6 +403,7 @@
                                 <button class="btn btn-primary" type="button" ng-click="ok(vm.fileName)">OK</button>
                                 <button class="btn btn-primary" type="button" ng-click="cancel()">Cancel</button>
                             </div>
+                    </div>
                        `,
                 controller: function ($scope, $uibModalInstance) {
                     $scope.ok = function (fileName) {
