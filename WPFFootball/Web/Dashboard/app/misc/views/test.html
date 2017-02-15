@@ -1,0 +1,38 @@
+<div id="content">
+
+
+    <div class="row">
+        <big-breadcrumbs items="['Page Header', 'Subtitle']" icon="home"
+                         class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+        <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+    </div>
+
+    <!--
+        The ID "widget-grid" will start to initialize all widgets below
+        You do not need to use widgets if you dont want to. Simply remove
+        the <section></section> and you can use wells or panels instead
+        -->
+    <!-- widget grid -->
+    <section id="widget-grid" data-widget-grid>
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-6">
+                
+                <div smart-include="app/todo/todo-widget.tpl.html"></div>
+
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+        <!-- row -->
+        <div class="row">
+            <!-- a blank row to get started -->
+            <div class="col-sm-12">
+                <!-- your contents here -->
+            </div>
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>

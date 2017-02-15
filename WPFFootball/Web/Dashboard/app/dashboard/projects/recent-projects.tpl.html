@@ -1,0 +1,17 @@
+<div class="project-context hidden-xs dropdown" dropdown>
+
+    <span class="label">{{getWord('Projects')}}:</span>
+    <span class="project-selector dropdown-toggle" data-toggle="dropdown">{{getWord('Recent projects')}} <i ng-if="projects.length"
+            class="fa fa-angle-down"></i></span>
+
+    <ul class="dropdown-menu" ng-if="projects.length">
+        <li ng-repeat="project in projects">
+            <a href="{{project.href}}">{{project.title}}</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a ng-click="clearProjects()"><i class="fa fa-power-off"></i> Clear</a>
+        </li>
+    </ul>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="table-wrap custom-scroll">
+    <table id="inbox-table" class="table table-striped table-hover" >
+        <tbody>
+        <tr id="msg1" ng-class="{unread: !message.read}" ng-repeat="message in messages | filter:{ folder: selectedFolder.name }">
+            <td class="inbox-table-icon">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="message.selected" class="checkbox style-2">
+                        <span></span> </label>
+                </div>
+            </td>
+            <td class="inbox-data-from hidden-xs hidden-sm"  ui-sref="app.inbox.folder.detail({folder:message.folder, message: message._id})">
+                <div>
+                    {{message.contact.name}}
+                </div>
+            </td>
+            <td class="inbox-data-message" ui-sref="app.inbox.folder.detail({folder:message.folder, message: message._id})">
+                <div>
+                    <span><message-labels></message-labels> {{message.subject}}</span> {{message.getBodyTeaser()}}
+                </div>
+            </td>
+            <td class="inbox-data-attachment hidden-xs" ui-sref="app.inbox.folder.detail({folder:message.folder, message: message._id})">
+                <div>
+                    <a ng-if="message.hasAttachments()" uib-tooltip="{{message.fullAttachmentsTootlip()}}" tooltip-placement="left" class="txt-color-darken"><i
+                            class="fa fa-paperclip fa-lg"></i></a>
+                </div>
+            </td>
+            <td class="inbox-data-date hidden-xs">
+                <div>{{message.date | date : 'shortTime'}}
+                </div>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>

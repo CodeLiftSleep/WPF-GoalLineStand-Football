@@ -1,0 +1,401 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+<div class="row">
+    <big-breadcrumbs items="['Table', 'Normal Tables']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+    <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+</div>
+<!-- widget grid -->
+<section widget-grid id="widget-grid">
+
+
+<div class="row">
+<article class="col-sm-12">
+
+    <div jarvis-widget id="normal-table-widget" data-widget-color="blueDark" data-widget-editbutton="false">
+        <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>Normal Table</h2>
+        </header>
+        <div>
+            <div class="widget-body">
+                <p>Adds borders to any table row within <code>&lt;table&gt;</code> by adding the
+                    <code>.table-bordered</code>
+                    with the base class</p>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div jarvis-widget id="no-padding-table-widget" data-widget-color="darken"
+         data-widget-editbutton="false">
+        <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>No Padding</h2>
+        </header>
+        <div>
+            <div class="widget-body no-padding">
+                <alert type="info" class="no-margin fade in" dismisser>
+                    <i class="fa-fw fa fa-info"></i>
+                    Adds zebra-striping to table row within <code>&lt;table&gt;</code> by adding the <code>.table-striped</code>
+                    with the base class
+                </alert>
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        <tr>
+                            <td>Row 1</td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<article class="col-sm-12 col-md-12 col-lg-6">
+    <div jarvis-widget id="table-hover-states-widget" data-widget-color="greenDark" data-widget-editbutton="false">
+        <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>Table hover states</h2>
+        </header>
+        <div>
+            <div class="widget-body no-padding">
+                <alert type="info" class="no-margin" dismisser>
+                    <i class="fa-fw fa fa-info"></i>
+                    Enables hover effect <code>&lt;table&gt;</code> by adding the <code>.table-hover</code> with the
+                    base class
+                </alert>
+                <div class="table-responsive">
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Wise</td>
+                            <td>Man</td>
+                            <td>@myorange</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="col-sm-12 col-md-12 col-lg-6">
+    <div jarvis-widget id="color-tr-table-widget" data-widget-color="greenLight" data-widget-editbutton="false">
+        <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>Table TR with colors</h2>
+        </header>
+        <div>
+            <div class="widget-body no-padding">
+                <alert type="info" class="no-margin" dismisser>
+                    <i class="fa-fw fa fa-info"></i>
+                    Add custom colors to your TR and TD <code>&lt;tr&gt;</code> by adding <code>.success</code>, <code>.danger</code>,
+                    <code>.warning</code> and <code>.info</code> respectively
+                </alert>
+                <div class="table-responsive">
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th><i class="fa fa-building"></i> Product</th>
+                            <th><i class="fa fa-calendar"></i> Payment Taken</th>
+                            <th><i class="glyphicon glyphicon-send"></i> Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="success">
+                            <td>1</td>
+                            <td>TB - Monthly</td>
+                            <td>01/04/2012</td>
+                            <td>Approved</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>2</td>
+                            <td>TB - Monthly</td>
+                            <td>02/04/2012</td>
+                            <td>Declined</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>3</td>
+                            <td>TB - Monthly</td>
+                            <td>03/04/2012</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr class="info">
+                            <td>4</td>
+                            <td>TB - Monthly</td>
+                            <td>04/04/2012</td>
+                            <td>Call in to confirm</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+</div>
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div jarvis-widget id="condenced-table-widget" data-widget-editbutton="false">
+            <header>
+                <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+                <h2>Condenced table + combined prev. classes</h2>
+            </header>
+            <div>
+                <div class="widget-body no-padding">
+                    <alert type="warning" class="no-margin" dismisser>
+                        <i class="fa-fw fa fa-info"></i>
+                        A combined table effect with all classes mentioned above added to <code>&lt;table&gt;</code>.
+                        <code> .table-bordered .table-striped .table-condensed .table-hover .smart-form
+                            .has-tickbox </code>
+                    </alert>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </th>
+                                <th>Column name <a href-void class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-filter"></i></a></th>
+                                <th>Column name <a href-void class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-filter"></i></a></th>
+                                <th>Column name <a href-void class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-filter"></i></a></th>
+                                <th>Column name <a href-void class="btn btn-xs btn-default pull-right"><i
+                                        class="fa fa-filter"></i></a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="checkbox-inline">
+                                        <i></i>
+                                    </label>
+                                </td>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+</section>
+</div>

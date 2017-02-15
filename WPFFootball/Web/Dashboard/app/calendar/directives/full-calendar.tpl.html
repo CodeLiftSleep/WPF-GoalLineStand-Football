@@ -1,0 +1,51 @@
+<div jarvis-widget data-widget-color="blueDark">
+    <header>
+        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+
+        <h2> My Events </h2>
+
+        <div class="widget-toolbar">
+            <!-- add: non-hidden - to disable auto hide -->
+            <div class="btn-group dropdown" dropdown >
+                <button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
+                    Showing <i class="fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu js-status-update pull-right">
+                    <li>
+                        <a ng-click="changeView('month')">Month</a>
+                    </li>
+                    <li>
+                        <a ng-click="changeView('agendaWeek')">Agenda</a>
+                    </li>
+                    <li>
+                        <a ng-click="changeView('agendaDay')">Today</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- widget div-->
+    <div>
+        <div class="widget-body no-padding">
+            <!-- content goes here -->
+            <div class="widget-body-toolbar">
+
+                <div id="calendar-buttons">
+
+                    <div class="btn-group">
+                        <a ng-click="prev()" class="btn btn-default btn-xs"><i
+                                class="fa fa-chevron-left"></i></a>
+                        <a ng-click="next()" class="btn btn-default btn-xs"><i
+                                class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="calendar"></div>
+
+            <!-- end content -->
+        </div>
+
+    </div>
+    <!-- end widget div -->
+</div>

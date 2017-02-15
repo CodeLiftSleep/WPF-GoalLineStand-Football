@@ -1,0 +1,196 @@
+<div id="content"  >
+
+    <div class="row">
+        <big-breadcrumbs items="['Charts', 'Highchart Tables ']" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+        <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+                <div class="alert alert-info">
+
+                    <h3 class="no-margin">jQuery HighchartTable</h3>
+                    <h5>Convert your HTML data tables into fancy Highcharts graphs without any coding!</h5>
+                    <ul>
+                        <li>The HighchartTable plugin takes data and attributes from a table and parses them to simply create an Hightcharts chart</li>
+                        <li>Control the graph dynamically and easily without any javascript</li>
+                        <li>Builds automatically during page load, all you need to do is load the plugin</li>
+                        <li>See the full documentation <a href="http://highcharttable.org/#documentation" target="_blank"><strong>here <i class="fa fa-link"></i> </strong> </a></li>
+                    </ul>
+
+
+
+                </div>
+
+                <div class="col-sm-12 well">
+                    <div class="col-sm-6">
+                        <table class="highchart table table-hover table-bordered" data-highchart-table data-graph-container=".. .. .highchart-container2" data-graph-type="column">
+                            <caption>Column example</caption>
+                            <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th class="">Sales</th>
+                                <th class="">Benefits</th>
+                                <th class="">Expenses</th>
+                                <th class="">Prediction</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>January</td>
+                                <td class="">8000</td>
+                                <td class="">2000</td>
+                                <td class="">1000</td>
+                                <td class="">9000</td>
+                            </tr>
+                            <tr>
+                                <td>February</td>
+                                <td class="">12000</td>
+                                <td class="">3000</td>
+                                <td class="">1300</td>
+                                <td class="">10000</td>
+                            </tr>
+                            <tr>
+                                <td>March</td>
+                                <td class="">18000</td>
+                                <td class="">4000</td>
+                                <td class="">1240</td>
+                                <td class="">11000</td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td class="">2000</td>
+                                <td class="">-1000</td>
+                                <td class="">-150</td>
+                                <td class="">13000</td>
+                            </tr>
+                            <tr>
+                                <td>May</td>
+                                <td class="">500</td>
+                                <td class="">-2500</td>
+                                <td class="">1000</td>
+                                <td class="">14000</td>
+                            </tr>
+                            <tr>
+                                <td>June</td>
+                                <td class="">600</td>
+                                <td class="">-500</td>
+                                <td class="">-500</td>
+                                <td class="">15000</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="highchart-container2"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 well">
+                    <div class="col-sm-6">
+                        <table class="highchart table table-hover table-bordered" data-highchart-table data-graph-container=".. .. .highchart-container" data-graph-type="line">
+                            <caption>Line example</caption>
+                            <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Sales</th>
+                                <th>Benefits</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>January</td>
+                                <td>8000</td>
+                                <td>2000</td>
+                            </tr>
+                            <tr>
+                                <td>February</td>
+                                <td>12000</td>
+                                <td>3000</td>
+                            </tr>
+                            <tr>
+                                <td>March</td>
+                                <td>18000</td>
+                                <td>4000</td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td>2000</td>
+                                <td>-1000</td>
+                            </tr>
+                            <tr>
+                                <td>May</td>
+                                <td>500</td>
+                                <td>-2500</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="highchart-container"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 well">
+                    <div class="col-sm-6">
+                        <table class="highchart table table-hover table-bordered" data-highchart-table data-graph-container=".. .. .highchart-container3" data-graph-type="column">
+                            <caption>Column + area example</caption>
+                            <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Sales</th>
+                                <th data-graph-type="area">Benefits</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>January</td>
+                                <td>8000</td>
+                                <td>2000</td>
+                            </tr>
+                            <tr>
+                                <td>February</td>
+                                <td>12000</td>
+                                <td>3000</td>
+                            </tr>
+                            <tr>
+                                <td>March</td>
+                                <td>18000</td>
+                                <td>4000</td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td>2000</td>
+                                <td>-1000</td>
+                            </tr>
+                            <tr>
+                                <td>May</td>
+                                <td>500</td>
+                                <td>-2500</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="highchart-container3"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- end row -->
+
+        </div>
+
+        <!-- end row -->
+
+    </section>
+
+
+</div>

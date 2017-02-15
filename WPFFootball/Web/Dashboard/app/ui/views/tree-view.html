@@ -1,0 +1,120 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['UI Elements', 'Tree View']" icon="desktop" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+    <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+</div>
+<!-- widget grid -->
+<section id="widget-grid" data-widget-grid>
+<!-- row -->
+<div class="row">
+<!-- NEW WIDGET START -->
+<article class="col-sm-12 col-md-12 col-lg-6">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div id="organizing-view-widget" data-widget-editbutton="false" data-widget-color="orange" data-jarvis-widget>
+        <!-- widget options:
+        usage: <div data-jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-lg fa-calendar"></i> </span>
+            <h2>Organizing view </h2>
+        </header>
+        <!-- widget div-->
+        <div>            <!-- widget content -->
+            <div class="widget-body">
+                <div class="widget-body-toolbar bg-color-white">
+                    <form class="form-inline" role="form">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-10">
+                                <div class="form-group">
+                                    <label class="sr-only">Task title</label>
+                                    <input type="email" class="form-control input-sm" placeholder="My Task">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Pick Week</label>
+                                    <select class="form-control input-sm">
+                                        <option>Week 1</option>
+                                        <option>Week 2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Days</label>
+                                    <select class="form-control input-sm">
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday</option>
+                                        <option>Friday</option>
+                                        <option>Saturday</option>
+                                        <option>Sunday</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-2 text-align-right">
+                                <button type="submit" class="btn btn-warning btn-xs">
+                                    <i class="fa fa-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tree">
+                    <ul data-smart-treeview data-items="demoTree1" role="tree"></ul>
+                </div>
+            </div>
+            <!-- end widget content -->
+        </div>
+        <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+</article>
+<!-- WIDGET END -->
+<!-- NEW WIDGET START -->
+<article class="col-sm-12 col-md-12 col-lg-6">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div id="simple-view-widget" data-widget-editbutton="false" data-widget-color="blue" data-jarvis-widget>
+        <!-- widget options:
+        usage: <div data-jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+            <h2>Simple View </h2>
+        </header>
+        <!-- widget div-->
+        <div>            <!-- widget content -->
+            <div class="widget-body">
+                <div class="tree smart-form">
+                   <ul data-smart-treeview data-items="demoTree2" role="tree"></ul>
+                </div>
+            </div>
+            <!-- end widget content -->
+        </div>
+        <!-- end widget div -->
+    </div>
+    <!-- end widget -->
+</article>
+<!-- WIDGET END -->
+</div>
+<!-- end row -->
+<!-- row -->
+<div class="row">
+</div>
+<!-- end row -->
+</section>
+<!-- end widget grid -->
+</div>

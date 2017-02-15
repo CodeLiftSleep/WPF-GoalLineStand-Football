@@ -1,0 +1,30 @@
+<aside id="left-panel">
+
+    <!-- User info -->
+    <div login-info></div>
+    <!-- end user info -->
+
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul data-smart-menu>
+
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.home" title="Outlook">
+                    <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{getWord('Home')}}</span></a>
+            </li>
+
+        </ul>
+
+        <!-- NOTE: This allows you to pull menu items from server -->
+        <!-- <ul data-smart-menu-items="/api/menu-items.json"></ul> -->
+    </nav>
+
+  <span class="minifyme" data-action="minifyMenu" minify-menu>
+    <i class="fa fa-arrow-circle-left hit"></i>
+  </span>
+
+</aside>

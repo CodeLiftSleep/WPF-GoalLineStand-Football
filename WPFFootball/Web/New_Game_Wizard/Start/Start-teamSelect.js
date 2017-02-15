@@ -97,7 +97,7 @@
                           <h3 class="modal-title" id="modal-title">
                           {{teamSelected}} Team Information:  {{record}}  <span style="margin-left: 10px;">{{team.DivStanding}}{{teamPlace}} in the {{team.ConfName}} {{team.DivName}}</span></h3>
                           <span style="margin-left: 10px;"><b>Offense(Rank):</b> {{teamOffYds | number: 2}} yds/gm({{teamOffRank}})  <b>Pass:</b> {{passOffYds | number: 2}} yds/gm
-                          yds/gm({{passOffRank}}) <b>Rush:</b> {{rushOffYds | number: 2}} yds/gm({{rushOffRank}}) <b>Pts:</b> {{teamPointsOff | number: 2}} pts/gm({{pointsOffRank}})
+                          ({{passOffRank}}) <b>Rush:</b> {{rushOffYds | number: 2}} yds/gm({{rushOffRank}}) <b>Pts:</b> {{teamPointsOff | number: 2}} pts/gm({{pointsOffRank}})
                           <span style="margin-left: 10px;"><b>Defense(Rank):</b> {{teamDefYds | number: 2}} yds/gm({{teamDefRank}})  <b>Pass:</b>
                           {{passDefYds | number: 2}} yds/gm({{passDefRank}})  <b>Rush:</b> {{rushDefYds | number: 2}} yds/gm({{rushDefRank}})   <b>Pts: </b>{{teamPointsDef | number: 2}}
                           pts/gm({{pointsDefRank}})</span></span>

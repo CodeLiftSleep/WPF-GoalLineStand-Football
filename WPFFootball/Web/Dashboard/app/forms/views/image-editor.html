@@ -1,0 +1,429 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Forms', 'Image Editor']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+    <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+</div>
+
+
+<!-- widget grid -->
+
+
+<section id="widget-grid" widget-grid>
+
+<!-- row -->
+<div class="row">
+
+<!-- NEW WIDGET START -->
+<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+<div class="alert alert-danger hidden-lg hidden-md hidden-sm">
+    <b>Please note:</b>
+    This plugin is non-responsive
+</div>
+
+<!-- Widget ID (each widget will need unique ID)-->
+
+<div jarvis-widget id="wid-id-0" data-widget-togglebutton="false" data-widget-editbutton="false"
+     data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" role="widget"
+     style="">
+<!-- widget options:
+usage: <div jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+data-widget-colorbutton="false"
+data-widget-editbutton="false"
+data-widget-togglebutton="false"
+data-widget-deletebutton="false"
+data-widget-fullscreenbutton="false"
+data-widget-custombutton="false"
+data-widget-collapsed="true"
+data-widget-sortable="false"
+
+-->
+<header role="heading">
+    <span class="widget-icon"> <i class="fa fa-file-image-o txt-color-darken"></i> </span>
+
+    <h2 class="hidden-xs hidden-sm">jcrop </h2>
+
+    <ul class="nav nav-tabs pull-right in" id="myTab">
+
+        <li class="active">
+            <a data-toggle="tab" href="#s1"><i class="fa fa-crop text-success"></i> <span
+                    class="hidden-mobile hidden-tablet">API</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s2"><i class="fa fa-crop text-primary"></i> <span
+                    class="hidden-mobile hidden-tablet">Default</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s3"><i class="fa fa-crop text-warning"></i> <span
+                    class="hidden-mobile hidden-tablet">Basic</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s4"><i class="fa fa-crop text-danger"></i> <span
+                    class="hidden-mobile hidden-tablet">Aspect Ratio</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s5"><i class="fa fa-crop txt-color-purple"></i> <span
+                    class="hidden-mobile hidden-tablet">Animations</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s6"><i class="fa fa-crop txt-color-pink"></i> <span
+                    class="hidden-mobile hidden-tablet">Styling</span></a>
+        </li>
+
+    </ul>
+
+    <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+</header>
+
+<!-- widget div-->
+<div role="content">
+<!-- widget edit box -->
+
+<div class="widget-body">
+<!-- content -->
+<div id="myTabContent" class="tab-content">
+
+<!-- new tab: API interface -->
+<div class="tab-pane fade active in" id="s1">
+
+    <h4 class="margin-bottom-10">API Interface — real-time API example</h4>
+
+    <div class="alert alert-info">
+        <b>Experimental shader active.</b>
+        Jcrop now includes a shading mode that facilitates building
+        better transparent Jcrop instances. The experimental shader is less
+        robust than Jcrop's default shading method and should only be
+        used if you require this functionality.
+        <br>
+        View jcrop's documentation by going to: <a href="http://deepliquid.com/content/Jcrop.html" target="_blank">http://deepliquid.com/content/Jcrop.html</a>
+    </div>
+
+    <img src="styles/img/superbox/superbox-full-7.jpg"
+         data-smart-jcrop
+         data-selection="apiDemoSelection"
+         data-options="apiDemoOptions"
+         alt="[Jcrop Example]" class="pull-left"/>
+
+    <div class="pull-left padding-gutter padding-top-0 padding-bottom-0">
+
+        <fieldset>
+
+            <legend>
+                Option Toggles
+            </legend>
+
+            <span>
+                <button ng-click="apiRandomSelection()" class="btn btn-default btn-sm">
+                    setSelect
+                </button>
+                <button ng-click="apiRandomAnimation()" class="btn btn-default btn-sm">
+                    animateTo
+                </button>
+                <button ng-click="apiReleaseSelection()" class="btn btn-default btn-sm">
+                    Release
+                </button>
+                <button ng-click="apiToggleDisable()"
+                        ng-bind="apiDemoOptions.disabled ? 'Re-Enable' : 'Disable'"
+                        class="btn btn-default btn-sm"></button>
+                <button ng-click="apiToggleDestroy()"
+                        ng-bind="apiDemoOptions.destroyed ? 'Attach Jcrop' : 'Destroy!'"
+                        class="btn btn-default btn-sm"></button>
+            </span>
+        </fieldset>
+
+        <fieldset class="row">
+            <legend>
+                Option Toggles
+            </legend>
+            <div class="col-sm-6 col-md-4">
+                <label class="margin-top-0">
+                    <input type="checkbox" class="checkbox style-0" ng-model="apiDemoOptions.allowSelect">
+                    <span>Allow new selections</span>
+                </label>
+
+                <label class="">
+                    <input type="checkbox" class="checkbox style-0" ng-model="apiDemoOptions.allowMove">
+                    <span>Selection can be moved</span>
+                </label>
+
+                <label class="">
+                    <input type="checkbox" class="checkbox style-0" ng-model="apiDemoOptions.allowResize">
+                    <span>Resizable selection</span>
+                </label>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <label class="margin-top-0">
+                    <input type="checkbox" class="checkbox style-0" ng-click="apiDemoToggleAspect()">
+                    <span>Aspect ratio</span>
+                </label>
+                <input type="text" class="form-control input-xs" ng-model="apiDemoOptions.aspectRatio"
+                       ng-show="apiDemoShowAspect"/>
+
+                <label class="">
+                    <input type="checkbox" class="checkbox style-0" ng-click="apiDemoToggleSizeRestrict()">
+                    <span>minSize/maxSize setting</span>
+                </label>
+                <dl ng-show="apiDemoShowSizeRestrict">
+                    <dt>minSize width</dt>
+                    <dd><input type="text" class="form-control input-xs" ng-model="apiDemoOptions.minSizeWidth"/></dd>
+                    <dt>minSize height</dt>
+                    <dd><input type="text" class="form-control input-xs" ng-model="apiDemoOptions.minSizeHeight"/></dd>
+                    <dt>maxSize width</dt>
+                    <dd><input type="text" class="form-control input-xs" ng-model="apiDemoOptions.maxSizeWidth"/></dd>
+                    <dt>maxSize height</dt>
+                    <dd><input type="text" class="form-control input-xs" ng-model="apiDemoOptions.maxSizeHeight"/></dd>
+                </dl>
+
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Change Image
+            </legend>
+            <div class="btn-group">
+                <button ng-repeat="image in apiDemoImages"
+                        ng-click="$parent.setApiDemoImage(image)"
+                        ng-class="{active: $parent.apiDemoImage == image}"
+                        class="btn btn-default">
+                    {{image.name}}
+                </button>
+            </div>
+        </fieldset>
+
+    </div>
+
+</div>
+<!-- end s1 tab pane -->
+
+<!-- new tab: Default -->
+<div class="tab-pane fade" id="s2">
+
+    <h4 class="margin-bottom-10">Default Behaviour</h4>
+
+    <div class="alert alert-info">
+        <b>This example demonstrates the default behavior of Jcrop.</b>
+        <br/>
+        Since no event handlers have been attached it only performs
+        the cropping behavior.
+    </div>
+
+    <img src="styles/img/superbox/superbox-full-11.jpg" data-smart-jcrop alt="[Jcrop Example]"/>
+
+</div>
+<!-- end s1 tab pane -->
+
+<!-- new tab: Basic handler -->
+<div class="tab-pane fade" id="s3">
+
+    <h4 class="margin-bottom-10">Basic Handler — basic form integration</h4>
+
+    <div class="alert alert-info">
+        <b>An example with a basic event handler.</b> Here we've tied
+        several form values together with a simple event handler invocation.
+        The result is that the form values are updated in real-time as
+        the selection is changed using Jcrop's <em>onChange</em> handler.
+    </div>
+
+    <!-- This is the image we're attaching Jcrop to -->
+    <img src="styles/img/superbox/superbox-full-10.jpg" data-smart-jcrop data-coords="basicCoords"
+         alt="[Jcrop Example]"/>
+
+
+    <div class="coords margin-top-10">
+
+        <div class="inline-labels">
+            <label>X1
+                <input type="text" size="4" ng-model="basicCoords.x"/>
+            </label>
+            <label>Y1
+                <input type="text" size="4" ng-model="basicCoords.y"/>
+            </label>
+            <label>X2
+                <input type="text" size="4" ng-model="basicCoords.x2"/>
+            </label>
+            <label>Y2
+                <input type="text" size="4" ng-model="basicCoords.y2"/>
+            </label>
+            <label>W
+                <input type="text" size="4" ng-model="basicCoords.w"/>
+            </label>
+            <label>H
+                <input type="text" size="4" ng-model="basicCoords.h"/>
+            </label>
+        </div>
+    </div>
+
+</div>
+<!-- end s2 tab pane -->
+
+<!-- new tab: Aspect ratio -->
+<div class="tab-pane fade" id="s4">
+
+    <h4 class="margin-bottom-10">Aspect Ratio w/ Preview Pane — nice visual example</h4>
+
+    <div class="alert alert-info">
+        <b>An example implementing a preview pane.</b>
+        Obviously the most visual demo, the preview pane is accomplished
+        entirely outside of Jcrop with a simple jQuery-flavored callback.
+        This type of interface could be useful for creating a thumbnail
+        or avatar. The onChange event handler is used to update the
+        view in the preview pane.
+    </div>
+
+    <div id="jcrop-demo-with-preview">
+        <img src="styles/img/superbox/superbox-full-9.jpg" data-smart-jcrop data-smart-jcrop-preview="#preview-pane"
+             alt="[Jcrop Example]"/>
+
+        <div id="preview-pane">
+            <div class="preview-container">
+                <img src="styles/img/superbox/superbox-full-9.jpg" class="jcrop-preview" alt="Preview"/>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- end s3 tab pane -->
+
+<!-- new tab: animation/transitions -->
+<div class="tab-pane fade" id="s5">
+
+    <h4 class="margin-bottom-10">Animation/Transitions — animation/fading demo</h4>
+
+    <div class="alert alert-info">
+        <b>Experimental shader active.</b>
+        Jcrop now includes a shading mode that facilitates building
+        better transparent Jcrop instances. The experimental shader is less
+        robust than Jcrop's default shading method and should only be
+        used if you require this functionality.
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <img src="styles/img/superbox/superbox-full-7.jpg"
+                 data-smart-jcrop
+                 data-options="animationsDemoOptions"
+                 data-selection="animationsDemoSelection"
+                 alt="Jcrop Image" class="pull-left"/>
+
+            <div id="interface" class="pull-left padding-gutter padding-top-0 padding-bottom-0">
+                <fieldset id="anim_buttons">
+                    <legend>Animate Selection</legend>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button ng-repeat="(key, value) in selections"
+                                    ng-click="$parent.animationsDemoSelection = value"
+                                    ng-class="{active: $parent.animationsDemoSelection == value}"
+                                    class="btn btn-default btn-small">{{key}}
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="bgo_buttons">
+                    <legend>Change bgOpacity</legend>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button ng-repeat="(key, value) in opacities"
+                                    ng-click="$parent.animationsDemoOptions.bgOpacity = value"
+                                    ng-class="{active: $parent.animationsDemoOptions.bgOpacity == value}"
+                                    class="btn btn-default btn-small">{{key}}
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="bgc_buttons">
+                    <legend>Change bgColor</legend>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button ng-repeat="(key, value) in colors"
+                                    ng-click="$parent.animationsDemoOptions.bgColor = value"
+                                    ng-class="{active: $parent.animationsDemoOptions.bgColor == value}"
+                                    class="btn btn-default btn-small" ng-style="{background: value}">{{key}}
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <label class="checkbox">
+                    <input type="checkbox" class="checkbox style-0" ng-model="animationsDemoOptions.bgFade">
+
+
+                    <span>Enable fading (bgFade: true)</span>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" class="checkbox style-0" ng-model="animationsDemoOptions.shade">
+                    <span>Use experimental shader (shade: true)</span>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- end s4 tab pane -->
+
+<!-- new tab: Styling -->
+<div class="tab-pane fade padding-10 no-padding-bottom" id="s6">
+
+    <h4 class="margin-bottom-10">Styling Example — style Jcrop dynamically</h4>
+
+    <img src="styles/img/superbox/superbox-full-16.jpg"
+         data-smart-jcrop
+         data-options="demoStyle"
+         data-selection="demoStyle.selection"
+         alt="[Jcrop Example]"/>
+
+    <div class="pull-left pull-left padding-gutter padding-top-0 padding-bottom-0">
+        <fieldset>
+            <legend>
+                Manipulate classes
+            </legend>
+            <div class="btn-group">
+                <button class="btn btn-default"
+                        ng-click="$parent.demoStyle = style"
+                        ng-class="{active: $parent.demoStyle == style}"
+                        ng-repeat="style in styles">
+                    {{style.name}}
+                </button>
+            </div>
+        </fieldset>
+    </div>
+
+</div>
+<!-- end s6 tab pane -->
+
+</div>
+
+<!-- end content -->
+</div>
+
+</div>
+<!-- end widget div -->
+</div>
+<!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+</div>
+
+<!-- end row -->
+
+</section>
+
+
+<!-- end widget grid -->
+
+
+</div>

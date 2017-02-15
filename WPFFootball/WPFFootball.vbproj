@@ -457,6 +457,9 @@
     <Content Include="Web\server.js" />
     <Content Include="Web\sqlite.js" />
     <Resource Include="Web\fonts\glyphicons-halflings-regular.ttf" />
+    <Resource Include="Web\fonts\fontawesome-webfont.ttf" />
+    <None Include="Web\fonts\fontawesome-webfont.woff" />
+    <None Include="Web\fonts\fontawesome-webfont.woff2" />
     <None Include="Web\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Web\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web\package.json" />

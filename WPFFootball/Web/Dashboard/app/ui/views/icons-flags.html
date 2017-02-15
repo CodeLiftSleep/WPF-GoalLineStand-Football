@@ -1,0 +1,889 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['UI Elements', 'Icons', 'Flags']" icon="desktop" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+    <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+</div>
+
+
+<!-- widget grid -->
+
+<section id="widget-grid" data-widget-grid>
+
+<div class="well well-sm">
+    <div class="input-group">
+        <input class="form-control input-lg" ng-model="search" placeholder="Search for an icon...">
+        <span class="input-group-addon"><i class="fa fa-fw fa-lg fa-search"></i></span>
+    </div>
+</div>
+
+
+<!-- row -->
+<div class="row">
+
+<!-- NEW WIDGET START -->
+<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+<!-- Widget ID (each widget will need unique ID)-->
+<div id="world-flag-widget" data-jarvis-widget>
+<!-- widget options:
+    usage: <div data-jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
+
+-->
+<header>
+    <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+
+    <h2>World Flag </h2>
+
+</header>
+
+<!-- widget div-->
+<div>
+
+
+
+<!-- widget content -->
+<div class="widget-body" data-smart-class-filter data-model="search" data-display-elements=".demo-icon-font" data-filter-elements=".demo-icon-font img">
+<div class="alert alert-info" ng-hide="search">
+    <i class="fa fa-exclamation"></i> Please note: flag images has a base class for image <code>
+    flag flag-*</code>. A full example of this in use will be as follows: <code> img class=&quot;flag flag-us&quot;
+    src=&quot;img/blank.gif&quot;</code>
+</div>
+<h2 ng-hide="search">Africa</h2>
+
+<div class="row">
+
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-dz" src="styles/img/blank.gif" alt="Algeria"> Algeria
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ao" src="styles/img/blank.gif" alt="Angola"> Angola
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bj" src="styles/img/blank.gif" alt="Benin"> Benin
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bw" src="styles/img/blank.gif" alt="Botswana"> Botswana
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bf" src="styles/img/blank.gif" alt="Burkina Faso"> Burkina Faso
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bi" src="styles/img/blank.gif" alt="Burundi"> Burundi
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cm" src="styles/img/blank.gif" alt="Cameroon"> Cameroon
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cv" src="styles/img/blank.gif" alt="Cape Verde"> Cape Verde
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cf" src="styles/img/blank.gif" alt="Central African Republic"> Central African Republic
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-td" src="styles/img/blank.gif" alt="Chad"> Chad
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-km" src="styles/img/blank.gif" alt="Comoros"> Comoros
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cg" src="styles/img/blank.gif" alt="Congo"> Congo
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cd" src="styles/img/blank.gif" alt="Congo, The Democratic Republic of the"> Congo, The Democratic
+        Republic of the
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ci" src="styles/img/blank.gif" alt="C&#xF4;te d'Ivoire"> C&#xF4;te d'Ivoire
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-dj" src="styles/img/blank.gif" alt="Djibouti"> Djibouti
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-eg" src="styles/img/blank.gif" alt="Egypt"> Egypt
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gq" src="styles/img/blank.gif" alt="Equatorial Guinea"> Equatorial Guinea
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-er" src="styles/img/blank.gif" alt="Eritrea"> Eritrea
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-et" src="styles/img/blank.gif" alt="Ethiopia"> Ethiopia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ga" src="styles/img/blank.gif" alt="Gabon"> Gabon
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gm" src="styles/img/blank.gif" alt="Gambia"> Gambia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gh" src="styles/img/blank.gif" alt="Ghana"> Ghana
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gn" src="styles/img/blank.gif" alt="Guinea"> Guinea
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gw" src="styles/img/blank.gif" alt="Guinea-Bissau"> Guinea-Bissau
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ke" src="styles/img/blank.gif" alt="Kenya"> Kenya
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ls" src="styles/img/blank.gif" alt="Lesotho"> Lesotho
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lr" src="styles/img/blank.gif" alt="Liberia"> Liberia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ly" src="styles/img/blank.gif" alt="Libya"> Libya
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mg" src="styles/img/blank.gif" alt="Madagascar"> Madagascar
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mw" src="styles/img/blank.gif" alt="Malawi"> Malawi
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ml" src="styles/img/blank.gif" alt="Mali"> Mali
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mr" src="styles/img/blank.gif" alt="Mauritania"> Mauritania
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mu" src="styles/img/blank.gif" alt="Mauritius"> Mauritius
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-yt" src="styles/img/blank.gif" alt="Mayotte"> Mayotte
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ma" src="styles/img/blank.gif" alt="Morocco"> Morocco
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mz" src="styles/img/blank.gif" alt="Mozambique"> Mozambique
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-na" src="styles/img/blank.gif" alt="Namibia"> Namibia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ne" src="styles/img/blank.gif" alt="Niger"> Niger
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ng" src="styles/img/blank.gif" alt="Nigeria"> Nigeria
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-rw" src="styles/img/blank.gif" alt="Rwanda"> Rwanda
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-re" src="styles/img/blank.gif" alt="R&#xE9;union"> R&#xE9;union
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sh" src="styles/img/blank.gif" alt="Saint Helena"> Saint Helena
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-st" src="styles/img/blank.gif" alt="Sao Tome and Principe"> Sao Tome and Principe
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sn" src="styles/img/blank.gif" alt="Senegal"> Senegal
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sc" src="styles/img/blank.gif" alt="Seychelles"> Seychelles
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sl" src="styles/img/blank.gif" alt="Sierra Leone"> Sierra Leone
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-so" src="styles/img/blank.gif" alt="Somalia"> Somalia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-za" src="styles/img/blank.gif" alt="South Africa"> South Africa
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ss" src="styles/img/blank.gif" alt="South Sudan"> South Sudan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sd" src="styles/img/blank.gif" alt="Sudan"> Sudan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sz" src="styles/img/blank.gif" alt="Swaziland"> Swaziland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tz" src="styles/img/blank.gif" alt="Tanzania"> Tanzania
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tg" src="styles/img/blank.gif" alt="Togo"> Togo
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tn" src="styles/img/blank.gif" alt="Tunisia"> Tunisia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ug" src="styles/img/blank.gif" alt="Uganda"> Uganda
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-eh" src="styles/img/blank.gif" alt="Western Sahara"> Western Sahara
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-zm" src="styles/img/blank.gif" alt="Zambia"> Zambia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-zw" src="styles/img/blank.gif" alt="Zimbabwe"> Zimbabwe
+    </div>
+</div>
+
+<h2 ng-hide="search">America</h2>
+
+<div class="row">
+
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ai" src="styles/img/blank.gif" alt="Anguilla"> Anguilla
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ag" src="styles/img/blank.gif" alt="Antigua and Barbuda"> Antigua and Barbuda
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ar" src="styles/img/blank.gif" alt="Argentina"> Argentina
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-aw" src="styles/img/blank.gif" alt="Aruba"> Aruba
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bs" src="styles/img/blank.gif" alt="Bahamas"> Bahamas
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bb" src="styles/img/blank.gif" alt="Barbados"> Barbados
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bz" src="styles/img/blank.gif" alt="Belize"> Belize
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bm" src="styles/img/blank.gif" alt="Bermuda"> Bermuda
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bo" src="styles/img/blank.gif" alt="Bolivia, Plurinational State of"> Bolivia, Plurinational
+        State of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-br" src="styles/img/blank.gif" alt="Brazil"> Brazil
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ca" src="styles/img/blank.gif" alt="Canada"> Canada
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ky" src="styles/img/blank.gif" alt="Cayman Islands"> Cayman Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cl" src="styles/img/blank.gif" alt="Chile"> Chile
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-co" src="styles/img/blank.gif" alt="Colombia"> Colombia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cr" src="styles/img/blank.gif" alt="Costa Rica"> Costa Rica
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cu" src="styles/img/blank.gif" alt="Cuba"> Cuba
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cw" src="styles/img/blank.gif" alt="Cura&#xE7;ao"> Cura&#xE7;ao
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-dm" src="styles/img/blank.gif" alt="Dominica"> Dominica
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-do" src="styles/img/blank.gif" alt="Dominican Republic"> Dominican Republic
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ec" src="styles/img/blank.gif" alt="Ecuador"> Ecuador
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sv" src="styles/img/blank.gif" alt="El Salvador"> El Salvador
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fk" src="styles/img/blank.gif" alt="Falkland Islands (Malvinas)"> Falkland Islands (Malvinas)
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gf" src="styles/img/blank.gif" alt="French Guiana"> French Guiana
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gl" src="styles/img/blank.gif" alt="Greenland"> Greenland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gd" src="styles/img/blank.gif" alt="Grenada"> Grenada
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gp" src="styles/img/blank.gif" alt="Guadeloupe"> Guadeloupe
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gt" src="styles/img/blank.gif" alt="Guatemala"> Guatemala
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gy" src="styles/img/blank.gif" alt="Guyana"> Guyana
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ht" src="styles/img/blank.gif" alt="Haiti"> Haiti
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-hn" src="styles/img/blank.gif" alt="Honduras"> Honduras
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-jm" src="styles/img/blank.gif" alt="Jamaica"> Jamaica
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mq" src="styles/img/blank.gif" alt="Martinique"> Martinique
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mx" src="styles/img/blank.gif" alt="Mexico"> Mexico
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ms" src="styles/img/blank.gif" alt="Montserrat"> Montserrat
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-an" src="styles/img/blank.gif" alt="Netherlands Antilles"> Netherlands Antilles
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ni" src="styles/img/blank.gif" alt="Nicaragua"> Nicaragua
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pa" src="styles/img/blank.gif" alt="Panama"> Panama
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-py" src="styles/img/blank.gif" alt="Paraguay"> Paraguay
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pe" src="styles/img/blank.gif" alt="Peru"> Peru
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pr" src="styles/img/blank.gif" alt="Puerto Rico"> Puerto Rico
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kn" src="styles/img/blank.gif" alt="Saint Kitts and Nevis"> Saint Kitts and Nevis
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lc" src="styles/img/blank.gif" alt="Saint Lucia"> Saint Lucia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pm" src="styles/img/blank.gif" alt="Saint Pierre and Miquelon"> Saint Pierre and Miquelon
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-vc" src="styles/img/blank.gif" alt="Saint Vincent and the Grenadines"> Saint Vincent and the
+        Grenadines
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sx" src="styles/img/blank.gif" alt="Sint Maarten"> Sint Maarten
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sr" src="styles/img/blank.gif" alt="Suriname"> Suriname
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tt" src="styles/img/blank.gif" alt="Trinidad and Tobago"> Trinidad and Tobago
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tc" src="styles/img/blank.gif" alt="Turks and Caicos Islands"> Turks and Caicos Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-us" src="styles/img/blank.gif" alt="United States"> United States
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-uy" src="styles/img/blank.gif" alt="Uruguay"> Uruguay
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ve" src="styles/img/blank.gif" alt="Venezuela, Bolivarian Republic of"> Venezuela, Bolivarian
+        Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-vg" src="styles/img/blank.gif" alt="Virgin Islands, British"> Virgin Islands, British
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-vi" src="styles/img/blank.gif" alt="Virgin Islands, U.S."> Virgin Islands, U.S.
+    </div>
+</div>
+
+
+<h2 ng-hide="search">Asia</h2>
+
+<div class="row">
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-af" src="styles/img/blank.gif" alt="Afghanistan"> Afghanistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-am" src="styles/img/blank.gif" alt="Armenia"> Armenia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-az" src="styles/img/blank.gif" alt="Azerbaijan"> Azerbaijan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bh" src="styles/img/blank.gif" alt="Bahrain"> Bahrain
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bd" src="styles/img/blank.gif" alt="Bangladesh"> Bangladesh
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bt" src="styles/img/blank.gif" alt="Bhutan"> Bhutan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bn" src="styles/img/blank.gif" alt="Brunei Darussalam"> Brunei Darussalam
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kh" src="styles/img/blank.gif" alt="Cambodia"> Cambodia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cn" src="styles/img/blank.gif" alt="China"> China
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cy" src="styles/img/blank.gif" alt="Cyprus"> Cyprus
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ge" src="styles/img/blank.gif" alt="Georgia"> Georgia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-hk" src="styles/img/blank.gif" alt="Hong Kong"> Hong Kong
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-in" src="styles/img/blank.gif" alt="India"> India
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-id" src="styles/img/blank.gif" alt="Indonesia"> Indonesia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ir" src="styles/img/blank.gif" alt="Iran, Islamic Republic of"> Iran, Islamic Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-iq" src="styles/img/blank.gif" alt="Iraq"> Iraq
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-il" src="styles/img/blank.gif" alt="Israel"> Israel
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-jp" src="styles/img/blank.gif" alt="Japan"> Japan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-jo" src="styles/img/blank.gif" alt="Jordan"> Jordan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kz" src="styles/img/blank.gif" alt="Kazakhstan"> Kazakhstan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kp" src="styles/img/blank.gif" alt="Korea, Democratic People's Republic of"> Korea, Democratic
+        People's Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kr" src="styles/img/blank.gif" alt="Korea, Republic of"> Korea, Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kw" src="styles/img/blank.gif" alt="Kuwait"> Kuwait
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kg" src="styles/img/blank.gif" alt="Kyrgyzstan"> Kyrgyzstan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-la" src="styles/img/blank.gif" alt="Lao People's Democratic Republic"> Lao People's Democratic
+        Republic
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lb" src="styles/img/blank.gif" alt="Lebanon"> Lebanon
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mo" src="styles/img/blank.gif" alt="Macao"> Macao
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-my" src="styles/img/blank.gif" alt="Malaysia"> Malaysia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mv" src="styles/img/blank.gif" alt="Maldives"> Maldives
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mn" src="styles/img/blank.gif" alt="Mongolia"> Mongolia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mm" src="styles/img/blank.gif" alt="Myanmar"> Myanmar
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-np" src="styles/img/blank.gif" alt="Nepal"> Nepal
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-om" src="styles/img/blank.gif" alt="Oman"> Oman
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pk" src="styles/img/blank.gif" alt="Pakistan"> Pakistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ps" src="styles/img/blank.gif" alt="Palestinian Territory, Occupied"> Palestinian Territory,
+        Occupied
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ph" src="styles/img/blank.gif" alt="Philippines"> Philippines
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-qa" src="styles/img/blank.gif" alt="Qatar"> Qatar
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sa" src="styles/img/blank.gif" alt="Saudi Arabia"> Saudi Arabia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sg" src="styles/img/blank.gif" alt="Singapore"> Singapore
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lk" src="styles/img/blank.gif" alt="Sri Lanka"> Sri Lanka
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sy" src="styles/img/blank.gif" alt="Syrian Arab Republic"> Syrian Arab Republic
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tw" src="styles/img/blank.gif" alt="Taiwan, Province of China"> Taiwan, Province of China
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tj" src="styles/img/blank.gif" alt="Tajikistan"> Tajikistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-th" src="styles/img/blank.gif" alt="Thailand"> Thailand
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tl" src="styles/img/blank.gif" alt="Timor-Leste"> Timor-Leste
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tr" src="styles/img/blank.gif" alt="Turkey"> Turkey
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tm" src="styles/img/blank.gif" alt="Turkmenistan"> Turkmenistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ae" src="styles/img/blank.gif" alt="United Arab Emirates"> United Arab Emirates
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-uz" src="styles/img/blank.gif" alt="Uzbekistan"> Uzbekistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-vn" src="styles/img/blank.gif" alt="Viet Nam"> Viet Nam
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ye" src="styles/img/blank.gif" alt="Yemen"> Yemen
+    </div>
+</div>
+
+<h2 ng-hide="search">Australia and Oceania</h2>
+
+<div class="row">
+
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-as" src="styles/img/blank.gif" alt="American Samoa"> American Samoa
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-au" src="styles/img/blank.gif" alt="Australia"> Australia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ck" src="styles/img/blank.gif" alt="Cook Islands"> Cook Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fj" src="styles/img/blank.gif" alt="Fiji"> Fiji
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pf" src="styles/img/blank.gif" alt="French Polynesia"> French Polynesia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gu" src="styles/img/blank.gif" alt="Guam"> Guam
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ki" src="styles/img/blank.gif" alt="Kiribati"> Kiribati
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mh" src="styles/img/blank.gif" alt="Marshall Islands"> Marshall Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fm" src="styles/img/blank.gif" alt="Micronesia, Federated States of"> Micronesia, Federated
+        States of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nr" src="styles/img/blank.gif" alt="Nauru"> Nauru
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nc" src="styles/img/blank.gif" alt="New Caledonia"> New Caledonia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nz" src="styles/img/blank.gif" alt="New Zealand"> New Zealand
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nu" src="styles/img/blank.gif" alt="Niue"> Niue
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nf" src="styles/img/blank.gif" alt="Norfolk Island"> Norfolk Island
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mp" src="styles/img/blank.gif" alt="Northern Mariana Islands"> Northern Mariana Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pw" src="styles/img/blank.gif" alt="Palau"> Palau
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pg" src="styles/img/blank.gif" alt="Papua New Guinea"> Papua New Guinea
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pn" src="styles/img/blank.gif" alt="Pitcairn"> Pitcairn
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ws" src="styles/img/blank.gif" alt="Samoa"> Samoa
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sb" src="styles/img/blank.gif" alt="Solomon Islands"> Solomon Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tk" src="styles/img/blank.gif" alt="Tokelau"> Tokelau
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-to" src="styles/img/blank.gif" alt="Tonga"> Tonga
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tv" src="styles/img/blank.gif" alt="Tuvalu"> Tuvalu
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-vu" src="styles/img/blank.gif" alt="Vanuatu"> Vanuatu
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-wf" src="styles/img/blank.gif" alt="Wallis and Futuna"> Wallis and Futuna
+    </div>
+
+</div>
+
+<h2 ng-hide="search">Europe</h2>
+
+<div class="row">
+
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-al" src="styles/img/blank.gif" alt="Albania"> Albania
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ad" src="styles/img/blank.gif" alt="Andorra"> Andorra
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-at" src="styles/img/blank.gif" alt="Austria"> Austria
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-by" src="styles/img/blank.gif" alt="Belarus"> Belarus
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-be" src="styles/img/blank.gif" alt="Belgium"> Belgium
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ba" src="styles/img/blank.gif" alt="Bosnia and Herzegovina"> Bosnia and Herzegovina
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bg" src="styles/img/blank.gif" alt="Bulgaria"> Bulgaria
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-hr" src="styles/img/blank.gif" alt="Croatia"> Croatia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-cz" src="styles/img/blank.gif" alt="Czech Republic"> Czech Republic
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-dk" src="styles/img/blank.gif" alt="Denmark"> Denmark
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ee" src="styles/img/blank.gif" alt="Estonia"> Estonia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fo" src="styles/img/blank.gif" alt="Faroe Islands"> Faroe Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fi" src="styles/img/blank.gif" alt="Finland"> Finland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-fr" src="styles/img/blank.gif" alt="France"> France
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-de" src="styles/img/blank.gif" alt="Germany"> Germany
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gi" src="styles/img/blank.gif" alt="Gibraltar"> Gibraltar
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gr" src="styles/img/blank.gif" alt="Greece"> Greece
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-va" src="styles/img/blank.gif" alt="Holy See (Vatican City State)"> Holy See (Vatican City State)
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-hu" src="styles/img/blank.gif" alt="Hungary"> Hungary
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-is" src="styles/img/blank.gif" alt="Iceland"> Iceland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ie" src="styles/img/blank.gif" alt="Ireland"> Ireland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-it" src="styles/img/blank.gif" alt="Italy"> Italy
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lv" src="styles/img/blank.gif" alt="Latvia"> Latvia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-li" src="styles/img/blank.gif" alt="Liechtenstein"> Liechtenstein
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lt" src="styles/img/blank.gif" alt="Lithuania"> Lithuania
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-lu" src="styles/img/blank.gif" alt="Luxembourg"> Luxembourg
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mk" src="styles/img/blank.gif" alt="Macedonia, The Former Yugoslav Republic of"> Macedonia, The
+        Former Yugoslav Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mt" src="styles/img/blank.gif" alt="Malta"> Malta
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-md" src="styles/img/blank.gif" alt="Moldova, Republic of"> Moldova, Republic of
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-mc" src="styles/img/blank.gif" alt="Monaco"> Monaco
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-me" src="styles/img/blank.gif" alt="Montenegro"> Montenegro
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-nl" src="styles/img/blank.gif" alt="Netherlands"> Netherlands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-no" src="styles/img/blank.gif" alt="Norway"> Norway
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pl" src="styles/img/blank.gif" alt="Poland"> Poland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-pt" src="styles/img/blank.gif" alt="Portugal"> Portugal
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ro" src="styles/img/blank.gif" alt="Romania"> Romania
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ru" src="styles/img/blank.gif" alt="Russian Federation"> Russian Federation
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sm" src="styles/img/blank.gif" alt="San Marino"> San Marino
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-rs" src="styles/img/blank.gif" alt="Serbia"> Serbia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-sk" src="styles/img/blank.gif" alt="Slovakia"> Slovakia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-si" src="styles/img/blank.gif" alt="Slovenia"> Slovenia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-es" src="styles/img/blank.gif" alt="Spain"> Spain
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-se" src="styles/img/blank.gif" alt="Sweden"> Sweden
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ch" src="styles/img/blank.gif" alt="Switzerland"> Switzerland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ua" src="styles/img/blank.gif" alt="Ukraine"> Ukraine
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gb" src="styles/img/blank.gif" alt="United Kingdom"> United Kingdom
+    </div>
+</div>
+
+<h2 ng-hide="search">Other areas</h2>
+
+<div class="row">
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-bv" src="styles/img/blank.gif" alt="Bouvet Island"> Bouvet Island
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-io" src="styles/img/blank.gif" alt="British Indian Ocean Territory"> British Indian Ocean
+        Territory
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-ic" src="styles/img/blank.gif" alt="Canary Islands"> Canary Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-catalonia" src="styles/img/blank.gif" alt="Catalonia"> Catalonia
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-england" src="styles/img/blank.gif" alt="England"> England
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-eu" src="styles/img/blank.gif" alt="European Union"> European Union
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-tf" src="styles/img/blank.gif" alt="French Southern Territories"> French Southern Territories
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gg" src="styles/img/blank.gif" alt="Guernsey"> Guernsey
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-hm" src="styles/img/blank.gif" alt="Heard Island and McDonald Islands"> Heard Island and McDonald
+        Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-im" src="styles/img/blank.gif" alt="Isle of Man"> Isle of Man
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-je" src="styles/img/blank.gif" alt="Jersey"> Jersey
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-kurdistan" src="styles/img/blank.gif" alt="Kurdistan"> Kurdistan
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-scotland" src="styles/img/blank.gif" alt="Scotland"> Scotland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-somaliland" src="styles/img/blank.gif" alt="Somaliland"> Somaliland
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-gs" src="styles/img/blank.gif" alt="South Georgia and the South Sandwich Islands"> South Georgia
+        and the South Sandwich Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-um" src="styles/img/blank.gif" alt="United States Minor Outlying Islands"> United States Minor
+        Outlying Islands
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-wales" src="styles/img/blank.gif" alt="Wales"> Wales
+    </div>
+    <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+        <img class="flag flag-zanzibar" src="styles/img/blank.gif" alt="Zanzibar"> Zanzibar
+    </div>
+
+</div>
+
+
+</div>
+<!-- end widget content -->
+
+</div>
+<!-- end widget div -->
+
+</div>
+<!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+</div>
+
+<!-- end row -->
+
+
+<!-- end row -->
+
+</section>
+
+
+<!-- end widget grid -->
+
+
+</div>

@@ -1,0 +1,114 @@
+<div class="table-wrap custom-scroll" >
+    <h2 class="email-open-header">
+        {{message.subject}} <span class="label txt-color-white">{{message.folder}}</span>
+        <a href-void tooltip-placement="left" uib-tooltip="Print" class="txt-color-darken pull-right"><i class="fa fa-print"></i></a>
+    </h2>
+
+    <div class="inbox-info-bar">
+        <div class="row">
+            <div class="col-sm-9">
+                <img ng-src="{{message.contact.picture}}" alt="me" class="away">
+                <strong>{{message.contact.name}}</strong>
+                <span class="hidden-mobile">&lt;{{message.contact.email}}&gt;to <strong>me</strong> on <i>{{message.date | date}}</i></span>
+            </div>
+            <div class="col-sm-3 text-right">
+
+                <div class="btn-group text-left" dropdown>
+                    <a ui-sref="app.inbox.folder.replay({folder: message.folder, message: message._id})" class="btn btn-primary btn-sm replythis">
+                        <i class="fa fa-reply"></i> Reply
+                    </a>
+                    <button class="btn btn-primary btn-sm dropdown-toggle">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a ui-sref="app.inbox.folder.reply({folder:message.folder, message: message._id})" class="replythis"><i class="fa fa-reply"></i> Reply</a>
+                        </li>
+                        <li>
+                            <a href-void class="replythis"><i class="fa fa-mail-forward"></i>
+                                Forward</a>
+                        </li>
+                        <li>
+                            <a href-void><i class="fa fa-print"></i> Print</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href-void><i class="fa fa-ban"></i> Mark as spam!</a>
+                        </li>
+                        <li>
+                            <a href-void><i class="fa fa-trash-o"></i> Delete forever</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="inbox-message" ng-bind-html="message.body"></div>
+
+    <div class="inbox-download" ng-if="message.attachments.length">
+        {{message.attachments.length}} attachment(s) — <a href-void> Download all attachments</a>
+
+        <ul class="inbox-download-list">
+            <li ng-repeat="attachment in message.attachments">
+                <div class="well well-sm">
+				<span ng-if="attachment.picture">
+					<img ng-src="{{attachment.picture}}">
+				</span>
+                <span ng-if="!attachment.picture">
+					<i class="fa fa-file"></i>
+				</span>
+                    <br>
+                    <strong>{{attachment.name}}</strong>
+                    <br>
+                    {{attachment.size}}
+                    <br>
+                    <a href-void> Download</a> | <a href-void> View</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="email-infobox">
+
+        <div class="well well-sm well-light">
+            <h5>Related Invoice</h5>
+            <ul class="list-unstyled">
+                <li>
+                    <i class="fa fa-file fa-fw text-success"></i><a href-void> #4831 - Paid</a>
+                </li>
+                <li>
+                    <i class="fa fa-file fa-fw text-danger"></i><a href-void><strong> #4835 - Unpaid</strong></a>
+                </li>
+            </ul>
+
+
+        </div>
+
+        <div class="well well-sm well-light">
+            <h5>Upcoming Meetings</h5>
+
+            <p>
+                <span class="label label-success"><i class="fa fa-check"></i> <strike>Agenda Review @ 10 AM</strike> </span>
+            </p>
+
+            <p>
+                <span class="label label-primary"><i class="fa fa-clock-o"></i> Client Meeting @ 2:30 PM</span>
+            </p>
+
+            <p>
+                <span class="label label-warning"><i class="fa fa-clock-o"></i> Salary Review @ 4:00 PM</span>
+            </p>
+        </div>
+
+        <ul class="list-inline">
+            <li><img src="styles/img/avatars/5.png" alt="me" width="30px"></li>
+            <li><img src="styles/img/avatars/3.png" alt="me" width="30px"></li>
+            <li><img src="styles/img/avatars/sunny.png" alt="me" width="30px"></li>
+            <li><a href-void>1 more</a></li>
+        </ul>
+
+    </div>
+
+</div>

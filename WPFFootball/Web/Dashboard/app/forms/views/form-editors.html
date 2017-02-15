@@ -1,0 +1,374 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Forms', 'Bootstrap Editors']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+    <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+</div>
+
+
+<!-- widget grid -->
+
+<section id="widget-grid" widget-grid>
+
+<!-- row -->
+
+<div class="row">
+
+<!-- NEW WIDGET START -->
+<article class="col-sm-12 col-md-12 col-lg-6">
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div jarvis-widget data-widget-color="purple" id="wid-id-2" data-widget-colorbutton="false"
+         data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false"
+         data-widget-sortable="false">
+        <!-- widget options:
+        usage: <div jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+
+            <h2>Markdown</h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+                <textarea data-smart-markdown-editor class="custom-scroll" data-height="270">
+### Hello there
+How are you?
+
+I have bellow task for you :
+
+Select from this text...
+Click the bold on THIS WORD and make THESE ONE italic
+Link GOOGLE to google.com
+Test to insert image (and try to tab after write the image description)
+Test Preview
+And ending here... Click "List"
+
+Enjoy!
+                </textarea>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div jarvis-widget class="well" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false"
+         data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false">
+        <!-- widget options:
+        usage: <div jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+
+            <h2>Markdown API</h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+            <!-- widget content -->
+            <div class="widget-body">
+
+                <h3>Markdown API</h3>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Method Name</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>
+                            showEditor()</code></td>
+                        <td>Toggle on the editor visibility</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            showPreview()</code></td>
+                        <td>Toggle on the preview visibility</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            hidePreview()</code></td>
+                        <td>Toggle off the editor visibility</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            isDirty()</code></td>
+                        <td>Check the editor content state, return true if the original content was changed</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            getContent()</code></td>
+                        <td>Get the editor content</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            setContent(<em>string</em> content)</code></td>
+                        <td>Set the editor content</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            findSelection(<em>string</em> words)</code></td>
+                        <td>Find some words/sentence within the editor and returned selection object(containing word
+                            position and other useful information).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            getSelection()</code></td>
+                        <td>Get the current selected chunk of words within the editor.</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            setSelection(<em>int</em> start, <em>int</em> end)</code></td>
+                        <td>Tell the editor to select a span of words from <code>
+                            start</code> to <code>
+                            end</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            replaceSelection(<em>string</em> content)</code></td>
+                        <td>Replace the current selected chunk of words within the editor with any content.</td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            getNextTab()</code></td>
+                        <td>Get the next tab memory. Returned selection object(containing word position and other useful
+                            information).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            setNextTab(<em>int</em> start, <em>int</em> end)</code></td>
+                        <td>Tell the editor to select a span of words from <code>
+                            start</code> to <code>
+                            end</code> at next <code>
+                            tab</code> keypress event.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            enableButtons(<em>string</em> name)</code></td>
+                        <td>Enabled a button by <code>
+                            name</code> that described in <code>
+                            buttons</code> or <code>
+                            additionalButtons</code> arrays. Passing <code>
+                            all</code> will enabled all buttons.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>
+                            disableButtons(<em>string</em> name)</code></td>
+                        <td>Disabled a button by <code>
+                            name</code> that described in <code>
+                            buttons</code> or <code>
+                            additionalButtons</code> arrays. Passing <code>
+                            all</code> will disabled all buttons.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+<!-- NEW WIDGET START -->
+<article class="col-sm-12 col-md-12 col-lg-6">
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div jarvis-widget data-widget-color="blue" id="wid-id-0" data-widget-colorbutton="false"
+         data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false"
+         data-widget-sortable="false">
+        <!-- widget options:
+        usage: <div jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+
+            <h2>Summernote (Lightweight)</h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+                <div class="summernote" data-smart-summernote-editor data-height="180">
+
+                </div>
+
+                <div class="widget-footer smart-form">
+
+                    <div class="btn-group">
+
+                        <button class="btn btn-sm btn-primary" type="button">
+                            <i class="fa fa-times"></i> Cancel
+                        </button>
+
+                    </div>
+                    <div class="btn-group">
+
+                        <button class="btn btn-sm btn-success" type="button">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+
+                    </div>
+
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" checked="checked" name="autosave" id="autosave">
+                        <i></i>Auto Save
+                    </label>
+
+                </div>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div jarvis-widget class="well" id="wid-id-1">
+        <!-- widget options:
+        usage: <div jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+            <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
+
+            <h2>Example </h2>
+
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+            <!-- widget content -->
+            <div class="widget-body">
+
+                <h3>Summernote Example</h3>
+
+                <p>
+                    <button class="btn btn-primary" data-smart-edit-summernote=".click2edit" type="button">
+                        Edit
+                    </button>
+                    <button class="btn btn-primary" data-smart-destroy-summernote=".click2edit" type="button">
+                        Save
+                    </button>
+                </p>
+                <p></p>
+
+                <div class="click2edit">
+                    To change this text with summernote, click `Edit` button
+                </div>
+
+                <h5>HTML:</h5>
+				<pre><code class="xml">&lt;button class="btn btn-primary" data-smart-edit-summernote=".click2edit"&gt;Edit&lt;/button&gt;
+&lt;button class="btn btn-primary" data-smart-destroy-summernote=".click2edit"&gt;Save&lt;/button&gt;
+
+&lt;div class="click2edit"&gt;To change this text with summernote, click `Edit` button&lt;/div&gt;
+                </code></pre>
+                <h5>Script:</h5>
+				<pre><code class="javascript">
+                    //no scripts required
+				</code></pre>
+
+
+                <h5>Documentation:</h5>
+
+                <p class="alert alert-info">
+                    Full API for Summernote.js, including keybored shortcuts, PHP Examples, Django installation, and
+                    Rails (gem) integration can be found <a
+                        href="http://hackerwins.github.io/summernote/features.html#api">here</a>
+                </p>
+            </div>
+            <!-- end widget content -->
+
+
+            <!-- end widget div -->
+        </div>
+
+    </div>
+    <!-- end widget -->
+
+</article>
+<!-- WIDGET END -->
+
+</div>
+
+<!-- end row -->
+
+</section>
+
+<!-- end widget grid -->
+
+
+</div>

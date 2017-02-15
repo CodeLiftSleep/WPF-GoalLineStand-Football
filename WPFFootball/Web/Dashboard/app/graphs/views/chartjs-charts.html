@@ -1,0 +1,96 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+    <div class="row">
+        <big-breadcrumbs items="['Charts', 'Chart.js']"
+                         class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+        <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" widget-grid>
+
+
+        <div class="row">
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div jarvis-widget id="chartjs-line-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Line Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas style="display: block;" chartjs-line-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div jarvis-widget id="chartjs-radar-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Radar Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas chartjs-radar-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div jarvis-widget id="chartjs-polar-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Polar Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas chartjs-polar-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <div jarvis-widget id="chartjs-bar-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Bar Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas chartjs-bar-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div jarvis-widget id="chartjs-doughnut-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Doughnut Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas chartjs-doughnut-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div jarvis-widget id="chartjs-pie-chart" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                        <h2>Pie Chart</h2>
+                    </header>
+                    <div>
+                        <div class="widget-body">
+                            <canvas chartjs-pie-chart height="120" ></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </div>
+    </section>
+</div>

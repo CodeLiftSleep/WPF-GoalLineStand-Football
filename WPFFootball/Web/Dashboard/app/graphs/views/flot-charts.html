@@ -1,0 +1,160 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+    <div class="row">
+        <big-breadcrumbs items="['Charts', 'Flot Chart']" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+        <div smart-include="app/layout/partials/sub-header.tpl.html"></div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" widget-grid>
+
+        <!-- row -->
+
+        <div class="row">
+
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+
+                <div jarvis-widget id="bar-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Bar Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-bar-chart data="barChartData"></flot-bar-chart>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div jarvis-widget id="sin-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Sin Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-sin-chart data="sinChartData"></flot-sin-chart>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div jarvis-widget id="auto-updating-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Auto Updating Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-auto-updating-chart></flot-auto-updating-chart>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div jarvis-widget id="horizontal-bar-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Horizontal Bar Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-horizontal-bar-chart data="horizontalBarChartData"></flot-horizontal-bar-chart>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+                <div jarvis-widget id="sales-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Sales Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-sales-chart data="salesChartData"></flot-sales-chart>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <article class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
+                <div jarvis-widget id="fill-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Plot Percentiles</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-fill-chart data="fillChartData"></flot-fill-chart>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="col-xs-12 col-sm-4 col-md-5 col-lg-5">
+
+                <div jarvis-widget id="pie-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Pie Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-pie-chart data="pieChartData"></flot-pie-chart>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-xs-12">
+
+                <div jarvis-widget id="site-stats-chart-widget" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+                        <h2>Site Stats Chart</h2>
+                    </header>
+
+                    <div>
+                        <div class="widget-body no-padding">
+                            <flot-site-stats-chart data="siteStatsData"></flot-site-stats-chart>
+                        </div>
+                    </div>
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+        <!-- end row -->
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->

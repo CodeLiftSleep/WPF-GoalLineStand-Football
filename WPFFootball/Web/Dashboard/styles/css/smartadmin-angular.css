@@ -1,0 +1,127 @@
+.bs-glyphicons {
+  padding-left: 0;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+  list-style: none;
+  overflow: hidden; }
+
+.bs-glyphicons li {
+  float: left;
+  width: 25%;
+  height: 115px;
+  padding: 10px;
+  margin: 0 -1px -1px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  border: 1px solid #ddd; }
+
+.bs-glyphicons .glyphicon {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 24px; }
+
+.bs-glyphicons .glyphicon-class {
+  display: block;
+  text-align: center; }
+
+.bs-glyphicons li:hover {
+  background-color: rgba(86, 61, 124, 0.1); }
+
+@media (min-width: 768px) {
+  .bs-glyphicons li {
+    width: 12.5%; } }
+
+    .animated.slow {
+      -webkit-animation-duration: 10s;
+      -moz-animation-duration: 10s;
+      -o-animation-duration: 10s;
+      animation-duration: 10s; }
+
+    .animated.faster {
+      -webkit-animation-duration: .3s;
+      -moz-animation-duration: .3s;
+      -o-animation-duration: .3s;
+      animation-duration: .3s; }
+
+    .router-animation-container {
+      position: relative; }
+      .router-animation-container .router-animation-loader {
+        position: absolute;
+        display: none;
+        top: 10px;
+        left: 10px; }
+      .router-animation-container.active .router-animation-loader {
+        display:block; }
+
+    .fixed-ribbon .router-animation-container .router-animation-loader {
+        top: 50px;
+    }
+
+    .inbox-animation-container .router-animation-loader {
+      left: 210px; }
+
+      /* fixes */
+      a[ng-click] {
+        text-decoration: none; }
+
+      a[ng-click]:hover {
+        text-decoration: none;
+        cursor: pointer; }
+
+      /* chat 
+      .message-picture {
+        max-width: 50px;
+        max-height: 50px; }*/
+
+      /*datatables*/
+      .dataTables_filter .input-group-addon {
+        height: 30px !important; }
+
+      .bootstrap-timepicker-widget table td input {
+        width: 40px;
+        padding: 0; }
+
+      .slider .tooltip.tooltip-main.top {
+        margin-top: -35px; }
+
+      #jcrop-demo-with-preview #preview-pane {
+        display: block;
+        position: absolute;
+        z-index: 200;
+        right: 0px;
+        padding: 3px;
+        border: 1px rgba(0, 0, 0, 0.4) solid;
+        background-color: white;
+        -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1); }
+
+      /* The Javascript code will set the aspect ratio of the crop
+       area based on the size of the thumbnail preview,
+       specified here */
+      #jcrop-demo-with-preview .preview-container {
+        width: 250px;
+        height: 170px;
+        overflow: hidden; }
+
+      .smart-treeview-group {
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        opacity: 1; }
+        .smart-treeview-group.ng-hide {
+          opacity: 0; }
+
+      .angular-google-map-container {
+        height: 100%;
+        width: 100%;
+        position: absolute; }
+
+      .menu-on-top aside#left-panel .collapse-sign {
+        display: none; }
+
+@media (max-width: 979px){
+  .dropzone .dz-default.dz-message {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+  }
+}

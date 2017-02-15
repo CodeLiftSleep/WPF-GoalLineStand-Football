@@ -1,0 +1,22 @@
+<div>
+    <h5 class="todo-group-title"><i class="fa fa-{{icon}}"></i> {{title}} (
+        <small class="num-of-tasks">{{scopeItems.length}}</small>
+        )
+    </h5>
+    <ul class="todo">
+        <li ng-class="{complete: todo.completedAt}" ng-repeat="todo in todos | orderBy: todo._id | filter: filter  track by todo._id" >
+    	<span class="handle"> <label class="checkbox">
+            <input type="checkbox" ng-click="todo.toggle()" ng-checked="todo.completedAt"
+                   name="checkbox-inline">
+            <i></i> </label> </span>
+
+            <p>
+                <strong>Ticket #{{$index + 1}}</strong> - {{todo.title}}
+                <span class="text-muted" ng-if="todo.description">{{todo.description}}</span>
+                <span class="date">{{todo.createdAt | date}} &dash; <a ng-click="deleteTodo(todo)" class="text-muted"><i
+                        class="fa fa-trash"></i></a></span>
+
+            </p>
+        </li>
+    </ul>
+</div>

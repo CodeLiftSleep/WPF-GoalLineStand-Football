@@ -1,0 +1,60 @@
+<form id="contactForm" method="post" class="form-horizontal">
+
+    <fieldset>
+        <legend>Showing messages in custom area</legend>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Full name</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="fullName" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Email</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="email" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Title</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="title" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Content</label>
+            <div class="col-md-6">
+                <textarea class="form-control" name="content" rows="5"></textarea>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <!-- #messages is where the messages are placed inside -->
+        <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+                <div id="messages"></div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default" type="submit">
+                    <i class="fa fa-eye"></i>
+                    Validate
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,35 @@
+{
+    "users": [
+        {
+            "username": "Sadi Orlaf",
+            "picture": "styles/img/avatars/5.png",
+            "status": "Online"
+        },
+        {
+            "username": "Mary",
+            "picture": "styles/img/avatars/1.png",
+            "status": "Busy"
+        }
+    ],
+    "messages": [
+        {
+            "user": {
+                "username": "Sadi Orlaf",
+                "picture": "styles/img/avatars/5.png",
+                "status": "Online"
+            },
+            "date": "2014-10-01T21:08:06.388Z",
+            "body": "Hey did you meet the new\n                            board\n                            of director? He's a bit of an arse if you ask me...anyway here is the report you\n                            requested.\n                            I am off to launch with Lisa and Andrew, you wanna join?\n                            <p class=\"chat-file row\">\n                                <b class=\"pull-left col-sm-6\"> <!--<i class=\"fa fa-spinner fa-spin\"></i>--> <i class=\"fa fa-file\"></i> report-2013-demographic-report-annual-earnings.xls\n                                </b>\n                                <span class=\"col-sm-6 pull-right\"> <a href=\"javascript:void(0);\" class=\"btn btn-xs btn-default\">cancel</a> <a href=\"javascript:void(0);\" class=\"btn btn-xs btn-success\">save</a> </span>\n                            </p>\n\n                            <p class=\"chat-file row\">\n                                <b class=\"pull-left col-sm-6\"> <i class=\"fa fa-ok txt-color-green\"></i>\n                                    tobacco-report-2012.doc </b>\n                                <span class=\"col-sm-6 pull-right\"> <a href=\"javascript:void(0);\" class=\"btn btn-xs btn-primary\">open</a> </span>"
+        },
+        {
+            "user": {
+                "username": "John Doe",
+                "picture": "styles/img/avatars/sunny.png",
+                "status": "Online"
+            },
+            "date": "2014-10-01T21:09:08.388Z",
+            "body": " Haha! Yeah I know what you\n mean. \n Thanks for the file Sadi! <i class=\"fa fa-smile-o txt-color-orange\"></i> "
+        }
+
+    ]
+}
