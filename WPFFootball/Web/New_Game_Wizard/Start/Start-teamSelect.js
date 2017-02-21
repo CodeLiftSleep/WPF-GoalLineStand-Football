@@ -408,12 +408,14 @@
                 controller: function ($scope, $uibModalInstance) {
                     $scope.ok = function (fileName) {
                         if (fileName !== undefined) {
+                            vm.model.teamID = teamId; //add in teamId to the model
+
                             var value = window.CRUD.Save(teamId, fileName, JSON.stringify(vm.model))
                             if (value === "Duplicate!") alertify.alert('Duplicate File Name Error!', 'File Name already in use!  Please choose another file name.');
                             else {
                                 alertify.success("Game successfully saved! Loading Team Dashboard...");
                                 setTimeout(function () {
-                                    $state.go("Main"); //redirect to Team Dashboard
+                                    $state.go("Dashboard", { model: vm.model }); //redirect to Team Dashboard passing in the model
                                 }, 5000);
                                 $uibModalInstance.close();
                             };

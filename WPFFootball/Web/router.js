@@ -38,31 +38,28 @@
         .service('dataService', ['$timeout', '$q', function ($timeout, $q) {
             //var fs = window.fs;
             var sql = window.SQL;
-         
+
             define(function (require) {
                 //fs = require('fs');
                 sql = require('sql');
             });
 
-        this.getData = function () {
-            var defer = $q.defer();
-            $timeout(function () {
+            this.getData = function () {
+                var defer = $q.defer();
+                $timeout(function () {
+                    var DB = [];
+                    //DB.Teams = window.Teams;
 
-                var DB = [];
-                //DB.Teams = window.Teams;
-
-
-
-                defer.resolve(DB);
-            }, 0);
-            return defer.promise;
-        };
-    }])
+                    defer.resolve(DB);
+                }, 0);
+                return defer.promise;
+            };
+        }])
 
     .run(function (DB, dataService) {
         DB.setIsLoading(true),
             dataService.getData(),
-            //DB.setData(data);
+        //DB.setData(data);
             DB.setIsLoading(false);
     })
 
@@ -83,9 +80,9 @@
                 url: '/home',
                 templateUrl: 'home.html',
                 //resolve: { //attempting to ensure data loads before it finishes getting the page, still not working
-                    //DBTeams: function () {
-                        //return window.Teams;
-                    //}
+                //DBTeams: function () {
+                //return window.Teams;
+                //}
                 //}
             })
             //START GAME--MAIN
@@ -158,12 +155,13 @@
                 templateUrl: 'exit_game.html'
             })
 
-            .state('Main', {
+            .state('Dashboard', {
                 url: '/dashboard',
-                templateUrl: 'Main/index.html',
+                params: { model: null },
+                templateUrl: 'Dashboard/index.html',
                 controller: 'mainCtrl',
                 controllerAs: 'vm',
-                lazyLoad: () => System.import('/Main/index.html')
+                //lazyLoad: () => System.import('/Dashboard/index.html')
             })
 
             // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================

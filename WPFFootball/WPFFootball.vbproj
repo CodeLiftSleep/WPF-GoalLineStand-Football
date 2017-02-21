@@ -250,6 +250,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CRUD.vb" />
+    <Compile Include="GamePlay\GamePlay.vb" />
     <Compile Include="Game_Settings\GameSettings.xaml.vb">
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
@@ -676,6 +677,7 @@
     <Content Include="Web\Dashboard\build\vendor.ui.js" />
     <Content Include="Web\Dashboard\gulpfile.js" />
     <Content Include="Web\Dashboard\index.html" />
+    <Content Include="Web\Dashboard\js\index.js" />
     <Content Include="Web\Dashboard\smartadmin-plugin\fullcalendar\fullcalendar.min.js" />
     <Content Include="Web\Dashboard\smartadmin-plugin\fullcalendar\jquery.fullcalendar.min.js" />
     <Content Include="Web\Dashboard\smartadmin-plugin\legacy\ckeditor\adapters\jquery.js" />
