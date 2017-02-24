@@ -291,7 +291,7 @@ Public Class CollegePlayers
         Else
 
             Num = Regex.Match(NumString, "(?<=\d+\.)\d").Value
-            If Num < 4 Then : result = NumStr
+            If Num < 4 Then : Result = NumStr
             ElseIf Num = 4 Then : Result = CDbl(NumString) + 0.1
             ElseIf Num = 5 Then : Result = CDbl(NumString)
             ElseIf Num = 6 Then : Result = CDbl(NumString) - 0.1
