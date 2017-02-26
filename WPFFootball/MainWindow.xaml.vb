@@ -17,12 +17,14 @@ Imports Newtonsoft.Json.Linq
 ''' Need to expose the DB objects here so we can have register them as JS Objects for the browser to use.
 ''' </summary>
 Class MainWindow
+
     Public Shared window As JSValue
     Public Shared DBObj As New DBObject
     Public Team As JSObject
     Public page As String = AppDomain.CurrentDomain.BaseDirectory()
 
     Sub New()
+        Dim Football As New WPFFootball()
         Try
             BrowserPreferences.SetChromiumSwitches("--remote-debugging-port=9222", "--disable-web-security", "--allow-file-access-from-files")
 
@@ -149,5 +151,8 @@ Public Class DBObject
         'PlayerDT = Nothing
         'DraftDT = Nothing
     End Sub
+
+End Class
+Class WPFFootball
 
 End Class

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WPFFootball", "WPFFootball\WPFFootball.vbproj", "{AE02CE8F-1DC7-415B-908D-8BB9DE679E51}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GoalLineStandFootball", "WPFFootball\GoalLineStandFootball.vbproj", "{AE02CE8F-1DC7-415B-908D-8BB9DE679E51}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DAEA933C-6441-46A4-9F89-B012BAE9A27A} = {DAEA933C-6441-46A4-9F89-B012BAE9A27A}
 		{3ED11144-74A7-48CA-BA2A-C3B159F04E19} = {3ED11144-74A7-48CA-BA2A-C3B159F04E19}

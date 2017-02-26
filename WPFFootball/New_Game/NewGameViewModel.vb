@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
 Imports System.Data
-Imports WPFFootball.My.Resources
+Imports GoalLineStandFootball.My.Resources
 
 ''' <summary>
 '''     Subs and Functions that are used by more than one window.

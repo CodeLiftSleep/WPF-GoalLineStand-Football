@@ -1,6 +1,6 @@
 ﻿Imports System.Globalization
 Imports Microsoft.Win32
-Imports WPFFootball.My.Resources
+Imports GoalLineStandFootball.My.Resources
 Imports GlobalResources
 
 Public Class UserScreen
@@ -46,10 +46,10 @@ Public Class UserScreen
 
     End Sub
 
-    Private Function LoadPics(ByVal teamID) As List(Of String)
+    Private Function LoadPics(ByVal teamID As Integer) As List(Of String)
         Dim DictEntry As New DictionaryEntry
         Dim RunTimeResourceSet As Object
-        Dim TeamNick As String = TeamDT.Rows(teamID).Item("TeamNickname")
+        Dim TeamNick As String = TeamDT.Rows(teamID).Item("TeamNickname").ToString()
 
         RunTimeResourceSet = My.Resources.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, False, True)
 

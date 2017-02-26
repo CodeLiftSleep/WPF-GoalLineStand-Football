@@ -3,7 +3,7 @@ Imports System.ComponentModel
 Imports System.Data
 Imports System.IO
 Imports System.Linq
-Imports WPFFootball
+Imports GoalLineStandFootball
 Imports GlobalResources
 
 Public Class LeagueHomeViewModel

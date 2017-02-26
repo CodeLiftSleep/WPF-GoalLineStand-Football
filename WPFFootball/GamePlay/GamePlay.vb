@@ -1,10 +1,78 @@
 ﻿Imports System.Data
+Imports GlobalResources
+Imports System.Linq
+
+Public Enum PassTypeEnum
+    PBehindLOSFarL
+    PBehindLOSLMid
+    PBehindLOSMid
+    PBehindLOSRMid
+    PBehindLOSFarR
+    PShortFarL
+    PShortLMid
+    PShortMid
+    PShortRMid
+    PShortFarR
+    PMedFarL
+    PMedLMid
+    PMedMid
+    PMedRMid
+    PMedFarR
+    PLongFarL
+    PLongLMid
+    PLongMid
+    PLongRMid
+    PLongFarR
+End Enum
+Public Enum RunTypeEnum
+    LeftEnd
+    LeftTackle
+    Middle
+    RightTackle
+    RightEnd
+End Enum
+Public Enum ScoringTypeEnum
+    RushingTD
+    PassingTD
+    OffFumRecTD
+    DefFumRecTD
+    IntReturnTD
+    PuntRetTD
+    KORetTD
+    FG
+    Safety
+    XP
+    TwoPointConv
+    DefXPReturnFor2Pts
+    FreeKickFG
+End Enum
 ''' <summary>
 ''' This is the class where game play takes place
 ''' </summary>
 Public Class GamePlay
     Public GameLoop As Boolean 'This is what controls whether the game is still going on or it has ended
     Private PassType As New PassTypeEnum 'Enumeration for the different types of passes
+    Private ScoringType As New ScoringTypeEnum 'Determines what type of score it is
+#Region "Events"
+    Public Event PassCompletion(ByVal QB As Integer, ByVal recPlayer As Integer, ByVal yardsGained As Single)
+    Public Event PassDropped(ByVal QB As Integer, ByVal recPlayer As Integer)
+    Public Event PassDefended(ByVal defPlayer As Integer, ByVal intendedRec As Integer)
+    Public Event Touchback(ByVal kicker As Integer, ByVal homeTeam As Boolean)
+    Public Event FirstDown(ByVal player As Integer, ByVal homeTeam As Boolean)
+    Public Event TouchDown(ByVal type As ScoringTypeEnum, ByVal homeTeam As Boolean, ByVal player As Integer)
+    Public Event Interception(ByVal QBThrowing As Integer, ByVal IntPlayer As Integer, ByVal homeTeam As Boolean)
+    Public Event Fumble(ByVal fumblingPlayer As Integer, ByVal recoveringPlayer As Integer, ByVal offenseRecovers As Boolean)
+    Public Event Tackle(ByVal ballCarrier As Integer, ByVal tackler As Integer)
+    Public Event Sack(ByVal QB As Integer, ByVal defender As Integer, ByVal yardsLost As Integer)
+    Public Event Punt(ByVal punter As Integer, ByVal puntYards As Integer)
+    Public Event FieldGoal()
+    Public Event ChangeOfPoss(ByVal homeTeamHasBall As Boolean) 'Fires Change of Possession Event
+    Public Event Timeout(ByVal homeTeamCalled As Boolean)
+    Public Event EndOfQuarter()
+    Public Event TwoMinuteWarning()
+    Public Event HalfTime()
+
+#End Region
 
 #Region "Time Variables"
     Private Property StopClock As Boolean
@@ -60,13 +128,14 @@ Public Class GamePlay
     Private Property YardsToGo As Single
     Private Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
     Private Property Quarter As Integer = 1
+    Private Property HomePossession As Boolean 'Does Home Team Have the Ball?
 #End Region
 
 #Region "Turnovers"
-    Private Property Intercepted As Boolean
+    'Private Property Intercepted As Boolean
     Private Property IntReturnYds As Boolean
     Private Property IntReturnTD As Boolean
-    Private Property Fumble As Boolean
+    'Private Property Fumble As Boolean
     Private Property DefFumRec As Boolean
     Private Property FumbleRetYds As Boolean
     Private Property FumbleRetTD As Boolean
@@ -74,58 +143,60 @@ Public Class GamePlay
 #End Region
 
 #Region "Teams"
-    Private HomeTeam As New DataView 'Filters the players DataTable to get the appropriate team's players
-    Private AwayTeam As New DataView 'Filters the players DataTable to get the appropriate team's players
+    Private Home As New HomeTeam 'Filters the players DataTable to get the appropriate team's players
+    Private Away As New AwayTeam 'Filters the players DataTable to get the appropriate team's players
 #End Region
+    ''' <summary>
+    ''' Sets the depth chart by PID for lookups to the DataView
+    ''' </summary>
+    Private Structure HomeTeam
+        Dim QB1 As DataRow
+        Dim QB2 As DataRow
+        Dim QB3 As DataRow
+        Dim RB1 As DataRow
+        Dim RB2 As DataRow
 
-    Sub New()
-        StartGame(HomeTeam, AwayTeam)
+    End Structure
+    Private Structure AwayTeam
+
+    End Structure
+
+    Sub New(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
+        StartGame(homeTeamId, awayTeamId)
     End Sub
 
     ''' <summary>
     ''' Start the game and pass in the 2 teams who are playing----home and away
     ''' </summary>
-    ''' <param name="homeTeam"></param>
-    ''' <param name="awayTeam"></param>
-    Public Sub StartGame(ByVal homeTeam As DataView, ByVal awayTeam As DataView)
+    ''' <param name="homeTeamId"></param>
+    ''' <param name="awayTeamId"></param>
+    Public Sub StartGame(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
+
+        Dim MyRand As New Mersenne.MersenneTwister
+        HomePossession = MyRand.GenerateInt32(0, 1) = 1 'Determines who is kicking off
+        'LoadDepthCharts(HomePossession, homeTeamId, awayTeamId) 'This will populate the onfield positions by which team is on the field
         While GameLoop
             ' While the GameLoop is Set to True run the game.
             If Kickoff Then 'We are kicking off
+                If MyRand.GenerateInt32(0, 100) < 40 Then '39% of kicks are returned, otherwise touchback
 
+                Else
+
+                End If
             End If
 
         End While
 
     End Sub
-    Private Enum PassTypeEnum
-        PBehindLOSFarL
-        PBehindLOSLMid
-        PBehindLOSMid
-        PBehindLOSRMid
-        PBehindLOSFarR
-        PShortFarL
-        PShortLMid
-        PShortMid
-        PShortRMid
-        PShortFarR
-        PMedFarL
-        PMedLMid
-        PMedMid
-        PMedRMid
-        PMedFarR
-        PLongFarL
-        PLongLMid
-        PLongMid
-        PLongRMid
-        PLongFarR
-    End Enum
-    Private Enum RunTypeEnum
-        LeftEnd
-        LeftTackle
-        Middle
-        RightTackle
-        RightEnd
-    End Enum
+
+    Private Sub LoadDepthCharts(homeTeamHasBall As Boolean, ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
+        If homeTeamHasBall Then 'The home team is in possession, load the home team depth charts
+            'Home.QB1 = TeamDT.Rows.Find(PlayerDT.AsEnumerable().GroupBy(Sub(x)
+            'x.Item("TeamId") = homeTeamId.ToString() And x.Item("DepthPos") Is "QB1"
+            'End Sub)
+        End If
+    End Sub
+
     Private Function GetPassType() As PassTypeEnum
         Dim MyRand As New Mersenne.MersenneTwister
         Dim PassType As String
