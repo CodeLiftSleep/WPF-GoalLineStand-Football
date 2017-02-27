@@ -263,6 +263,8 @@
     </ApplicationDefinition>
     <Compile Include="CRUD.vb" />
     <Compile Include="GamePlay\GamePlay.vb" />
+    <Compile Include="GamePlay\GamePlayEvents.vb" />
+    <Compile Include="GamePlay\GamePlayStats.vb" />
     <Compile Include="Game_Settings\GameSettings.xaml.vb">
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>

@@ -1,6 +1,9 @@
 ﻿Imports System.Data
 Imports GlobalResources
 Imports System.Linq
+Imports GoalLineStandFootball.GamePlayEvents
+Imports GoalLineStandFootball.GamePlayStats
+Imports System.Reflection
 
 Public Enum PassTypeEnum
     PBehindLOSFarL
@@ -51,118 +54,111 @@ End Enum
 ''' </summary>
 Public Class GamePlay
     Public GameLoop As Boolean 'This is what controls whether the game is still going on or it has ended
-    Private PassType As New PassTypeEnum 'Enumeration for the different types of passes
-    Private ScoringType As New ScoringTypeEnum 'Determines what type of score it is
-#Region "Events"
-    Public Event PassCompletion(ByVal QB As Integer, ByVal recPlayer As Integer, ByVal yardsGained As Single)
-    Public Event PassDropped(ByVal QB As Integer, ByVal recPlayer As Integer)
-    Public Event PassDefended(ByVal defPlayer As Integer, ByVal intendedRec As Integer)
-    Public Event Touchback(ByVal kicker As Integer, ByVal homeTeam As Boolean)
-    Public Event FirstDown(ByVal player As Integer, ByVal homeTeam As Boolean)
-    Public Event TouchDown(ByVal type As ScoringTypeEnum, ByVal homeTeam As Boolean, ByVal player As Integer)
-    Public Event Interception(ByVal QBThrowing As Integer, ByVal IntPlayer As Integer, ByVal homeTeam As Boolean)
-    Public Event Fumble(ByVal fumblingPlayer As Integer, ByVal recoveringPlayer As Integer, ByVal offenseRecovers As Boolean)
-    Public Event Tackle(ByVal ballCarrier As Integer, ByVal tackler As Integer)
-    Public Event Sack(ByVal QB As Integer, ByVal defender As Integer, ByVal yardsLost As Integer)
-    Public Event Punt(ByVal punter As Integer, ByVal puntYards As Integer)
-    Public Event FieldGoal()
-    Public Event ChangeOfPoss(ByVal homeTeamHasBall As Boolean) 'Fires Change of Possession Event
-    Public Event Timeout(ByVal homeTeamCalled As Boolean)
-    Public Event EndOfQuarter()
-    Public Event TwoMinuteWarning()
-    Public Event HalfTime()
-
-#End Region
-
+    Public PassType As New PassTypeEnum 'Enumeration for the different types of passes
+    Public ScoringType As New ScoringTypeEnum 'Determines what type of score it is
+    Public GameEvents As New GamePlayEvents(Home.TeamId, Away.TeamId)
 #Region "Time Variables"
-    Private Property StopClock As Boolean
-    Private Property Pace As Integer
-    Private Property GameTime As New TimeSpan(0, 15, 0) 'Sets the clock to 15 minutes(0 hours, 15 minutes, 0 seconds)
-    Private Property BallSpotTime As Integer
+    Public Property StopClock As Boolean
+    Public Property Pace As Integer
+    Public Property GameTime As New TimeSpan(0, 15, 0) 'Sets the clock to 15 minutes(0 hours, 15 minutes, 0 seconds)
+    Public Property BallSpotTime As Integer
 #End Region
 
 #Region "Passing Variables"
-    Private Property PBehLOSFarLComp As Single = 64.5
-    Private Property PBehLOSLMidComp As Single = 75.9
-    Private Property PBehLOSMidComp As Single = 51.3
-    Private Property PBehLOSRMidComp As Single = 74.7
-    Private Property PBehLOSFarRComp As Single = 64.5
-    Private Property PShortFarLComp As Single = 64.8
-    Private Property PShortLMidComp As Single = 67.4
-    Private Property PShortMidComp As Single = 70.3
-    Private Property PShortRMidComp As Single = 67.1
-    Private Property PShortFarRComp As Single = 67.6
-    Private Property PMedFarLComp As Single = 47
-    Private Property PMedLMidComp As Single = 56.7
-    Private Property PMedMidComp As Single = 60.9
-    Private Property PMedRMidComp As Single = 55
-    Private Property PMedFarRComp As Single = 46.9
-    Private Property PLongFarLComp As Single = 27.9
-    Private Property PLongLMidComp As Single = 36.8
-    Private Property PLongMidComp As Single = 38
-    Private Property PLongRMidComp As Single = 36.1
-    Private Property PLongFarRComp As Single = 30.6
+    Public Property PBehLOSFarLComp As Single = 64.5
+    Public Property PBehLOSLMidComp As Single = 75.9
+    Public Property PBehLOSMidComp As Single = 51.3
+    Public Property PBehLOSRMidComp As Single = 74.7
+    Public Property PBehLOSFarRComp As Single = 64.5
+    Public Property PShortFarLComp As Single = 64.8
+    Public Property PShortLMidComp As Single = 67.4
+    Public Property PShortMidComp As Single = 70.3
+    Public Property PShortRMidComp As Single = 67.1
+    Public Property PShortFarRComp As Single = 67.6
+    Public Property PMedFarLComp As Single = 47
+    Public Property PMedLMidComp As Single = 56.7
+    Public Property PMedMidComp As Single = 60.9
+    Public Property PMedRMidComp As Single = 55
+    Public Property PMedFarRComp As Single = 46.9
+    Public Property PLongFarLComp As Single = 27.9
+    Public Property PLongLMidComp As Single = 36.8
+    Public Property PLongMidComp As Single = 38
+    Public Property PLongRMidComp As Single = 36.1
+    Public Property PLongFarRComp As Single = 30.6
 #End Region
 
 #Region "Running Variables"
-    Private Property RunMid As Single
-    Private Property RunLeft As Single
-    Private Property RunLeftEnd As Single
-    Private Property RunRight As Single
-    Private Property RunRightEnd As Single
+    Public Property RunMid As Single
+    Public Property RunLeft As Single
+    Public Property RunLeftEnd As Single
+    Public Property RunRight As Single
+    Public Property RunRightEnd As Single
 #End Region
 
 #Region "Kicking Game"
-    Private Property Kickoff As Boolean = True 'Initializes the game to start with a kickoff
-    Private Property KickoffDist As Single
-    Private Property KickReturnYards As Single
-    Private Property PuntReturnYards As Single
-    Private Property CallFairCatch As Boolean
-    Private Property PuntDistance As Single
-    Private Property FGDistance As Single
-    Private Property ExpDecayFG As Single
+    'Private Property Kickoff As Boolean = True 'Initializes the game to start with a kickoff
+    Public Property KickoffDist As Single
+    Public Property KickReturnYards As Single
+    Public Property PuntReturnYards As Single
+    Public Property CallFairCatch As Boolean
+    Public Property PuntDistance As Single
+    Public Property FGDistance As Single
+    Public Property ExpDecayFG As Single
+
 #End Region
 
 #Region "Basic Game Info"
-    Private Property Down As Integer
-    Private Property YardsToGo As Single
-    Private Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
-    Private Property Quarter As Integer = 1
-    Private Property HomePossession As Boolean 'Does Home Team Have the Ball?
+    Public Property Down As Integer
+    Public Property YardsToGo As Single
+    Public Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
+    Public Property Quarter As Integer = 1
+    Public Property HomePossession As Boolean 'Does Home Team Have the Ball?
+    Public Property HalfStart As Boolean = True 'Is this the start of the half?
 #End Region
 
 #Region "Turnovers"
     'Private Property Intercepted As Boolean
-    Private Property IntReturnYds As Boolean
-    Private Property IntReturnTD As Boolean
+    Public Property IntReturnYds As Boolean
+    Public Property IntReturnTD As Boolean
     'Private Property Fumble As Boolean
-    Private Property DefFumRec As Boolean
-    Private Property FumbleRetYds As Boolean
-    Private Property FumbleRetTD As Boolean
+    Public Property DefFumRec As Boolean
+    Public Property FumbleRetYds As Boolean
+    Public Property FumbleRetTD As Boolean
 
 #End Region
 
 #Region "Teams"
-    Private Home As New HomeTeam 'Filters the players DataTable to get the appropriate team's players
-    Private Away As New AwayTeam 'Filters the players DataTable to get the appropriate team's players
+    Public Home As New HomeTeam 'Filters the players DataTable to get the appropriate team's players
+    Public Away As New AwayTeam 'Filters the players DataTable to get the appropriate team's players
 #End Region
+
     ''' <summary>
     ''' Sets the depth chart by PID for lookups to the DataView
     ''' </summary>
-    Private Structure HomeTeam
-        Dim QB1 As DataRow
-        Dim QB2 As DataRow
-        Dim QB3 As DataRow
-        Dim RB1 As DataRow
-        Dim RB2 As DataRow
-
+    Public Structure HomeTeam
+        Dim QB1, QB2, QB3, RB1, RB2, RB3, RB4, FB1, FB2, WR1, WR2, WR3, WR4, WR5, WR6, TE1, TE2, TE3, TE4,
+            LT1, LT2, LT3, LG1, LG2, LG3, C1, C2, C3, RG1, RG2, RG3, RT1, RT2, RT3 As DataRow
+        Dim DE1, DE2, DE3, DE4, DE5, DT1, DT2, DT3, DT4, DT5, OLB1, OLB2, OLB3, OLB4, ILB1, ILB2, ILB3,
+            ILB4, FS1, FS2, FS3, SS1, SS2, SS3, CB1, CB2, CB3, CB4, CB5, CB6 As DataRow
+        Dim LS1, K1, P1 As DataRow
+        Dim TeamId As Integer
     End Structure
-    Private Structure AwayTeam
-
+    Public Structure AwayTeam
+        Dim QB1, QB2, QB3, RB1, RB2, RB3, RB4, FB1, FB2, WR1, WR2, WR3, WR4, WR5, WR6, TE1, TE2, TE3, TE4,
+            LT1, LT2, LT3, LG1, LG2, LG3, C1, C2, C3, RG1, RG2, RG3, RT1, RT2, RT3 As DataRow
+        Dim DE1, DE2, DE3, DE4, DE5, DT1, DT2, DT3, DT4, DT5, OLB1, OLB2, OLB3, OLB4, ILB1, ILB2, ILB3,
+            ILB4, FS1, FS2, FS3, SS1, SS2, SS3, CB1, CB2, CB3, CB4, CB5, CB6 As DataRow
+        Dim LS1, K1, P1 As DataRow
+        Dim TeamId As Integer
     End Structure
 
     Sub New(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
         StartGame(homeTeamId, awayTeamId)
+        Dim MyRow As DataRow = Stats.NewRow()
+        For Each Row In GetType(HomeTeam).GetFields(BindingFlags.NonPublic)
+            MyRow("PlayerId") =
+
+        Next
     End Sub
 
     ''' <summary>
@@ -177,12 +173,8 @@ Public Class GamePlay
         'LoadDepthCharts(HomePossession, homeTeamId, awayTeamId) 'This will populate the onfield positions by which team is on the field
         While GameLoop
             ' While the GameLoop is Set to True run the game.
-            If Kickoff Then 'We are kicking off
-                If MyRand.GenerateInt32(0, 100) < 40 Then '39% of kicks are returned, otherwise touchback
-
-                Else
-
-                End If
+            If HalfStart Then
+                GameEvents.KickoffEvt(MyRand.GenerateInt32(0, 1) = 1)
             End If
 
         End While

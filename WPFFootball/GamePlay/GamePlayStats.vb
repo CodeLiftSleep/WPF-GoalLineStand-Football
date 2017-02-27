@@ -1,0 +1,63 @@
+﻿Imports System.Data
+
+Public Class GamePlayStats
+    Public Shared Stats As New DataTable
+
+    ''' <summary>
+    ''' Add columns to the DataTable for keeping track of ingame stats
+    ''' </summary>
+    Sub New()
+        Stats.Columns.Add("PlayerId", GetType(Integer))
+        Stats.Columns.Add("PassAtt", GetType(Integer))
+        Stats.Columns.Add("PassComp", GetType(Integer))
+        Stats.Columns.Add("PassYards", GetType(Integer))
+        Stats.Columns.Add("PassRating", GetType(Single))
+        Stats.Columns.Add("TDPasses", GetType(Integer))
+        Stats.Columns.Add("IntThrown", GetType(Integer))
+        Stats.Columns.Add("TimesSacked", GetType(Integer))
+        Stats.Columns.Add("SackYdsLost", GetType(Integer))
+        Stats.Columns.Add("RushAtt", GetType(Integer))
+        Stats.Columns.Add("RushYds", GetType(Integer))
+        Stats.Columns.Add("RushTD", GetType(Integer))
+        Stats.Columns.Add("RushLong", GetType(Integer))
+        Stats.Columns.Add("RecTargets", GetType(Integer))
+        Stats.Columns.Add("Receptions", GetType(Integer))
+        Stats.Columns.Add("RecYards", GetType(Integer))
+        Stats.Columns.Add("RecTD", GetType(Integer))
+        Stats.Columns.Add("RecLong", GetType(Integer))
+        Stats.Columns.Add("Fumbles", GetType(Integer))
+        Stats.Columns.Add("FumLost", GetType(Integer))
+        Stats.Columns.Add("TotTackles", GetType(Integer))
+        Stats.Columns.Add("SoloTackles", GetType(Integer))
+        Stats.Columns.Add("DefSacks", GetType(Integer))
+        Stats.Columns.Add("TackForLoss", GetType(Integer))
+        Stats.Columns.Add("PassDef", GetType(Integer))
+        Stats.Columns.Add("QBHits", GetType(Integer))
+        Stats.Columns.Add("FumRetYds", GetType(Integer))
+        Stats.Columns.Add("FumRetTD", GetType(Integer))
+        Stats.Columns.Add("IntRetYards", GetType(Integer))
+        Stats.Columns.Add("IntRetTD", GetType(Integer))
+        Stats.Columns.Add("KORet", GetType(Integer))
+        Stats.Columns.Add("KORetYds", GetType(Integer))
+        Stats.Columns.Add("KORetLong", GetType(Integer))
+        Stats.Columns.Add("KORetTD", GetType(Integer))
+        Stats.Columns.Add("PuntRet", GetType(Integer))
+        Stats.Columns.Add("PRYds", GetType(Integer))
+        Stats.Columns.Add("PRLong", GetType(Integer))
+        Stats.Columns.Add("PRTD", GetType(Integer))
+        Stats.Columns.Add("FGAtt", GetType(Integer))
+        Stats.Columns.Add("FGMade", GetType(Integer))
+        Stats.Columns.Add("FGLong", GetType(Integer))
+        Stats.Columns.Add("XPAtt", GetType(Integer))
+        Stats.Columns.Add("XPMade", GetType(Integer))
+        Stats.Columns.Add("PtsScored", GetType(Integer))
+        Stats.Columns.Add("Punts", GetType(Integer))
+        Stats.Columns.Add("PuntYds", GetType(Integer))
+        Stats.Columns.Add("PuntTB", GetType(Integer))
+        Stats.Columns.Add("PuntIn20", GetType(Integer))
+        Stats.Columns.Add("PuntLong", GetType(Integer))
+        Stats.Columns.Add("2PtConv", GetType(Integer))
+        Stats.Columns.Add("2PtDefRet", GetType(Integer))
+        Stats.PrimaryKey = New DataColumn() {Stats.Columns("PlayerId")} 'set the primary key to PlayerId
+    End Sub
+End Class
