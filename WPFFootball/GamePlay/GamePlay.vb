@@ -56,109 +56,190 @@ Public Class GamePlay
     Public GameLoop As Boolean 'This is what controls whether the game is still going on or it has ended
     Public PassType As New PassTypeEnum 'Enumeration for the different types of passes
     Public ScoringType As New ScoringTypeEnum 'Determines what type of score it is
-    Public GameEvents As New GamePlayEvents(Home.TeamId, Away.TeamId)
+    'Public GameEvents As New GamePlayEvents
 #Region "Time Variables"
-    Public Property StopClock As Boolean
-    Public Property Pace As Integer
-    Public Property GameTime As New TimeSpan(0, 15, 0) 'Sets the clock to 15 minutes(0 hours, 15 minutes, 0 seconds)
-    Public Property BallSpotTime As Integer
+    Public Shared Property StopClock As Boolean
+    Public Shared Property Pace As Integer
+    Public Shared Property GameTime As New TimeSpan(0, 15, 0) 'Sets the clock to 15 minutes(0 hours, 15 minutes, 0 seconds)
+    Public Shared Property BallSpotTime As Integer
 #End Region
 
 #Region "Passing Variables"
-    Public Property PBehLOSFarLComp As Single = 64.5
-    Public Property PBehLOSLMidComp As Single = 75.9
-    Public Property PBehLOSMidComp As Single = 51.3
-    Public Property PBehLOSRMidComp As Single = 74.7
-    Public Property PBehLOSFarRComp As Single = 64.5
-    Public Property PShortFarLComp As Single = 64.8
-    Public Property PShortLMidComp As Single = 67.4
-    Public Property PShortMidComp As Single = 70.3
-    Public Property PShortRMidComp As Single = 67.1
-    Public Property PShortFarRComp As Single = 67.6
-    Public Property PMedFarLComp As Single = 47
-    Public Property PMedLMidComp As Single = 56.7
-    Public Property PMedMidComp As Single = 60.9
-    Public Property PMedRMidComp As Single = 55
-    Public Property PMedFarRComp As Single = 46.9
-    Public Property PLongFarLComp As Single = 27.9
-    Public Property PLongLMidComp As Single = 36.8
-    Public Property PLongMidComp As Single = 38
-    Public Property PLongRMidComp As Single = 36.1
-    Public Property PLongFarRComp As Single = 30.6
+    Public Shared Property PBehLOSFarLComp As Single = 64.5
+    Public Shared Property PBehLOSLMidComp As Single = 75.9
+    Public Shared Property PBehLOSMidComp As Single = 51.3
+    Public Shared Property PBehLOSRMidComp As Single = 74.7
+    Public Shared Property PBehLOSFarRComp As Single = 64.5
+    Public Shared Property PShortFarLComp As Single = 64.8
+    Public Shared Property PShortLMidComp As Single = 67.4
+    Public Shared Property PShortMidComp As Single = 70.3
+    Public Shared Property PShortRMidComp As Single = 67.1
+    Public Shared Property PShortFarRComp As Single = 67.6
+    Public Shared Property PMedFarLComp As Single = 47
+    Public Shared Property PMedLMidComp As Single = 56.7
+    Public Shared Property PMedMidComp As Single = 60.9
+    Public Shared Property PMedRMidComp As Single = 55
+    Public Shared Property PMedFarRComp As Single = 46.9
+    Public Shared Property PLongFarLComp As Single = 27.9
+    Public Shared Property PLongLMidComp As Single = 36.8
+    Public Shared Property PLongMidComp As Single = 38
+    Public Shared Property PLongRMidComp As Single = 36.1
+    Public Shared Property PLongFarRComp As Single = 30.6
 #End Region
 
 #Region "Running Variables"
-    Public Property RunMid As Single
-    Public Property RunLeft As Single
-    Public Property RunLeftEnd As Single
-    Public Property RunRight As Single
-    Public Property RunRightEnd As Single
+    Public Shared Property RunMid As Single
+    Public Shared Property RunLeft As Single
+    Public Shared Property RunLeftEnd As Single
+    Public Shared Property RunRight As Single
+    Public Shared Property RunRightEnd As Single
 #End Region
 
 #Region "Kicking Game"
     'Private Property Kickoff As Boolean = True 'Initializes the game to start with a kickoff
-    Public Property KickoffDist As Single
-    Public Property KickReturnYards As Single
-    Public Property PuntReturnYards As Single
-    Public Property CallFairCatch As Boolean
-    Public Property PuntDistance As Single
-    Public Property FGDistance As Single
-    Public Property ExpDecayFG As Single
+    Public Shared Property KickoffDist As Single
+    Public Shared Property KickReturnYards As Single
+    Public Shared Property PuntReturnYards As Single
+    Public Shared Property CallFairCatch As Boolean
+    Public Shared Property PuntDistance As Single
+    Public Shared Property FGDistance As Single
+    Public Shared Property ExpDecayFG As Single
 
 #End Region
 
 #Region "Basic Game Info"
-    Public Property Down As Integer
-    Public Property YardsToGo As Single
-    Public Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
-    Public Property Quarter As Integer = 1
-    Public Property HomePossession As Boolean 'Does Home Team Have the Ball?
-    Public Property HalfStart As Boolean = True 'Is this the start of the half?
+    Public Shared Property Down As Integer
+    Public Shared Property YardsToGo As Single
+    Public Shared Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
+    Public Shared Property Quarter As Integer = 1
+    Public Shared Property HomePossession As Boolean 'Does Home Team Have the Ball?
+    Public Shared Property HalfStart As Boolean = True 'Is this the start of the half?
 #End Region
 
 #Region "Turnovers"
     'Private Property Intercepted As Boolean
-    Public Property IntReturnYds As Boolean
-    Public Property IntReturnTD As Boolean
+    Public Shared Property IntReturnYds As Boolean
+    Public Shared Property IntReturnTD As Boolean
     'Private Property Fumble As Boolean
-    Public Property DefFumRec As Boolean
-    Public Property FumbleRetYds As Boolean
-    Public Property FumbleRetTD As Boolean
+    Public Shared Property DefFumRec As Boolean
+    Public Shared Property FumbleRetYds As Boolean
+    Public Shared Property FumbleRetTD As Boolean
 
 #End Region
 
 #Region "Teams"
-    Public Home As New HomeTeam 'Filters the players DataTable to get the appropriate team's players
-    Public Away As New AwayTeam 'Filters the players DataTable to get the appropriate team's players
+    Public HomeDT As New DataTable
+    Public AWayDT As New DataTable
 #End Region
+    Public Sub GenDT(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
+        HomeDT = PlayerDT.Select($"TeamId = {homeTeamId}").CopyToDataTable()
+        AWayDT = PlayerDT.Select($"TeamId = {awayTeamId}").CopyToDataTable()
 
-    ''' <summary>
-    ''' Sets the depth chart by PID for lookups to the DataView
-    ''' </summary>
-    Public Structure HomeTeam
-        Dim QB1, QB2, QB3, RB1, RB2, RB3, RB4, FB1, FB2, WR1, WR2, WR3, WR4, WR5, WR6, TE1, TE2, TE3, TE4,
-            LT1, LT2, LT3, LG1, LG2, LG3, C1, C2, C3, RG1, RG2, RG3, RT1, RT2, RT3 As DataRow
-        Dim DE1, DE2, DE3, DE4, DE5, DT1, DT2, DT3, DT4, DT5, OLB1, OLB2, OLB3, OLB4, ILB1, ILB2, ILB3,
-            ILB4, FS1, FS2, FS3, SS1, SS2, SS3, CB1, CB2, CB3, CB4, CB5, CB6 As DataRow
-        Dim LS1, K1, P1 As DataRow
-        Dim TeamId As Integer
-    End Structure
-    Public Structure AwayTeam
-        Dim QB1, QB2, QB3, RB1, RB2, RB3, RB4, FB1, FB2, WR1, WR2, WR3, WR4, WR5, WR6, TE1, TE2, TE3, TE4,
-            LT1, LT2, LT3, LG1, LG2, LG3, C1, C2, C3, RG1, RG2, RG3, RT1, RT2, RT3 As DataRow
-        Dim DE1, DE2, DE3, DE4, DE5, DT1, DT2, DT3, DT4, DT5, OLB1, OLB2, OLB3, OLB4, ILB1, ILB2, ILB3,
-            ILB4, FS1, FS2, FS3, SS1, SS2, SS3, CB1, CB2, CB3, CB4, CB5, CB6 As DataRow
-        Dim LS1, K1, P1 As DataRow
-        Dim TeamId As Integer
-    End Structure
+        Dim TempDT As DataTable = PlayerDT.DefaultView.ToTable(False, {"PlayerID", "Pos", "TeamID", "FName", "LName"})
+        Stats = TempDT.Select($"TeamId = {homeTeamId} or TeamId = {awayTeamId}").CopyToDataTable()
+        AddColumns() 'Adds columns to the Stats DT
+        GenDepthChart(homeTeamId, awayTeamId)
+        'StartGame(homeTeamId, awayTeamId)
+    End Sub
 
-    Sub New(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
-        StartGame(homeTeamId, awayTeamId)
-        Dim MyRow As DataRow = Stats.NewRow()
-        For Each Row In GetType(HomeTeam).GetFields(BindingFlags.NonPublic)
-            MyRow("PlayerId") =
+    Private Sub GenDepthChart(homeTeamId As Integer, awayTeamId As Integer)
+        Dim QBCount, RBCount, FBCount, WRCount, TECount, LTCount, LGCount, CCount, RGCount, RTCount, DECount, DTCount, OLBCount, ILBCount, FSCount, SSCount, CBCount As Integer
+        Dim myRand As New Mersenne.MersenneTwister
+        Try
+            For Each row As DataRow In HomeDT.Rows
+                Select Case row.Item("Pos")
+                    Case "QB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"QB{QBCount + 1}"
+                        QBCount += 1
+                    Case "RB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RB{RBCount + 1}"
+                        RBCount += 1
+                    Case "FB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"FB{FBCount + 1}"
+                        FBCount += 1
+                    Case "WR" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"WR{WRCount + 1}"
+                        WRCount += 1
+                    Case "TE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"TE{TECount + 1}"
+                        TECount += 1
+                    Case "OT" 'Split them between RT and LT
+                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LT{LTCount + 1}", $"RT{RTCount + 1}")
+                        If (myvar = 1) Then
+                            LTCount += 1
+                        Else RTCount += 1
+                        End If
+                    Case "OG"
+                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LG{LGCount + 1}", $"RG{RGCount + 1}")
+                        If (myvar = 1) Then
+                            LGCount += 1
+                        Else RGCount += 1
+                        End If
+                    Case "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
+                        CCount += 1
+                    Case "DE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DE{DECount + 1}"
+                        DECount += 1
+                    Case "DT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DT{DTCount + 1}"
+                        DTCount += 1
+                    Case "OLB", "ROLB", "LOLB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"OLB{OLBCount + 1}"
+                        OLBCount += 1
+                    Case "ILB", "MLB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"ILB{ILBCount + 1}"
+                        ILBCount += 1
+                    Case "FS" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"FS{FSCount + 1}"
+                        FSCount += 1
+                    Case "SS" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"SS{SSCount + 1}"
+                        SSCount += 1
+                    Case "CB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"CB{CBCount + 1}"
+                        CBCount += 1
+                    Case "K" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "K1"
 
-        Next
+                    Case "P" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "P1"
+                End Select
+            Next row
+            'Reset Variables to 0 for away team
+            QBCount = RBCount = FBCount = WRCount = TECount = LTCount = LGCount = CCount = RGCount = RTCount = DECount = DTCount = OLBCount = ILBCount = FSCount = SSCount = CBCount = 0
+
+            For Each row As DataRow In AWayDT.Rows
+                Select Case row.Item("Pos")
+                    Case "QB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"QB{QBCount + 1}"
+                        QBCount += 1
+                    Case "RB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RB{RBCount + 1}"
+                        RBCount += 1
+                    Case "FB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"FB{FBCount + 1}"
+                        FBCount += 1
+                    Case "WR" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"WR{WRCount + 1}"
+                        WRCount += 1
+                    Case "TE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"TE{TECount + 1}"
+                        TECount += 1
+                    Case "LT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"LT{LTCount + 1}"
+                        LTCount += 1
+                    Case "LG" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"LG{LGCount + 1}"
+                        LGCount += 1
+                    Case "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
+                        CCount += 1
+                    Case "RG" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RG{RGCount + 1}"
+                        RGCount += 1
+                    Case "RT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RT{RTCount + 1}"
+                        RTCount += 1
+                    Case "DE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DE{DECount + 1}"
+                        DECount += 1
+                    Case "DT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DT{DTCount + 1}"
+                        DTCount += 1
+                    Case "OLB", "ROLB", "LOLB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"OLB{OLBCount + 1}"
+                        OLBCount += 1
+                    Case "ILB", "MLB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"ILB{ILBCount + 1}"
+                        ILBCount += 1
+                    Case "FS" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"FS{FSCount + 1}"
+                        FSCount += 1
+                    Case "SS" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"SS{SSCount + 1}"
+                        SSCount += 1
+                    Case "CB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"CB{CBCount + 1}"
+                        CBCount += 1
+                    Case "K" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "K1"
+                    Case "P" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "P1"
+                End Select
+            Next row
+        Catch ex As Exception
+            Console.WriteLine(ex.Data)
+        End Try
+
     End Sub
 
     ''' <summary>
@@ -167,14 +248,14 @@ Public Class GamePlay
     ''' <param name="homeTeamId"></param>
     ''' <param name="awayTeamId"></param>
     Public Sub StartGame(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
-
+        GenDT(homeTeamId, awayTeamId)
         Dim MyRand As New Mersenne.MersenneTwister
         HomePossession = MyRand.GenerateInt32(0, 1) = 1 'Determines who is kicking off
         'LoadDepthCharts(HomePossession, homeTeamId, awayTeamId) 'This will populate the onfield positions by which team is on the field
         While GameLoop
             ' While the GameLoop is Set to True run the game.
             If HalfStart Then
-                GameEvents.KickoffEvt(MyRand.GenerateInt32(0, 1) = 1)
+                KickoffEvt(MyRand.GenerateInt32(0, 1) = 1)
             End If
 
         End While

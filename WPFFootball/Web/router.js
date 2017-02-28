@@ -133,9 +133,11 @@
             })
 
             .state('Start.quick', {
-                parent: 'Start',
+                //parent: 'Start',
                 url: '/quick',
-                templateUrl: 'New_Game_Wizard/Start/Start-quick.html'
+                templateUrl: 'New_Game_Wizard/Start/Start-quick.html',
+                controller: 'quickStartCtrl',
+                controllerAs: 'vm'
             })
 
             .state('Start.situation', {

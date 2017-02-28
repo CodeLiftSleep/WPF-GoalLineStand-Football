@@ -3455,6 +3455,7 @@
     <Content Include="Web\main.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\New_Game_Wizard\Start\Start-quick.js" />
     <Content Include="Web\renderer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

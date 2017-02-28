@@ -6,8 +6,9 @@ Public Class GamePlayStats
     ''' <summary>
     ''' Add columns to the DataTable for keeping track of ingame stats
     ''' </summary>
-    Sub New()
-        Stats.Columns.Add("PlayerId", GetType(Integer))
+    Public Shared Sub AddColumns()
+        'Stats.Columns.Add("PlayerId", GetType(Integer))
+        Stats.Columns.Add("DepthChart", GetType(String))
         Stats.Columns.Add("PassAtt", GetType(Integer))
         Stats.Columns.Add("PassComp", GetType(Integer))
         Stats.Columns.Add("PassYards", GetType(Integer))

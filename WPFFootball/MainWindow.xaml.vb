@@ -78,6 +78,7 @@ Class MainWindow
             window = browserView1.Browser.ExecuteJavaScriptAndReturnValue("window")
             window.AsObject().SetProperty("Lookup", New JStoNETLookups()) 'Creates a new JStoNETLookup object for any query operations to return filtered data
             window.AsObject().SetProperty("CRUD", New CRUD()) 'Creates a new CRUD object for any file operations
+            window.AsObject().SetProperty("GamePlay", New GamePlay()) 'Creates a new GamePlay Object
             browserView2.Browser.LoadURL(browserView2.Browser.GetRemoteDebuggingURL())
         End If
     End Sub
