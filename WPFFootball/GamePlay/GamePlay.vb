@@ -53,7 +53,7 @@ End Enum
 ''' This is the class where game play takes place
 ''' </summary>
 Public Class GamePlay
-    Public GameLoop As Boolean 'This is what controls whether the game is still going on or it has ended
+    Public GameLoop As Boolean = True 'This is what controls whether the game is still going on or it has ended
     Public PassType As New PassTypeEnum 'Enumeration for the different types of passes
     Public ScoringType As New ScoringTypeEnum 'Determines what type of score it is
     'Public GameEvents As New GamePlayEvents
@@ -128,12 +128,14 @@ Public Class GamePlay
 #End Region
 
 #Region "Teams"
-    Public HomeDT As New DataTable
-    Public AWayDT As New DataTable
+    Public Shared HomeDT As New DataTable
+    Public Shared AwayDT As New DataTable
+    Public Shared Property HmTeamId As Integer
+    Public Shared Property AwTeamId As Integer
 #End Region
     Public Sub GenDT(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
         HomeDT = PlayerDT.Select($"TeamId = {homeTeamId}").CopyToDataTable()
-        AWayDT = PlayerDT.Select($"TeamId = {awayTeamId}").CopyToDataTable()
+        AwayDT = PlayerDT.Select($"TeamId = {awayTeamId}").CopyToDataTable()
 
         Dim TempDT As DataTable = PlayerDT.DefaultView.ToTable(False, {"PlayerID", "Pos", "TeamID", "FName", "LName"})
         Stats = TempDT.Select($"TeamId = {homeTeamId} or TeamId = {awayTeamId}").CopyToDataTable()
@@ -189,14 +191,29 @@ Public Class GamePlay
                     Case "CB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"CB{CBCount + 1}"
                         CBCount += 1
                     Case "K" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "K1"
-
                     Case "P" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = "P1"
                 End Select
             Next row
             'Reset Variables to 0 for away team
-            QBCount = RBCount = FBCount = WRCount = TECount = LTCount = LGCount = CCount = RGCount = RTCount = DECount = DTCount = OLBCount = ILBCount = FSCount = SSCount = CBCount = 0
+            QBCount = 0
+            RBCount = 0
+            FBCount = 0
+            WRCount = 0
+            TECount = 0
+            LTCount = 0
+            LGCount = 0
+            CCount = 0
+            LTCount = 0
+            RTCount = 0
+            DECount = 0
+            DTCount = 0
+            OLBCount = 0
+            ILBCount = 0
+            FSCount = 0
+            SSCount = 0
+            CBCount = 0
 
-            For Each row As DataRow In AWayDT.Rows
+            For Each row As DataRow In AwayDT.Rows
                 Select Case row.Item("Pos")
                     Case "QB" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"QB{QBCount + 1}"
                         QBCount += 1
@@ -208,16 +225,22 @@ Public Class GamePlay
                         WRCount += 1
                     Case "TE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"TE{TECount + 1}"
                         TECount += 1
-                    Case "LT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"LT{LTCount + 1}"
-                        LTCount += 1
-                    Case "LG" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"LG{LGCount + 1}"
-                        LGCount += 1
+                    Case "OT" 'Split them between RT and LT
+                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LT{LTCount + 1}", $"RT{RTCount + 1}")
+                        If (myvar = 1) Then
+                            LTCount += 1
+                        Else RTCount += 1
+                        End If
+                    Case "OG"
+                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LG{LGCount + 1}", $"RG{RGCount + 1}")
+                        If (myvar = 1) Then
+                            LGCount += 1
+                        Else RGCount += 1
+                        End If
                     Case "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
                         CCount += 1
-                    Case "RG" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RG{RGCount + 1}"
-                        RGCount += 1
-                    Case "RT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"RT{RTCount + 1}"
-                        RTCount += 1
                     Case "DE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DE{DECount + 1}"
                         DECount += 1
                     Case "DT" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DT{DTCount + 1}"
@@ -251,11 +274,12 @@ Public Class GamePlay
         GenDT(homeTeamId, awayTeamId)
         Dim MyRand As New Mersenne.MersenneTwister
         HomePossession = MyRand.GenerateInt32(0, 1) = 1 'Determines who is kicking off
-        'LoadDepthCharts(HomePossession, homeTeamId, awayTeamId) 'This will populate the onfield positions by which team is on the field
+        HmTeamId = homeTeamId
+        AwTeamId = awayTeamId
         While GameLoop
             ' While the GameLoop is Set to True run the game.
             If HalfStart Then
-                KickoffEvt(MyRand.GenerateInt32(0, 1) = 1)
+                Kickoff(MyRand.GenerateInt32(0, 1) = 1)
             End If
 
         End While
