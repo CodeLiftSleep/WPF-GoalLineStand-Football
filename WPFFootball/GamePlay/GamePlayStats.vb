@@ -27,6 +27,7 @@ Public Class GamePlayStats
         Stats.Columns.Add("RecTD", GetType(Integer))
         Stats.Columns.Add("RecLong", GetType(Integer))
         Stats.Columns.Add("Fumbles", GetType(Integer))
+        Stats.Columns.Add("FumRec", GetType(Integer))
         Stats.Columns.Add("FumLost", GetType(Integer))
         Stats.Columns.Add("TotTackles", GetType(Integer))
         Stats.Columns.Add("SoloTackles", GetType(Integer))
