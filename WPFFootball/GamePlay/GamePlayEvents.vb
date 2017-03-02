@@ -1059,6 +1059,7 @@ Public Class GamePlayEvents
         YardLine += PuntReturnYards
         Fumble(0, 0, PlayType.PuntReturn) 'Did the BallCarrier fumble?
         GetTimeOffClock(PuntReturnYards, PlayType.PuntReturn)
+        ChangeOfPoss(If(HomePossession, False, True))
     End Sub
 
     Private Shared Sub KickFG(DT As DataTable, play As ScoringTypeEnum)
