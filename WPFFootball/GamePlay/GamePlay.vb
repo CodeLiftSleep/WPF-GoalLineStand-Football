@@ -15,9 +15,28 @@ Public Enum PlayType
     Interception
     KickoffRet
     Safety
+    FakePunt
     Punt
-    PuntRet
+    PuntBlock
+    PuntReturn
+    PuntBlockRet
     Touchdown
+    FakeFG
+    FG
+    FGBlock 'Kick is Blocked
+    FGBlockRet
+    FumQBExchange 'QB Fumbles the ball when snapped
+    FumQBSacked 'QB Gets Sacked and Fumbles
+    FumQBRun 'QB Gets Hit while running and fumbles
+    FumQBHandoff 'QB Fumbles while handing it off to RB/WR/FB/TE in the backfield
+    FumRunPlay 'Fumbles on running play
+    FumReception 'Fumbles after Pass Completion
+    FumKR  'Fumbles on Kickoff Return once he has secured ball
+    FumPR  'Fumbles on Punt Return once he has secured the ball
+    MuffKR 'Ball is dropped when trying to catch Kickoff
+    MuffPR 'Ball is dropped when trying to catch Punt
+    Lateral
+
 End Enum
 Public Enum PassTypeEnum
     PBehindLOSFarL
@@ -76,7 +95,9 @@ Public Class GamePlay
     Public Shared Property ClockStopped As Boolean
     Public Shared Property Pace As New TimeSpan(0, 0, 0)
     Public Shared Property GameTime As New TimeSpan(0, 15, 0) 'Sets the clock to 15 minutes(0 hours, 15 minutes, 0 seconds)
+    Public Shared Property PlayTime As New TimeSpan(0, 0, 0) 'Length of time the play took to run
     Public Shared Property BallSpotTime As New TimeSpan(0, 0, 0)
+    Public Shared Property TwoMinuteWarning As Boolean
 #End Region
 
 #Region "Passing Variables"
@@ -100,6 +121,7 @@ Public Class GamePlay
     Public Shared Property PLongMidComp As Single = 38
     Public Shared Property PLongRMidComp As Single = 36.1
     Public Shared Property PLongFarRComp As Single = 30.6
+    Public Shared Property IsComplete As Boolean
 #End Region
 
 #Region "Running Variables"
@@ -119,7 +141,7 @@ Public Class GamePlay
     Public Shared Property PuntDistance As Single
     Public Shared Property FGDistance As Single
     Public Shared Property ExpDecayFG As Single
-
+    Public Shared Property Touchback As Boolean
 #End Region
 
 #Region "Basic Game Info"
@@ -132,6 +154,8 @@ Public Class GamePlay
     Public Shared Property HalfStart As Boolean = True 'Is this the start of the half?
     Public Shared Property HomeScore As Integer
     Public Shared Property AWayScore As Integer
+    Public Shared Property PointDiff As Integer 'How much the team is currently ahead or behind by
+    Public Shared Property OutOfBounds As Boolean
 #End Region
 
 #Region "Turnovers"
@@ -303,14 +327,19 @@ Public Class GamePlay
                 HalfStart = False
             End If
 
-            'Two Minute Warning Check
-            If (Quarter = 2 Or Quarter = 4) And GameTime <= New TimeSpan(0, 2, 0) Then
+            GetPace()
+
+            'Two Minute Warning Check---before a play is ran
+            If (Quarter = 2 Or Quarter = 4) And GameTime <= New TimeSpan(0, 2, 0) And Not TwoMinuteWarning Then
                 ClockStopped = True
+                TwoMinuteWarning = True 'Set the two minute warning so it doesn't continue to occur
+                GameTime = New TimeSpan(0, 2, 0) 'reset the clock to 2 minutes
             End If
 
             'End Of Quarter Check
             If GameTime.Equals(New TimeSpan(0, 0, 0)) Then
                 ClockStopped = True
+                TwoMinuteWarning = False 'reset two minute warning for the next half
                 If Quarter = 2 Then
                     HomePossession = HomeRec2ndHalfKickoff 'Sets the team ready to receive ball in the 2nd half
                     HalfStart = True
@@ -320,11 +349,11 @@ Public Class GamePlay
                 End If
                 Quarter += 1
             End If
+            'If none of those things are true, then run a play
             RunPlay()
             RunClock()
 
         End While
-
     End Sub
 
     Private Sub LoadDepthCharts(homeTeamHasBall As Boolean, ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
@@ -341,44 +370,64 @@ Public Class GamePlay
         Select Case MyRand.GenerateDouble(0, 100) 'Generate a new Random number
             Case <= 4.0
                 PassType = PassTypeEnum.PBehindLOSFarL
+                PlayType = PlayType.PassBehindLOS
             Case <= 8.0
                 PassType = PassTypeEnum.PBehindLOSLMid
+                PlayType = PlayType.PassBehindLOS
             Case <= 9.3
                 PassType = PassTypeEnum.PBehindLOSLMid
+                PlayType = PlayType.PassBehindLOS
             Case <= 13.7
                 PassType = PassTypeEnum.PBehindLOSRMid
+                PlayType = PlayType.PassBehindLOS
             Case <= 18.9
                 PassType = PassTypeEnum.PBehindLOSFarR
+                PlayType = PlayType.PassBehindLOS
             Case <= 29
                 PassType = PassTypeEnum.PShortFarL
+                PlayType = PlayType.PassShort
             Case <= 38.6
                 PassType = PassTypeEnum.PShortLMid
+                PlayType = PlayType.PassShort
             Case <= 46
                 PassType = PassTypeEnum.PShortMid
+                PlayType = PlayType.PassShort
             Case <= 57.2
                 PassType = PassTypeEnum.PShortRMid
+                PlayType = PlayType.PassShort
             Case <= 68.2
                 PassType = PassTypeEnum.PShortFarR
+                PlayType = PlayType.PassShort
             Case <= 73.1
                 PassType = PassTypeEnum.PMedFarL
+                PlayType = PlayType.PassMed
             Case <= 76.8
                 PassType = PassTypeEnum.PMedLMid
+                PlayType = PlayType.PassMed
             Case <= 79.9
                 PassType = PassTypeEnum.PMedMid
+                PlayType = PlayType.PassMed
             Case <= 83.8
                 PassType = PassTypeEnum.PMedRMid
+                PlayType = PlayType.PassMed
             Case <= 88.9
                 PassType = PassTypeEnum.PMedFarR
+                PlayType = PlayType.PassMed
             Case <= 92.5
                 PassType = PassTypeEnum.PLongFarL
+                PlayType = PlayType.PassLong
             Case <= 93.5
                 PassType = PassTypeEnum.PLongLMid
+                PlayType = PlayType.PassLong
             Case <= 94.5
                 PassType = PassTypeEnum.PLongMid
+                PlayType = PlayType.PassLong
             Case <= 95.8
                 PassType = PassTypeEnum.PLongRMid
+                PlayType = PlayType.PassLong
             Case Else
                 PassType = PassTypeEnum.PLongFarR
+                PlayType = PlayType.PassLong
         End Select
         Return PassType
     End Function
@@ -389,44 +438,64 @@ Public Class GamePlay
         Select Case passType
             Case PassTypeEnum.PBehindLOSFarL
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 64.5
+
             Case PassTypeEnum.PBehindLOSLMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 75.9
+
             Case PassTypeEnum.PBehindLOSMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 51.3
+
             Case PassTypeEnum.PBehindLOSRMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 74.7
+
             Case PassTypeEnum.PBehindLOSFarR
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 64.5
+
             Case PassTypeEnum.PShortFarL
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 64.8
+
             Case PassTypeEnum.PShortLMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 67.4
+
             Case PassTypeEnum.PShortMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 70.3
+
             Case PassTypeEnum.PShortRMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 67.1
+
             Case PassTypeEnum.PShortFarR
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 67.6
+
             Case PassTypeEnum.PMedFarL
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 47.0
+
             Case PassTypeEnum.PMedLMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 56.7
+
             Case PassTypeEnum.PMedMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 60.9
+
             Case PassTypeEnum.PMedRMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 55.0
+
             Case PassTypeEnum.PMedFarR
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 46.9
+
             Case PassTypeEnum.PLongFarL
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 27.9
+
             Case PassTypeEnum.PLongLMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 36.8
+
             Case PassTypeEnum.PLongMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 38.0
+
             Case PassTypeEnum.PLongRMid
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 36.1
+
             Case PassTypeEnum.PLongFarR
                 IsComplete = MyRand.GenerateDouble(0, 100) <= 30.6
+
         End Select
 
         Return IsComplete
@@ -557,14 +626,19 @@ Public Class GamePlay
         Select Case MyRand.GenerateInt32(0, 100)
             Case 0 To 10
                 Run = RunTypeEnum.LeftEnd
+                PlayType = PlayType.RunOutside
             Case 11 To 22
                 Run = RunTypeEnum.LeftTackle
+                PlayType = PlayType.RunInside
             Case 23 To 78
                 Run = RunTypeEnum.Middle
+                PlayType = PlayType.RunInside
             Case 79 To 90
                 Run = RunTypeEnum.RightTackle
+                PlayType = PlayType.RunInside
             Case Else
                 Run = RunTypeEnum.RightEnd
+                PlayType = PlayType.RunOutside
         End Select
         Return Run
     End Function
