@@ -43,6 +43,7 @@ Public Class GamePlayStats
         Stats.Columns.Add("KORetYds", GetType(Integer))
         Stats.Columns.Add("KORetLong", GetType(Integer))
         Stats.Columns.Add("KORetTD", GetType(Integer))
+        Stats.Columns.Add("Touchback", GetType(Integer))
         Stats.Columns.Add("PuntRet", GetType(Integer))
         Stats.Columns.Add("PRYds", GetType(Integer))
         Stats.Columns.Add("PRLong", GetType(Integer))

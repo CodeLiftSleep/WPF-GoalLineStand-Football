@@ -351,7 +351,7 @@ Public Class GamePlay
             End If
             'If none of those things are true, then run a play
             RunPlay()
-            RunClock()
+            'RunClock()
 
         End While
     End Sub

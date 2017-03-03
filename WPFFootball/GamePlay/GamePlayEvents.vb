@@ -646,13 +646,13 @@ Public Class GamePlayEvents
 
     Private Shared Sub IsTouchback(onKickoff As Boolean, kicker As Integer)
         'If its a touchback from a kickoff, the ball is placed at the 25 yard line, otherwise at the 20
-        YardLine = If(onKickoff, 25, 20)
         'Kicker gets a TB added to his Totals
         If Stats.Rows.Find(kicker).Item("Touchback") IsNot DBNull.Value Then 'Check for NULL Values
             Stats.Rows.Find(kicker).Item("Touchback") += 1
         Else Stats.Rows.Find(kicker).Item("Touchback") = 1
         End If
         ChangeOfPoss(If(HomePossession, False, True))
+        YardLine = If(onKickoff, 25, 20)
     End Sub
 
     ''' <summary>
@@ -733,7 +733,6 @@ Public Class GamePlayEvents
         Dim MyRand As New MersenneTwister
         Dim YardsGained As Single
         Dim passType As New PassTypeEnum
-        Dim passComplete As Boolean
 
         If Down = 4 Then
             If YardLine >= 67 Then 'Field Goal Range --- Attempt a FG
@@ -753,7 +752,6 @@ Public Class GamePlayEvents
                                 Else
                                     If Fumble(0, 0, PlayType.FumRunPlay) Then Fumble(0, 0, PlayType.FumRunPlay) 'Check to see if its a fumble
                                     ClockStopped = False
-
                                 End If
                             End If
                         Case Else 'Passing Play
@@ -768,8 +766,8 @@ Public Class GamePlayEvents
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
                                     End If
                                 Else
-                                    passComplete = GetPassCompletion(passType)
-                                    If passComplete Then
+                                    IsComplete = GetPassCompletion(passType)
+                                    If IsComplete Then
                                         YardsGained = GetPassYards(passType)
                                         If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
                                         ClockStopped = False
@@ -808,8 +806,8 @@ Public Class GamePlayEvents
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
                                     End If
                                 Else
-                                    passComplete = GetPassCompletion(passType)
-                                    If passComplete Then
+                                    IsComplete = GetPassCompletion(passType)
+                                    If IsComplete Then
                                         YardsGained = GetPassYards(passType)
                                         If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
                                         ClockStopped = False
@@ -847,8 +845,8 @@ Public Class GamePlayEvents
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
                                     End If
                                 Else
-                                    passComplete = GetPassCompletion(passType)
-                                    If passComplete Then
+                                    IsComplete = GetPassCompletion(passType)
+                                    If IsComplete Then
                                         YardsGained = GetPassYards(passType)
                                         If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
                                         ClockStopped = False
@@ -892,8 +890,8 @@ Public Class GamePlayEvents
                             End If
 
                         Else
-                            passComplete = GetPassCompletion(passType)
-                            If passComplete Then
+                            IsComplete = GetPassCompletion(passType)
+                            If IsComplete Then
                                 YardsGained = GetPassYards(passType)
                                 If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
                                 ClockStopped = False
@@ -906,11 +904,14 @@ Public Class GamePlayEvents
             YardLine += YardsGained
             If YardLine < 0 Then 'Safety
                 Safety()
-            Else
+            Else 'Its not a safety
                 YardsToGo -= YardsGained 'Sets how many yards to go
                 Down = If(YardsToGo <= 0, 1, Down + 1) 'checks to see if its a first down
+                If Down = 1 Then 'Its a first down, reset the yards to go
+                    YardsToGo = If(YardLine < 91, 10, 100 - YardLine) 'If its anywhere past before the Opponent 10 yard line it resets to 10, otherwise its Goal to Go
+                End If
             End If
-            GetTimeOffClock(YardsGained, PlayType)
+            GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
         End If
     End Sub
 
@@ -949,7 +950,7 @@ Public Class GamePlayEvents
         Dim MyRand As New MersenneTwister
         Dim PointDiff = If(HomePossession, HomeScore - AWayScore, AWayScore - HomeScore)
         Dim PassType As New PassTypeEnum
-        Dim PassComplete As Boolean
+
         If Quarter = 4 Then
             Select Case Math.Abs(PointDiff)
                 'Attempt 2 Point Conv
@@ -960,8 +961,8 @@ Public Class GamePlayEvents
                             If GetRunYards(GetRunType) >= 2 Then UpdateScore(ScoringTypeEnum.TwoPointConv) '2Pt Conversion succeeds
                         Case Else
                             PassType = GetPassType()
-                            PassComplete = GetPassCompletion(PassType)
-                            If PassComplete Then
+                            IsComplete = GetPassCompletion(PassType)
+                            If IsComplete Then
                                 If GetPassYards(PassType) > 2 Then UpdateScore(ScoringTypeEnum.TwoPointConv) '2Pt Conversion Succeeds
                             End If
                     End Select
