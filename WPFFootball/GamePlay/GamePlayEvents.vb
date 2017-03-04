@@ -745,6 +745,7 @@ Public Class GamePlayEvents
                                 FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
                             Else
                                 YardsGained = GetRunYards(GetRunType)
+                                YardLine += YardsGained
                                 If YardLine >= 100 Then 'Its a TouchDown
                                     ClockStopped = True
                                     UpdateScore(ScoringTypeEnum.RushingTD)
@@ -761,6 +762,7 @@ Public Class GamePlayEvents
                             Else
                                 If Sacked(PlayType) Then
                                     YardsGained = MyRand.GenerateDouble(-15, -0.1)
+                                    YardLine += YardsGained
                                     ClockStopped = False
                                     If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
@@ -769,8 +771,15 @@ Public Class GamePlayEvents
                                     IsComplete = GetPassCompletion(passType)
                                     If IsComplete Then
                                         YardsGained = GetPassYards(passType)
-                                        If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                        ClockStopped = False
+                                        YardLine += YardsGained
+                                        If YardLine >= 100 Then 'Its a TouchDown
+                                            ClockStopped = True
+                                            UpdateScore(ScoringTypeEnum.RushingTD)
+                                            XPConv()
+                                        Else
+                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
+                                            ClockStopped = False
+                                        End If
                                     Else 'Incomplete Pass
                                         ClockStopped = True
                                     End If
@@ -784,6 +793,7 @@ Public Class GamePlayEvents
                                 FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
                             Else
                                 YardsGained = GetRunYards(GetRunType)
+                                YardLine += YardsGained
                                 If YardLine >= 100 Then 'Its a TouchDown
                                     ClockStopped = True
                                     UpdateScore(ScoringTypeEnum.RushingTD)
@@ -801,6 +811,7 @@ Public Class GamePlayEvents
                             Else
                                 If Sacked(PlayType) Then
                                     YardsGained = MyRand.GenerateDouble(-15, -0.1)
+                                    YardLine += YardsGained
                                     ClockStopped = False
                                     If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
@@ -809,8 +820,15 @@ Public Class GamePlayEvents
                                     IsComplete = GetPassCompletion(passType)
                                     If IsComplete Then
                                         YardsGained = GetPassYards(passType)
-                                        If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                        ClockStopped = False
+                                        YardLine += YardsGained
+                                        If YardLine >= 100 Then 'Its a TouchDown
+                                            ClockStopped = True
+                                            UpdateScore(ScoringTypeEnum.RushingTD)
+                                            XPConv()
+                                        Else
+                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
+                                            ClockStopped = False
+                                        End If
                                     Else 'Incomplete Pass
                                         ClockStopped = True
                                     End If
@@ -824,6 +842,7 @@ Public Class GamePlayEvents
                                 FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
                             Else
                                 YardsGained = GetRunYards(GetRunType)
+                                YardLine += YardsGained
                                 If YardLine >= 100 Then 'Its a TouchDown
                                     ClockStopped = True
                                     UpdateScore(ScoringTypeEnum.RushingTD)
@@ -840,6 +859,7 @@ Public Class GamePlayEvents
                             Else
                                 If Sacked(PlayType) Then
                                     YardsGained = MyRand.GenerateDouble(-15, -0.1)
+                                    YardLine += YardsGained
                                     ClockStopped = False
                                     If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
                                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
@@ -848,8 +868,15 @@ Public Class GamePlayEvents
                                     IsComplete = GetPassCompletion(passType)
                                     If IsComplete Then
                                         YardsGained = GetPassYards(passType)
-                                        If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                        ClockStopped = False
+                                        YardLine += YardsGained
+                                        If YardLine >= 100 Then 'Its a TouchDown
+                                            ClockStopped = True
+                                            UpdateScore(ScoringTypeEnum.RushingTD)
+                                            XPConv()
+                                        Else
+                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
+                                            ClockStopped = False
+                                        End If
                                     Else 'Incomplete Pass
                                         ClockStopped = True
                                     End If
@@ -867,6 +894,7 @@ Public Class GamePlayEvents
                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
                     Else
                         YardsGained = GetRunYards(GetRunType)
+                        YardLine += YardsGained
                         If YardLine >= 100 Then 'Its a TouchDown
                             ClockStopped = True
                             UpdateScore(ScoringTypeEnum.RushingTD)
@@ -884,6 +912,7 @@ Public Class GamePlayEvents
                     Else
                         If Sacked(PlayType) Then
                             YardsGained = MyRand.GenerateDouble(-15, -0.1)
+                            YardLine += YardsGained
                             ClockStopped = False
                             If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
                                 FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
@@ -893,15 +922,22 @@ Public Class GamePlayEvents
                             IsComplete = GetPassCompletion(passType)
                             If IsComplete Then
                                 YardsGained = GetPassYards(passType)
-                                If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                ClockStopped = False
+                                YardLine += YardsGained
+                                If YardLine >= 100 Then 'Its a TouchDown
+                                    ClockStopped = True
+                                    UpdateScore(ScoringTypeEnum.RushingTD)
+                                    XPConv()
+                                Else
+                                    If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
+                                    ClockStopped = False
+                                End If
                             Else 'Incomplete Pass
                                 ClockStopped = True
                             End If
                         End If 'Checks to see if QB got sacked
                     End If
             End Select
-            YardLine += YardsGained
+            'YardLine += YardsGained
             If YardLine < 0 Then 'Safety
                 Safety()
             Else 'Its not a safety
@@ -912,6 +948,8 @@ Public Class GamePlayEvents
                 End If
             End If
             GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
+            Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}")
         End If
     End Sub
 
@@ -1045,6 +1083,8 @@ Public Class GamePlayEvents
         End Select
         GetTimeOffClock(PuntDistance, PlayType.Punt) 'Get the time that ran off the clock for this play
         If Not CallFairCatch And Not OutOfBounds Then PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
+        Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}")
     End Sub
 
     Private Shared Sub PuntReturn()

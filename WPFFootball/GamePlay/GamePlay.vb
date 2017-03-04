@@ -337,9 +337,10 @@ Public Class GamePlay
             End If
 
             'End Of Quarter Check
-            If GameTime.Equals(New TimeSpan(0, 0, 0)) Then
+            If GameTime <= New TimeSpan(0, 0, 0) Then
                 ClockStopped = True
                 TwoMinuteWarning = False 'reset two minute warning for the next half
+                GameTime = New TimeSpan(0, 15, 0)
                 If Quarter = 2 Then
                     HomePossession = HomeRec2ndHalfKickoff 'Sets the team ready to receive ball in the 2nd half
                     HalfStart = True
