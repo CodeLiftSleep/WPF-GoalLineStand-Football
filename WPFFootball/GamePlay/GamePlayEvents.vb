@@ -5,31 +5,6 @@ Imports GoalLineStandFootball
 
 Public Class GamePlayEvents
     Inherits GamePlay
-
-#Region "Events"
-    'Public Shared Event PassCompletion(ByVal QB As Integer, ByVal recPlayer As Integer, ByVal yardsGained As Single)
-    'Public Shared Event PassIncompletion(ByVal QB As Integer, ByVal intReceiver As Integer)
-    'Public Shared Event PassDropped(ByVal QB As Integer, ByVal recPlayer As Integer)
-    'Public Shared Event PassDefended(ByVal defPlayer As Integer, ByVal intendedRec As Integer)
-
-    'Public Shared Event FirstDown(ByVal player As Integer, ByVal homeTeam As Boolean)
-    'Public Shared Event TouchDown(ByVal type As ScoringTypeEnum, ByVal homeTeam As Boolean, ByVal player As Integer)
-    'Public Shared Event Interception(ByVal QBThrowing As Integer, ByVal IntPlayer As Integer, ByVal homeTeam As Boolean)
-    'Public Shared Event Fumble(ByVal fumblingPlayer As Integer, ByVal recoveringPlayer As Integer)
-    'Public Shared Event Tackle(ByVal ballCarrier As Integer, ByVal tackler As Integer)
-    'Public Shared Event Sack(ByVal QB As Integer, ByVal defender As Integer, ByVal yardsLost As Integer)
-    'Public Shared Event Punt(ByVal punter As Integer, ByVal puntYards As Integer)
-    'Public Shared Event FieldGoal()
-    'Public Shared Event ChangeOfPoss(ByVal homeTeamHasBall As Boolean) 'Fires Change of Possession Event
-    'Public Shared Event Timeout(ByVal homeTeamCalled As Boolean)
-    'Public Shared Event EndOfQuarter()
-    'Public Shared Event TwoMinuteWarning()
-    'Public Shared Event HalfTime()
-    'Public Shared Event Kickoff(ByVal homeTeamKickingOff As Boolean)
-    'Public Shared Event KickoffRet(ByVal kickReturner As Integer)
-    'Public Shared Event Touchback(onKickoff As Boolean)
-
-#End Region
     Private Shared Sub KickoffRet(kickReturner As Integer, isFreeKick As Boolean)
         Dim MyRand As New MersenneTwister
         Dim GenKickRetYds As New MersenneTwister
@@ -653,6 +628,16 @@ Public Class GamePlayEvents
         End If
         ChangeOfPoss(If(HomePossession, False, True))
         YardLine = If(onKickoff, 25, 20)
+        If onKickoff Then
+            Console.WriteLine($"Play: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
+        Else
+            Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
+        End If
+
     End Sub
 
     ''' <summary>
@@ -737,6 +722,7 @@ Public Class GamePlayEvents
         If Down = 4 Then
             If YardLine >= 67 Then 'Field Goal Range --- Attempt a FG
                 KickFG(If(HomePossession, HomeDT, AwayDT), ScoringTypeEnum.FG)
+                Exit Sub ' Exits sub so we don't re-run code
             ElseIf YardLine >= 60 And YardsToGo < 4 Then 'Go For it
                 If YardsToGo <= 1 Then '1 yard or less on 4th down
                     Select Case MyRand.GenerateDouble(0, 100)
@@ -754,7 +740,9 @@ Public Class GamePlayEvents
                         Case Else : Run = False 'Passing Play
                     End Select
                 End If
-            Else Punt(If(HomePossession, HomeDT, AwayDT)) 'If they aren't in FG range and not in "go for it" range then they punt
+            Else
+                Punt(If(HomePossession, HomeDT, AwayDT)) 'If they aren't in FG range and not in "go for it" range then they punt
+                Exit Sub 'Exits out of the sub so the code doesn't keep running
                 'TODO: Add code to make them check the gametime to see if they punt or not
             End If
         ElseIf Down = 3 Then 'Its 3rd Down
@@ -1106,49 +1094,41 @@ Public Class GamePlayEvents
         Select Case YardLine
             Case < 45
                 Select Case MyRand.GenerateDouble(0, 100)
-                    Case <= 0.35 'Touchback
-                        Touchback = True
-                        PuntDistance = 100 - YardLine
-                        IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
-                    Case Else 'No Touchback
-                        PuntDistance = MyRand.GetGaussian(45.3, 3.5)
-                        YardLine += PuntDistance
-                        ChangeOfPoss(HomePossession)
+                    Case <= 0.35 : Touchback = True 'Touchback
+                    Case Else
+                        PuntDistance = MyRand.GetGaussian(45.3, 3.5) 'No Touchback
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 5.45 'Did returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 2.99 'Did punt go out of bounds?
                 End Select
             Case 45 To 55
                 Select Case MyRand.GenerateDouble(0, 100)
-                    Case < 15.71 'Touchback
-                        Touchback = True
-                        PuntDistance = 100 - YardLine
-                        IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
+                    Case < 15.71 : Touchback = True 'Touchback
                     Case Else 'No Touchback
                         PuntDistance = MyRand.GenerateInt32(27, 99 - YardLine) 'Has to at least be at the 1 yard line
-                        YardLine = YardLine + PuntDistance
-                        ChangeOfPoss(HomePossession)
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 47.14 'Did the returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 7.74 'Did the punt go out of bounds?
                 End Select
             Case Else 'Punting from inside the opponent's 45
                 Select Case MyRand.GenerateDouble(0, 100)
-                    Case < 21.93 'Touchback
-                        Touchback = True
-                        PuntDistance = 100 - YardLine
-                        IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
+                    Case < 21.93 : Touchback = True 'Touchback
                     Case Else 'No Touchback
                         PuntDistance = MyRand.GenerateInt32(27, 99 - YardLine) 'Has to at least be at the 1 yard line
-                        YardLine = YardLine + PuntDistance
-                        ChangeOfPoss(HomePossession)
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 36.9 'Did the returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 6.42 'Did the punt go out of bounds?
                 End Select
         End Select
-        GetTimeOffClock(PuntDistance, PlayType.Punt) 'Get the time that ran off the clock for this play
-        If Not CallFairCatch And Not OutOfBounds Then PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
-        Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+        If Touchback Then
+            PuntDistance = 100 - YardLine
+            IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
+        Else
+            YardLine = YardLine + PuntDistance
+            If Not CallFairCatch And Not OutOfBounds Then PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
+            Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
+        End If
+        GetTimeOffClock(PuntDistance, PlayType.Punt) 'Get the time that ran off the clock for this play
+
     End Sub
 
     Private Shared Sub PuntReturn()
@@ -1161,7 +1141,7 @@ Public Class GamePlayEvents
             Case 96 To 98 : PuntReturnYards = MyRand.GenerateInt32(41, 70)
             Case Else : PuntReturnYards = MyRand.GenerateInt32(71, 100)
         End Select
-        YardLine += PuntReturnYards
+        YardLine -= PuntReturnYards 'Posession Hasn't change yet
         Fumble(0, 0, PlayType.PuntReturn) 'Did the BallCarrier fumble?
         GetTimeOffClock(PuntReturnYards, PlayType.PuntReturn)
         ChangeOfPoss(If(HomePossession, False, True))
