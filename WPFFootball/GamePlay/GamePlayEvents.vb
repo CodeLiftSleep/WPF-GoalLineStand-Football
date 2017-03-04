@@ -938,59 +938,60 @@ Public Class GamePlayEvents
                         Case Else : Run = False 'Passing Play
                     End Select
             End Select
-            'Checks to see if there was a fumbled QB Exchange---play would be aborted if there is
-            If Fumble(0, 0, PlayType.FumQBExchange) Then
-                FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-                PlayType = PlayType.FumQBExchange
+        End If
+        'Checks to see if there was a fumbled QB Exchange---play would be aborted if there is
+        If Fumble(0, 0, PlayType.FumQBExchange) Then
+            FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
+            PlayType = PlayType.FumQBExchange
 
-            Else 'Now we check the various conditions of the play
-                If Run Then 'This is a running play --- lets check any Run Specific code
-                    If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
-                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
-                    Else
-                        YardsGained = Math.Round(GetRunYards(GetRunType), 1)
+        Else 'Now we check the various conditions of the play
+            If Run Then 'This is a running play --- lets check any Run Specific code
+                If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
+                    FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
+                Else
+                    YardsGained = Math.Round(GetRunYards(GetRunType), 1)
+                End If
+            Else 'This is a Passing Play
+                passType = GetPassType() 'Get the pass type
+                If Sacked(PlayType) Then 'Check to see if the QB gets sacked
+                    YardsGained = Math.Round(MyRand.GenerateDouble(-15, -0.1), 1)
+                    YardLine += YardsGained
+                    ClockStopped = False
+                    If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
+                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
+                        PlayType = PlayType.FumQBSacked
                     End If
-                Else 'This is a Passing Play
-                    passType = GetPassType() 'Get the pass type
-                    If Sacked(PlayType) Then 'Check to see if the QB gets sacked
-                        YardsGained = Math.Round(MyRand.GenerateDouble(-15, -0.1), 1)
-                        YardLine += YardsGained
+                Else
+                    IsComplete = GetPassCompletion(passType)
+                    If IsComplete Then
+                        YardsGained = Math.Round(GetPassYards(passType), 1)
                         ClockStopped = False
-                        If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                            FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                            PlayType = PlayType.FumQBSacked
-                        End If
-                    Else
-                        IsComplete = GetPassCompletion(passType)
-                        If IsComplete Then
-                            YardsGained = Math.Round(GetPassYards(passType), 1)
-                            ClockStopped = False
-                        Else ClockStopped = True 'Incomplete Pass
-                        End If
+                    Else ClockStopped = True 'Incomplete Pass
                     End If
                 End If
             End If
-            'Now we check all non-type specific play code:
-            YardLine += YardsGained
-            If Not IsTouchdown() Then 'Is it a Touchdown?  Checks to see and then runs TD Code if it is
-                If Fumble(0, 0, PlayType) Then
-                    Fumble(0, 0, PlayType) 'Check to see if its a fumble
-                    ClockStopped = False
-                ElseIf YardLine < 0 Then 'Safety
-                    Safety()
-                Else 'Its not a safety or a fumble
-                    YardsToGo -= YardsGained 'Sets how many yards to go
-                    Down = If(YardsToGo <= 0, 1, Down + 1) 'checks to see if its a first down
-                    If Down = 1 Then 'Its a first down, reset the yards to go
-                        YardsToGo = If(YardLine < 91, 10, 100 - YardLine) 'If its anywhere past before the Opponent 10 yard line it resets to 10, otherwise its Goal to Go
-                    End If
+        End If
+        'Now we check all non-type specific play code:
+        YardLine += YardsGained
+        If Not IsTouchdown() Then 'Is it a Touchdown?  Checks to see and then runs TD Code if it is
+            If Fumble(0, 0, PlayType) Then
+                Fumble(0, 0, PlayType) 'Check to see if its a fumble
+                ClockStopped = False
+            ElseIf YardLine < 0 Then 'Safety
+                Safety()
+            Else 'Its not a safety or a fumble
+                YardsToGo -= YardsGained 'Sets how many yards to go
+                Down = If(YardsToGo <= 0, 1, Down + 1) 'checks to see if its a first down
+                If Down = 1 Then 'Its a first down, reset the yards to go
+                    YardsToGo = If(YardLine < 91, 10, 100 - YardLine) 'If its anywhere past before the Opponent 10 yard line it resets to 10, otherwise its Goal to Go
                 End If
-                GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
+            End If
+            GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
 
-                Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
-            End If
+        End If
     End Sub
 
     Private Shared Function IsTouchdown() As Boolean
