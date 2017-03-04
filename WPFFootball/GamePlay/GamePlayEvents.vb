@@ -1,5 +1,4 @@
-﻿Imports Mersenne
-Imports GoalLineStandFootball.GamePlayStats
+﻿Imports GoalLineStandFootball.GamePlayStats
 Imports System.Data
 Imports GoalLineStandFootball
 
@@ -25,12 +24,12 @@ Public Class GamePlayEvents
         YardLine += KickReturnYards 'Gets the starting field position
 
         'Checks play for Fumble
-        If Fumble(kickReturner, tackler, PlayType.FumKR) Then
+        If Fumble(kickReturner, tackler, PlayTypeEnum.FumKR) Then
             If Stats.Rows.Find(kickReturner).Item("Fumbles") IsNot DBNull.Value Then
                 Stats.Rows.Find(kickReturner).Item("Fumbles") += 1
             Else Stats.Rows.Find(kickReturner).Item("Fumbles") = 1
             End If
-            FumRec(kickReturner, HomeDT, AwayDT, PlayType.FumKR)
+            FumRec(kickReturner, HomeDT, AwayDT, PlayTypeEnum.FumKR)
         End If
 
         'Add a kick Return to the returner's total
@@ -54,7 +53,7 @@ Public Class GamePlayEvents
             Stats.Rows.Find(kickReturner).Item("KORetYds") = KickReturnYards
         End If
 
-        GameTime = GameTime.Subtract(GetTimeOffClock(KickReturnYards, PlayType.KickoffRet))
+        GameTime = GameTime.Subtract(GetTimeOffClock(KickReturnYards, PlayTypeEnum.KickoffRet))
 
         Console.WriteLine($"{Stats.Rows.Find(tackler).Item("Pos")} {Stats.Rows.Find(tackler).Item("FName")} {Stats.Rows.Find(tackler).Item("LName")} tackles{Stats.Rows.Find(kickReturner).Item("Pos")} _
                           {Stats.Rows.Find(kickReturner).Item("FName")} {Stats.Rows.Find(kickReturner).Item("LName")} at the {YardLine} Yard Line after a {KickReturnYards} _
@@ -67,37 +66,37 @@ Public Class GamePlayEvents
     ''' <param name="yards"></param>
     ''' <param name="play"></param>
     ''' <returns></returns>
-    Private Shared Function GetTimeOffClock(yards As Single, play As PlayType) As TimeSpan
+    Private Shared Function GetTimeOffClock(yards As Single, play As PlayTypeEnum) As TimeSpan
         Dim GetTimeOff As TimeSpan
         'Check ClockStopped on most plays to see if clock was running---if it is, then use the pace + ballSpotTime + playTime to get total time off clock
         Select Case play
-            Case PlayType.KickoffRet 'Clock is never running for kickoff returns
+            Case PlayTypeEnum.KickoffRet 'Clock is never running for kickoff returns
                 GetTimeOff = New TimeSpan(0, 0, (MyRand.GenerateInt32(yards / 10 + 2, yards / 10 + 5)))
                 ClockStopped = True
-            Case PlayType.RunInside
+            Case PlayTypeEnum.RunInside
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(3, 6))
                 ClockStopped = False
-            Case PlayType.RunOutside
+            Case PlayTypeEnum.RunOutside
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(4, 8))
                 ClockStopped = False
-            Case PlayType.PassBehindLOS
+            Case PlayTypeEnum.PassBehindLOS
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(2, 8))
                 ClockStopped = If(IsComplete, False, True)
-            Case PlayType.PassShort
+            Case PlayTypeEnum.PassShort
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(3, 9))
                 ClockStopped = If(IsComplete, False, True)
-            Case PlayType.PassMed
+            Case PlayTypeEnum.PassMed
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(4, 10))
                 ClockStopped = If(IsComplete, False, True)
-            Case PlayType.PassLong
+            Case PlayTypeEnum.PassLong
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(5, 10))
                 ClockStopped = If(IsComplete, False, True)
-            Case PlayType.Punt
+            Case PlayTypeEnum.Punt
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(5, 7))
-            Case PlayType.PuntReturn
+            Case PlayTypeEnum.PuntReturn
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(1, 10))
                 ClockStopped = True
-            Case PlayType.FG
+            Case PlayTypeEnum.FGMade, PlayTypeEnum.FGMissed
                 PlayTime = New TimeSpan(0, 0, MyRand.GenerateInt32(3, 6))
                 ClockStopped = True
         End Select
@@ -122,14 +121,14 @@ Public Class GamePlayEvents
     ''' <param name="homeDT"></param>
     ''' <param name="awayDT"></param>
     ''' <param name="play"></param>
-    Private Shared Sub FumRec(fumPlayer As Integer, homeDT As DataTable, awayDT As DataTable, play As PlayType)
+    Private Shared Sub FumRec(fumPlayer As Integer, homeDT As DataTable, awayDT As DataTable, play As PlayTypeEnum)
         Dim GetId As Integer
         Dim FumRec As Integer
         Dim FumLost As Boolean
         Dim Tackler As Integer
 
         Select Case play
-            Case PlayType.FumKR
+            Case PlayTypeEnum.FumKR
                 If MyRand.GenerateDouble(0, 100) > 33 Then 'Fumbling team recovers 2/3 of kickoff fumbles
                     If HomePossession Then 'HomeTeam has the ball--they recover
                         While GetId = 0
@@ -163,7 +162,7 @@ Public Class GamePlayEvents
                     FumLost = True
 
                 End If
-            Case PlayType.FumPR 'Fumble occurs on a Punt Return
+            Case PlayTypeEnum.FumPR 'Fumble occurs on a Punt Return
                 If MyRand.GenerateDouble(0, 100) >= 63.63 Then 'Fumbling Team Recovers about 36.3% of punt return fumbles
                     'Who recovers it?
                     If MyRand.GenerateDouble(0, 100) <= 30 Then 'Fumbling player recovers own fumble
@@ -202,7 +201,7 @@ Public Class GamePlayEvents
                     End If
                     FumLost = True 'Loses Fumble
                 End If
-            Case PlayType.FumQBExchange
+            Case PlayTypeEnum.FumQBExchange
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers his own fumble
                     Case <= 43.2
                         FumRec = fumPlayer
@@ -240,7 +239,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumQBHandoff
+            Case PlayTypeEnum.FumQBHandoff
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 30.5
                         FumRec = fumPlayer
@@ -278,7 +277,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumQBRun
+            Case PlayTypeEnum.FumQBRun
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 31.89
                         FumRec = fumPlayer
@@ -316,7 +315,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumQBSacked
+            Case PlayTypeEnum.FumQBSacked
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 13.8
                         FumRec = fumPlayer
@@ -354,7 +353,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumReception, PlayType.PassBehindLOS, PlayType.PassShort, PlayType.PassMed, PlayType.PassLong
+            Case PlayTypeEnum.FumReception, PlayTypeEnum.PassBehindLOS, PlayTypeEnum.PassShort, PlayTypeEnum.PassMed, PlayTypeEnum.PassLong
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 9.9
                         FumRec = fumPlayer
@@ -392,7 +391,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumRunPlay, PlayType.RunOutside, PlayType.RunInside
+            Case PlayTypeEnum.FumRunPlay, PlayTypeEnum.RunOutside, PlayTypeEnum.RunInside
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 13.3
                         FumRec = fumPlayer
@@ -430,7 +429,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.MuffKR 'Muffed Kickoff...Receiving team recovers 77.8% of the time, almost always by the fumbling player
+            Case PlayTypeEnum.MuffKR 'Muffed Kickoff...Receiving team recovers 77.8% of the time, almost always by the fumbling player
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case <= 60.96
                         FumRec = fumPlayer
@@ -468,7 +467,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.MuffPR
+            Case PlayTypeEnum.MuffPR
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case <= 46
                         FumRec = fumPlayer
@@ -550,12 +549,16 @@ Public Class GamePlayEvents
         If isFreeKick Then 'Is this a free kick?
             KickDist = MyRand.GetGaussian(50, 3.5)
         Else 'Normal Kickoff
-            Select Case MyRand.GenerateInt32(0, 100)
-                Case 0 To 80 : KickDist = MyRand.GenerateInt32(57, 67)
-                Case 81 To 90 : KickDist = MyRand.GenerateInt32(68, 72)
-                Case 91 To 98 : KickDist = MyRand.GenerateInt32(50, 56)
-                Case Else : KickDist = MyRand.GenerateInt32(73, 74)
-            End Select
+            If Touchback Then
+                KickDist = MyRand.GenerateInt32(66, 78) 'Has to be in the endzone
+            Else
+                Select Case MyRand.GenerateInt32(0, 100)
+                    Case 0 To 80 : KickDist = MyRand.GenerateInt32(57, 67)
+                    Case 81 To 90 : KickDist = MyRand.GenerateInt32(68, 72)
+                    Case 91 To 98 : KickDist = MyRand.GenerateInt32(50, 56)
+                    Case Else : KickDist = MyRand.GenerateInt32(73, 78)
+                End Select
+            End If
         End If
         Return KickDist
     End Function
@@ -587,24 +590,24 @@ Public Class GamePlayEvents
     ''' <param name="ballCarrier"></param>
     ''' <param name="tackler"></param>
     ''' <param name="play"></param>
-    Private Shared Function Fumble(ballCarrier As Integer, tackler As Integer, play As PlayType) As Boolean
+    Private Shared Function Fumble(ballCarrier As Integer, tackler As Integer, play As PlayTypeEnum) As Boolean
         Dim Fum As Boolean
         Select Case play
-            Case PlayType.FumKR
+            Case PlayTypeEnum.FumKR
                 If MyRand.GenerateDouble(0, 100) <= 1.7 Then
-                    If MyRand.GenerateDouble(0, 100) <= 61.36 Then PlayType = PlayType.MuffKR 'This is a muffed kickoff
+                    If MyRand.GenerateDouble(0, 100) <= 61.36 Then PlayType = PlayTypeEnum.MuffKR 'This is a muffed kickoff
                     Fum = True
                 End If
-            Case PlayType.FumQBExchange : If MyRand.GenerateDouble(0, 100) <= 0.25 Then Fum = True
-            Case PlayType.FumQBHandoff : If MyRand.GenerateDouble(0, 100) <= 0.25 Then Fum = True
-            Case PlayType.FumQBRun : If MyRand.GenerateDouble(0, 100) <= 2.13 Then Fum = True
-            Case PlayType.FumQBSacked : If MyRand.GenerateDouble(0, 100) <= 14.82 Then Fum = True
-            Case PlayType.FumRunPlay, PlayType.RunInside, PlayType.RunOutside : If MyRand.GenerateDouble(0, 100) <= 1.67 Then Fum = True
-            Case PlayType.FumReception, PlayType.PassBehindLOS, PlayType.PassShort, PlayType.PassMed, PlayType.PassLong : If MyRand.GenerateDouble(0, 100) <= 1.04 Then Fum = True
-            Case PlayType.FumPR
+            Case PlayTypeEnum.FumQBExchange : If MyRand.GenerateDouble(0, 100) <= 0.25 Then Fum = True
+            Case PlayTypeEnum.FumQBHandoff : If MyRand.GenerateDouble(0, 100) <= 0.25 Then Fum = True
+            Case PlayTypeEnum.FumQBRun : If MyRand.GenerateDouble(0, 100) <= 2.13 Then Fum = True
+            Case PlayTypeEnum.FumQBSacked : If MyRand.GenerateDouble(0, 100) <= 14.82 Then Fum = True
+            Case PlayTypeEnum.FumRunPlay, PlayTypeEnum.RunInside, PlayTypeEnum.RunOutside : If MyRand.GenerateDouble(0, 100) <= 1.67 Then Fum = True
+            Case PlayTypeEnum.FumReception, PlayTypeEnum.PassBehindLOS, PlayTypeEnum.PassShort, PlayTypeEnum.PassMed, PlayTypeEnum.PassLong : If MyRand.GenerateDouble(0, 100) <= 1.04 Then Fum = True
+            Case PlayTypeEnum.FumPR
                 If MyRand.GenerateDouble(0, 100) <= 3.77 Then
                     Fum = True
-                    If MyRand.GenerateDouble(0, 100) <= 70.45 Then PlayType = PlayType.MuffPR 'This is a muffed punt
+                    If MyRand.GenerateDouble(0, 100) <= 70.45 Then PlayType = PlayTypeEnum.MuffPR 'This is a muffed punt
                 End If
         End Select
         Return Fum
@@ -620,11 +623,11 @@ Public Class GamePlayEvents
         ChangeOfPoss(If(HomePossession, False, True))
         YardLine = If(onKickoff, 25, 20)
         If onKickoff Then
-            Console.WriteLine($"Play: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            Console.WriteLine($"TOUCHBACK Kickoff: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
         Else
-            Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            Console.WriteLine($"TOUCHBACK Punt: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
         End If
@@ -632,10 +635,10 @@ Public Class GamePlayEvents
     End Sub
 
     ''' <summary>
-    ''' Handles the kickoff Event
+    ''' KickOff after a score
     ''' </summary>
-    Public Shared Sub Kickoff(homeTeamKickingOff As Boolean)
-        HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
+    Public Shared Sub KickoffEvt(homeTeamKickingOff As Boolean)
+        'HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
         If MyRand.GenerateInt32(0, 100) < 40 Then '39% of kicks are returned, otherwise touchback
             KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
         Else IsTouchback(True, If(HomePossession, FindPlayerId(Stats, "K1", HmTeamId), FindPlayerId(Stats, "K1", AwTeamId)))
@@ -777,7 +780,6 @@ Public Class GamePlayEvents
                     End Select
                     'Now we check the various conditions of the play:
             End Select
-
         ElseIf Down = 2 Then 'Its Second Down
             Select Case YardsToGo
                 Case <= 1 '1 Yard or less
@@ -916,14 +918,14 @@ Public Class GamePlayEvents
             End Select
         End If
         'Checks to see if there was a fumbled QB Exchange---play would be aborted if there is
-        If Fumble(0, 0, PlayType.FumQBExchange) Then
-            FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-            PlayType = PlayType.FumQBExchange
+        If Fumble(0, 0, PlayTypeEnum.FumQBExchange) Then
+            FumRec(0, HomeDT, AwayDT, PlayTypeEnum.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
+            PlayType = PlayTypeEnum.FumQBExchange
 
         Else 'Now we check the various conditions of the play
             If Run Then 'This is a running play --- lets check any Run Specific code
-                If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
-                    FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
+                If Fumble(0, 0, PlayTypeEnum.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
+                    FumRec(0, HomeDT, AwayDT, PlayTypeEnum.FumQBHandoff)
                 Else
                     YardsGained = Math.Round(GetRunYards(GetRunType), 1)
                 End If
@@ -933,16 +935,18 @@ Public Class GamePlayEvents
                     YardsGained = Math.Round(MyRand.GenerateDouble(-15, -0.1), 1)
                     YardLine += YardsGained
                     ClockStopped = False
-                    If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                        PlayType = PlayType.FumQBSacked
+                    If Fumble(0, 0, PlayTypeEnum.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
+                        FumRec(0, HomeDT, AwayDT, PlayTypeEnum.FumQBSacked)
+                        PlayType = PlayTypeEnum.FumQBSacked
                     End If
                 Else
                     IsComplete = GetPassCompletion(passType)
                     If IsComplete Then
                         YardsGained = Math.Round(GetPassYards(passType), 1)
                         ClockStopped = False
-                    Else ClockStopped = True 'Incomplete Pass
+                    Else 'Incomplete Pass
+                        ClockStopped = True
+                        YardsGained = 0
                     End If
                 End If
             End If
@@ -977,21 +981,28 @@ Public Class GamePlayEvents
             TD = True
             YardsGained -= (YardLine - 100) 'Sets the YardsGained to the proper amount
             Select Case PlayType
-                Case PlayType.RunInside, PlayType.RunOutside : ScoringType = ScoringTypeEnum.RushingTD
-                Case PlayType.PassBehindLOS, PlayType.PassLong, PlayType.PassMed, PlayType.PassShort : ScoringType = ScoringTypeEnum.PassingTD
-                Case PlayType.KickoffRet : ScoringType = ScoringTypeEnum.KORetTD
-                Case PlayType.PuntReturn : ScoringType = ScoringTypeEnum.PuntRetTD
-                Case PlayType.PuntBlockRet : ScoringType = ScoringTypeEnum.DefFumRecTD
-                Case PlayType.Interception : ScoringType = ScoringTypeEnum.IntReturnTD
+                Case PlayTypeEnum.RunInside, PlayTypeEnum.RunOutside : ScoringType = ScoringTypeEnum.RushingTD
+                Case PlayTypeEnum.PassBehindLOS, PlayTypeEnum.PassLong, PlayTypeEnum.PassMed, PlayTypeEnum.PassShort : ScoringType = ScoringTypeEnum.PassingTD
+                Case PlayTypeEnum.KickoffRet : ScoringType = ScoringTypeEnum.KORetTD
+                Case PlayTypeEnum.PuntReturn : ScoringType = ScoringTypeEnum.PuntRetTD
+                Case PlayTypeEnum.PuntBlockRet : ScoringType = ScoringTypeEnum.DefFumRecTD
+                Case PlayTypeEnum.Interception : ScoringType = ScoringTypeEnum.IntReturnTD
             End Select
-            UpdateScore(ScoringTypeEnum.RushingTD)
+            Console.WriteLine($"**TOUCHDOWN!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
+            UpdateScore(ScoringType)
             XPConv()
         End If
         Return TD
     End Function
 
     Private Shared Sub Safety()
-        UpdateScore(ScoringTypeEnum.Safety)
+        ScoringType = ScoringTypeEnum.Safety
+        UpdateScore(ScoringType)
+        Console.WriteLine($"**SAFETY!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
         ClockStopped = True
         FreeKickPunt(HomePossession)
     End Sub
@@ -1001,6 +1012,9 @@ Public Class GamePlayEvents
     Private Shared Sub FreeKickPunt(homeTeamKickingOff As Boolean)
         YardLine = 20
         HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
+        Console.WriteLine($"**FREE KICK PUNT AFTER SAFETY!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
         KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
     End Sub
     ''' <summary>
@@ -1008,7 +1022,7 @@ Public Class GamePlayEvents
     ''' </summary>
     ''' <param name="play"></param>
     ''' <returns></returns>
-    Private Shared Function Sacked(play As PlayType) As Boolean
+    Private Shared Function Sacked(play As PlayTypeEnum) As Boolean
         Dim IsSacked As Boolean
         Select Case Down
             Case 1 : If MyRand.GenerateDouble(0, 100) < 4.55 Then IsSacked = True
@@ -1022,7 +1036,6 @@ Public Class GamePlayEvents
     Private Shared Sub XPConv()
         Dim PointDiff = If(HomePossession, HomeScore - AWayScore, AWayScore - HomeScore)
         Dim PassType As New PassTypeEnum
-
         If Quarter = 4 Then
             Select Case Math.Abs(PointDiff)
                 'Attempt 2 Point Conv
@@ -1030,19 +1043,32 @@ Public Class GamePlayEvents
                     YardLine = 98
                     Select Case MyRand.GenerateInt32(0, 100)
                         Case < 44
-                            If GetRunYards(GetRunType) >= 2 Then UpdateScore(ScoringTypeEnum.TwoPointConv) '2Pt Conversion succeeds
+                            If GetRunYards(GetRunType) >= 2 Then
+                                ScoringType = ScoringTypeEnum.TwoPointConv
+                                UpdateScore(ScoringType) '2Pt Conversion succeeds
+                            End If
                         Case Else
                             PassType = GetPassType()
                             IsComplete = GetPassCompletion(PassType)
                             If IsComplete Then
-                                If GetPassYards(PassType) > 2 Then UpdateScore(ScoringTypeEnum.TwoPointConv) '2Pt Conversion Succeeds
+                                If GetPassYards(PassType) >= 2 Then
+                                    ScoringType = ScoringTypeEnum.TwoPointConv
+                                    UpdateScore(ScoringType) '2Pt Conversion Succeeds
+                                End If
                             End If
                     End Select
                 Case Else 'XP Attempt
                     YardLine = 85
-                    KickFG(If(HomePossession, HomeDT, AwayDT), ScoringTypeEnum.XP)
+                    ScoringType = ScoringTypeEnum.XP
+                    KickFG(If(HomePossession, HomeDT, AwayDT), ScoringType)
             End Select
+        Else 'Not the 4th Quarter
+            YardLine = 85
+            ScoringType = ScoringTypeEnum.XP
+            KickFG(If(HomePossession, HomeDT, AwayDT), ScoringType)
         End If
+
+        Kickoff = True 'Kickoff after the Extra Point Attempt
     End Sub
     ''' <summary>
     ''' Updates the score based on the type of scoring play
@@ -1056,16 +1082,16 @@ Public Class GamePlayEvents
             Case ScoringTypeEnum.FG
                 HomeScore = If(HomePossession, HomeScore + 3, HomeScore)
                 AWayScore = If(HomePossession, AWayScore, AWayScore + 3)
-            Case ScoringTypeEnum.TwoPointConv
+            Case ScoringTypeEnum.TwoPointConv 'Two Point Conversion
                 HomeScore = If(HomePossession, HomeScore + 2, HomeScore)
                 AWayScore = If(HomePossession, AWayScore, AWayScore + 2)
-            Case ScoringTypeEnum.XP
+            Case ScoringTypeEnum.XP 'Extra Point
                 HomeScore = If(HomePossession, HomeScore + 1, HomeScore)
                 AWayScore = If(HomePossession, AWayScore, AWayScore + 1)
-            Case ScoringTypeEnum.Safety, ScoringTypeEnum.DefXPReturnFor2Pts
+            Case ScoringTypeEnum.Safety, ScoringTypeEnum.DefXPReturnFor2Pts 'Defensive 2 Points
                 HomeScore = If(HomePossession, HomeScore, HomeScore + 2)
                 AWayScore = If(HomePossession, AWayScore + 2, AWayScore)
-            Case ScoringTypeEnum.DefFumRecTD, ScoringTypeEnum.IntReturnTD
+            Case ScoringTypeEnum.DefFumRecTD, ScoringTypeEnum.IntReturnTD 'Defensive TD
                 HomeScore = If(HomePossession, HomeScore, HomeScore + 6)
                 AWayScore = If(HomePossession, AWayScore + 6, AWayScore)
         End Select
@@ -1106,15 +1132,20 @@ Public Class GamePlayEvents
         End Select
         If Touchback Then
             PuntDistance = 100 - YardLine
+            PuntReturnYards = 0
             IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
         Else
             YardLine = YardLine + PuntDistance
-            If Not CallFairCatch And Not OutOfBounds Then PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
+            If Not CallFairCatch And Not OutOfBounds Then
+                PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
+            Else PuntReturnYards = 0
+            End If
+
             Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
         End If
-        GetTimeOffClock(PuntDistance, PlayType.Punt) 'Get the time that ran off the clock for this play
+        GetTimeOffClock(PuntDistance, PlayTypeEnum.Punt) 'Get the time that ran off the clock for this play
 
     End Sub
 
@@ -1128,35 +1159,70 @@ Public Class GamePlayEvents
             Case Else : PuntReturnYards = MyRand.GenerateInt32(71, 100)
         End Select
         YardLine -= PuntReturnYards 'Posession Hasn't change yet
-        Fumble(0, 0, PlayType.PuntReturn) 'Did the BallCarrier fumble?
-        GetTimeOffClock(PuntReturnYards, PlayType.PuntReturn)
+        Fumble(0, 0, PlayTypeEnum.PuntReturn) 'Did the BallCarrier fumble?
+        GetTimeOffClock(PuntReturnYards, PlayTypeEnum.PuntReturn)
         ChangeOfPoss(If(HomePossession, False, True))
     End Sub
 
     Private Shared Sub KickFG(DT As DataTable, play As ScoringTypeEnum)
-        Dim MakeFG As New MersenneTwister
         Dim FGMade As Boolean
         Select Case play
             Case ScoringTypeEnum.XP 'XP
-                If MakeFG.GenerateDouble(0, 100) <= 93.99 Then UpdateScore(ScoringTypeEnum.XP) 'XP Made---93.99%last year
+                If MyRand.GenerateDouble(0, 100) <= 93.99 Then
+                    ScoringType = ScoringTypeEnum.XP
+                    UpdateScore(ScoringType) 'XP Made---93.99%last year
+                    Console.WriteLine($"**XP GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
+                Else
+                    Console.WriteLine($"**XP NO GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
+                End If
             Case Else 'FG
                 Select Case YardLine
-                    Case >= 98 : If MakeFG.GenerateDouble(0, 100) <= 99.3 Then UpdateScore(ScoringTypeEnum.FG) FGMade = True
-                    Case >= 88 : If MakeFG.GenerateDouble(0, 100) <= 96.15 Then UpdateScore(ScoringTypeEnum.FG) FGMade = True
-                    Case >= 78 : If MakeFG.GenerateDouble(0, 100) <= 92.15 Then UpdateScore(ScoringTypeEnum.FG) FGMade = True
-                    Case >= 68 : If MakeFG.GenerateDouble(0, 100) <= 77.1 Then UpdateScore(ScoringTypeEnum.FG) FGMade = True
-                    Case Else : If MakeFG.GenerateDouble(0, 100) <= 53.33 Then UpdateScore(ScoringTypeEnum.FG) FGMade = True
+                    Case >= 98 : If MyRand.GenerateDouble(0, 100) <= 99.3 Then
+                            ScoringType = ScoringTypeEnum.FG
+                            UpdateScore(ScoringType)
+                            FGMade = True
+                        End If
+                    Case >= 88 : If MyRand.GenerateDouble(0, 100) <= 96.15 Then
+                            ScoringType = ScoringTypeEnum.FG
+                            UpdateScore(ScoringType)
+                            FGMade = True
+                        End If
+                    Case >= 78 : If MyRand.GenerateDouble(0, 100) <= 92.15 Then
+                            ScoringType = ScoringTypeEnum.FG
+                            UpdateScore(ScoringType)
+                            FGMade = True
+                        End If
+                    Case >= 68 : If MyRand.GenerateDouble(0, 100) <= 77.1 Then
+                            ScoringType = ScoringTypeEnum.FG
+                            UpdateScore(ScoringType)
+                            FGMade = True
+                        End If
+                    Case Else : If MyRand.GenerateDouble(0, 100) <= 53.33 Then
+                            ScoringType = ScoringTypeEnum.FG
+                            UpdateScore(ScoringType)
+                            FGMade = True
+                        End If
                 End Select
                 If FGMade Then
                     ClockStopped = True
                     YardLine = 35
-                    Kickoff(If(HomePossession, True, False))
+                    Kickoff = True
+                    Console.WriteLine($"**FG GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
                 Else 'FG Missed
                     ClockStopped = True
                     YardLine -= 7
                     ChangeOfPoss(If(HomePossession, False, True))
+                    Console.WriteLine($"**FG NO GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
                 End If
         End Select
-        GetTimeOffClock(0, PlayType.FG)
+        GetTimeOffClock(0, PlayTypeEnum.FGMade)
     End Sub
 End Class

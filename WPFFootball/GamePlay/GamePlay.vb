@@ -4,7 +4,7 @@ Imports System.Linq
 Imports GoalLineStandFootball.GamePlayEvents
 Imports GoalLineStandFootball.GamePlayStats
 Imports System.Reflection
-Public Enum PlayType
+Public Enum PlayTypeEnum
     PassBehindLOS
     PassShort
     PassMed
@@ -22,7 +22,8 @@ Public Enum PlayType
     PuntBlockRet
     Touchdown
     FakeFG
-    FG
+    FGMissed
+    FGMade
     FGBlock 'Kick is Blocked
     FGBlockRet
     FumQBExchange 'QB Fumbles the ball when snapped
@@ -89,7 +90,7 @@ Public Class GamePlay
     Public GameLoop As Boolean = True 'This is what controls whether the game is still going on or it has ended
     Public Shared PassType As New PassTypeEnum 'Enumeration for the different types of passes
     Public Shared ScoringType As New ScoringTypeEnum 'Determines what type of score it is
-    Public Shared PlayType As New PlayType
+    Public Shared PlayType As New PlayTypeEnum
     Public Shared MyRand As New Mersenne.MersenneTwister
     'Public GameEvents As New GamePlayEvents
 #Region "Time Variables"
@@ -134,7 +135,7 @@ Public Class GamePlay
 #End Region
 
 #Region "Kicking Game"
-    'Private Property Kickoff As Boolean = True 'Initializes the game to start with a kickoff
+    Public Shared Property Kickoff As Boolean = True
     Public Shared Property KickoffDist As Single
     Public Shared Property KickReturnYards As Single
     Public Shared Property PuntReturnYards As Single
@@ -320,7 +321,6 @@ Public Class GamePlay
             MyRand.GenerateDouble(0, 100) 'Initializes the Mersenne Twister with randomness
         Next i
         GenDT(homeTeamId, awayTeamId)
-
         HomePossession = MyRand.GenerateInt32(0, 1) = 1 'Determines who is kicking off
         HomeRec2ndHalfKickoff = If(HomePossession, False, True) 'Sets the receiver of the 2nd half kickoff
         HmTeamId = homeTeamId
@@ -328,38 +328,42 @@ Public Class GamePlay
 
         While GameLoop
             ' While the GameLoop is Set to True run the game.
-            If HalfStart Then
-                Kickoff(MyRand.GenerateInt32(0, 1) = 1)
-                HalfStart = False
-            End If
+            If Kickoff Then 'We are kicking off
+                YardLine = 35
+                KickoffEvt(HomePossession)
+                Kickoff = False
+            Else
+                GetPace()
+                'Two Minute Warning Check---before a play is ran
+                If (Quarter = 2 Or Quarter = 4) And GameTime <= New TimeSpan(0, 2, 0) And Not TwoMinuteWarning Then
+                    ClockStopped = True
+                    TwoMinuteWarning = True 'Set the two minute warning so it doesn't continue to occur
+                    GameTime = New TimeSpan(0, 2, 0) 'reset the clock to 2 minutes
 
-            GetPace()
+                    'End Of Quarter Check
+                ElseIf GameTime <= New TimeSpan(0, 0, 0) Then
+                    ClockStopped = True
+                    TwoMinuteWarning = False 'reset two minute warning for the next half
+                    GameTime = New TimeSpan(0, 15, 0)
+                    If Quarter = 2 Then
+                        HomePossession = HomeRec2ndHalfKickoff 'Sets the team ready to receive ball in the 2nd half
+                        Kickoff = True
+                    ElseIf Quarter = 4 And (HomeScore <> AWayScore) Then
+                        GameLoop = False 'End of game---no OT
+                    End If
+                    Quarter += 1
 
-            'Two Minute Warning Check---before a play is ran
-            If (Quarter = 2 Or Quarter = 4) And GameTime <= New TimeSpan(0, 2, 0) And Not TwoMinuteWarning Then
-                ClockStopped = True
-                TwoMinuteWarning = True 'Set the two minute warning so it doesn't continue to occur
-                GameTime = New TimeSpan(0, 2, 0) 'reset the clock to 2 minutes
-            End If
+                Else RunPlay() 'If none of those things are true, then run a play
 
-            'End Of Quarter Check
-            If GameTime <= New TimeSpan(0, 0, 0) Then
-                ClockStopped = True
-                TwoMinuteWarning = False 'reset two minute warning for the next half
-                GameTime = New TimeSpan(0, 15, 0)
-                If Quarter = 2 Then
-                    HomePossession = HomeRec2ndHalfKickoff 'Sets the team ready to receive ball in the 2nd half
-                    HalfStart = True
                 End If
-                If Quarter = 4 And (HomeScore <> AWayScore) Then
-                    GameLoop = False 'End of game---no OT
-                End If
-                Quarter += 1
-            End If
-            'If none of those things are true, then run a play
-            RunPlay()
-            'RunClock()
+                If PlayType = PlayTypeEnum.Touchdown Then 'If there is a Touchdown on the play
 
+                ElseIf PlayType = PlayTypeEnum.Safety Then 'If There is a safety on the play
+
+                ElseIf PlayType = PlayTypeEnum.FGMade Then 'If there is a FG made on the play
+
+                End If
+            End If
         End While
     End Sub
 
@@ -377,64 +381,64 @@ Public Class GamePlay
         Select Case MyRand.GenerateDouble(0, 100) 'Generate a new Random number
             Case <= 4.0
                 PassType = PassTypeEnum.PBehindLOSFarL
-                PlayType = PlayType.PassBehindLOS
+                PlayType = PlayTypeEnum.PassBehindLOS
             Case <= 8.0
                 PassType = PassTypeEnum.PBehindLOSLMid
-                PlayType = PlayType.PassBehindLOS
+                PlayType = PlayTypeEnum.PassBehindLOS
             Case <= 9.3
                 PassType = PassTypeEnum.PBehindLOSLMid
-                PlayType = PlayType.PassBehindLOS
+                PlayType = PlayTypeEnum.PassBehindLOS
             Case <= 13.7
                 PassType = PassTypeEnum.PBehindLOSRMid
-                PlayType = PlayType.PassBehindLOS
+                PlayType = PlayTypeEnum.PassBehindLOS
             Case <= 18.9
                 PassType = PassTypeEnum.PBehindLOSFarR
-                PlayType = PlayType.PassBehindLOS
+                PlayType = PlayTypeEnum.PassBehindLOS
             Case <= 29
                 PassType = PassTypeEnum.PShortFarL
-                PlayType = PlayType.PassShort
+                PlayType = PlayTypeEnum.PassShort
             Case <= 38.6
                 PassType = PassTypeEnum.PShortLMid
-                PlayType = PlayType.PassShort
+                PlayType = PlayTypeEnum.PassShort
             Case <= 46
                 PassType = PassTypeEnum.PShortMid
-                PlayType = PlayType.PassShort
+                PlayType = PlayTypeEnum.PassShort
             Case <= 57.2
                 PassType = PassTypeEnum.PShortRMid
-                PlayType = PlayType.PassShort
+                PlayType = PlayTypeEnum.PassShort
             Case <= 68.2
                 PassType = PassTypeEnum.PShortFarR
-                PlayType = PlayType.PassShort
+                PlayType = PlayTypeEnum.PassShort
             Case <= 73.1
                 PassType = PassTypeEnum.PMedFarL
-                PlayType = PlayType.PassMed
+                PlayType = PlayTypeEnum.PassMed
             Case <= 76.8
                 PassType = PassTypeEnum.PMedLMid
-                PlayType = PlayType.PassMed
+                PlayType = PlayTypeEnum.PassMed
             Case <= 79.9
                 PassType = PassTypeEnum.PMedMid
-                PlayType = PlayType.PassMed
+                PlayType = PlayTypeEnum.PassMed
             Case <= 83.8
                 PassType = PassTypeEnum.PMedRMid
-                PlayType = PlayType.PassMed
+                PlayType = PlayTypeEnum.PassMed
             Case <= 88.9
                 PassType = PassTypeEnum.PMedFarR
-                PlayType = PlayType.PassMed
+                PlayType = PlayTypeEnum.PassMed
             Case <= 92.5
                 PassType = PassTypeEnum.PLongFarL
-                PlayType = PlayType.PassLong
+                PlayType = PlayTypeEnum.PassLong
             Case <= 93.5
                 PassType = PassTypeEnum.PLongLMid
-                PlayType = PlayType.PassLong
+                PlayType = PlayTypeEnum.PassLong
             Case <= 94.5
                 PassType = PassTypeEnum.PLongMid
-                PlayType = PlayType.PassLong
+                PlayType = PlayTypeEnum.PassLong
             Case <= 95.8
                 PassType = PassTypeEnum.PLongRMid
-                PlayType = PlayType.PassLong
+                PlayType = PlayTypeEnum.PassLong
             Case Else
                 PassType = PassTypeEnum.PLongFarR
-                PlayType = PlayType.PassLong
+                PlayType = PlayTypeEnum.PassLong
         End Select
         Return PassType
     End Function
@@ -631,19 +635,19 @@ Public Class GamePlay
         Select Case MyRand.GenerateInt32(0, 100)
             Case 0 To 10
                 Run = RunTypeEnum.LeftEnd
-                PlayType = PlayType.RunOutside
+                PlayType = PlayTypeEnum.RunOutside
             Case 11 To 22
                 Run = RunTypeEnum.LeftTackle
-                PlayType = PlayType.RunInside
+                PlayType = PlayTypeEnum.RunInside
             Case 23 To 78
                 Run = RunTypeEnum.Middle
-                PlayType = PlayType.RunInside
+                PlayType = PlayTypeEnum.RunInside
             Case 79 To 90
                 Run = RunTypeEnum.RightTackle
-                PlayType = PlayType.RunInside
+                PlayType = PlayTypeEnum.RunInside
             Case Else
                 Run = RunTypeEnum.RightEnd
-                PlayType = PlayType.RunOutside
+                PlayType = PlayTypeEnum.RunOutside
         End Select
         Return Run
     End Function
