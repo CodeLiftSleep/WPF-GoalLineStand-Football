@@ -949,7 +949,8 @@ Public Class GamePlayEvents
             End If
             GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
             Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}")
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
         End If
     End Sub
 
@@ -1051,6 +1052,8 @@ Public Class GamePlayEvents
                         IsTouchback(False, If(HomePossession, FindPlayerId(Stats, "P1", HmTeamId), FindPlayerId(Stats, "P1", AwTeamId)))
                     Case Else 'No Touchback
                         PuntDistance = MyRand.GetGaussian(45.3, 3.5)
+                        YardLine += PuntDistance
+                        ChangeOfPoss(HomePossession)
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 5.45 'Did returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 2.99 'Did punt go out of bounds?
                 End Select
@@ -1084,7 +1087,8 @@ Public Class GamePlayEvents
         GetTimeOffClock(PuntDistance, PlayType.Punt) 'Get the time that ran off the clock for this play
         If Not CallFairCatch And Not OutOfBounds Then PuntReturn() 'If there is no fair catch and it doesn't go out of bounds then get the return yards
         Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}")
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //HomeTeamHasBall?: {HomePossession}")
     End Sub
 
     Private Shared Sub PuntReturn()
