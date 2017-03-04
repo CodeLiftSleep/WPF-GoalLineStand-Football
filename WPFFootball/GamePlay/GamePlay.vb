@@ -148,6 +148,7 @@ Public Class GamePlay
     Public Shared Property Down As Integer
     Public Shared Property YardsToGo As Single
     Public Shared Property YardLine As Single = 35 'YardLine will be from 0(Your GoalLine) to 100(Opp GoalLine)
+    Public Shared Property YardsGained As Single
     Public Shared Property Quarter As Integer = 1
     Public Shared Property HomePossession As Boolean 'Does Home Team Have the Ball?
     Public Shared Property HomeRec2ndHalfKickoff As Boolean
@@ -160,11 +161,12 @@ Public Class GamePlay
 
 #Region "Turnovers"
     'Private Property Intercepted As Boolean
-    Public Shared Property IntReturnYds As Boolean
+    Public Shared Property IntReturnYds As Single
     Public Shared Property IntReturnTD As Boolean
+    Public Shared Property Interception As Boolean
     'Private Property Fumble As Boolean
     Public Shared Property DefFumRec As Boolean
-    Public Shared Property FumbleRetYds As Boolean
+    Public Shared Property FumbleRetYds As Single
     Public Shared Property FumbleRetTD As Boolean
 
 #End Region

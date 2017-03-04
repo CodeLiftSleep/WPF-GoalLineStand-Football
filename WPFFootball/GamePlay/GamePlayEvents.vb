@@ -384,7 +384,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumReception
+            Case PlayType.FumReception, PlayType.PassBehindLOS, PlayType.PassShort, PlayType.PassMed, PlayType.PassLong
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 9.9
                         FumRec = fumPlayer
@@ -422,7 +422,7 @@ Public Class GamePlayEvents
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
-            Case PlayType.FumRunPlay
+            Case PlayType.FumRunPlay, PlayType.RunOutside, PlayType.RunInside
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers the fumble
                     Case <= 13.3
                         FumRec = fumPlayer
@@ -633,8 +633,8 @@ Public Class GamePlayEvents
             Case PlayType.FumQBHandoff : If MyRand.GenerateDouble(0, 100) <= 0.25 Then Fum = True
             Case PlayType.FumQBRun : If MyRand.GenerateDouble(0, 100) <= 2.13 Then Fum = True
             Case PlayType.FumQBSacked : If MyRand.GenerateDouble(0, 100) <= 14.82 Then Fum = True
-            Case PlayType.FumRunPlay : If MyRand.GenerateDouble(0, 100) <= 1.67 Then Fum = True
-            Case PlayType.FumReception : If MyRand.GenerateDouble(0, 100) <= 1.04 Then Fum = True
+            Case PlayType.FumRunPlay, PlayType.RunInside, PlayType.RunOutside : If MyRand.GenerateDouble(0, 100) <= 1.67 Then Fum = True
+            Case PlayType.FumReception, PlayType.PassBehindLOS, PlayType.PassShort, PlayType.PassMed, PlayType.PassLong : If MyRand.GenerateDouble(0, 100) <= 1.04 Then Fum = True
             Case PlayType.FumPR
                 If MyRand.GenerateDouble(0, 100) <= 3.77 Then
                     Fum = True
@@ -731,228 +731,287 @@ Public Class GamePlayEvents
     ''' </summary>
     Public Shared Sub RunPlay()
         Dim MyRand As New MersenneTwister
-        Dim YardsGained As Single
+        Dim Run As Boolean
         Dim passType As New PassTypeEnum
 
         If Down = 4 Then
             If YardLine >= 67 Then 'Field Goal Range --- Attempt a FG
                 KickFG(If(HomePossession, HomeDT, AwayDT), ScoringTypeEnum.FG)
             ElseIf YardLine >= 60 And YardsToGo < 4 Then 'Go For it
-                If YardsToGo <= 1 Then
+                If YardsToGo <= 1 Then '1 yard or less on 4th down
                     Select Case MyRand.GenerateDouble(0, 100)
-                        Case 0 To 70.7 'Running Play
-                            If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
-                            Else
-                                YardsGained = GetRunYards(GetRunType)
-                                YardLine += YardsGained
-                                If YardLine >= 100 Then 'Its a TouchDown
-                                    ClockStopped = True
-                                    UpdateScore(ScoringTypeEnum.RushingTD)
-                                    XPConv()
-                                Else
-                                    If Fumble(0, 0, PlayType.FumRunPlay) Then Fumble(0, 0, PlayType.FumRunPlay) 'Check to see if its a fumble
-                                    ClockStopped = False
-                                End If
-                            End If
-                        Case Else 'Passing Play
-                            passType = GetPassType()
-                            If Fumble(0, 0, PlayType.FumQBExchange) Then
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-                            Else
-                                If Sacked(PlayType) Then
-                                    YardsGained = MyRand.GenerateDouble(-15, -0.1)
-                                    YardLine += YardsGained
-                                    ClockStopped = False
-                                    If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                                    End If
-                                Else
-                                    IsComplete = GetPassCompletion(passType)
-                                    If IsComplete Then
-                                        YardsGained = GetPassYards(passType)
-                                        YardLine += YardsGained
-                                        If YardLine >= 100 Then 'Its a TouchDown
-                                            ClockStopped = True
-                                            UpdateScore(ScoringTypeEnum.RushingTD)
-                                            XPConv()
-                                        Else
-                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                            ClockStopped = False
-                                        End If
-                                    Else 'Incomplete Pass
-                                        ClockStopped = True
-                                    End If
-                                End If 'Checks to see if QB got sacked
-                            End If
+                        Case 0 To 70.7 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
                     End Select
-                ElseIf YardsToGo <= 2 Then
+                ElseIf YardsToGo <= 2 Then '2 Yards or less to go on 4th down
                     Select Case MyRand.GenerateDouble(0, 100)
-                        Case 0 To 25.5 'Running Play
-                            If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
-                            Else
-                                YardsGained = GetRunYards(GetRunType)
-                                YardLine += YardsGained
-                                If YardLine >= 100 Then 'Its a TouchDown
-                                    ClockStopped = True
-                                    UpdateScore(ScoringTypeEnum.RushingTD)
-                                    XPConv()
-                                Else
-                                    If Fumble(0, 0, PlayType.FumRunPlay) Then Fumble(0, 0, PlayType.FumRunPlay) 'Check to see if its a fumble
-                                    ClockStopped = False
-                                    GetTimeOffClock(YardsGained, PlayType)
-                                End If
-                            End If
-                        Case Else 'Passing Play
-                            passType = GetPassType()
-                            If Fumble(0, 0, PlayType.FumQBExchange) Then
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-                            Else
-                                If Sacked(PlayType) Then
-                                    YardsGained = MyRand.GenerateDouble(-15, -0.1)
-                                    YardLine += YardsGained
-                                    ClockStopped = False
-                                    If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                                    End If
-                                Else
-                                    IsComplete = GetPassCompletion(passType)
-                                    If IsComplete Then
-                                        YardsGained = GetPassYards(passType)
-                                        YardLine += YardsGained
-                                        If YardLine >= 100 Then 'Its a TouchDown
-                                            ClockStopped = True
-                                            UpdateScore(ScoringTypeEnum.RushingTD)
-                                            XPConv()
-                                        Else
-                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                            ClockStopped = False
-                                        End If
-                                    Else 'Incomplete Pass
-                                        ClockStopped = True
-                                    End If
-                                End If 'Checks to see if QB got sacked
-                            End If
+                        Case 0 To 25.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
                     End Select
-                Else
+                Else 'More than 2 Yards to go on 4th down
                     Select Case MyRand.GenerateDouble(0, 100)
-                        Case 0 To 87.8 'Running Play
-                            If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
-                            Else
-                                YardsGained = GetRunYards(GetRunType)
-                                YardLine += YardsGained
-                                If YardLine >= 100 Then 'Its a TouchDown
-                                    ClockStopped = True
-                                    UpdateScore(ScoringTypeEnum.RushingTD)
-                                    XPConv()
-                                Else
-                                    If Fumble(0, 0, PlayType.FumRunPlay) Then Fumble(0, 0, PlayType.FumRunPlay) 'Check to see if its a fumble
-                                    ClockStopped = False
-                                End If
-                            End If
-                        Case Else 'Passing Play
-                            passType = GetPassType()
-                            If Fumble(0, 0, PlayType.FumQBExchange) Then
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-                            Else
-                                If Sacked(PlayType) Then
-                                    YardsGained = MyRand.GenerateDouble(-15, -0.1)
-                                    YardLine += YardsGained
-                                    ClockStopped = False
-                                    If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                                    End If
-                                Else
-                                    IsComplete = GetPassCompletion(passType)
-                                    If IsComplete Then
-                                        YardsGained = GetPassYards(passType)
-                                        YardLine += YardsGained
-                                        If YardLine >= 100 Then 'Its a TouchDown
-                                            ClockStopped = True
-                                            UpdateScore(ScoringTypeEnum.RushingTD)
-                                            XPConv()
-                                        Else
-                                            If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                            ClockStopped = False
-                                        End If
-                                    Else 'Incomplete Pass
-                                        ClockStopped = True
-                                    End If
-                                End If 'Checks to see if QB got sacked
-                            End If
+                        Case 0 To 12.2 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
                     End Select
                 End If
-            Else
-                Punt(If(HomePossession, HomeDT, AwayDT))
+            Else Punt(If(HomePossession, HomeDT, AwayDT)) 'If they aren't in FG range and not in "go for it" range then they punt
+                'TODO: Add code to make them check the gametime to see if they punt or not
             End If
-        Else
-            Select Case MyRand.GenerateInt32(0, 100)
-                Case 0 To 44 'Running Play
+        ElseIf Down = 3 Then 'Its 3rd Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 70.1 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 52.2 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 23.7 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 13.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 9.4 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '6-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 8.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '10 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 9.7 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 18.1 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                    'Now we check the various conditions of the play:
+            End Select
+
+        ElseIf Down = 2 Then 'Its Second Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 69.4 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 65.6 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 58.2 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 52.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 49.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 6 '5-6 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 47.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 7 '6-7 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 41.6 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 8 '7-8 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 34.7 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 9 '8-9 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 31.2 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '9-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 36.1 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 12 '10-12 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 35.6 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '12 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 23.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 25.9 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+            End Select
+        Else 'Its First Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 80.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 73.2 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 60.8 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 61.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 61.5 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 6 '5-6 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 60.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 7 '6-7 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 55.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 8 '7-8 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 56.8 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 9 '8-9 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 64.3 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '9-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 49 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 12 '10-12 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 48.9 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '12 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 38.4 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 34.4 : Run = True 'Running Play
+                        Case Else : Run = False 'Passing Play
+                    End Select
+            End Select
+            'Checks to see if there was a fumbled QB Exchange---play would be aborted if there is
+            If Fumble(0, 0, PlayType.FumQBExchange) Then
+                FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
+                PlayType = PlayType.FumQBExchange
+
+            Else 'Now we check the various conditions of the play
+                If Run Then 'This is a running play --- lets check any Run Specific code
                     If Fumble(0, 0, PlayType.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
                         FumRec(0, HomeDT, AwayDT, PlayType.FumQBHandoff)
                     Else
-                        YardsGained = GetRunYards(GetRunType)
+                        YardsGained = Math.Round(GetRunYards(GetRunType), 1)
+                    End If
+                Else 'This is a Passing Play
+                    passType = GetPassType() 'Get the pass type
+                    If Sacked(PlayType) Then 'Check to see if the QB gets sacked
+                        YardsGained = Math.Round(MyRand.GenerateDouble(-15, -0.1), 1)
                         YardLine += YardsGained
-                        If YardLine >= 100 Then 'Its a TouchDown
-                            ClockStopped = True
-                            UpdateScore(ScoringTypeEnum.RushingTD)
-                            XPConv()
-                        Else
-                            If Fumble(0, 0, PlayType.FumRunPlay) Then Fumble(0, 0, PlayType.FumRunPlay) 'Check to see if its a fumble
+                        ClockStopped = False
+                        If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
+                            FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
+                            PlayType = PlayType.FumQBSacked
+                        End If
+                    Else
+                        IsComplete = GetPassCompletion(passType)
+                        If IsComplete Then
+                            YardsGained = Math.Round(GetPassYards(passType), 1)
                             ClockStopped = False
+                        Else ClockStopped = True 'Incomplete Pass
                         End If
                     End If
-
-                Case Else 'Passing Play
-                    passType = GetPassType()
-                    If Fumble(0, 0, PlayType.FumQBExchange) Then
-                        FumRec(0, HomeDT, AwayDT, PlayType.FumQBExchange) 'Checks to see if there was a fumble on the exchange/snap
-                    Else
-                        If Sacked(PlayType) Then
-                            YardsGained = MyRand.GenerateDouble(-15, -0.1)
-                            YardLine += YardsGained
-                            ClockStopped = False
-                            If Fumble(0, 0, PlayType.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
-                                FumRec(0, HomeDT, AwayDT, PlayType.FumQBSacked)
-                            End If
-
-                        Else
-                            IsComplete = GetPassCompletion(passType)
-                            If IsComplete Then
-                                YardsGained = GetPassYards(passType)
-                                YardLine += YardsGained
-                                If YardLine >= 100 Then 'Its a TouchDown
-                                    ClockStopped = True
-                                    UpdateScore(ScoringTypeEnum.RushingTD)
-                                    XPConv()
-                                Else
-                                    If Fumble(0, 0, PlayType.FumReception) Then FumRec(0, HomeDT, AwayDT, PlayType.FumReception) 'Checks for fumble on the pass reception
-                                    ClockStopped = False
-                                End If
-                            Else 'Incomplete Pass
-                                ClockStopped = True
-                            End If
-                        End If 'Checks to see if QB got sacked
-                    End If
-            End Select
-            'YardLine += YardsGained
-            If YardLine < 0 Then 'Safety
-                Safety()
-            Else 'Its not a safety
-                YardsToGo -= YardsGained 'Sets how many yards to go
-                Down = If(YardsToGo <= 0, 1, Down + 1) 'checks to see if its a first down
-                If Down = 1 Then 'Its a first down, reset the yards to go
-                    YardsToGo = If(YardLine < 91, 10, 100 - YardLine) 'If its anywhere past before the Opponent 10 yard line it resets to 10, otherwise its Goal to Go
                 End If
             End If
-            GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
-            Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
+            'Now we check all non-type specific play code:
+            YardLine += YardsGained
+            If Not IsTouchdown() Then 'Is it a Touchdown?  Checks to see and then runs TD Code if it is
+                If Fumble(0, 0, PlayType) Then
+                    Fumble(0, 0, PlayType) 'Check to see if its a fumble
+                    ClockStopped = False
+                ElseIf YardLine < 0 Then 'Safety
+                    Safety()
+                Else 'Its not a safety or a fumble
+                    YardsToGo -= YardsGained 'Sets how many yards to go
+                    Down = If(YardsToGo <= 0, 1, Down + 1) 'checks to see if its a first down
+                    If Down = 1 Then 'Its a first down, reset the yards to go
+                        YardsToGo = If(YardLine < 91, 10, 100 - YardLine) 'If its anywhere past before the Opponent 10 yard line it resets to 10, otherwise its Goal to Go
+                    End If
+                End If
+                GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
+
+                Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
             //HomeTeamHasBall?: {HomePossession}")
-        End If
+            End If
     End Sub
+
+    Private Shared Function IsTouchdown() As Boolean
+        Dim TD As Boolean
+        If YardLine >= 100 Then 'Its a TouchDown
+            ClockStopped = True
+            TD = True
+            YardsGained -= (YardLine - 100) 'Sets the YardsGained to the proper amount
+            Select Case PlayType
+                Case PlayType.RunInside, PlayType.RunOutside : ScoringType = ScoringTypeEnum.RushingTD
+                Case PlayType.PassBehindLOS, PlayType.PassLong, PlayType.PassMed, PlayType.PassShort : ScoringType = ScoringTypeEnum.PassingTD
+                Case PlayType.KickoffRet : ScoringType = ScoringTypeEnum.KORetTD
+                Case PlayType.PuntReturn : ScoringType = ScoringTypeEnum.PuntRetTD
+                Case PlayType.PuntBlockRet : ScoringType = ScoringTypeEnum.DefFumRecTD
+                Case PlayType.Interception : ScoringType = ScoringTypeEnum.IntReturnTD
+            End Select
+            UpdateScore(ScoringTypeEnum.RushingTD)
+            XPConv()
+        End If
+        Return TD
+    End Function
 
     Private Shared Sub Safety()
         UpdateScore(ScoringTypeEnum.Safety)
