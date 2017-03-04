@@ -6,8 +6,6 @@ Imports GoalLineStandFootball
 Public Class GamePlayEvents
     Inherits GamePlay
     Private Shared Sub KickoffRet(kickReturner As Integer, isFreeKick As Boolean)
-        Dim MyRand As New MersenneTwister
-        Dim GenKickRetYds As New MersenneTwister
         KickoffDist = GetKickoffDist(isFreeKick)
         YardLine += KickoffDist
         ChangeOfPoss(If(HomePossession, False, True)) 'technically this is a change of possession event as the Kicking team had possession of the ball
@@ -15,13 +13,13 @@ Public Class GamePlayEvents
         'YardLine = StartReturn
         Select Case MyRand.GenerateInt32(0, 100)
             Case 0 To 80
-                KickReturnYards = GenKickRetYds.GenerateInt32(10, 30)
+                KickReturnYards = MyRand.GenerateInt32(10, 30)
             Case 71 To 90
-                KickReturnYards = GenKickRetYds.GenerateInt32(31, 40)
+                KickReturnYards = MyRand.GenerateInt32(31, 40)
             Case 91 To 97
-                KickReturnYards = GenKickRetYds.GenerateInt32(41, 60)
+                KickReturnYards = MyRand.GenerateInt32(41, 60)
             Case Else
-                KickReturnYards = GenKickRetYds.GenerateInt32(61, 100)
+                KickReturnYards = MyRand.GenerateInt32(61, 100)
         End Select
         Dim tackler = Tackle(If(HomePossession, AwayDT, HomeDT)) 'Gets the tackling player
         YardLine += KickReturnYards 'Gets the starting field position
@@ -70,7 +68,6 @@ Public Class GamePlayEvents
     ''' <param name="play"></param>
     ''' <returns></returns>
     Private Shared Function GetTimeOffClock(yards As Single, play As PlayType) As TimeSpan
-        Dim MyRand As New MersenneTwister
         Dim GetTimeOff As TimeSpan
         'Check ClockStopped on most plays to see if clock was running---if it is, then use the pace + ballSpotTime + playTime to get total time off clock
         Select Case play
@@ -126,8 +123,6 @@ Public Class GamePlayEvents
     ''' <param name="awayDT"></param>
     ''' <param name="play"></param>
     Private Shared Sub FumRec(fumPlayer As Integer, homeDT As DataTable, awayDT As DataTable, play As PlayType)
-        Dim MyRand As New MersenneTwister
-        Dim GetRec As New MersenneTwister
         Dim GetId As Integer
         Dim FumRec As Integer
         Dim FumLost As Boolean
@@ -138,13 +133,13 @@ Public Class GamePlayEvents
                 If MyRand.GenerateDouble(0, 100) > 33 Then 'Fumbling team recovers 2/3 of kickoff fumbles
                     If HomePossession Then 'HomeTeam has the ball--they recover
                         While GetId = 0
-                            GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                             If (homeDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(awayDT)
                     Else 'AWayTeam has ball
                         While GetId = 0
-                            GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                             If (awayDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(homeDT)
@@ -152,14 +147,14 @@ Public Class GamePlayEvents
                 Else 'Defending team recovers the ball
                     If HomePossession Then 'Away Team recovers
                         While GetId = 0
-                            GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                             If (awayDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(homeDT)
                         ChangeOfPoss(False) 'Calls the Change of Possession sub
                     Else
                         While GetId = 0 'Home Team Recovers
-                            GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                             If (homeDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(awayDT)
@@ -177,13 +172,13 @@ Public Class GamePlayEvents
                     Else 'Another player on their team recovers the ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -192,14 +187,14 @@ Public Class GamePlayEvents
                 Else 'Opponent Recovers
                     If HomePossession Then 'Away Team recovers
                         While GetId = 0
-                            GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                             If (awayDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(homeDT)
                         ChangeOfPoss(False) 'Calls the Change of Possession sub
                     Else
                         While GetId = 0 'Home Team Recovers
-                            GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                            GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                             If (homeDT.Rows(GetId).Item("STCoverage")) > 50 Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                         End While
                         Tackler = Tackle(awayDT)
@@ -216,13 +211,13 @@ Public Class GamePlayEvents
                     Case <= 75.6 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -230,14 +225,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -254,13 +249,13 @@ Public Class GamePlayEvents
                     Case <= 57.5 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -268,14 +263,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -292,13 +287,13 @@ Public Class GamePlayEvents
                     Case <= 57.9 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -306,14 +301,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -330,13 +325,13 @@ Public Class GamePlayEvents
                     Case <= 49.2 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "WR" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -344,14 +339,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 If (awayDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 If (homeDT.Rows(GetId).Item("Pos")) <> "CB" Then FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -368,13 +363,13 @@ Public Class GamePlayEvents
                     Case <= 40 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -382,14 +377,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -406,13 +401,13 @@ Public Class GamePlayEvents
                     Case <= 37.9 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -420,14 +415,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -444,13 +439,13 @@ Public Class GamePlayEvents
                     Case <= 78.77 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -458,14 +453,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -482,13 +477,13 @@ Public Class GamePlayEvents
                     Case <= 50 'Offense recovers ball
                         If HomePossession Then 'HomeTeam has the ball--they recover
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
                         Else 'AWayTeam has ball
                             While GetId = 0 And GetId <> fumPlayer
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
@@ -496,14 +491,14 @@ Public Class GamePlayEvents
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
-                                GetId = GetRec.GenerateInt32(0, awayDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, awayDT.Rows.Count - 1)
                                 FumRec = awayDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
                         Else
                             While GetId = 0 'Home Team Recovers
-                                GetId = GetRec.GenerateInt32(0, homeDT.Rows.Count - 1)
+                                GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
                                 FumRec = homeDT.Rows(GetId).Item("PlayerId")
                             End While
                             Tackler = Tackle(awayDT)
@@ -551,17 +546,15 @@ Public Class GamePlayEvents
     ''' </summary>
     ''' <returns></returns>
     Private Shared Function GetKickoffDist(isFreeKick As Boolean) As Integer
-        Dim MyRand As New MersenneTwister
-        Dim GenKickDist As New MersenneTwister
         Dim KickDist As Integer
         If isFreeKick Then 'Is this a free kick?
             KickDist = MyRand.GetGaussian(50, 3.5)
         Else 'Normal Kickoff
             Select Case MyRand.GenerateInt32(0, 100)
-                Case 0 To 80 : KickDist = GenKickDist.GenerateInt32(57, 67)
-                Case 81 To 90 : KickDist = GenKickDist.GenerateInt32(68, 72)
-                Case 91 To 98 : KickDist = GenKickDist.GenerateInt32(50, 56)
-                Case Else : KickDist = GenKickDist.GenerateInt32(73, 74)
+                Case 0 To 80 : KickDist = MyRand.GenerateInt32(57, 67)
+                Case 81 To 90 : KickDist = MyRand.GenerateInt32(68, 72)
+                Case 91 To 98 : KickDist = MyRand.GenerateInt32(50, 56)
+                Case Else : KickDist = MyRand.GenerateInt32(73, 74)
             End Select
         End If
         Return KickDist
@@ -574,7 +567,6 @@ Public Class GamePlayEvents
     ''' <returns></returns>
     Private Shared Function Tackle(defTeamDT As DataTable) As Integer
         Dim tackler As Integer
-        Dim MyRand As New MersenneTwister
         Dim getId As Integer
         While tackler = 0
             getId = MyRand.GenerateInt32(0, defTeamDT.Rows.Count() - 1)
@@ -596,7 +588,6 @@ Public Class GamePlayEvents
     ''' <param name="tackler"></param>
     ''' <param name="play"></param>
     Private Shared Function Fumble(ballCarrier As Integer, tackler As Integer, play As PlayType) As Boolean
-        Dim MyRand As New MersenneTwister
         Dim Fum As Boolean
         Select Case play
             Case PlayType.FumKR
@@ -644,7 +635,6 @@ Public Class GamePlayEvents
     ''' Handles the kickoff Event
     ''' </summary>
     Public Shared Sub Kickoff(homeTeamKickingOff As Boolean)
-        Dim MyRand As New MersenneTwister()
         HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
         If MyRand.GenerateInt32(0, 100) < 40 Then '39% of kicks are returned, otherwise touchback
             KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
@@ -667,7 +657,6 @@ Public Class GamePlayEvents
     ''' Determines how much time a team takes off the clock
     ''' </summary>
     Public Shared Sub GetPace()
-        Dim MyRand As New MersenneTwister
         Dim NormalPace = New TimeSpan(0, 0, MyRand.GenerateInt32(23, 35))
         Dim HurryUpPace = New TimeSpan(0, 0, MyRand.GenerateInt32(10, 18))
         Dim UseTimePace = New TimeSpan(0, 0, MyRand.GenerateInt32(30, 39))
@@ -715,7 +704,6 @@ Public Class GamePlayEvents
     ''' Determines what type of play to run
     ''' </summary>
     Public Shared Sub RunPlay()
-        Dim MyRand As New MersenneTwister
         Dim Run As Boolean
         Dim passType As New PassTypeEnum
 
@@ -1011,7 +999,6 @@ Public Class GamePlayEvents
     ''' Kick Off from the 20 yard line after a safety(Punt)
     ''' </summary>
     Private Shared Sub FreeKickPunt(homeTeamKickingOff As Boolean)
-        Dim MyRand As New MersenneTwister()
         YardLine = 20
         HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
         KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
@@ -1023,7 +1010,6 @@ Public Class GamePlayEvents
     ''' <returns></returns>
     Private Shared Function Sacked(play As PlayType) As Boolean
         Dim IsSacked As Boolean
-        Dim MyRand As New MersenneTwister
         Select Case Down
             Case 1 : If MyRand.GenerateDouble(0, 100) < 4.55 Then IsSacked = True
             Case 2 : If MyRand.GenerateDouble(0, 100) < 4.9 Then IsSacked = True
@@ -1034,7 +1020,6 @@ Public Class GamePlayEvents
     End Function
 
     Private Shared Sub XPConv()
-        Dim MyRand As New MersenneTwister
         Dim PointDiff = If(HomePossession, HomeScore - AWayScore, AWayScore - HomeScore)
         Dim PassType As New PassTypeEnum
 
@@ -1090,12 +1075,12 @@ Public Class GamePlayEvents
     ''' </summary>
     ''' <param name="DT"></param>
     Private Shared Sub Punt(DT As DataTable)
-        Dim MyRand As New MersenneTwister
         Select Case YardLine
             Case < 45
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case <= 0.35 : Touchback = True 'Touchback
                     Case Else
+                        Touchback = False
                         PuntDistance = MyRand.GetGaussian(45.3, 3.5) 'No Touchback
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 5.45 'Did returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 2.99 'Did punt go out of bounds?
@@ -1104,6 +1089,7 @@ Public Class GamePlayEvents
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case < 15.71 : Touchback = True 'Touchback
                     Case Else 'No Touchback
+                        Touchback = False
                         PuntDistance = MyRand.GenerateInt32(27, 99 - YardLine) 'Has to at least be at the 1 yard line
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 47.14 'Did the returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 7.74 'Did the punt go out of bounds?
@@ -1112,6 +1098,7 @@ Public Class GamePlayEvents
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case < 21.93 : Touchback = True 'Touchback
                     Case Else 'No Touchback
+                        Touchback = False
                         PuntDistance = MyRand.GenerateInt32(27, 99 - YardLine) 'Has to at least be at the 1 yard line
                         CallFairCatch = MyRand.GenerateDouble(0, 100) < 36.9 'Did the returner call a fair catch?
                         OutOfBounds = MyRand.GenerateDouble(0, 100) < 6.42 'Did the punt go out of bounds?
@@ -1132,7 +1119,6 @@ Public Class GamePlayEvents
     End Sub
 
     Private Shared Sub PuntReturn()
-        Dim MyRand As New MersenneTwister
         Select Case MyRand.GenerateInt32(0, 100)
             Case 0 To 50 : PuntReturnYards = MyRand.GenerateInt32(0, 5)
             Case 51 To 75 : PuntReturnYards = MyRand.GenerateInt32(6, 11)

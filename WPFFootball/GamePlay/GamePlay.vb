@@ -90,6 +90,7 @@ Public Class GamePlay
     Public Shared PassType As New PassTypeEnum 'Enumeration for the different types of passes
     Public Shared ScoringType As New ScoringTypeEnum 'Determines what type of score it is
     Public Shared PlayType As New PlayType
+    Public Shared MyRand As New Mersenne.MersenneTwister
     'Public GameEvents As New GamePlayEvents
 #Region "Time Variables"
     Public Shared Property ClockStopped As Boolean
@@ -190,7 +191,7 @@ Public Class GamePlay
 
     Private Sub GenDepthChart(homeTeamId As Integer, awayTeamId As Integer)
         Dim QBCount, RBCount, FBCount, WRCount, TECount, LTCount, LGCount, CCount, RGCount, RTCount, DECount, DTCount, OLBCount, ILBCount, FSCount, SSCount, CBCount As Integer
-        Dim myRand As New Mersenne.MersenneTwister
+
         Try
             For Each row As DataRow In HomeDT.Rows
                 Select Case row.Item("Pos")
@@ -205,14 +206,14 @@ Public Class GamePlay
                     Case "TE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"TE{TECount + 1}"
                         TECount += 1
                     Case "OT" 'Split them between RT and LT
-                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Dim myvar = MyRand.GenerateInt32(0, 1)
                         Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LT{LTCount + 1}", $"RT{RTCount + 1}")
                         If (myvar = 1) Then
                             LTCount += 1
                         Else RTCount += 1
                         End If
                     Case "OG"
-                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Dim myvar = MyRand.GenerateInt32(0, 1)
                         Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LG{LGCount + 1}", $"RG{RGCount + 1}")
                         If (myvar = 1) Then
                             LGCount += 1
@@ -270,14 +271,14 @@ Public Class GamePlay
                     Case "TE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"TE{TECount + 1}"
                         TECount += 1
                     Case "OT" 'Split them between RT and LT
-                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Dim myvar = MyRand.GenerateInt32(0, 1)
                         Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LT{LTCount + 1}", $"RT{RTCount + 1}")
                         If (myvar = 1) Then
                             LTCount += 1
                         Else RTCount += 1
                         End If
                     Case "OG"
-                        Dim myvar = myRand.GenerateInt32(0, 1)
+                        Dim myvar = MyRand.GenerateInt32(0, 1)
                         Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = If(myvar = 1, $"LG{LGCount + 1}", $"RG{RGCount + 1}")
                         If (myvar = 1) Then
                             LGCount += 1
@@ -315,8 +316,11 @@ Public Class GamePlay
     ''' <param name="homeTeamId"></param>
     ''' <param name="awayTeamId"></param>
     Public Sub StartGame(ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
+        For i As Integer = 0 To 100
+            MyRand.GenerateDouble(0, 100) 'Initializes the Mersenne Twister with randomness
+        Next i
         GenDT(homeTeamId, awayTeamId)
-        Dim MyRand As New Mersenne.MersenneTwister
+
         HomePossession = MyRand.GenerateInt32(0, 1) = 1 'Determines who is kicking off
         HomeRec2ndHalfKickoff = If(HomePossession, False, True) 'Sets the receiver of the 2nd half kickoff
         HmTeamId = homeTeamId
@@ -368,7 +372,7 @@ Public Class GamePlay
     End Sub
 
     Public Shared Function GetPassType() As PassTypeEnum
-        Dim MyRand As New Mersenne.MersenneTwister
+
         Dim PassType As String
         Select Case MyRand.GenerateDouble(0, 100) 'Generate a new Random number
             Case <= 4.0
@@ -436,7 +440,7 @@ Public Class GamePlay
     End Function
 
     Public Shared Function GetPassCompletion(passType As PassTypeEnum) As Boolean
-        Dim MyRand As New Mersenne.MersenneTwister
+
         Dim IsComplete As Boolean 'Returns TRUE if it is Below this number, false otherwise
         Select Case passType
             Case PassTypeEnum.PBehindLOSFarL
@@ -505,126 +509,124 @@ Public Class GamePlay
     End Function
 
     Public Shared Function GetPassYards(pass As PassTypeEnum) As Single
-        Dim MyRand As New Mersenne.MersenneTwister
-        Dim GenPassYards As New Mersenne.MersenneTwister
+
         Dim PassYards As Single
         Select Case pass
             'Pass is caught behind the LOS
             Case PassTypeEnum.PBehindLOSFarL, PassTypeEnum.PBehindLOSFarR, PassTypeEnum.PBehindLOSLMid, PassTypeEnum.PBehindLOSMid, PassTypeEnum.PBehindLOSRMid
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 12.22
-                        PassYards = GenPassYards.GenerateDouble(-4, -0.1)
+                        PassYards = MyRand.GenerateDouble(-4, -0.1)
                     Case 12.23 To 60
-                        PassYards = GenPassYards.GenerateDouble(0, 4.9)
+                        PassYards = MyRand.GenerateDouble(0, 4.9)
                     Case 60.01 To 85
-                        PassYards = GenPassYards.GenerateDouble(5, 9.9)
+                        PassYards = MyRand.GenerateDouble(5, 9.9)
                     Case 85.01 To 92
-                        PassYards = GenPassYards.GenerateDouble(10, 14.9)
+                        PassYards = MyRand.GenerateDouble(10, 14.9)
                     Case 92.01 To 95.5
-                        PassYards = GenPassYards.GenerateDouble(15, 19.9)
+                        PassYards = MyRand.GenerateDouble(15, 19.9)
                     Case 95.51 To 97
-                        PassYards = GenPassYards.GenerateDouble(20, 24.9)
+                        PassYards = MyRand.GenerateDouble(20, 24.9)
                     Case 97.01 To 98
-                        PassYards = GenPassYards.GenerateDouble(25, 29.9)
+                        PassYards = MyRand.GenerateDouble(25, 29.9)
                     Case 98.01 To 98.5
-                        PassYards = GenPassYards.GenerateDouble(30, 34.9)
+                        PassYards = MyRand.GenerateDouble(30, 34.9)
                     Case 98.51 To 99
-                        PassYards = GenPassYards.GenerateDouble(35, 39.9)
+                        PassYards = MyRand.GenerateDouble(35, 39.9)
                     Case 99.01 To 99.25
-                        PassYards = GenPassYards.GenerateDouble(40, 50)
+                        PassYards = MyRand.GenerateDouble(40, 50)
                     Case 99.26 To 99.5
-                        PassYards = GenPassYards.GenerateDouble(50.1, 60)
+                        PassYards = MyRand.GenerateDouble(50.1, 60)
                     Case 99.51 To 99.75
-                        PassYards = GenPassYards.GenerateDouble(60.1, 70)
+                        PassYards = MyRand.GenerateDouble(60.1, 70)
                     Case 99.76 To 99.9
-                        PassYards = GenPassYards.GenerateDouble(70.1, 80)
+                        PassYards = MyRand.GenerateDouble(70.1, 80)
                     Case Else
-                        PassYards = GenPassYards.GenerateDouble(80.1, 100)
+                        PassYards = MyRand.GenerateDouble(80.1, 100)
                 End Select
                 'Pass is caught 0-10 yards downfield
             Case PassTypeEnum.PShortFarL, PassTypeEnum.PShortFarR, PassTypeEnum.PShortLMid, PassTypeEnum.PShortLMid, PassTypeEnum.PShortMid, PassTypeEnum.PShortRMid
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 30
-                        PassYards = GenPassYards.GenerateDouble(0, 4.9)
+                        PassYards = MyRand.GenerateDouble(0, 4.9)
                     Case 30.01 To 71.6
-                        PassYards = GenPassYards.GenerateDouble(5, 9.9)
+                        PassYards = MyRand.GenerateDouble(5, 9.9)
                     Case 71.61 To 83
-                        PassYards = GenPassYards.GenerateDouble(10, 14.9)
+                        PassYards = MyRand.GenerateDouble(10, 14.9)
                     Case 83.01 To 90
-                        PassYards = GenPassYards.GenerateDouble(15, 19.9)
+                        PassYards = MyRand.GenerateDouble(15, 19.9)
                     Case 90.01 To 94
-                        PassYards = GenPassYards.GenerateDouble(20, 24.9)
+                        PassYards = MyRand.GenerateDouble(20, 24.9)
                     Case 94.01 To 96
-                        PassYards = GenPassYards.GenerateDouble(25, 29.9)
+                        PassYards = MyRand.GenerateDouble(25, 29.9)
                     Case 96.01 To 97
-                        PassYards = GenPassYards.GenerateDouble(30, 34.9)
+                        PassYards = MyRand.GenerateDouble(30, 34.9)
                     Case 97.01 To 97.5
-                        PassYards = GenPassYards.GenerateDouble(35, 39.9)
+                        PassYards = MyRand.GenerateDouble(35, 39.9)
                     Case 97.51 To 98
-                        PassYards = GenPassYards.GenerateDouble(40, 50)
+                        PassYards = MyRand.GenerateDouble(40, 50)
                     Case 98.01 To 98.75
-                        PassYards = GenPassYards.GenerateDouble(50.1, 60)
+                        PassYards = MyRand.GenerateDouble(50.1, 60)
                     Case 98.76 To 99.5
-                        PassYards = GenPassYards.GenerateDouble(60.1, 70)
+                        PassYards = MyRand.GenerateDouble(60.1, 70)
                     Case 99.51 To 99.75
-                        PassYards = GenPassYards.GenerateDouble(70.1, 80)
+                        PassYards = MyRand.GenerateDouble(70.1, 80)
                     Case Else
-                        PassYards = GenPassYards.GenerateDouble(80.1, 100)
+                        PassYards = MyRand.GenerateDouble(80.1, 100)
                 End Select
                 'Medium Pass 10-20 yards
             Case PassTypeEnum.PMedFarL, PassTypeEnum.PMedFarR, PassTypeEnum.PMedLMid, PassTypeEnum.PMedRMid, PassTypeEnum.PMedMid
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 30
-                        PassYards = GenPassYards.GenerateDouble(10, 14.9)
+                        PassYards = MyRand.GenerateDouble(10, 14.9)
                     Case 30.01 To 53.7
-                        PassYards = GenPassYards.GenerateDouble(15.0, 19.9)
+                        PassYards = MyRand.GenerateDouble(15.0, 19.9)
                     Case 53.71 To 75
-                        PassYards = GenPassYards.GenerateDouble(20, 24.9)
+                        PassYards = MyRand.GenerateDouble(20, 24.9)
                     Case 75.01 To 85
-                        PassYards = GenPassYards.GenerateDouble(25, 29.9)
+                        PassYards = MyRand.GenerateDouble(25, 29.9)
                     Case 85.01 To 92
-                        PassYards = GenPassYards.GenerateDouble(30, 34.9)
+                        PassYards = MyRand.GenerateDouble(30, 34.9)
                     Case 92.01 To 95
-                        PassYards = GenPassYards.GenerateDouble(35, 40)
+                        PassYards = MyRand.GenerateDouble(35, 40)
                     Case 95.01 To 97
-                        PassYards = GenPassYards.GenerateDouble(40.1, 50)
+                        PassYards = MyRand.GenerateDouble(40.1, 50)
                     Case 97.01 To 98
-                        PassYards = GenPassYards.GenerateDouble(50.01, 60)
+                        PassYards = MyRand.GenerateDouble(50.01, 60)
                     Case 98.01 To 99
-                        PassYards = GenPassYards.GenerateDouble(60.01, 70)
+                        PassYards = MyRand.GenerateDouble(60.01, 70)
                     Case 99.01 To 99.5
-                        PassYards = GenPassYards.GenerateDouble(70.1, 80)
+                        PassYards = MyRand.GenerateDouble(70.1, 80)
                     Case Else
-                        PassYards = GenPassYards.GenerateDouble(80.1, 100)
+                        PassYards = MyRand.GenerateDouble(80.1, 100)
                 End Select
                 'Long passes---20+ yards
             Case Else
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 40
-                        PassYards = GenPassYards.GenerateDouble(20, 24.9)
+                        PassYards = MyRand.GenerateDouble(20, 24.9)
                     Case 40.01 To 65
-                        PassYards = GenPassYards.GenerateDouble(25, 29.9)
+                        PassYards = MyRand.GenerateDouble(25, 29.9)
                     Case 65.01 To 83
-                        PassYards = GenPassYards.GenerateDouble(30, 34.9)
+                        PassYards = MyRand.GenerateDouble(30, 34.9)
                     Case 83.01 To 94
-                        PassYards = GenPassYards.GenerateDouble(35, 39.9)
+                        PassYards = MyRand.GenerateDouble(35, 39.9)
                     Case 94.01 To 97
-                        PassYards = GenPassYards.GenerateDouble(40, 50)
+                        PassYards = MyRand.GenerateDouble(40, 50)
                     Case 97.01 To 98
-                        PassYards = GenPassYards.GenerateDouble(50.1, 60)
+                        PassYards = MyRand.GenerateDouble(50.1, 60)
                     Case 98.01 To 98.75
-                        PassYards = GenPassYards.GenerateDouble(60.1, 70)
+                        PassYards = MyRand.GenerateDouble(60.1, 70)
                     Case 98.76 To 99.5
-                        PassYards = GenPassYards.GenerateDouble(70.1, 80)
+                        PassYards = MyRand.GenerateDouble(70.1, 80)
                     Case Else
-                        PassYards = GenPassYards.GenerateDouble(80.1, 100)
+                        PassYards = MyRand.GenerateDouble(80.1, 100)
                 End Select
         End Select
         Return PassYards
     End Function
 
     Public Shared Function GetRunType() As RunTypeEnum
-        Dim MyRand As New Mersenne.MersenneTwister
         Dim Run As New RunTypeEnum
         Select Case MyRand.GenerateInt32(0, 100)
             Case 0 To 10
@@ -651,9 +653,7 @@ Public Class GamePlay
     ''' <param name="run"></param>
     ''' <returns></returns>
     Public Shared Function GetRunYards(run As RunTypeEnum) As Single
-        Dim MyRand As New Mersenne.MersenneTwister
-        Dim GetYards As New Mersenne.MersenneTwister
-        Dim Yards As Integer
+        Dim Yards As Single
         Select Case YardLine
             Case < 11 ' Ball is on your own 10 or inside your own 10 yard line
                 Select Case MyRand.GenerateDouble(0, 100)
@@ -710,25 +710,25 @@ Public Class GamePlay
                     Case 97.87 To 98.21
                         Yards = MyRand.GenerateDouble(20, 20.9)
                     Case 98.22 To 98.56
-                        Yards = GetYards.GenerateDouble(21, 30)
+                        Yards = MyRand.GenerateDouble(21, 30)
                     Case 98.57 To 99.09
-                        Yards = GetYards.GenerateDouble(31, 40)
+                        Yards = MyRand.GenerateDouble(31, 40)
                     Case 99.1 To 99.44
-                        Yards = GetYards.GenerateDouble(41, 50)
+                        Yards = MyRand.GenerateDouble(41, 50)
                     Case 99.45 To 99.54
-                        Yards = GetYards.GenerateDouble(51, 60)
+                        Yards = MyRand.GenerateDouble(51, 60)
                     Case 99.55 To 99.64
-                        Yards = GetYards.GenerateDouble(61, 70)
+                        Yards = MyRand.GenerateDouble(61, 70)
                     Case 99.65 To 99.74
-                        Yards = GetYards.GenerateDouble(71, 80)
+                        Yards = MyRand.GenerateDouble(71, 80)
                     Case Else
-                        Yards = GetYards.GenerateDouble(81, 100)
+                        Yards = MyRand.GenerateDouble(81, 100)
                 End Select
 
             Case 11 To 89 'Ball is Between your 11 yard line and the opponent's 11 yard line.
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 0.51
-                        Yards = GetYards.GenerateDouble(-9, -6)
+                        Yards = MyRand.GenerateDouble(-9, -6)
                     Case 0.52 To 0.91
                         Yards = MyRand.GenerateDouble(-5, -4.1)
                     Case 0.92 To 1.77
@@ -822,51 +822,51 @@ Public Class GamePlay
                     Case 99.43 To 99.48
                         Yards = MyRand.GenerateDouble(40, 40.9)
                     Case 99.49 To 99.72
-                        Yards = GetYards.GenerateDouble(41, 50)
+                        Yards = MyRand.GenerateDouble(41, 50)
                     Case 99.73 To 99.82
-                        Yards = GetYards.GenerateDouble(51, 60)
+                        Yards = MyRand.GenerateDouble(51, 60)
                     Case 99.83 To 99.9
-                        Yards = GetYards.GenerateDouble(61, 70)
+                        Yards = MyRand.GenerateDouble(61, 70)
                     Case 99.91 To 99.96
-                        Yards = GetYards.GenerateDouble(71, 80)
+                        Yards = MyRand.GenerateDouble(71, 80)
                     Case Else
-                        Yards = GetYards.GenerateDouble(81, 100)
+                        Yards = MyRand.GenerateDouble(81, 100)
                 End Select
 
             Case > 89 'Ball is on or inside the Opponents 10 yard line
                 Select Case MyRand.GenerateDouble(0, 100)
                     Case 0 To 0.38
-                        Yards = GetYards.GenerateDouble(-8, -6)
+                        Yards = MyRand.GenerateDouble(-8, -6)
                     Case 0.39 To 0.97
-                        Yards = GetYards.GenerateDouble(-5, -4.1)
+                        Yards = MyRand.GenerateDouble(-5, -4.1)
                     Case 0.98 To 2.15
-                        Yards = GetYards.GenerateDouble(-4, -3.1)
+                        Yards = MyRand.GenerateDouble(-4, -3.1)
                     Case 2.16 To 4.1
-                        Yards = GetYards.GenerateDouble(-3, -2.1)
+                        Yards = MyRand.GenerateDouble(-3, -2.1)
                     Case 4.11 To 6.45
-                        Yards = GetYards.GenerateDouble(-2, -1.1)
+                        Yards = MyRand.GenerateDouble(-2, -1.1)
                     Case 6.46 To 12.81
-                        Yards = GetYards.GenerateDouble(-1, -0.1)
+                        Yards = MyRand.GenerateDouble(-1, -0.1)
                     Case 12.82 To 26.31
-                        Yards = GetYards.GenerateDouble(0, 0.9)
+                        Yards = MyRand.GenerateDouble(0, 0.9)
                     Case 26.32 To 52.83
-                        Yards = GetYards.GenerateDouble(1, 1.9)
+                        Yards = MyRand.GenerateDouble(1, 1.9)
                     Case 52.84 To 67.7
-                        Yards = GetYards.GenerateDouble(2, 2.9)
+                        Yards = MyRand.GenerateDouble(2, 2.9)
                     Case 67.71 To 78.38
-                        Yards = GetYards.GenerateDouble(3, 3.9)
+                        Yards = MyRand.GenerateDouble(3, 3.9)
                     Case 78.39 To 85.02
-                        Yards = GetYards.GenerateDouble(4, 4.9)
+                        Yards = MyRand.GenerateDouble(4, 4.9)
                     Case 85.03 To 90.5
-                        Yards = GetYards.GenerateDouble(5, 5.9)
+                        Yards = MyRand.GenerateDouble(5, 5.9)
                     Case 90.51 To 93.83
-                        Yards = GetYards.GenerateDouble(6, 6.9)
+                        Yards = MyRand.GenerateDouble(6, 6.9)
                     Case 93.84 To 96.96
-                        Yards = GetYards.GenerateDouble(7, 7.9)
+                        Yards = MyRand.GenerateDouble(7, 7.9)
                     Case 96.97 To 98.62
-                        Yards = GetYards.GenerateDouble(8, 8.9)
+                        Yards = MyRand.GenerateDouble(8, 8.9)
                     Case 98.63 To 99.21
-                        Yards = GetYards.GenerateDouble(9, 9.9)
+                        Yards = MyRand.GenerateDouble(9, 9.9)
                     Case Else
                         Yards = 10
                 End Select
