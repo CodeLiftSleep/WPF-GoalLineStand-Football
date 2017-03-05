@@ -159,6 +159,12 @@ Public Class GamePlay
     Public Shared Property AwayScore As Integer
     Public Shared Property PointDiff As Integer 'How much the team is currently ahead or behind by
     Public Shared Property OutOfBounds As Boolean
+    Public Shared Property HomeTotYards As Integer
+    Public Shared Property HomeRushYards As Integer
+    Public Shared Property HomePassYards As Integer
+    Public Shared Property AwayTotYards As Integer
+    Public Shared Property AWayPassYards As Integer
+    Public Shared Property AwayRushYards As Integer
 #End Region
 
 #Region "Turnovers"
@@ -353,19 +359,22 @@ Public Class GamePlay
                     End If
                     Quarter += 1
 
-                Else RunPlay() 'If none of those things are true, then run a play
-
+                Else
+                    RunPlay() 'If none of those things are true, then run a play
+                    HomeTotYards = HomePassYards + HomeRushYards
+                    AwayTotYards = AWayPassYards + AwayRushYards
                 End If
                 If PlayType = PlayTypeEnum.Touchdown Then 'If there is a Touchdown on the play
 
                 ElseIf PlayType = PlayTypeEnum.Safety Then 'If There is a safety on the play
 
                 ElseIf PlayType = PlayTypeEnum.FGMade Then 'If there is a FG made on the play
-
                 End If
             End If
         End While
         Console.WriteLine($"***END OF GAME*** FINAL SCORE: Home {HomeScore} Away {AwayScore}")
+        Console.WriteLine($"HOME TOTAL YARDS: {HomeTotYards}//HOME RUSH YARDS: {HomeRushYards}// HOME PASS YARDS: {HomePassYards}")
+        Console.WriteLine($"AWAY TOTAL YARDS: {AwayTotYards}//AWAY RUSH YARDS: {AwayRushYards}// AWAY PASS YARDS: {AWayPassYards}")
     End Sub
 
     Private Sub LoadDepthCharts(homeTeamHasBall As Boolean, ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
@@ -628,6 +637,8 @@ Public Class GamePlay
                         PassYards = MyRand.GenerateDouble(80.1, 100)
                 End Select
         End Select
+        HomePassYards += If(HomePossession, PassYards, 0)
+        AWayPassYards += If(HomePossession, 0, PassYards)
         Return PassYards
     End Function
 
@@ -876,7 +887,8 @@ Public Class GamePlay
                         Yards = 10
                 End Select
         End Select
-
+        HomeRushYards += If(HomePossession, Yards, 0)
+        AwayRushYards += If(HomePossession, 0, Yards)
         Return Yards
     End Function
 

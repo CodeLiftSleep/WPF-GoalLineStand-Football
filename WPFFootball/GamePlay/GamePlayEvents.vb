@@ -541,13 +541,13 @@ Public Class GamePlayEvents
         If FumLost Then
 
             'Add a lost fumble to the fumbling player
-            If Stats.Rows.Find(fumPlayer).Item("FumLost") IsNot DBNull.Value Then
-                Stats.Rows.Find(fumPlayer).Item("FumLost") += 1
-                Console.WriteLine($"***DEFENSE RECOVERS! TURNOVER!")
-            Else
-                Stats.Rows.Find(fumPlayer).Item("FumLost") = 1
-                Console.WriteLine($"***OFFENSE MAINTAINS POSSESSION!")
-            End If
+            'If Stats.Rows.Find(fumPlayer).Item("FumLost") IsNot DBNull.Value Then
+            'Stats.Rows.Find(fumPlayer).Item("FumLost") += 1
+            'Console.WriteLine($"***DEFENSE RECOVERS! TURNOVER!")
+            'Else
+            'Stats.Rows.Find(fumPlayer).Item("FumLost") = 1
+            'Console.WriteLine($"***OFFENSE MAINTAINS POSSESSION!")
+            'End If
         End If
         If Tackler <> 0 Then
             If Stats.Rows.Find(Tackler).Item("TotTackles") IsNot DBNull.Value Then
@@ -1069,8 +1069,14 @@ Public Class GamePlayEvents
             TD = True
             YardsGained -= (YardLine - 100) 'Sets the YardsGained to the proper amount
             Select Case PlayType
-                Case PlayTypeEnum.RunInside, PlayTypeEnum.RunOutside : ScoringType = ScoringTypeEnum.RushingTD
-                Case PlayTypeEnum.PassBehindLOS, PlayTypeEnum.PassLong, PlayTypeEnum.PassMed, PlayTypeEnum.PassShort : ScoringType = ScoringTypeEnum.PassingTD
+                Case PlayTypeEnum.RunInside, PlayTypeEnum.RunOutside
+                    ScoringType = ScoringTypeEnum.RushingTD
+                    HomeRushYards -= If(HomePossession, YardsGained, 0)
+                    AwayRushYards -= If(HomePossession, 0, YardsGained)
+                Case PlayTypeEnum.PassBehindLOS, PlayTypeEnum.PassLong, PlayTypeEnum.PassMed, PlayTypeEnum.PassShort
+                    ScoringType = ScoringTypeEnum.PassingTD
+                    HomePassYards -= If(HomePossession, YardsGained, 0)
+                    AWayPassYards -= If(HomePossession, 0, YardsGained)
                 Case PlayTypeEnum.KickoffRet : ScoringType = ScoringTypeEnum.KORetTD
                 Case PlayTypeEnum.PuntReturn : ScoringType = ScoringTypeEnum.PuntRetTD
                 Case PlayTypeEnum.PuntBlockRet : ScoringType = ScoringTypeEnum.DefFumRecTD
