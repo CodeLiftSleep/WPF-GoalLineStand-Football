@@ -54,7 +54,7 @@ Public Class GamePlayEvents
         End If
 
         GameTime = GameTime.Subtract(GetTimeOffClock(KickReturnYards, PlayTypeEnum.KickoffRet))
-
+        EndOfPoss()
         Console.WriteLine($"{Stats.Rows.Find(tackler).Item("Pos")} {Stats.Rows.Find(tackler).Item("FName")} {Stats.Rows.Find(tackler).Item("LName")} tackles{Stats.Rows.Find(kickReturner).Item("Pos")} _
                           {Stats.Rows.Find(kickReturner).Item("FName")} {Stats.Rows.Find(kickReturner).Item("LName")} at the {YardLine} Yard Line after a {KickReturnYards} _
                           yard return from the {StartReturn} yard line. First Down!")
@@ -152,6 +152,7 @@ Public Class GamePlayEvents
                         End While
                         Tackler = Tackle(homeDT)
                         ChangeOfPoss(False) 'Calls the Change of Possession sub
+                        EndOfPoss()
                     Else
                         While GetId = 0 'Home Team Recovers
                             GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -159,6 +160,7 @@ Public Class GamePlayEvents
                         End While
                         Tackler = Tackle(awayDT)
                         ChangeOfPoss(True) 'Calls the Change of Possession sub
+                        EndOfPoss()
                     End If
                     FumLost = True
 
@@ -193,6 +195,7 @@ Public Class GamePlayEvents
                         End While
                         Tackler = Tackle(homeDT)
                         ChangeOfPoss(False) 'Calls the Change of Possession sub
+                        EndOfPoss()
                     Else
                         While GetId = 0 'Home Team Recovers
                             GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -200,6 +203,7 @@ Public Class GamePlayEvents
                         End While
                         Tackler = Tackle(awayDT)
                         ChangeOfPoss(True) 'Calls the Change of Possession sub
+                        EndOfPoss()
                     End If
                     FumLost = True 'Loses Fumble
 
@@ -233,6 +237,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -240,6 +245,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -272,6 +278,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -279,6 +286,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -311,6 +319,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -318,6 +327,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -350,6 +360,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -357,6 +368,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -389,6 +401,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -396,6 +409,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -428,6 +442,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -435,6 +450,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -467,6 +483,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -474,6 +491,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -506,6 +524,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                             ChangeOfPoss(False) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         Else
                             While GetId = 0 'Home Team Recovers
                                 GetId = MyRand.GenerateInt32(0, homeDT.Rows.Count - 1)
@@ -513,6 +532,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(awayDT)
                             ChangeOfPoss(True) 'Calls the Change of Possession sub
+                            EndOfPoss()
                         End If
                         FumLost = True 'Loses Fumble
                 End Select
@@ -550,6 +570,11 @@ Public Class GamePlayEvents
     Private Shared Sub ChangeOfPoss(homeTeamHasBall As Boolean)
         HomePossession = homeTeamHasBall
         YardLine = 100 - YardLine 'Need to reverse field position for the other team
+    End Sub
+    ''' <summary>
+    ''' This is what is called when a change of possession happens and the play ends
+    ''' </summary>
+    Private Shared Sub EndOfPoss()
         ClockStopped = True
         Down = 1
         YardsToGo = 10
@@ -631,12 +656,15 @@ Public Class GamePlayEvents
     Private Shared Sub IsTouchback(onKickoff As Boolean, kicker As Integer)
         'If its a touchback from a kickoff, the ball is placed at the 25 yard line, otherwise at the 20
         'Kicker gets a TB added to his Totals
+        Touchback = True
         If Stats.Rows.Find(kicker).Item("Touchback") IsNot DBNull.Value Then 'Check for NULL Values
             Stats.Rows.Find(kicker).Item("Touchback") += 1
         Else Stats.Rows.Find(kicker).Item("Touchback") = 1
         End If
         ChangeOfPoss(If(HomePossession, False, True))
+        EndOfPoss()
         YardLine = If(onKickoff, 25, 20)
+        KickoffDist = MyRand.GenerateInt32(66, 80)
         If onKickoff Then
             Console.WriteLine($"TOUCHBACK Kickoff: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
@@ -956,14 +984,37 @@ Public Class GamePlayEvents
                         PlayType = PlayTypeEnum.FumQBSacked
                     End If
                 Else
-                    IsComplete = GetPassCompletion(passType)
-                    If IsComplete Then
-                        YardsGained = Math.Round(GetPassYards(passType), 1)
-                        ClockStopped = False
-                    Else 'Incomplete Pass
-                        ClockStopped = True
-                        YardsGained = 0
+                    IsIntercepted = Intercepted() 'Check for an interception
+                    If IsIntercepted Then 'The ball is intercepted
+                        PlayType = PlayTypeEnum.Interception
+                        ChangeOfPoss(If(HomePossession, False, True))
+                        Select Case MyRand.GenerateDouble(0, 100)
+                            Case <= 8.19  'It's a Pick-6!
+                                YardLine = 100
+                            Case Else
+                                Select Case MyRand.GenerateDouble(0, 100)
+                                    Case <= 24.09 : IntReturnYds = Math.Round(MyRand.GenerateDouble(1, 10), 1)
+                                    Case <= 38.31 : IntReturnYds = Math.Round(MyRand.GenerateDouble(11, 20), 1)
+                                    Case <= 51.08 : IntReturnYds = Math.Round(MyRand.GenerateDouble(21, 30), 1)
+                                    Case <= 56.86 : IntReturnYds = Math.Round(MyRand.GenerateDouble(31, 40), 1)
+                                    Case <= 90.84 : IntReturnYds = 0 'No Return
+                                    Case <= 93.73 : IntReturnYds = Math.Round(MyRand.GenerateDouble(41, 50), 1)
+                                    Case <= 97.1 : IntReturnYds = Math.Round(MyRand.GenerateDouble(51, 60), 1)
+                                End Select
+                                YardLine = If(YardLine >= 100, MyRand.GenerateInt32(92, 99), YardLine + IntReturnYds)
+                                EndOfPoss()
+                        End Select
+                    Else
+                        IsComplete = GetPassCompletion(passType)
+                        If IsComplete Then
+                            YardsGained = Math.Round(GetPassYards(passType), 1)
+                            ClockStopped = False
+                        Else 'Incomplete Pass
+                            ClockStopped = True
+                            YardsGained = 0
+                        End If
                     End If
+
                 End If
             End If
         End If
@@ -973,6 +1024,10 @@ Public Class GamePlayEvents
             If Fumble(0, 0, PlayType) Then
                 Fumble(0, 0, PlayType) 'Check to see if its a fumble
                 ClockStopped = False
+            ElseIf Intercepted() Then
+                Console.WriteLine("***INTERCEPTED--PICK-6 TD!***")
+                ScoringType = ScoringTypeEnum.IntReturnTD
+                IntReturnYds = 100 - YardLine
             ElseIf YardLine < 0 Then 'Safety
                 Safety()
             Else 'Its not a safety or a fumble
@@ -989,7 +1044,24 @@ Public Class GamePlayEvents
             //HomeTeamHasBall?: {HomePossession}")
         End If
     End Sub
-
+    Private Shared Function Intercepted() As Boolean
+        Dim Intercept As Boolean
+        Select Case PassType
+            Case PassTypeEnum.PBehindLOSFarL, PassTypeEnum.PBehindLOSLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.3
+            Case PassTypeEnum.PBehindLOSMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.4
+            Case PassTypeEnum.PBehindLOSFarR, PassTypeEnum.PBehindLOSRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.5
+            Case PassTypeEnum.PShortFarL, PassTypeEnum.PShortLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.3
+            Case PassTypeEnum.PShortMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.4
+            Case PassTypeEnum.PShortFarR, PassTypeEnum.PShortRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.6
+            Case PassTypeEnum.PMedFarL, PassTypeEnum.PMedLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 3.5
+            Case PassTypeEnum.PMedMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
+            Case PassTypeEnum.PMedFarR, PassTypeEnum.PMedRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 3.8
+            Case PassTypeEnum.PLongFarL, PassTypeEnum.PLongLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
+            Case PassTypeEnum.PLongMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 7.5
+            Case PassTypeEnum.PLongFarR, PassTypeEnum.PLongRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
+        End Select
+        Return Intercept
+    End Function
     Private Shared Function IsTouchdown() As Boolean
         Dim TD As Boolean
         If YardLine >= 100 Then 'Its a TouchDown
@@ -1178,6 +1250,7 @@ Public Class GamePlayEvents
         Fumble(0, 0, PlayTypeEnum.PuntReturn) 'Did the BallCarrier fumble?
         GetTimeOffClock(PuntReturnYards, PlayTypeEnum.PuntReturn)
         ChangeOfPoss(If(HomePossession, False, True))
+        EndOfPoss()
     End Sub
 
     Private Shared Sub KickFG(DT As DataTable, play As ScoringTypeEnum)
@@ -1234,6 +1307,7 @@ Public Class GamePlayEvents
                     ClockStopped = True
                     YardLine -= 7
                     ChangeOfPoss(If(HomePossession, False, True))
+                    EndOfPoss()
                     Console.WriteLine($"**FG NO GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")

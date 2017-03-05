@@ -165,7 +165,7 @@ Public Class GamePlay
     'Private Property Intercepted As Boolean
     Public Shared Property IntReturnYds As Single
     Public Shared Property IntReturnTD As Boolean
-    Public Shared Property Interception As Boolean
+    Public Shared Property IsIntercepted As Boolean
     'Private Property Fumble As Boolean
     Public Shared Property DefFumRec As Boolean
     Public Shared Property FumbleRetYds As Single
