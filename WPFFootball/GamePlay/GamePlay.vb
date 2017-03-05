@@ -156,7 +156,7 @@ Public Class GamePlay
     Public Shared Property HomeRec2ndHalfKickoff As Boolean
     Public Shared Property HalfStart As Boolean = True 'Is this the start of the half?
     Public Shared Property HomeScore As Integer
-    Public Shared Property AWayScore As Integer
+    Public Shared Property AwayScore As Integer
     Public Shared Property PointDiff As Integer 'How much the team is currently ahead or behind by
     Public Shared Property OutOfBounds As Boolean
 #End Region
@@ -348,7 +348,7 @@ Public Class GamePlay
                     If Quarter = 2 Then
                         HomePossession = HomeRec2ndHalfKickoff 'Sets the team ready to receive ball in the 2nd half
                         Kickoff = True
-                    ElseIf Quarter = 4 And (HomeScore <> AWayScore) Then
+                    ElseIf Quarter = 4 And (HomeScore <> AwayScore) Then
                         GameLoop = False 'End of game---no OT
                     End If
                     Quarter += 1
@@ -365,6 +365,7 @@ Public Class GamePlay
                 End If
             End If
         End While
+        Console.WriteLine($"***END OF GAME*** FINAL SCORE: Home {HomeScore} Away {AwayScore}")
     End Sub
 
     Private Sub LoadDepthCharts(homeTeamHasBall As Boolean, ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)

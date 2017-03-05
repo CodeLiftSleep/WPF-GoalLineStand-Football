@@ -143,6 +143,7 @@ Public Class GamePlayEvents
                         End While
                         Tackler = Tackle(homeDT)
                     End If
+
                 Else 'Defending team recovers the ball
                     If HomePossession Then 'Away Team recovers
                         While GetId = 0
@@ -183,6 +184,7 @@ Public Class GamePlayEvents
                             Tackler = Tackle(homeDT)
                         End If
                     End If
+
                 Else 'Opponent Recovers
                     If HomePossession Then 'Away Team recovers
                         While GetId = 0
@@ -200,6 +202,7 @@ Public Class GamePlayEvents
                         ChangeOfPoss(True) 'Calls the Change of Possession sub
                     End If
                     FumLost = True 'Loses Fumble
+
                 End If
             Case PlayTypeEnum.FumQBExchange
                 Select Case MyRand.GenerateDouble(0, 100)  'QB Recovers his own fumble
@@ -221,6 +224,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -259,6 +263,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -297,6 +302,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -335,6 +341,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -373,6 +380,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -411,6 +419,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -449,6 +458,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -487,6 +497,7 @@ Public Class GamePlayEvents
                             End While
                             Tackler = Tackle(homeDT)
                         End If
+
                     Case Else 'Defense recovers
                         If HomePossession Then 'Away Team recovers
                             While GetId = 0
@@ -508,10 +519,14 @@ Public Class GamePlayEvents
         End Select
 
         If FumLost Then
+
             'Add a lost fumble to the fumbling player
             If Stats.Rows.Find(fumPlayer).Item("FumLost") IsNot DBNull.Value Then
                 Stats.Rows.Find(fumPlayer).Item("FumLost") += 1
-            Else Stats.Rows.Find(fumPlayer).Item("FumLost") = 1
+                Console.WriteLine($"***DEFENSE RECOVERS! TURNOVER!")
+            Else
+                Stats.Rows.Find(fumPlayer).Item("FumLost") = 1
+                Console.WriteLine($"***OFFENSE MAINTAINS POSSESSION!")
             End If
         End If
         If Tackler <> 0 Then
@@ -624,11 +639,11 @@ Public Class GamePlayEvents
         YardLine = If(onKickoff, 25, 20)
         If onKickoff Then
             Console.WriteLine($"TOUCHBACK Kickoff: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         Else
             Console.WriteLine($"TOUCHBACK Punt: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         End If
 
@@ -932,10 +947,11 @@ Public Class GamePlayEvents
             Else 'This is a Passing Play
                 passType = GetPassType() 'Get the pass type
                 If Sacked(PlayType) Then 'Check to see if the QB gets sacked
-                    YardsGained = Math.Round(MyRand.GenerateDouble(-15, -0.1), 1)
-                    YardLine += YardsGained
+                    YardsGained = Math.Abs(Math.Round(MyRand.GetGaussian(-4.5, 3.5), 1)) * -1
+                    Console.WriteLine($"***SACK!!***  Yards Lost: {YardsGained}")
                     ClockStopped = False
                     If Fumble(0, 0, PlayTypeEnum.FumQBSacked) Then 'Checks to see if there is a fumble on the sack
+                        Console.WriteLine("***FUMBLE!!**")
                         FumRec(0, HomeDT, AwayDT, PlayTypeEnum.FumQBSacked)
                         PlayType = PlayTypeEnum.FumQBSacked
                     End If
@@ -969,7 +985,7 @@ Public Class GamePlayEvents
             GameTime = GameTime.Subtract(GetTimeOffClock(YardsGained, PlayType)) 'Runs time off clock based on what just happened
 
             Console.WriteLine($"Play: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         End If
     End Sub
@@ -989,7 +1005,7 @@ Public Class GamePlayEvents
                 Case PlayTypeEnum.Interception : ScoringType = ScoringTypeEnum.IntReturnTD
             End Select
             Console.WriteLine($"**TOUCHDOWN!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
             UpdateScore(ScoringType)
             XPConv()
@@ -1001,7 +1017,7 @@ Public Class GamePlayEvents
         ScoringType = ScoringTypeEnum.Safety
         UpdateScore(ScoringType)
         Console.WriteLine($"**SAFETY!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         ClockStopped = True
         FreeKickPunt(HomePossession)
@@ -1013,7 +1029,7 @@ Public Class GamePlayEvents
         YardLine = 20
         HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
         Console.WriteLine($"**FREE KICK PUNT AFTER SAFETY!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
     End Sub
@@ -1034,7 +1050,7 @@ Public Class GamePlayEvents
     End Function
 
     Private Shared Sub XPConv()
-        Dim PointDiff = If(HomePossession, HomeScore - AWayScore, AWayScore - HomeScore)
+        Dim PointDiff = If(HomePossession, HomeScore - AwayScore, AwayScore - HomeScore)
         Dim PassType As New PassTypeEnum
         If Quarter = 4 Then
             Select Case Math.Abs(PointDiff)
@@ -1078,22 +1094,22 @@ Public Class GamePlayEvents
         Select Case play
             Case ScoringTypeEnum.OffFumRecTD, ScoringTypeEnum.PassingTD, ScoringTypeEnum.RushingTD, ScoringTypeEnum.PuntRetTD, ScoringTypeEnum.KORetTD
                 HomeScore = If(HomePossession, HomeScore + 6, HomeScore)
-                AWayScore = If(HomePossession, AWayScore, AWayScore + 6)
+                AwayScore = If(HomePossession, AwayScore, AwayScore + 6)
             Case ScoringTypeEnum.FG
                 HomeScore = If(HomePossession, HomeScore + 3, HomeScore)
-                AWayScore = If(HomePossession, AWayScore, AWayScore + 3)
+                AwayScore = If(HomePossession, AwayScore, AwayScore + 3)
             Case ScoringTypeEnum.TwoPointConv 'Two Point Conversion
                 HomeScore = If(HomePossession, HomeScore + 2, HomeScore)
-                AWayScore = If(HomePossession, AWayScore, AWayScore + 2)
+                AwayScore = If(HomePossession, AwayScore, AwayScore + 2)
             Case ScoringTypeEnum.XP 'Extra Point
                 HomeScore = If(HomePossession, HomeScore + 1, HomeScore)
-                AWayScore = If(HomePossession, AWayScore, AWayScore + 1)
+                AwayScore = If(HomePossession, AwayScore, AwayScore + 1)
             Case ScoringTypeEnum.Safety, ScoringTypeEnum.DefXPReturnFor2Pts 'Defensive 2 Points
                 HomeScore = If(HomePossession, HomeScore, HomeScore + 2)
-                AWayScore = If(HomePossession, AWayScore + 2, AWayScore)
+                AwayScore = If(HomePossession, AwayScore + 2, AwayScore)
             Case ScoringTypeEnum.DefFumRecTD, ScoringTypeEnum.IntReturnTD 'Defensive TD
                 HomeScore = If(HomePossession, HomeScore, HomeScore + 6)
-                AWayScore = If(HomePossession, AWayScore + 6, AWayScore)
+                AwayScore = If(HomePossession, AwayScore + 6, AwayScore)
         End Select
     End Sub
     ''' <summary>
@@ -1142,7 +1158,7 @@ Public Class GamePlayEvents
             End If
 
             Console.WriteLine($"Play: {PlayType}//Punt: {PuntDistance}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//Punt Returned: {PuntReturnYards}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//IsComplete(If Pass): {IsComplete}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
         End If
         GetTimeOffClock(PuntDistance, PlayTypeEnum.Punt) 'Get the time that ran off the clock for this play
@@ -1172,11 +1188,11 @@ Public Class GamePlayEvents
                     ScoringType = ScoringTypeEnum.XP
                     UpdateScore(ScoringType) 'XP Made---93.99%last year
                     Console.WriteLine($"**XP GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
                 Else
                     Console.WriteLine($"**XP NO GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
                 End If
             Case Else 'FG
@@ -1212,14 +1228,14 @@ Public Class GamePlayEvents
                     YardLine = 35
                     Kickoff = True
                     Console.WriteLine($"**FG GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
                 Else 'FG Missed
                     ClockStopped = True
                     YardLine -= 7
                     ChangeOfPoss(If(HomePossession, False, True))
                     Console.WriteLine($"**FG NO GOOD!!**: {PlayType}//Yards Gained: {YardsGained}//Down: {Down}//YardsToGo: {YardsToGo}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
-            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AWayScore}
+            //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
             //HomeTeamHasBall?: {HomePossession}")
                 End If
         End Select
