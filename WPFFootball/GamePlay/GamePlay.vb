@@ -165,6 +165,19 @@ Public Class GamePlay
     Public Shared Property AwayTotYards As Integer
     Public Shared Property AWayPassYards As Integer
     Public Shared Property AwayRushYards As Integer
+    Public Shared Property HomeTotPlays As Integer
+    Public Shared Property AwayTotPlays As Integer
+    Public Shared Property HomeRushPlays As Integer
+    Public Shared Property AWayRushPlays As Integer
+    Public Shared Property HomePassPlays As Integer
+    Public Shared Property AwayPassPlays As Integer
+    Public Shared Property HomeAvgPerRush As Single
+    Public Shared Property HomeAvgPerPass As Single
+    Public Shared Property AwayAvgPerRush As Single
+    Public Shared Property AwayAvgPerPass As Single
+    Public Shared Property HomeAvgPerPlay As Single
+    Public Shared Property AwayAvgPerPlay As Single
+
 #End Region
 
 #Region "Turnovers"
@@ -372,9 +385,22 @@ Public Class GamePlay
                 End If
             End If
         End While
+        HomeAvgPerPlay = Math.Round((HomeTotYards / HomeTotPlays), 1)
+        AwayAvgPerPlay = Math.Round((AwayTotYards / AwayTotPlays), 1)
+        HomeAvgPerRush = Math.Round((HomeRushYards / HomeRushPlays), 1)
+        AwayAvgPerRush = Math.Round((AwayRushYards / AWayRushPlays), 1)
+        HomeAvgPerPass = Math.Round((HomePassYards / HomePassPlays), 1)
+        AwayAvgPerPass = Math.Round((AWayPassYards / AwayPassPlays), 1)
+        HomeTotPlays = HomeRushPlays + HomePassPlays
+        AwayTotPlays = AWayRushPlays + AwayPassPlays
         Console.WriteLine($"***END OF GAME*** FINAL SCORE: Home {HomeScore} Away {AwayScore}")
-        Console.WriteLine($"HOME TOTAL YARDS: {HomeTotYards}//HOME RUSH YARDS: {HomeRushYards}// HOME PASS YARDS: {HomePassYards}")
-        Console.WriteLine($"AWAY TOTAL YARDS: {AwayTotYards}//AWAY RUSH YARDS: {AwayRushYards}// AWAY PASS YARDS: {AWayPassYards}")
+        Console.WriteLine($"HOME TOTAL YARDS: {HomeTotYards}//HOME TOTAL PLAYS: {HomeTotPlays}//HOME AVG PER PLAY: {HomeAvgPerPlay}")
+        Console.WriteLine($"HOME RUSH YARDS: {HomeRushYards}//HOME RUSH PLAYS: {HomeRushPlays}//HOME AVG PER RUSH: {HomeAvgPerRush}")
+        Console.WriteLine($"HOME PASS YARDS: {HomePassYards}//HOME PASS PLAYS: {HomePassPlays}//HOME AVG PER PASS: {HomeAvgPerPass}")
+        Console.WriteLine($"AWAY TOTAL YARDS: {AwayTotYards}//AWAY TOTAL PLAYS: {AwayTotPlays}//AWAY AVG PER PLAY: {AwayAvgPerPlay}")
+        Console.WriteLine($"AWAY RUSH YARDS: {AwayRushYards}//AWAY RUSH PLAYS: {AWayRushPlays}//AWAY AVG PER RUSH: {AwayAvgPerRush}")
+        Console.WriteLine($"AWAY PASS YARDS: {AWayPassYards}//AWAY PASS PLAYS: {AwayPassPlays}//AWAY AVG PER PASS: {AwayAvgPerPass}")
+
     End Sub
 
     Private Sub LoadDepthCharts(homeTeamHasBall As Boolean, ByVal homeTeamId As Integer, ByVal awayTeamId As Integer)
@@ -452,73 +478,178 @@ Public Class GamePlay
         End Select
         Return PassType
     End Function
-
+    ''' <summary>
+    ''' Checks to see what happens to the pass if it is thrown
+    ''' </summary>
+    ''' <param name="passType"></param>
+    ''' <returns></returns>
     Public Shared Function GetPassCompletion(passType As PassTypeEnum) As Boolean
-
-        Dim IsComplete As Boolean 'Returns TRUE if it is Below this number, false otherwise
         Select Case passType
             Case PassTypeEnum.PBehindLOSFarL
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 64.5
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 64.5 : IsComplete = True
+                    Case <= 64.8 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PBehindLOSLMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 75.9
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 75.9 : IsComplete = True
+                    Case <= 76.2 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PBehindLOSMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 51.3
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 51.3 : IsComplete = True
+                    Case <= 51.75 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PBehindLOSRMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 74.7
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 74.7 : IsComplete = True
+                    Case <= 75.2 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PBehindLOSFarR
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 64.5
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 64.5 : IsComplete = True
+                    Case <= 65.0 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PShortFarL
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 64.8
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 64.8 : IsComplete = True
+                    Case <= 66.1 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PShortLMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 67.4
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 67.4 : IsComplete = True
+                    Case <= 68.7 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PShortMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 70.3
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 70.3 : IsComplete = True
+                    Case <= 71.7 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PShortRMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 67.1
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 67.1 : IsComplete = True
+                    Case <= 68.7 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PShortFarR
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 67.6
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 67.6 : IsComplete = True
+                    Case <= 69.2 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PMedFarL
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 47.0
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 47.0 : IsComplete = True
+                    Case <= 50.5 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PMedLMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 56.7
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 56.7 : IsComplete = True
+                    Case <= 60.2 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PMedMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 60.9
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 60.9 : IsComplete = True
+                    Case <= 65.9 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PMedRMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 55.0
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 55.0 : IsComplete = True
+                    Case <= 58.8 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PMedFarR
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 46.9
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 46.9 : IsComplete = True
+                    Case <= 50.7 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PLongFarL
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 27.9
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 27.9 : IsComplete = True
+                    Case <= 32.9 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PLongLMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 36.8
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 36.8 : IsComplete = True
+                    Case <= 41.8 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PLongMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 38.0
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 38.0 : IsComplete = True
+                    Case <= 45.5 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PLongRMid
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 36.1
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 36.1 : IsComplete = True
+                    Case <= 41.1 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
             Case PassTypeEnum.PLongFarR
-                IsComplete = MyRand.GenerateDouble(0, 100) <= 30.6
-
+                Select Case MyRand.GenerateDouble(0, 100)
+                    Case <= 30.6 : IsComplete = True
+                    Case <= 35.6 : IsIntercepted = True
+                    Case Else
+                        IsComplete = False
+                        IsIntercepted = False
+                End Select
         End Select
-
+        If IsComplete Then IsIntercepted = False
+        If IsIntercepted Then IsComplete = False
+        HomePassPlays += If(HomePossession, 1, 0)
+        AwayPassPlays += If(HomePossession, 0, 1)
         Return IsComplete
     End Function
 
@@ -889,6 +1020,8 @@ Public Class GamePlay
         End Select
         HomeRushYards += If(HomePossession, Yards, 0)
         AwayRushYards += If(HomePossession, 0, Yards)
+        HomeRushPlays += If(HomePossession, 1, 0)
+        AWayRushPlays += If(HomePossession, 0, 1)
         Return Yards
     End Function
 

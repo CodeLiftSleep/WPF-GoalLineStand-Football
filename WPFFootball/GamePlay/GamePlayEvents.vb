@@ -664,7 +664,7 @@ Public Class GamePlayEvents
         ChangeOfPoss(If(HomePossession, False, True))
         EndOfPoss()
         YardLine = If(onKickoff, 25, 20)
-        KickoffDist = MyRand.GenerateInt32(66, 80)
+        KickoffDist = GetKickoffDist(False)
         If onKickoff Then
             Console.WriteLine($"TOUCHBACK Kickoff: {PlayType}//KODist: {KickoffDist}//FairCatch?: {CallFairCatch}//Punt OOB?: {OutOfBounds}//Touchback?: {Touchback}//YardLine: {YardLine}//GameTime: {GameTime}//Pace: {Pace}
             //ClockStopped?: {ClockStopped}//PlayTime: {PlayTime}//BallSpotTime: {BallSpotTime}//HomeScore: {HomeScore}//AwayScore: {AwayScore}
@@ -683,6 +683,7 @@ Public Class GamePlayEvents
     Public Shared Sub KickoffEvt(homeTeamKickingOff As Boolean)
         'HomePossession = If(homeTeamKickingOff, False, True) 'This is the same as HomePossesion = homeTeamKickingOff ? True : False in C#
         If MyRand.GenerateInt32(0, 100) < 40 Then '39% of kicks are returned, otherwise touchback
+            Touchback = False 'Make sure it's not set to touchback
             KickoffRet(If(HomePossession, FindPlayerId(Stats, "WR4", HmTeamId), FindPlayerId(Stats, "WR4", AwTeamId)), False)
         Else IsTouchback(True, If(HomePossession, FindPlayerId(Stats, "K1", HmTeamId), FindPlayerId(Stats, "K1", AwTeamId)))
         End If
@@ -984,13 +985,20 @@ Public Class GamePlayEvents
                         PlayType = PlayTypeEnum.FumQBSacked
                     End If
                 Else
-                    IsIntercepted = Intercepted() 'Check for an interception
-                    If IsIntercepted Then 'The ball is intercepted
+                    IsComplete = GetPassCompletion(passType)
+                    If IsComplete Then
+                        YardsGained = Math.Round(GetPassYards(passType), 1)
+                        ClockStopped = False
+                    ElseIf IsIntercepted Then 'The ball is intercepted
                         PlayType = PlayTypeEnum.Interception
                         ChangeOfPoss(If(HomePossession, False, True))
+                        Console.WriteLine("***INTERCEPTION!!***")
                         Select Case MyRand.GenerateDouble(0, 100)
                             Case <= 8.19  'It's a Pick-6!
                                 YardLine = 100
+                                Console.WriteLine("***INTERCEPTED--PICK-6 TD!***")
+                                ScoringType = ScoringTypeEnum.IntReturnTD
+                                IntReturnYds = 100 - YardLine
                             Case Else
                                 Select Case MyRand.GenerateDouble(0, 100)
                                     Case <= 24.09 : IntReturnYds = Math.Round(MyRand.GenerateDouble(1, 10), 1)
@@ -1001,20 +1009,11 @@ Public Class GamePlayEvents
                                     Case <= 93.73 : IntReturnYds = Math.Round(MyRand.GenerateDouble(41, 50), 1)
                                     Case <= 97.1 : IntReturnYds = Math.Round(MyRand.GenerateDouble(51, 60), 1)
                                 End Select
-                                YardLine = If(YardLine >= 100, MyRand.GenerateInt32(92, 99), YardLine + IntReturnYds)
-                                EndOfPoss()
                         End Select
-                    Else
-                        IsComplete = GetPassCompletion(passType)
-                        If IsComplete Then
-                            YardsGained = Math.Round(GetPassYards(passType), 1)
-                            ClockStopped = False
-                        Else 'Incomplete Pass
-                            ClockStopped = True
-                            YardsGained = 0
-                        End If
+                    Else 'Incomplete Pass
+                        ClockStopped = True
+                        YardsGained = 0
                     End If
-
                 End If
             End If
         End If
@@ -1024,10 +1023,9 @@ Public Class GamePlayEvents
             If Fumble(0, 0, PlayType) Then
                 Fumble(0, 0, PlayType) 'Check to see if its a fumble
                 ClockStopped = False
-            ElseIf Intercepted() Then
-                Console.WriteLine("***INTERCEPTED--PICK-6 TD!***")
-                ScoringType = ScoringTypeEnum.IntReturnTD
-                IntReturnYds = 100 - YardLine
+            ElseIf IsIntercepted Then
+                YardLine = If(YardLine >= 100, MyRand.GenerateInt32(92, 99), YardLine + IntReturnYds)
+                EndOfPoss()
             ElseIf YardLine < 0 Then 'Safety
                 Safety()
             Else 'Its not a safety or a fumble
@@ -1044,24 +1042,7 @@ Public Class GamePlayEvents
             //HomeTeamHasBall?: {HomePossession}")
         End If
     End Sub
-    Private Shared Function Intercepted() As Boolean
-        Dim Intercept As Boolean
-        Select Case PassType
-            Case PassTypeEnum.PBehindLOSFarL, PassTypeEnum.PBehindLOSLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.3
-            Case PassTypeEnum.PBehindLOSMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.4
-            Case PassTypeEnum.PBehindLOSFarR, PassTypeEnum.PBehindLOSRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 0.5
-            Case PassTypeEnum.PShortFarL, PassTypeEnum.PShortLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.3
-            Case PassTypeEnum.PShortMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.4
-            Case PassTypeEnum.PShortFarR, PassTypeEnum.PShortRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 1.6
-            Case PassTypeEnum.PMedFarL, PassTypeEnum.PMedLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 3.5
-            Case PassTypeEnum.PMedMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
-            Case PassTypeEnum.PMedFarR, PassTypeEnum.PMedRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 3.8
-            Case PassTypeEnum.PLongFarL, PassTypeEnum.PLongLMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
-            Case PassTypeEnum.PLongMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 7.5
-            Case PassTypeEnum.PLongFarR, PassTypeEnum.PLongRMid : Intercepted = MyRand.GenerateDouble(0, 100) <= 5.0
-        End Select
-        Return Intercept
-    End Function
+
     Private Shared Function IsTouchdown() As Boolean
         Dim TD As Boolean
         If YardLine >= 100 Then 'Its a TouchDown
