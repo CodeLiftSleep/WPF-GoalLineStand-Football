@@ -700,6 +700,269 @@ Public Class GamePlayEvents
                   Select p.Item("PlayerId")
         Return PID.ElementAt(0)
     End Function
+
+    Public Shared Sub GetOffPersonnel()
+        If Quarter = 2 Or Quarter = 4 And GameTime <= New TimeSpan(0, 2, 0) Then 'Less than two minutes to go
+
+        ElseIf Quarter = 2 Or Quarter = 4 And GameTime <= New TimeSpan(0, 5, 0) Then
+
+        End If
+
+        If Down = 4 Then
+            If YardLine >= 67 Then 'Field Goal Range --- Attempt a FG
+                KickFG(If(HomePossession, HomeDT, AwayDT), ScoringTypeEnum.FG)
+                Exit Sub ' Exits sub so we don't re-run code
+            ElseIf YardLine >= 60 And YardsToGo < 4 Then 'Go For it
+                If YardsToGo <= 1 Then '1 yard or less on 4th down
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        Case 0 To 70.7  'Running Play
+                            Select Case MyRand.GenerateInt32(0, 100)
+                                Case < 35 : OffPersonnel = PersGroupingOff.Tank22
+                                Case < 50 : OffPersonnel = PersGroupingOff.Heavy13
+                                Case < 65 : OffPersonnel = PersGroupingOff.Jumbo23
+                                Case < 75 : OffPersonnel = PersGroupingOff.Regular21
+                                Case < 85 : OffPersonnel = PersGroupingOff.Ace12
+                                Case < 90 : OffPersonnel = PersGroupingOff.Posse11
+                                Case < 95 : OffPersonnel = PersGroupingOff.Jet10
+                                Case Else : OffPersonnel = PersGroupingOff.Club32
+                            End Select
+                            'Case Else : Run = False 'Passing Play
+                    End Select
+                ElseIf YardsToGo <= 2 Then '2 Yards or less to go on 4th down
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 25.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Else 'More than 2 Yards to go on 4th down
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 12.2 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                End If
+            Else
+                Punt(If(HomePossession, HomeDT, AwayDT)) 'If they aren't in FG range and not in "go for it" range then they punt
+                Exit Sub 'Exits out of the sub so the code doesn't keep running
+                'TODO: Add code to make them check the gametime to see if they punt or not
+            End If
+        ElseIf Down = 3 Then 'Its 3rd Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 70.1 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 52.2 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 23.7 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 13.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 9.4 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '6-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 8.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '10 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 9.7 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 18.1 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                    'Now we check the various conditions of the play:
+            End Select
+        ElseIf Down = 2 Then 'Its Second Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 69.4 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 65.6 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 58.2 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 52.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 49.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 6 '5-6 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 47.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 7 '6-7 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 41.6 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 8 '7-8 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 34.7 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 9 '8-9 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 31.2 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '9-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 36.1 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 12 '10-12 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 35.6 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '12 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 23.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 25.9 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+            End Select
+        Else 'Its First Down
+            Select Case YardsToGo
+                Case <= 1 '1 Yard or less
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 80.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 2 '1-2 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 73.2 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 3 '2-3 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 60.8 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 4 '3-4 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 61.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 5 '4-5 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 61.5 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 6 '5-6 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 60.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 7 '6-7 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 55.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 8 '7-8 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 56.8 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 9 '8-9 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 64.3 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 10 '9-10 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 49 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 12 '10-12 Yards
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 48.9 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case <= 15 '12 - 15 yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 38.4 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+                Case Else '15+ Yards to go
+                    Select Case MyRand.GenerateDouble(0, 100)
+                        'Case 0 To 34.4 : Run = True 'Running Play
+                        'Case Else : Run = False 'Passing Play
+                    End Select
+            End Select
+        End If
+        Select Case Down
+            Case 1
+            Case 2
+            Case 3
+            Case 4
+        End Select
+        Select Case Quarter
+            Case 1, 3
+                Select Case YardLine
+                    Case < 10 'More Run Heavy formations
+                        Select Case MyRand.GenerateInt32(0, 100)
+                            Case < 25 : OffPersonnel = PersGroupingOff.Tank22
+                            Case < 50 : OffPersonnel = PersGroupingOff.Heavy13
+                            Case < 65 : OffPersonnel = PersGroupingOff.Jumbo23
+                            Case < 75 : OffPersonnel = PersGroupingOff.Regular21
+                            Case < 85 : OffPersonnel = PersGroupingOff.Ace12
+                            Case < 90 : OffPersonnel = PersGroupingOff.Posse11
+                            Case < 95 : OffPersonnel = PersGroupingOff.Jet10
+                            Case Else : OffPersonnel = PersGroupingOff.Club32
+                        End Select
+                    Case 10 To 20
+                        'Select Case MyRand.GenerateInt32(0, 100)
+                        'Case <
+                End Select
+            Case 21 To 40
+            Case 41 To 80
+            Case 81 To 90
+            Case > 90
+        End Select
+        'Case 2
+        'Case 3
+        'Case 4
+        'Case Else
+        'End Select
+    End Sub
+    Public Sub GetDefPersonnel()
+
+    End Sub
     ''' <summary>
     ''' Determines how much time a team takes off the clock
     ''' </summary>
@@ -753,6 +1016,12 @@ Public Class GamePlayEvents
     Public Shared Sub RunPlay()
         Dim Run As Boolean
         Dim passType As New PassTypeEnum
+
+        If Quarter = 2 Or Quarter = 4 And GameTime <= New TimeSpan(0, 2, 0) Then 'Less than two minutes to go
+
+        ElseIf Quarter = 2 Or Quarter = 4 And GameTime <= New TimeSpan(0, 5, 0) Then
+
+        End If
 
         If Down = 4 Then
             If YardLine >= 67 Then 'Field Goal Range --- Attempt a FG
@@ -967,6 +1236,8 @@ Public Class GamePlayEvents
             PlayType = PlayTypeEnum.FumQBExchange
 
         Else 'Now we check the various conditions of the play
+            GetOffPersonnel()
+            'GetDefPersonnel()
             If Run Then 'This is a running play --- lets check any Run Specific code
                 If Fumble(0, 0, PlayTypeEnum.FumQBHandoff) Then 'There was a fumble on the Handoff---play is aborted--check to see who recovers the fumble
                     FumRec(0, HomeDT, AwayDT, PlayTypeEnum.FumQBHandoff)

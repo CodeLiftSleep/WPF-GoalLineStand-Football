@@ -127,7 +127,6 @@
             })
 
             .state('Start.single', {
-                parent: 'Start',
                 url: '/single',
                 templateUrl: 'New_Game_Wizard/Start/Start-single.html'
             })
@@ -155,6 +154,13 @@
             .state('Exit', {
                 url: '/exit',
                 templateUrl: 'exit_game.html'
+            })
+
+            .state('Editor', {
+                url: '/editor',
+                templateUrl: 'Situation_Editor/editor.html',
+                controller: 'editorCtrl',
+                controllerAs: 'vm'
             })
 
             .state('Dashboard', {

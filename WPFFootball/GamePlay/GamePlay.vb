@@ -37,7 +37,6 @@ Public Enum PlayTypeEnum
     MuffKR 'Ball is dropped when trying to catch Kickoff
     MuffPR 'Ball is dropped when trying to catch Punt
     Lateral
-
 End Enum
 Public Enum PassTypeEnum
     PBehindLOSFarL
@@ -84,6 +83,69 @@ Public Enum ScoringTypeEnum
     FreeKickFG
 End Enum
 ''' <summary>
+''' These are personnel groupings taken from team playbooks---note the numbers afterwards---these correspond to the 5 "skill positions".  The first number is how many RB's are in the game.  The second number is how many TE's are in.
+''' Add those up and subtract from 5 and that is how many WR's are in the game.
+''' </summary>
+Public Enum PersGroupingOff
+    Regular21 '2RB 1TE 2WR
+    Ace12 '1RB 2TE 2WR
+    Posse11 '1RB 1TE 3WR
+    Jet10 '1RB 0TE 4WR
+    Houston20 '2RB 0TE 3WR
+    Kings01 '0RB 1TE 4WR
+    Tank22 '2RB 2TE 1WR
+    Heavy13 '1RB 3TE 1WR
+    Jumbo23 '2RB 3TE 0WR
+    Wildcat31 '3RB 1TE 1WR
+    Joker02 '0RB 2TE 3WR
+    Royal00 '0RB 0TE 5WR
+    Club32 '3RB 2TE 0WR
+End Enum
+''' <summary>
+''' This lists the personnel groupings a defense could have on the field.  First number is DL, second number is LB, subtract the addition of these 2 from 11 and that's how many DB's are on the field.
+''' </summary>
+Public Enum PersGroupingDef
+    Base43 '4DL 3LB 4DB
+    Base34 '3DL 4LB 4DB
+    GoalLine52 '5DL 2LB 4DB
+    GoalLine44 '4DL 4LB 3DB
+    GoalLine53 '5DL 3LB 3DB
+    Nickel42 '4DL 2LB 5DB
+    Nickel33 '3DL 3LB 5DB
+    Nickel24 '2DL 4LB 5DB
+    Dime23 '2DL 3LB 6DB
+    Dime41 '4DL 1LB 6DB
+    Dime32 '3DL 2LB 6DB
+    Dime14 '1DL 4LB 6DB
+    Quarter31 '3DL 1LB 7DB
+    Quarter22 '2DL 2LB 7DB
+    Quarter13 '1DL 3LB 7DB
+End Enum
+''' <summary>
+''' These are potential fronts for the Base43 defense
+''' https://theinsidezone.com/football-101-4-3-defense#comment-1125
+''' http://bleacherreport.com/articles/1999358-nfl-101-the-basics-of-the-4-3-defensive-front
+''' http://www.bloggingtheboys.com/2013/1/26/3917768/dallas-cowboys-inside-monte-kiffins-playbook-4-3-over-under-and-over-stem-fronts
+''' </summary>
+Public Enum DefFront43
+    Over  'DT's: 1-TEch aligned to the strong side of the play and 3-Tech aligned to the weak side. 3 LB's align in a "tan-Zero-Tan" alignment having Tackle-Zero-Technique-Tackle resposnbility versus the run
+    Under 'DT's: 3-TEch aligned to weak side of the play and 1-Tech aligned towards the strong side.  3 LB's have a single gap for run responsibility
+    Wide9 'DT's: 3-Tech aligned to the strong side of the play and 2i technique towards the weak side. Both D's align in the 9-tech. 3 LB's in the "Tan-Zero-Tan" alignment
+    OverStem 'DT's: 3-Tech aligned to strong side of the play, 1-TEch aligned towards the weak side.  Closed DE(strong-side) in the 9-TEch, OpenDE in the 5-Tech. Sam-Stack B, Will Tan, Mike Strong Zero
+End Enum
+
+''' <summary>
+''' These are potential fronts for the Base34 defense
+''' http://bleacherreport.com/articles/2007958-nfl-101-the-basics-of-the-3-4-defensive-front
+''' Sam LB is responsible for contain in all schemes with the Will LB responsible for staying at howm vs. cutback/bootlegs
+''' </summary>
+Public Enum DefFront34
+    Eagle '1 Gap scheme for the 3 downlinemen with the SAm backer playing a 2 Gap scheme on the outside. 2 DE's align in a 4i technique, Nose Tackle in a 0, Outside LB's in a 6 technique.  Jack/Mike LB's play A Gap/Scrape technique
+    Under '1 Gap scheme with the LDE playing a "2 Gap" scheme.  LD 2/3 TEch, NT Shade Tech, RDE 5/6 Tech, Will LB 6 Tech, Sam LB 7 tech, Jack LB ill/Scrape tech and Mike LB plays B Gap
+    Okie '2 Gap scheme---all 3 down linemen line up directly over their man and play both gaps to either side of him. 2 D's 5 Tech, NT in 0 Tech, Will LB in a 6 Tech, Sam LB in a 7 tech, Jack/Mike LB's in 2 Gap vs. Base Runs scheme
+End Enum
+
+''' <summary>
 ''' This is the class where game play takes place
 ''' </summary>
 Public Class GamePlay
@@ -91,6 +153,8 @@ Public Class GamePlay
     Public Shared PassType As New PassTypeEnum 'Enumeration for the different types of passes
     Public Shared ScoringType As New ScoringTypeEnum 'Determines what type of score it is
     Public Shared PlayType As New PlayTypeEnum
+    Public Shared OffPersonnel As New PersGroupingOff
+    Public Shared DefPersonnel As New PersGroupingDef
     Public Shared MyRand As New Mersenne.MersenneTwister
     'Public GameEvents As New GamePlayEvents
 #Region "Time Variables"
@@ -373,6 +437,7 @@ Public Class GamePlay
                     Quarter += 1
 
                 Else
+                    GetOffPersonnel()
                     RunPlay() 'If none of those things are true, then run a play
                     HomeTotYards = HomePassYards + HomeRushYards
                     AwayTotYards = AWayPassYards + AwayRushYards

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <FrameworkSDKRoot>C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\</FrameworkSDKRoot>
+    <MSBuildRuntimeVersion>4.0.30319</MSBuildRuntimeVersion>
+    <MSBuildToolsPath32>C:\Windows\Microsoft.NET\Framework\v4.0.30319\</MSBuildToolsPath32>
+    <MSBuildToolsRoot>C:\Windows\Microsoft.NET\Framework\</MSBuildToolsRoot>
+    <SDK35ToolsPath />
+    <SDK40ToolsPath>C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools\</SDK40ToolsPath>
+    <VCTargetsPath>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\</VCTargetsPath>
+    <WindowsSDK80Path />
+    <AspNetConfiguration>Debug</AspNetConfiguration>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\WPFFootball\Generation\Generation\Generation.vbproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\WPFFootball\AIEvaluation\AIEvaluation.csproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\WPFFootball\Random\Random\Mersenne.vbproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\WPFFootball\LeagueCalendar\LeagueCalendar\LeagueCalendar.vbproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\WPFFootball\NFL Draft\NFL Draft\NFL Draft.vbproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+    <ProjectReference Include="C:\WPFFootball\NFLScheduler\NFLScheduler\NFLScheduler.vbproj">
+      <ToolsVersion>
+      </ToolsVersion>
+      <SkipNonexistentProjects>False</SkipNonexistentProjects>
+      <AdditionalProperties>Configuration=Debug; Platform=AnyCPU; VisualStudioVersion=11.0</AdditionalProperties>
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectReference-&gt;Reverse())" Targets="Clean" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+    <MSBuild Projects="C:\WPFFootball\WPFFootball\GoalLineStandFootball.vbproj" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectReference)" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="GoalLineStandFootballBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="C:\WPFFootball\WPFFootball\GoalLineStandFootball.vbproj" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="GoalLineStandFootballBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)">
+      <Output TaskParameter="TargetOutputs" ItemName="GoalLineStandFootballBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="C:\WPFFootball\WPFFootball\GoalLineStandFootball.vbproj" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+      <Output TaskParameter="TargetOutputs" ItemName="GoalLineStandFootballBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="Publish">
+    <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
+    <MSBuild Projects="C:\WPFFootball\WPFFootball\GoalLineStandFootball.vbproj" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+  </Target>
+</Project>

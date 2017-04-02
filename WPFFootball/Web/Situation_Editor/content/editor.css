@@ -1,0 +1,25 @@
+﻿html {
+    overflow-y: scroll !important;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.panel {
+    width: 120%;
+}
+
+.checkbox.checkbox-inline {
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.checkbox label::after {
+    background-color: #004488;
+    color: white;
+}

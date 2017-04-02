@@ -1,0 +1,16 @@
+﻿<link rel="stylesheet" type="text/css" href="content/awesomeCheckboxes.css" />
+<link rel="stylesheet" type="text/css" href="Situation_Editor/content/editor.css" />
+
+
+<form ng-submit="vm.onSubmit()" no-validate>
+    <div id="form-views" ui-view>
+        <formly-form model="vm.model" fields="vm.fields" form="vm.form"></formly-form>
+    </div>
+</form>
+
+<!--<div>
+    <hr />
+    <pre>{{vm.model | json}}</pre>
+    <pre>{{vm.fields | json}}</pre>
+    <pre>{{vm.form | json}}</pre>
+</div>-->
