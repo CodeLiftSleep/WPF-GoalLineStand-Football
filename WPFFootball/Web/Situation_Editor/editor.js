@@ -4,7 +4,9 @@
     .module('routerApp')
     .controller('editorCtrl', function editorCtrl($scope, $state) {
         var vm = this;
-        vm.model = {};
+        vm.model = {
+            id: []
+        };
         vm.fields = [
             {
                 key: 'sideOfBall',
@@ -90,7 +92,7 @@
                         }
                     },
                     {
-                        template: '<b><u>Choose Time Remaining: {{model.time}}</u></b>'
+                        template: '<b uib-tooltip="Select the time range(s) these options should apply to.  Each minute starts at that minute and runs to 1 second before the next minute.  For instance <= 14m means 14:00 to 13:01" tooltip-placement="top-left"><u>Choose Time Remaining: {{model.time}}</u></b>'
                     },
                     {
                         key: 'time',
@@ -240,7 +242,40 @@
                         key: 'totalPlays',
                         template: `<div class="row" ng-class="(model.runLE +model.runLT +model.runMid +model.runRT +model.runRE + model.passBLOS +model.passSh +model.passMed +model.passLg) === 100 ? 'green' : 'red'"><b><u>Total Plays(Percentage Weight) Total Run % + Total Pass % MUST equal 100:</u></b>
                                <b>{{model.runLE +model.runLT +model.runMid +model.runRT +model.runRE + model.passBLOS +model.passSh +model.passMed +model.passLg}}<b>
-                                   </div>`
+                                   </div><span class="btn btn-primary btn-lg pull-right" ng-click="Update()">Save Situation(s)</span>`,
+                        controller: function ($scope) {
+                            $scope.Update = function () { //update the situations. Need to cycle through each item and save them individually to a unique id in the DB if it doesn't exist.
+                                var model = $scope.model;
+
+                                angular.forEach(model.offPhilosophy, function (value, key) {
+                                    model.op = value === true ? key : model.op;
+                                    angular.forEach(model.quarter, function (value, key) {
+                                        model.quar = value === true ? key : model.op;
+                                        angular.forEach(model.down, function (value, key) {
+                                            model.dwn = value === true ? key : model.op;
+                                            angular.forEach(model.distance, function (value, key) {
+                                                model.dist = value === true ? key : model.op;
+                                                angular.forEach(model.yardlines, function (value, key) {
+                                                    model.yard = value === true ? key : model.op;
+                                                    angular.forEach(model.time, function (value, key) {
+                                                        model.tm = value === true ? key : model.op;
+                                                        angular.forEach(model.formation, function (value, key) {
+                                                            model.form = value === true ? key : model.op;
+                                                            model.id.push(model.op + model.quar + model.dwn + model.dist + model.yard + model.tm + model.form);
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                                //We have the id's to update, loop through them and add them/update the DB
+                                angular.forEach(model.id, function (value) {
+                                });
+
+                                console.log(model.id);
+                            };
+                        }
                     }
                 ]
             }

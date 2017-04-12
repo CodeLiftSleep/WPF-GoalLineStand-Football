@@ -35,5 +35,12 @@ Public NotInheritable Class CRUD
         Return MyStr
     End Function
 
+    Public Shared Function SaveSituation(ByVal model As String) As String
+        Dim TempDT As New DataTable
+        Dim MyStr As String = ""
+        SQLTables.LoadTable(MyDB, TempDT, "Situations")
+
+    End Function
+
 #End Region
 End Class
