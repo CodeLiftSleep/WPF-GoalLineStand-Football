@@ -130,15 +130,19 @@ Public Class SQLiteDataFunctions
             Cmd.ExecuteNonQuery()
         End Using
     End Sub
-    Public Sub InsertInto(dbName As String, tableName As String, SQLCmd As String, Optional ByVal myFilePath As String = "")
+    Public Sub InsertInto(dbName As String, tableName As String, SQLColumns As String, SQLValues As String, Optional ByVal myFilePath As String = "")
         Dim Conn As New SQLiteConnection
         GetConnectionString(dbName, Conn, myFilePath)
-        'Conn.Open()
-        'Using Conn
+        Dim SQLCmd = $"INSERT INTO {tableName}({SQLColumns}) VALUES ({SQLValues})"
         Dim Cmd As New SQLiteCommand(SQLCmd, Conn)
         Cmd.ExecuteNonQuery()
-        'Conn.Close()
-        'End Using
+    End Sub
+    Public Sub Update(dbName As String, tableName As String, SQLSetStatement As String, SQLWhereClause As String, Optional myFilePath As String = "")
+        Dim Conn As New SQLiteConnection
+        GetConnectionString(dbName, Conn, myFilePath)
+        Dim SQLCmd = $"UPDATE {tableName} SET {SQLSetStatement}) WHERE {SQLWhereClause}"
+        Dim Cmd As New SQLiteCommand(SQLCmd, Conn)
+        Cmd.ExecuteNonQuery()
     End Sub
     ''' <summary>
     '''     Since there is no UpdateTable command like SQL Server, Bulk Insert Into will put all the rows from the DT into the
