@@ -1,10 +1,19 @@
 ﻿<link rel="stylesheet" type="text/css" href="content/awesomeCheckboxes.css" />
 <link rel="stylesheet" type="text/css" href="Situation_Editor/content/editor.css" />
-
+<link rel="stylesheet" type="text/css" href="../content/navbar-fixed-side.css" />
 
 <form ng-submit="vm.onSubmit()" no-validate>
     <div id="form-views" ui-view>
-        <formly-form model="vm.model" fields="vm.fields" form="vm.form"></formly-form>
+        <div class="row">
+            <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10">
+                <nav class="navbar navbar-inverse navbar-fixed-side">
+                    <h3>Situations</h3>
+                </nav>
+            </div>
+            <div class="col-sm-9 col-lg-10 col-sm-pull-3 col-lg-pull-2">
+                <formly-form model="vm.model" fields="vm.fields" form="vm.form"></formly-form>
+            </div>
+        </div>
     </div>
 </form>
 

@@ -343,6 +343,7 @@
     <Content Include="Web\content\font-awesome.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web\content\navbar-fixed-side.css" />
     <Content Include="Web\content\normalize.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
