@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" type="text/css" href="content/awesomeCheckboxes.css" />
 <link rel="stylesheet" type="text/css" href="Situation_Editor/content/editor.css" />
-<link rel="stylesheet" type="text/css" href="../content/navbar-fixed-side.css" />
+<link rel="stylesheet" type="text/css" href="content/navbar-fixed-side.css" />
 
 <form ng-submit="vm.onSubmit()" no-validate>
     <div id="form-views" ui-view>
@@ -8,6 +8,20 @@
             <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10">
                 <nav class="navbar navbar-inverse navbar-fixed-side">
                     <h3>Situations</h3>
+                    <div class="row">
+                        Sort by:
+                        <div>
+                            <label class="col-sm-2 radio-inline">
+                                <input type="radio" name="situationRad" /> Situation
+                            </label>
+                            <label class="col-sm-2 radio-inline">
+                                <input type="radio" name="situationRad" /> Time
+                            </label>
+                            <label class="col-sm-2 radio-inline">
+                                <input type="radio" name="situationRad" /> Quarter
+                            </label>
+                        </div>
+                    </div>
                 </nav>
             </div>
             <div class="col-sm-9 col-lg-10 col-sm-pull-3 col-lg-pull-2">

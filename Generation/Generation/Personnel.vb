@@ -26,7 +26,7 @@ DevLB int NULL, DevCB int NULL, DevSF int NULL, LowerBodyTrain int NULL, UpperBo
     End Function
     Public Sub GenPersonnel(ByVal personnelNum As Integer, ByVal xPersonnel As Personnel, ByVal personnelDT As DataTable)
         xPersonnel = New Personnel
-        PersonalityModel()
+        PersonalityModel(personnelDT, personnelNum, xPersonnel)
 
         Dim MyOPhil As String
         Dim MyDPhil As String
@@ -47,7 +47,7 @@ DevLB int NULL, DevCB int NULL, DevSF int NULL, LowerBodyTrain int NULL, UpperBo
             MyOPhil = GetOffPhil()
             MyDPhil = GetDefPhil()
             GenNames(personnelDT, personnelNum, "Personnel")
-            GetPersonalityStats(personnelDT, personnelNum, xPersonnel)
+            'GetPersonalityStats(personnelDT, personnelNum, xPersonnel)
             personnelDT.Rows(personnelNum).Item("PersonnelType") = GetPersonnelType(personnelDT.Rows(personnelNum).Item("Age"))
             personnelDT.Rows(personnelNum).Item("OrganizationalPower") = GetOrgPower(personnelDT.Rows(personnelNum).Item("PersonnelType"))
             personnelDT.Rows(personnelNum).Item("Experience") = (personnelDT.Rows(personnelNum).Item("Age") - 24)

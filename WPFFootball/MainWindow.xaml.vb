@@ -12,6 +12,7 @@ Imports DotNetBrowser.WPF
 
 Imports Microsoft.Win32
 Imports Newtonsoft.Json.Linq
+'Imports Generation
 
 ''' <summary>
 ''' Need to expose the DB objects here so we can have register them as JS Objects for the browser to use.
@@ -79,6 +80,7 @@ Class MainWindow
             window.AsObject().SetProperty("Lookup", New JStoNETLookups()) 'Creates a new JStoNETLookup object for any query operations to return filtered data
             window.AsObject().SetProperty("CRUD", New CRUD()) 'Creates a new CRUD object for any file operations
             window.AsObject().SetProperty("GamePlay", New GamePlay()) 'Creates a new GamePlay Object
+            window.AsObject().SetProperty("CreateDraft", New Generation.CollegePlayers()) 'Create a new College Draft Object
             browserView2.Browser.LoadURL(browserView2.Browser.GetRemoteDebuggingURL())
         End If
     End Sub

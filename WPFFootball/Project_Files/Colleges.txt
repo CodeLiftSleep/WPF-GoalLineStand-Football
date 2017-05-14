@@ -1,0 +1,256 @@
+Abilene Christian,0,0.966,Central
+Air Force,0.967,1.547,West
+Akron,1.548,2.9,Midwest
+Alabama,2.901,21.641,South
+Alabama A&M,21.642,22.222,South
+Alabama State,22.223,22.803,South
+Albany,22.804,23.384,East
+Alcorn State,23.385,23.965,South
+Appalachian State,23.966,26.284,Atlantic
+Arizona,26.285,35.559,West
+Arizona State,35.56,48.504,West
+Arkansas,48.505,59.711,Central
+Arkansas State,59.712,61.837,Central
+Arkansas-Pine Bluff,61.838,62.997,Central
+Army,62.998,63.384,East
+Auburn,63.385,76.136,South
+Austin Peay,76.137,76.33,Midwest
+Ball State,76.331,78.263,Midwest
+Baylor,78.264,85.219,Central
+Bethune-Cookman,85.22,85.993,South
+Boise State,85.994,91.21,West
+Boston College,91.211,99.712,East
+Bowling Green,99.713,100.872,Midwest
+Brigham Young,100.873,108.215,West
+Brown,108.216,108.796,East
+Bryant,108.797,108.942,East
+Bucknell,108.943,109.088,East
+Buffalo,109.089,110.828,East
+Butler,110.829,110.974,Midwest
+Cal Poly,110.975,112.327,West
+California,112.328,126.432,West
+Campbell,126.433,126.578,Atlantic
+Central Arkansas,126.579,127.352,Central
+Central Connecticut,127.353,127.546,East
+Central Michigan,127.547,129.479,Midwest
+Charleston Southern,129.48,129.625,Atlantic
+Charlotte,129.626,129.771,Atlantic
+Chattanooga,129.772,130.158,Midwest
+Cincinnati,130.159,136.921,Midwest
+Clemson,136.922,150.446,Atlantic
+Coastal Carolina,150.447,151.413,Atlantic
+Colgate,151.414,151.559,East
+Colorado,151.56,164.118,West
+Colorado State,164.119,169.142,West
+Columbia,169.143,169.336,East
+Connecticut,169.337,174.167,East
+Cornell,174.168,174.941,East
+Dartmouth,174.942,175.328,East
+Davidson,175.329,175.474,Atlantic
+Dayton,175.475,175.62,Midwest
+Delaware,175.621,176.973,East
+Delaware State,176.974,177.36,East
+Drake,177.361,177.506,Central
+Duke,177.507,179.632,Atlantic
+Duquesne,179.633,179.778,East
+East Carolina,179.779,183.257,Atlantic
+East Tennessee State,183.258,183.451,Midwest
+Eastern Illinois,183.452,184.225,Midwest
+Eastern Kentucky,184.226,185.772,Midwest
+Eastern Michigan,185.773,186.932,Midwest
+Eastern Washington,186.933,188.285,West
+Elon,188.286,188.672,Atlantic
+FIU,188.673,189.832,South
+Florida,189.833,211.665,South
+Florida A&M,211.666,213.212,South
+Florida Atlantic,213.213,214.372,South
+Florida State,214.373,239.103,South
+Fordham,239.104,239.297,East
+Fresno State,239.298,246.64,West
+Furman,246.641,247.993,Atlantic
+Gardner-Webb,247.994,248.38,Atlantic
+Georgetown,248.381,248.526,Atlantic
+Georgia,248.527,269.586,South
+Georgia Southern,269.587,270.746,South
+Georgia State,270.747,271.133,South
+Georgia Tech,271.134,279.828,South
+Grambling State,279.829,280.795,South
+Hampton,280.796,283.114,Atlantic
+Harvard,283.115,283.888,East
+Hawaii,283.889,288.719,West
+Holy Cross,288.72,288.865,East
+Houston,288.866,292.344,Central
+Houston Baptist,292.345,292.49,Central
+Howard,292.491,293.457,Atlantic
+Idaho,293.458,295.97,West
+Idaho State,295.971,296.357,West
+Illinois,296.358,305.052,Midwest
+Illinois State,305.053,306.212,Midwest
+Incarnate Word,306.213,306.358,Central
+Indiana,306.359,310.609,Midwest
+Indiana State,310.61,310.803,Midwest
+Iowa,310.804,324.328,Central
+Iowa State,324.329,327.807,Central
+Jackson State,327.808,329.74,South
+Jacksonville,329.741,329.886,South
+Jacksonville State,329.887,330.08,South
+James Madison,330.081,331.627,Atlantic
+Kansas,331.628,336.651,Central
+Kansas State,336.652,346.698,Central
+Kennesaw State,346.699,346.844,South
+Kent State,346.845,348.777,Midwest
+Kentucky,348.778,355.154,Midwest
+Lafayette,355.155,355.3,East
+Lamar,355.301,355.446,Central
+Lehigh Mountain,355.447,355.833,East
+Liberty,355.834,356.22,Atlantic
+Louisiana Tech,356.221,358.926,South
+Louisiana-Lafayette,358.927,360.473,South
+Louisiana-Monroe,360.474,361.054,South
+Louisville,361.055,371.488,Midwest
+LSU,371.489,391.195,South
+Maine,391.196,391.969,East
+Marist,391.97,392.163,East
+Marshall,392.164,395.448,Atlantic
+Maryland,395.449,403.37,Atlantic
+Massachusetts,403.371,404.144,East
+McNeese State,404.145,405.497,South
+Memphis,405.498,409.362,Midwest
+Mercer,409.363,409.508,South
+Miami (FL),409.509,431.727,South
+Miami (OH),431.728,434.626,Midwest
+Michigan,434.627,450.856,Midwest
+Michigan State,450.857,462.642,Midwest
+Middle Tennessee,462.643,464.189,Midwest
+Minnesota,464.19,469.986,Midwest
+Mississippi State,469.987,479.84,South
+Mississippi Valley State,479.841,479.986,South
+Missouri,479.987,487.522,Central
+Missouri State,487.523,487.909,Central
+Monmouth,487.91,488.296,East
+Montana,488.297,488.683,West
+Montana State,488.684,489.264,West
+Morehead State,489.265,489.41,Midwest
+Morgan State,489.411,489.604,Atlantic
+Murray State,489.605,490.185,Midwest
+Navy,490.186,490.766,Atlantic
+NC State,490.767,500.041,Atlantic
+Nebraska,500.042,518.782,Central
+Nevada,518.783,522.84,West
+New Hampshire,522.841,523.614,East
+New Mexico,523.615,527.286,West
+New Mexico State,527.287,528.833,West
+Nicholls State,528.834,529.8,South
+Norfolk State,529.801,530.381,Atlantic
+North Carolina,530.382,544.679,Atlantic
+North Carolina A&T,544.68,545.646,Atlantic
+North Carolina Central,545.647,545.84,Atlantic
+North Dakota,545.841,546.227,Central
+North Dakota State,546.228,547.58,Central
+North Texas,547.581,547.774,Central
+Northern Arizona,547.775,548.934,West
+Northern Colorado,548.935,549.708,West
+Northern Illinois,549.709,551.834,Midwest
+Northern Iowa,551.835,553.381,Central
+Northwestern,553.382,559.178,Midwest
+Northwestern State,559.179,561.497,South
+Notre Dame,561.498,578.5,Midwest
+Ohio,578.501,579.853,Midwest
+Ohio State,579.854,603.811,Midwest
+Oklahoma,603.812,621.393,Central
+Oklahoma State,621.394,627.19,Central
+Old Dominion,627.191,627.336,Atlantic
+Ole Miss,627.337,634.679,South
+Oregon,634.68,648.204,West
+Oregon State,648.205,657.092,West
+Penn,657.093,657.673,East
+Penn State,657.674,673.516,East
+Pittsburgh,673.517,682.018,East
+Portland State,682.019,683.178,West
+Prairie View A&M,683.179,683.324,Central
+Presbyterian,683.325,683.518,Atlantic
+Princeton,683.519,684.099,East
+Purdue,684.1,693.18,Midwest
+Rhode Island,693.181,693.326,East
+Rice,693.327,695.452,Central
+Richmond,695.453,697.192,Atlantic
+Robert Morris,697.193,697.386,East
+Rutgers,697.387,703.183,East
+Sacramento State,703.184,703.764,West
+Sacred Heart,703.765,703.958,East
+Saint Francis,703.959,704.104,East
+Sam Houston State,704.105,705.071,Central
+Samford,705.072,705.845,South
+San Diego,705.846,706.039,West
+San Diego State,706.04,713.768,West
+San Jose State,713.769,716.86,West
+Savannah State,716.861,717.006,South
+SMU,717.007,719.905,Central
+South Alabama,719.906,720.051,South
+South Carolina,720.052,731.064,Atlantic
+South Carolina State,731.065,732.804,Atlantic
+South Dakota,732.805,733.191,Central
+South Dakota State,733.192,733.772,Central
+South Florida,733.773,738.603,South
+Southeast Missouri State,738.604,739.184,Central
+Southeastern Louisiana,739.185,739.378,South
+Southern,739.379,740.538,South
+Southern Illinois,740.539,741.505,Midwest
+Southern Miss,741.506,746.722,South
+Southern Utah,746.723,746.916,West
+Stanford,746.917,760.441,West
+Stephen F. Austin,760.442,762.181,Central
+Stetson,762.182,762.327,South
+Stony Brook,762.328,762.473,East
+Syracuse,762.474,771.361,East
+TCU,771.362,779.283,Central
+Temple,779.284,781.989,East
+Tennessee,781.99,801.503,Midwest
+Tennessee State,801.504,803.629,Midwest
+Tennessee Tech,803.63,803.823,Midwest
+Tennessee Chattanooga,803.824,804.79,Midwest
+Texas,804.791,819.088,Central
+Texas A&M,819.089,832.033,Central
+Texas Southern,832.034,832.807,Central
+Texas State,832.808,833.388,Central
+Texas Tech,833.389,838.992,Central
+The Citadel,838.993,839.766,Atlantic
+Toledo,839.767,841.119,Midwest
+Towson,841.12,841.7,Atlantic
+Troy,841.701,844.985,South
+Tulane,844.986,847.691,South
+Tulsa,847.692,849.238,Central
+Tuskegee,849.239,850.012,South
+UAB,850.013,852.331,South
+California Davis,852.332,852.912,West
+UCF,852.913,858.129,South
+UCLA,858.13,868.756,West
+UNLV,868.757,871.462,West
+USC,871.463,893.874,West
+Tennessee Martin,893.875,894.068,Midwest
+Utah,894.069,903.343,West
+Utah State,903.344,905.856,West
+UTEP,905.857,908.562,Central
+Texas San Antonio,908.563,908.708,Central
+Valparaiso,908.709,908.854,Midwest
+Vanderbilt,908.855,913.878,Midwest
+Villanova,913.879,914.459,East
+Virginia,914.46,926.052,Atlantic
+Virginia Tech,926.053,941.316,Atlantic
+VMI,941.317,941.462,Atlantic
+Wagner,941.463,941.608,East
+Wake Forest,941.609,946.825,Atlantic
+Washington,946.826,957.452,West
+Washington State,957.453,964.215,West
+Weber State,964.216,965.955,West
+West Virginia,965.956,975.23,Atlantic
+Western Carolina,975.231,975.376,Atlantic
+Western Illinois,975.377,976.343,Midwest
+Western Kentucky,976.344,977.503,Midwest
+Western Michigan,977.504,979.05,Midwest
+William & Mary,979.051,980.21,Atlantic
+Wisconsin,980.211,996.44,Midwest
+Wofford,996.441,996.586,Atlantic
+Wyoming,996.587,999.292,West
+Yale,999.293,1000.066,East
+Youngstown State,1000.067,1000.26,Midwest

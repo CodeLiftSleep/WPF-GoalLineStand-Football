@@ -779,12 +779,24 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
                 Result.Add("QAB")
                 Result.Add("COD")
 
-            Case "WR", "TE"
+            Case "WR"
                 Result.Add("Explosion")
                 Result.Add("QAB")
                 Result.Add("COD")
                 Result.Add("ReleaseOffLine")
                 Result.Add("WRDisguiseRoute")
+                Result.Add("AdjustToBall")
+                Result.Add("RunAfterCatch")
+                Result.Add("Toughness")
+                Result.Add("Flexibility")
+                Result.Add("Hands")
+
+            Case "TE"
+                Result.Add("PassBlockVsSpeed")
+                Result.Add("QAB")
+                Result.Add("COD")
+                Result.Add("ReleaseOffLine")
+                Result.Add("RunBlocking")
                 Result.Add("AdjustToBall")
                 Result.Add("RunAfterCatch")
                 Result.Add("Toughness")
@@ -928,7 +940,7 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Return Result
     End Function
     ''' <summary>
-    ''' Each Positional Type has its stregnths and weaknesses---this creates a list of those strengths and weaknesses and then gives a major(40-60% boost) or minor(20-30% boost) increase for strengths and a major or minor decrease for weaknesses
+    ''' Each Positional Type has its stregnths and weaknesses---this creates a list of those strengths and weaknesses and then gives a major(30-50% boost) or minor(15-25% boost) increase for strengths and a major or minor decrease for weaknesses
     ''' Primary weaknesses will be harder to improve than normal attributes as it is an INHERENT weakness of the style this player plays, and by the same token primary strengths will be slower to degrade
     ''' Each Position type has 2 Primary Strengths/Weaknesses and 2 Secondary Strengths/Weaknesses, other than Balanced which has a range of +/-10% on all attributes
     ''' </summary>

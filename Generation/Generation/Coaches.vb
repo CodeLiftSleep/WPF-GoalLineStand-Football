@@ -8,10 +8,11 @@
     Public Sub GenCoaches(ByVal coachNum As Integer, ByVal xCoach As Coaches, coachDT As DataTable)
 
         xCoach = New Coaches 'Initializes a new instance of the Coach
+        PersonalityModel(coachDT, coachNum, xCoach)
         ' For i As Integer = 0 To NumCoaches
         coachDT.Rows.Add(coachNum)
         GenNames(coachDT, coachNum, "Coach") 'Gets Name, College, Age, Experience, Height and Weight for Coaches
-        GetPersonalityStats(coachDT, coachNum, xCoach) 'Gets Personality Stats for the coaches
+        'GetPersonalityStats() 'Gets Personality Stats for the coaches
         Try
 
             coachDT.Rows(coachNum).Item("CoachType") = GetCoachType(coachDT.Rows(coachNum).Item("Age"))
@@ -22,7 +23,6 @@
             coachDT.Rows(coachNum).Item("DefPhil") = String.Format("'{0}'", GetDefPhil())
             coachDT.Rows(coachNum).Item("ValuesST") = MT.GetGaussian(49.5, 16.5)
             coachDT.Rows(coachNum).Item("ValuesCharacter") = MT.GetGaussian(49.5, 16.5)
-
 
         Catch ex As System.ArgumentException
             Console.WriteLine(ex.Message)

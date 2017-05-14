@@ -14,10 +14,10 @@
     Public Sub GenOwners(ByVal ownerNum As Integer, ByVal xOwner As Owner, ByVal ownerDT As DataTable)
 
         xOwner = New Owner
-
+        PersonalityModel(ownerDT, ownerNum, xOwner)
         ownerDT.Rows.Add(ownerNum)
         GenNames(ownerDT, ownerNum, "Owner") 'Gets first and last name, college, Age, DOB, Height and Weight
-        GetPersonalityStats(ownerDT, ownerNum, xOwner)
+        'GetPersonalityStats()
 
         ownerDT.Rows(ownerNum).Item("TeamID") = 0
         ownerDT.Rows(ownerNum).Item("OwnerRep") = MT.GetGaussian(49.5, 16.5)

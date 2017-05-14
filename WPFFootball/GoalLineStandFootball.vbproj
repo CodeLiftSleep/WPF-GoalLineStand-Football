@@ -332,6 +332,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="teamdev.licenses" />
+    <Content Include="Project_Files\Colleges.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Project_Files\FName.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Project_Files\LName.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web\Angular_Modules\CRUD.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -354,6 +363,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web\content\themes\bootstrap.css" />
+    <Content Include="Web\create_draft.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web\create_draft.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web\Dashboard\404.html" />
     <Content Include="Web\Dashboard\app.config.js" />
     <Content Include="Web\Dashboard\app\app-views\controllers\ProjectsDemoCtrl.js" />

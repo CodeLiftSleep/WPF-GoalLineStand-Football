@@ -9,11 +9,11 @@ TreatHipInj int NULL, TreatQuadInj int NULL, TreatHamstringInj int NULL, TreatCa
 
     Public Sub GenTrainers(ByVal trainerNum As Integer, ByVal xTrainer As Trainer, ByVal trainerDT As DataTable)
         xTrainer = New Trainer
-
+        PersonalityModel(trainerDT, trainerNum, xTrainer)
         trainerDT.Rows.Add(trainerNum)
         GenNames(trainerDT, trainerNum, "Trainer")
         trainerDT.Rows(trainerNum).Item("Experience") = MT.GenerateInt32(0, (trainerDT.Rows(trainerNum).Item("Age") - 22))
-        GetPersonalityStats(trainerDT, trainerNum, xTrainer)
+        'GetPersonalityStats()
         trainerDT.Rows(trainerNum).Item("TrainerType") = String.Format("'{0}'", GetTrainerType())
         GetTrainerSkills(trainerDT, trainerNum, MyTrainer)
         trainerDT.Rows(trainerNum).Item("TeamID") = 0

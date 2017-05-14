@@ -1,26 +1,45 @@
 ﻿Imports System.Text.RegularExpressions
+Imports Newtonsoft.Json
 Public Class CollegePlayers
     Inherits Players
 
     'Public DraftDT As DataTable
+    'Helper function to create draft class in JS
+    Public Function CreatePlayers(ByVal numPlayers As Integer)
 
-    Public Shared Sub GenDraftPlayers(ByVal playerNum As Integer, ByVal xCollegePlayer As CollegePlayers, ByVal draftDT As DataTable, ByVal draftClass As ArrayList, ByRef posCount(,) As Integer)
+        Dim myColPlayer As New CollegePlayers
+        'Initialize the DB
+        Initialize("Football", DraftDT, "DraftPlayers", GetSQLString("College"))
+        'Generate a Draft Class
+        GenDraftClass()
+        'Cycle through and create the specified number of players
+        For x As Integer = 1 To numPlayers
+            GenDraftPlayers(x, myColPlayer, DraftDT)
+        Next x
+        'Update the DB
+        Update("Football", DraftDT, "DraftPlayers")
+        'We are going to return the Table of players
+        Return JsonConvert.SerializeObject(DraftDT).ToString()
+    End Function
+
+    Public Sub GenDraftPlayers(ByVal playerNum As Integer, ByVal xCollegePlayer As CollegePlayers, ByVal draftDT As DataTable)
         Dim MyPos As String
         Dim PosType As String
         Dim DraftRound As String
 
+        draftDT.Rows.Add()
         xCollegePlayer = New CollegePlayers
-
+        PersonalityModel(draftDT, playerNum, xCollegePlayer)
         Try
-            draftDT.Rows.Add()
+
             MyPos = GetCollegePos(playerNum, draftDT)
             draftDT.Rows(playerNum).Item("CollegePOS") = String.Format("'{0}'", MyPos)
             draftDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, draftDT)
             PosType = GetPosType(MyPos, playerNum, draftDT)
             draftDT.Rows(playerNum).Item("PosType") = String.Format("'{0}'", PosType)
             GenNames(draftDT, playerNum, "CollegePlayer", MyPos)
-            GetPersonalityStats(draftDT, playerNum, xCollegePlayer)
-            DraftRound = GetDraftRound(MyPos, draftClass, posCount)
+            'GetPersonalityStats(draftDT, playerNum, xCollegePlayer)
+            DraftRound = GetDraftRound(MyPos)
             draftDT.Rows(playerNum).Item("TwentyYardTime") = Get20Time(MyPos)
             draftDT.Rows(playerNum).Item("TenYardTime") = Get10Time(MyPos)
             draftDT.Rows(playerNum).Item("ShortShuttle") = GetShortShuttle(MyPos)
@@ -401,7 +420,7 @@ Public Class CollegePlayers
     ''' CBPrecentageTopEnd, CBPercentageMidRound,SFPercentageTopEnd, SFPercentageidRound)
     ''' </summary>
 
-    Public Shared Function GenDraftClass(ByVal draftClassType As ArrayList, Optional ByVal draftClassDesc As List(Of String) = Nothing) As ArrayList
+    Public Shared Sub GenDraftClass()
         Dim Result As Integer
         Dim TopEnd As Double
         Dim MidRound As Double
@@ -425,43 +444,42 @@ Public Class CollegePlayers
                 Case 1 To 2 'poor
                     TopEnd = MT.GenerateDouble(0.65, 0.75)
                     MidRound = MT.GenerateDouble(0.65, 0.75)
-                    draftClassDesc.Add("Poor")
+                    DraftClassDesc.Add("Poor")
                 Case 3 To 8 'shallow
                     TopEnd = MT.GenerateDouble(0.87, 0.97)
                     MidRound = MT.GenerateDouble(0.65, 0.75)
-                    draftClassDesc.Add("Shallow")
+                    DraftClassDesc.Add("Shallow")
                 Case 9 To 15 'LackingButDeep
                     TopEnd = MT.GenerateDouble(0.75, 0.85)
                     MidRound = MT.GenerateDouble(1.15, 1.25)
-                    draftClassDesc.Add("LackingButDeep")
+                    DraftClassDesc.Add("LackingButDeep")
                 Case 16 To 86 'Normal
                     TopEnd = MT.GenerateDouble(0.95, 1.05)
                     MidRound = MT.GenerateDouble(0.95, 1.05)
-                    draftClassDesc.Add("Normal")
+                    DraftClassDesc.Add("Normal")
                 Case 87 To 92 'TopHeavy
                     TopEnd = MT.GenerateDouble(1.15, 1.25)
                     MidRound = MT.GenerateDouble(0.75, 0.85)
-                    draftClassDesc.Add("TopHeavy")
+                    DraftClassDesc.Add("TopHeavy")
                 Case 93 To 98 'Deep
                     TopEnd = MT.GenerateDouble(1.03, 1.13)
                     MidRound = MT.GenerateDouble(1.25, 1.35)
-                    draftClassDesc.Add("Deep")
+                    DraftClassDesc.Add("Deep")
                 Case 99 To 100 'Stacked
                     TopEnd = MT.GenerateDouble(1.25, 1.35)
                     MidRound = MT.GenerateDouble(1.25, 1.35)
-                    draftClassDesc.Add("Stacked")
+                    DraftClassDesc.Add("Stacked")
             End Select
 
-            draftClassType.Add(TopEnd)
-            draftClassType.Add(MidRound)
+            DraftClassType.Add(TopEnd)
+            DraftClassType.Add(MidRound)
         Next i
 
-        Return draftClassType
-    End Function
+    End Sub
     ''' <summary>
     ''' Position numbers for PlayerDict: QB1,HB2,FB3,WR4,TE5,OT6,C7,OG8,DE9,DT10,OLB11,ILB12,CB13,FS13,SS14,K15,P16
     ''' </summary>
-    Public Shared Function GetDraftRound(ByVal pos As String, ByVal draftClassType As ArrayList, ByRef posCount(,) As Integer) As String
+    Public Shared Function GetDraftRound(ByVal pos As String) As String
         Dim TopEnd As Double
         Dim MidRound As Double
         Dim Result As String = ""
@@ -510,20 +528,20 @@ Public Class CollegePlayers
         End Select
 
         'These are the breakdowns of how players get created by rounds---the top 4 are all 1st round---top 5 talent, top 10 talent, mid first round talent, late first round talent
-        DraftPosEnd(1) = 6
-        DraftPosEnd(2) = 14
-        DraftPosEnd(3) = 24
-        DraftPosEnd(4) = 38
-        DraftPosEnd(5) = 98 '2nd
-        DraftPosEnd(6) = 188 '3rd
-        DraftPosEnd(7) = 308 '4th
-        DraftPosEnd(8) = 458 '5th
-        DraftPosEnd(9) = 638 '6th
-        DraftPosEnd(10) = 838 '7th
-        DraftPosEnd(11) = 1138 'PFA
-        DraftPosEnd(12) = 1538 'LFA
-        DraftPosEnd(13) = 2038 'PracSquad
-        DraftPosEnd(14) = 3800 'Reject
+        DraftPosEnd(1) = 1 'Top 5
+        DraftPosEnd(2) = 3 'Top 10
+        DraftPosEnd(3) = 8 'Mid first
+        DraftPosEnd(4) = 18 'Late First
+        DraftPosEnd(5) = 47 '2nd
+        DraftPosEnd(6) = 90 '3rd
+        DraftPosEnd(7) = 155 '4th
+        DraftPosEnd(8) = 235 '5th
+        DraftPosEnd(9) = 335 '6th
+        DraftPosEnd(10) = 500 '7th
+        DraftPosEnd(11) = 850 'PFA
+        DraftPosEnd(12) = 1350 'LFA
+        DraftPosEnd(13) = 2000 'PracSquad
+        DraftPosEnd(14) = 3000 'Reject
         Try
             Remaining = DraftPosEnd(14) - DraftPosEnd(8)
             RemainingPercentage(1) = (DraftPosEnd(9) - DraftPosEnd(8)) / Remaining
@@ -533,8 +551,8 @@ Public Class CollegePlayers
             RemainingPercentage(5) = (DraftPosEnd(13) - DraftPosEnd(12)) / Remaining
             RemainingPercentage(6) = (DraftPosEnd(14) - DraftPosEnd(13)) / Remaining
 
-            TopEnd = draftClassType.Item(CheckPos)
-            MidRound = draftClassType.Item(CheckPos + 1)
+            TopEnd = DraftClassType.Item(CheckPos)
+            MidRound = DraftClassType.Item(CheckPos + 1)
         Catch ex As System.ArgumentOutOfRangeException
             Console.WriteLine(ex.Data)
             Console.WriteLine(ex.Message)
@@ -558,7 +576,7 @@ Public Class CollegePlayers
         DraftPosEnd(12) = CInt(RemainingPercentage(4) * Remaining) + DraftPosEnd(11)
         DraftPosEnd(13) = CInt(RemainingPercentage(5) * Remaining) + DraftPosEnd(12)
 
-        Dim Num As Integer = MT.GenerateInt32(1, 3800)
+        Dim Num As Integer = MT.GenerateInt32(1, DraftPosEnd(14))
 
         Select Case Num 'normal draft at 0% changes
             Case 1 To DraftPosEnd(1) 'Elite 1st---Top 5

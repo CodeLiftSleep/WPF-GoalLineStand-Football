@@ -12,11 +12,11 @@ RelTeam25 int NULL, RelTeam26 int NULL, RelTeam27 int NULL, RelTEam28 int NULL, 
     Public Sub GenAgents(ByVal agentNum As Integer, ByVal xAgent As Agent, ByVal agentDT As DataTable, ByVal playerDT As DataTable)
 
         xAgent = New Agent 'intializes a new instance of this class
-
+        PersonalityModel(agentDT, agentNum, xAgent)
         agentDT.Rows.Add(agentNum)
 
         GenNames(agentDT, agentNum, "Agent")
-        GetPersonalityStats(agentDT, agentNum, xAgent)
+        'GetPersonalityStats()
 
         agentDT.Rows(agentNum).Item("Experience") = MT.GenerateInt32(0, (agentDT.Rows(agentNum).Item("Age") - 24))
         agentDT.Rows(agentNum).Item("AgentType") = String.Format("'{0}'", GetAgentType(agentNum, agentDT, playerDT))

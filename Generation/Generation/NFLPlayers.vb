@@ -1,12 +1,9 @@
-﻿
-
-''' <summary>
+﻿''' <summary>
 ''' Class for Generating NFL Players at game startup, ie, players that are already on a team
 ''' </summary>
 Public Class NFLPlayers
     Inherits Players
     Dim MyPos As String
-
 
     Public Sub PutPlayerOnTeam(ByVal pos As Integer, ByVal playerDT As DataTable)
         'determines what team player is on via generic position limits
@@ -76,14 +73,14 @@ Public Class NFLPlayers
     Public Sub GetRosterPlayers(ByVal playerNum As Integer, ByVal xNFLPlayer As NFLPlayers, ByVal playerDT As DataTable)
 
         xNFLPlayer = New NFLPlayers
-
+        PersonalityModel(playerDT, playerNum, xNFLPlayer)
         Try
             playerDT.Rows.Add(playerNum)
 
             MyPos = GetCollegePos(playerNum, playerDT) 'returns the "normal" version without the  ' '
             playerDT.Rows(playerNum).Item("POS") = String.Format("'{0}'", MyPos)
             GenNames(playerDT, playerNum, "NFLPlayer", MyPos)
-            GetPersonalityStats(playerDT, playerNum, xNFLPlayer)
+            'GetPersonalityStats()
             playerDT.Rows(playerNum).Item("AgentID") = 0
             playerDT.Rows(playerNum).Item("TeamID") = 0
             playerDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, playerDT)

@@ -97,66 +97,66 @@ Public MustInherit Class Person
     Property Dominant As String
     Property Weakest As String
 
-    Public Shared Sub GetPersonalityStats(ByVal dt As DataTable, ByVal personNum As Integer, ByVal classInstance As Object)
-        dt.Rows(personNum).Item("AbsentMinded") = classInstance.AbsentMinded
-        dt.Rows(personNum).Item("AbstractReasoning") = classInstance.AbstractReasoning
-        dt.Rows(personNum).Item("AbstractThinker") = classInstance.AbstractThinker
-        dt.Rows(personNum).Item("Adaptable") = classInstance.Adaptable
-        dt.Rows(personNum).Item("Adventurous") = classInstance.Adventurous
-        dt.Rows(personNum).Item("Aggressive") = classInstance.Aggressive
-        dt.Rows(personNum).Item("Analytical") = classInstance.Analytical
-        dt.Rows(personNum).Item("Astute") = classInstance.Astute
-        dt.Rows(personNum).Item("Bossy") = classInstance.Bossy
-        dt.Rows(personNum).Item("CalmUnderPressure") = classInstance.CalmUnderPressure
-        dt.Rows(personNum).Item("Caring") = classInstance.Caring
-        dt.Rows(personNum).Item("Competitive") = classInstance.Competitive
-        dt.Rows(personNum).Item("Conforming") = classInstance.Conforming
-        dt.Rows(personNum).Item("Controlling") = classInstance.Controlling
-        dt.Rows(personNum).Item("Critical") = classInstance.Critical
-        dt.Rows(personNum).Item("Diplomatic") = classInstance.Diplomatic
-        dt.Rows(personNum).Item("Dutiful") = classInstance.Dutiful
-        dt.Rows(personNum).Item("Driven") = classInstance.Driven
-        dt.Rows(personNum).Item("EmotionallyStable") = classInstance.EmotionallyStable
-        dt.Rows(personNum).Item("Enthusiastic") = classInstance.Enthusiastic
-        dt.Rows(personNum).Item("Expermiental") = classInstance.Experimental
-        dt.Rows(personNum).Item("Expressive") = classInstance.Expressive
-        dt.Rows(personNum).Item("Fairness") = classInstance.Fairness
-        dt.Rows(personNum).Item("Fearful") = classInstance.Fearful
-        dt.Rows(personNum).Item("FollowsRules") = classInstance.FollowsRules
-        dt.Rows(personNum).Item("Friendly") = classInstance.Friendly
-        dt.Rows(personNum).Item("FunLoving") = classInstance.FunLoving
-        dt.Rows(personNum).Item("GuiltProne") = classInstance.GuiltProne
-        dt.Rows(personNum).Item("GreedAvoidance") = classInstance.GreedAvoidance
-        dt.Rows(personNum).Item("HighEnergy") = classInstance.HighEnergy
-        dt.Rows(personNum).Item("Honesty") = classInstance.Honesty
-        dt.Rows(personNum).Item("Impulsive") = classInstance.Impulsive
-        dt.Rows(personNum).Item("Imaginative") = classInstance.Imaginative
-        dt.Rows(personNum).Item("Impatient") = classInstance.Impatient
-        dt.Rows(personNum).Item("Impractical") = classInstance.Impractical
-        dt.Rows(personNum).Item("Individualistic") = classInstance.Individualistic
-        dt.Rows(personNum).Item("Insecure") = classInstance.Insecure
-        dt.Rows(personNum).Item("Intelligent") = classInstance.Intelligent
-        dt.Rows(personNum).Item("Loner") = classInstance.Loner
-        dt.Rows(personNum).Item("Mature") = classInstance.Mature
-        dt.Rows(personNum).Item("MentalCapacity") = classInstance.MentalCapacity
-        dt.Rows(personNum).Item("Modesty") = classInstance.Modesty
-        dt.Rows(personNum).Item("Moralistic") = classInstance.Moralistic
-        dt.Rows(personNum).Item("Nurturing") = classInstance.Nurturing
-        dt.Rows(personNum).Item("Organized") = classInstance.Organized
-        dt.Rows(personNum).Item("Participator") = classInstance.Participator
-        dt.Rows(personNum).Item("Perfectionist") = classInstance.Perfectionist
-        dt.Rows(personNum).Item("Polished") = classInstance.Polished
-        dt.Rows(personNum).Item("Private") = classInstance.Privateness
-        dt.Rows(personNum).Item("Resourceful") = classInstance.Resourceful
-        dt.Rows(personNum).Item("SelfDoubting") = classInstance.SelfDoubting
-        dt.Rows(personNum).Item("SelfSufficient") = classInstance.SelfSufficient
-        dt.Rows(personNum).Item("StrongWilled") = classInstance.StrongWilled
-        dt.Rows(personNum).Item("Stubborn") = classInstance.Stubborn
-        dt.Rows(personNum).Item("TeamPlayer") = classInstance.TeamPlayer
-        dt.Rows(personNum).Item("Tense") = classInstance.Tense
-        dt.Rows(personNum).Item("Vigilant") = classInstance.Vigilant
-        dt.Rows(personNum).Item("Dominant") = classInstance.Dominant
-        dt.Rows(personNum).Item("Weakest") = classInstance.Weakest
+    Private Sub GetPersonalityStats(ByVal dt As DataTable, ByVal personNum As Integer)
+        dt.Rows(personNum).Item("AbsentMinded") = AbsentMinded
+        dt.Rows(personNum).Item("AbstractReasoning") = AbstractReasoning
+        dt.Rows(personNum).Item("AbstractThinker") = AbstractThinker
+        dt.Rows(personNum).Item("Adaptable") = Adaptable
+        dt.Rows(personNum).Item("Adventurous") = Adventurous
+        dt.Rows(personNum).Item("Aggressive") = Aggressive
+        dt.Rows(personNum).Item("Analytical") = Analytical
+        dt.Rows(personNum).Item("Astute") = Astute
+        dt.Rows(personNum).Item("Bossy") = Bossy
+        dt.Rows(personNum).Item("CalmUnderPressure") = CalmUnderPressure
+        dt.Rows(personNum).Item("Caring") = Caring
+        dt.Rows(personNum).Item("Competitive") = Competitive
+        dt.Rows(personNum).Item("Conforming") = Conforming
+        dt.Rows(personNum).Item("Controlling") = Controlling
+        dt.Rows(personNum).Item("Critical") = Critical
+        dt.Rows(personNum).Item("Diplomatic") = Diplomatic
+        dt.Rows(personNum).Item("Dutiful") = Dutiful
+        dt.Rows(personNum).Item("Driven") = Driven
+        dt.Rows(personNum).Item("EmotionallyStable") = EmotionallyStable
+        dt.Rows(personNum).Item("Enthusiastic") = Enthusiastic
+        dt.Rows(personNum).Item("Expermiental") = Experimental
+        dt.Rows(personNum).Item("Expressive") = Expressive
+        dt.Rows(personNum).Item("Fairness") = Fairness
+        dt.Rows(personNum).Item("Fearful") = Fearful
+        dt.Rows(personNum).Item("FollowsRules") = FollowsRules
+        dt.Rows(personNum).Item("Friendly") = Friendly
+        dt.Rows(personNum).Item("FunLoving") = FunLoving
+        dt.Rows(personNum).Item("GuiltProne") = GuiltProne
+        dt.Rows(personNum).Item("GreedAvoidance") = GreedAvoidance
+        dt.Rows(personNum).Item("HighEnergy") = HighEnergy
+        dt.Rows(personNum).Item("Honesty") = Honesty
+        dt.Rows(personNum).Item("Impulsive") = Impulsive
+        dt.Rows(personNum).Item("Imaginative") = Imaginative
+        dt.Rows(personNum).Item("Impatient") = Impatient
+        dt.Rows(personNum).Item("Impractical") = Impractical
+        dt.Rows(personNum).Item("Individualistic") = Individualistic
+        dt.Rows(personNum).Item("Insecure") = Insecure
+        dt.Rows(personNum).Item("Intelligent") = Intelligent
+        dt.Rows(personNum).Item("Loner") = Loner
+        dt.Rows(personNum).Item("Mature") = Mature
+        dt.Rows(personNum).Item("MentalCapacity") = MentalCapacity
+        dt.Rows(personNum).Item("Modesty") = Modesty
+        dt.Rows(personNum).Item("Moralistic") = Moralistic
+        dt.Rows(personNum).Item("Nurturing") = Nurturing
+        dt.Rows(personNum).Item("Organized") = Organized
+        dt.Rows(personNum).Item("Participator") = Participator
+        dt.Rows(personNum).Item("Perfectionist") = Perfectionist
+        dt.Rows(personNum).Item("Polished") = Polished
+        dt.Rows(personNum).Item("Private") = Privateness
+        dt.Rows(personNum).Item("Resourceful") = Resourceful
+        dt.Rows(personNum).Item("SelfDoubting") = SelfDoubting
+        dt.Rows(personNum).Item("SelfSufficient") = SelfSufficient
+        dt.Rows(personNum).Item("StrongWilled") = StrongWilled
+        dt.Rows(personNum).Item("Stubborn") = Stubborn
+        dt.Rows(personNum).Item("TeamPlayer") = TeamPlayer
+        dt.Rows(personNum).Item("Tense") = Tense
+        dt.Rows(personNum).Item("Vigilant") = Vigilant
+        dt.Rows(personNum).Item("Dominant") = Dominant
+        dt.Rows(personNum).Item("Weakest") = Weakest
     End Sub
 
     ''' <summary>
@@ -941,7 +941,7 @@ Public MustInherit Class Person
     '''Q2: Self-Reliant/Group-Oriented
     ''' </summary>
 
-    Public Sub PersonalityModel()
+    Public Sub PersonalityModel(ByVal DT As DataTable, ByVal num As Integer, ByVal classInstance As Object)
         Dim Result As Integer
         Dim Warmth As New List(Of String)
         Dim Reasoning As New List(Of String)
@@ -1071,14 +1071,14 @@ Public MustInherit Class Person
         Try
             For i As Integer = 1 To 4 'randomly select 4 positive traits
                 Result = MT.GenerateInt32(0, BalancedTraits.Count - 1)
-                PositiveTraits.Add(BalancedTraits.Item(result))
-                BalancedTraits.Remove(BalancedTraits.Item(result))
+                PositiveTraits.Add(BalancedTraits.Item(Result))
+                BalancedTraits.Remove(BalancedTraits.Item(Result))
             Next i
 
             For i As Integer = 1 To 4 'randomly select 4 negative traits---the remainder stay balanced
                 Result = MT.GenerateInt32(0, BalancedTraits.Count - 1)
-                NegativeTraits.Add(BalancedTraits.Item(result))
-                BalancedTraits.Remove(BalancedTraits.Item(result))
+                NegativeTraits.Add(BalancedTraits.Item(Result))
+                BalancedTraits.Remove(BalancedTraits.Item(Result))
             Next i
 
             For i As Integer = 0 To PositiveTraits.Count - 1
@@ -1098,6 +1098,7 @@ Public MustInherit Class Person
             Console.WriteLine(ex.Message)
             Console.WriteLine(ex.Data)
         End Try
+        GetPersonalityStats(DT, num)
     End Sub
     ''' <summary>
     ''' This sets their traits---4 of the 16 groups will be positive traits, 4 of the 16 groups will be negative traits and the other 8 groups will be balanced, reasoning is its own group and has no positive or negative association

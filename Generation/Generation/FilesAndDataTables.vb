@@ -16,14 +16,16 @@ Public Module FilesAndDataTables
     Public Colleges As New DataTable
     Public Eval As New Evaluation
     Public DraftClass As New ArrayList
+    Public DraftClassType As New ArrayList
     Public DraftClassDesc As New List(Of String)
+    Public posCount(14, 17) As Integer
     'Public CoachTest As New Coaches
     Public SQLiteTables As New SQLFunctions.SQLiteDataFunctions
     Public MyDB As String = "Football"
     Public MyScoutAssignment As New ScoutAssignment
     Public MyPersonnel As New PersonnelType
     Public MyTrainer As New TrainerType
-    Dim filepath As String = "Project_Files/"
+    Public filepath As String = "Project_Files/"
     Public ReadFName As StreamReader = New StreamReader(filepath + "FName.txt")
     Public ReadLName As StreamReader = New StreamReader(filepath + "LName.txt")
     Public ReadCollege As StreamReader = New StreamReader(filepath + "Colleges.txt")

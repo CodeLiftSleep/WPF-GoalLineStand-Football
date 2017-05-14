@@ -171,7 +171,12 @@
                 controllerAs: 'vm',
                 //lazyLoad: () => System.import('/Dashboard/index.html')
             })
-
+            .state('draft', {
+                url: '/draft',
+                templateUrl: 'create_draft.html',
+                controller: 'draftCtrl',
+                controllerAs: 'vm'
+            })
             // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
             .state('settings', {
                 // we'll get to this in a bit
