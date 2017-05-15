@@ -33,7 +33,12 @@
     'GetPosIdeals(ScoutNum, PlayerNum, DraftDT.Rows(PlayerNum).Item("CollegePOS"))
     'GetNewEval(ScoutNum, PlayerNum, DraftDT.Rows(PlayerNum).Item("CollegePOS"))
     'End Sub
-
+    ''' <summary>
+    ''' Players who don't meet certain physical "ideals" for their position typically see their grades lowered by a round or more, regardless of talent, the further away, the more its lowered
+    ''' </summary>
+    ''' <param name="scoutNum"></param>
+    ''' <param name="playerNum"></param>
+    ''' <param name="Pos"></param>
     Private Sub GetPosIdeals(ByVal scoutNum As Integer, ByVal playerNum As Integer, ByVal Pos As String)
         PlayerGrade = 0
         Select Case Pos

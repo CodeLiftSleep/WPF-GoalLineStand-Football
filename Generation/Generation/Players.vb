@@ -1,4 +1,5 @@
-﻿''' <summary>
+﻿Imports GlobalResources
+''' <summary>
 ''' This will be the parent class for both NFLPlayers and CollegePlayers.
 ''' </summary>
 Public MustInherit Class Players
@@ -49,117 +50,48 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
     Public Shared Function Get40Time(ByVal pos As String, ByVal idNum As Integer, ByVal dt As DataTable) As Double
         Dim Result As Double
         Select Case pos
-            'Case "QB" : Return Math.Round(MT.GetGaussian(4.84335, 0.17588), 2)
-            Case "QB"
-                Select Case MT.GenerateInt32(1, 168)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.37, 4.39), 2)
-                    Case 2 To 3 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 4 To 15 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 16 To 30 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 31 To 71 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 72 To 111 : Result = Math.Round(MT.GenerateDouble(4.8, 4.89), 2)
-                    Case 112 To 135 : Result = Math.Round(MT.GenerateDouble(4.9, 4.99), 2)
-                    Case 136 To 153 : Result = Math.Round(MT.GenerateDouble(5, 5.09), 2)
-                    Case 154 To 163 : Result = Math.Round(MT.GenerateDouble(5.1, 5.19), 2)
-                    Case 164 To 167 : Result = Math.Round(MT.GenerateDouble(5.2, 5.29), 2)
-                    Case 168 : Result = Math.Round(MT.GenerateDouble(5.4, 5.49), 2)
-                End Select
-                'Case "RB" : result = Math.Round(MT.GetGaussian(4.56, 0.097434), 2)
+            Case "QB" : Result = Math.Round(MT.GetGaussian(4.8339, 0.1851), 2)
             Case "RB"
-                Select Case MT.GenerateInt32(1, 144)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.25, 4.29), 2)
-                    Case 2 To 5 : Result = Math.Round(MT.GenerateDouble(4.3, 4.39), 2)
-                    Case 6 To 37 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 38 To 102 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 103 To 135 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 136 To 143 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 144 : Result = Math.Round(MT.GenerateDouble(4.8, 4.84), 2)
-                End Select
-            Case "FB" : Result = Math.Round(MT.GetGaussian(4.76488, 0.1367), 2)
+                Result = Math.Round(MT.GetGaussian(4.5661, 0.1212), 2)
+                'Add to the Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.24) * (100 / 79))) * 1.4
+
+            Case "FB" : Result = Math.Round(MT.GetGaussian(4.7638, 0.1361), 2)
 
             Case "WR"
-                Select Case MT.GenerateInt32(1, 305)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.25, 4.29), 2)
-                    Case 2 To 20 : Result = Math.Round(MT.GenerateDouble(4.3, 4.39), 2)
-                    Case 21 To 95 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 96 To 235 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 236 To 300 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 301 To 305 : Result = Math.Round(MT.GenerateDouble(4.7, 4.84), 2)
-                End Select
-                'Case "TE" : result = Math.Round(MT.GetGaussian(4.82, 0.132), 2)
+                Result = Math.Round(MT.GetGaussian(4.5123, 0.1042), 2)
+                'Add to Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.24) * (100 / 61))) * 1.4
             Case "TE"
-                Select Case MT.GenerateInt32(1, 158)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.37, 4.49), 2)
-                    Case 2 To 5 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 6 To 26 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 27 To 67 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 68 To 110 : Result = Math.Round(MT.GenerateDouble(4.8, 4.89), 2)
-                    Case 111 To 141 : Result = Math.Round(MT.GenerateDouble(4.9, 4.99), 2)
-                    Case 142 To 157 : Result = Math.Round(MT.GenerateDouble(5, 5.09), 2)
-                    Case 158 : Result = Math.Round(MT.GenerateDouble(5.1, 5.15), 2)
-                End Select
-            Case "OT" : Result = Math.Round(MT.GetGaussian(5.30864, 0.180568), 2)
-            Case "OG" : Result = Math.Round(MT.GetGaussian(5.32628, 0.192915), 2)
-            Case "C" : Result = Math.Round(MT.GetGaussian(5.25084, 0.18133), 2)
-            Case "DE" : Result = Math.Round(MT.GetGaussian(4.84454, 0.132509), 2)
-            Case "DT" : Result = Math.Round(MT.GetGaussian(5.10542, 0.147088), 2)
-                'Case "OLB" : result = Math.Round(MT.GetGaussian(4.67983, 0.12102), 2)
-            Case "OLB"
-                Select Case MT.GenerateInt32(1, 177)
-                    Case 1 To 8 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 9 To 42 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 43 To 107 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 108 To 153 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 154 To 165 : Result = Math.Round(MT.GenerateDouble(4.8, 4.89), 2)
-                    Case 166 To 174 : Result = Math.Round(MT.GenerateDouble(4.9, 4.99), 2)
-                    Case 175 To 177 : Result = Math.Round(MT.GenerateDouble(5.0, 5.09), 2)
-                End Select
-                'Case "ILB" : result = Math.Round(MT.GetGaussian(4.77248, 0.12737), 2)
+                Result = Math.Round(MT.GetGaussian(4.7911, 0.1442), 2)
+                'Add to Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.37) * (100 / 74))) * 1.4
+            Case "OT" : Result = Math.Round(MT.GetGaussian(5.2726, 0.1878), 2)
+            Case "OG" : Result = Math.Round(MT.GetGaussian(5.3232, 0.1871), 2)
+            Case "C" : Result = Math.Round(MT.GetGaussian(5.2231, 0.1351), 2)
+            Case "DE" : Result = Math.Round(MT.GetGaussian(4.8347, 0.1411), 2)
+            Case "DT" : Result = Math.Round(MT.GetGaussian(5.1049, 0.1605), 2)
 
-            Case "ILB"
-                Select Case MT.GenerateInt32(1, 126)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.42, 4.49), 2)
-                    Case 2 To 11 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 12 To 37 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 38 To 73 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 74 To 106 : Result = Math.Round(MT.GenerateDouble(4.8, 4.89), 2)
-                    Case 107 To 121 : Result = Math.Round(MT.GenerateDouble(4.9, 4.99), 2)
-                    Case 122 To 124 : Result = Math.Round(MT.GenerateDouble(5, 5.09), 2)
-                    Case 125 : Result = Math.Round(MT.GenerateDouble(5.1, 5.19), 2)
-                    Case 126 : Result = Math.Round(MT.GenerateDouble(5.2, 5.25), 2)
-                End Select
-                'Case "CB" : result = Math.Round(MT.GetGaussian(4.51607, 0.086921), 2)
+            Case "OLB"
+                Result = Math.Round(MT.GetGaussian(4.6973, 0.1257), 2)
+                'Add to Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.4) * (100 / 74))) * 1.4
+
+            Case "ILB" : Result = Math.Round(MT.GetGaussian(4.7626, 0.1308), 2)
+
             Case "CB"
-                Select Case MT.GenerateInt32(1, 201)
-                    Case 1 To 4 : Result = Math.Round(MT.GenerateDouble(4.25, 4.29), 2)
-                    Case 5 To 21 : Result = Math.Round(MT.GenerateDouble(4.3, 4.39), 2)
-                    Case 22 To 80 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 81 To 174 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 175 To 201 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                End Select
-                'Case "SS" : result = Math.Round(MT.GetGaussian(4.57, 0.08), 2)
-            Case "SS"
-                Select Case MT.GenerateInt32(1, 94)
-                    Case 1 : Result = Math.Round(MT.GenerateDouble(4.35, 4.39), 2)
-                    Case 2 To 7 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 8 To 36 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 37 To 90 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 91 To 93 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                    Case 94 : Result = Math.Round(MT.GenerateDouble(4.8, 4.85), 2)
-                End Select
-                'Case "FS" : result = Math.Round(MT.GetGaussian(4.56, 0.08), 2)
-            Case "FS"
-                Select Case MT.GenerateInt32(1, 102)
-                    Case 1 To 2 : Result = Math.Round(MT.GenerateDouble(4.3, 4.39), 2)
-                    Case 3 To 13 : Result = Math.Round(MT.GenerateDouble(4.4, 4.49), 2)
-                    Case 14 To 63 : Result = Math.Round(MT.GenerateDouble(4.5, 4.59), 2)
-                    Case 64 To 100 : Result = Math.Round(MT.GenerateDouble(4.6, 4.69), 2)
-                    Case 101 To 102 : Result = Math.Round(MT.GenerateDouble(4.7, 4.79), 2)
-                End Select
-            Case "K" : Result = Math.Round(MT.GetGaussian(4.94, 0.114), 2)
-            Case "P" : Result = Math.Round(MT.GetGaussian(4.93, 0.127), 2)
+                Result = Math.Round(MT.GetGaussian(4.4987, 0.0984), 2)
+                'Add to Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.25) * (100 / 70))) * 1.4
+            Case "SS", "FS"
+                Result = Math.Round(MT.GetGaussian(4.5696, 0.1021), 2)
+                'Add to Actual Grade
+                ActualGrade.Combine += (100 - (100 * (Result - 4.31) * (100 / 65))) * 1.4
+            Case "K" : Result = Math.Round(MT.GetGaussian(4.94, 0.08), 2)
+            Case "P" : Result = Math.Round(MT.GetGaussian(4.765, 0.08), 2)
         End Select
 
+        If Result < 4.21 Then Result = 4.21
         If Result > 5.5 Then Result = 5.5
         dt.Rows(idNum).Item("PlaySpeed") = 100 - ((Result - 4.3) * 83.333)
         Return Result
@@ -675,6 +607,7 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
     Public Shared Sub GetKeyRatings(ByVal dt As DataTable, ByVal idNum As Integer, ByVal pos As String, draftRound As String, Optional ByVal ratingsStartPoint As Integer = 90, Optional ByVal ratingsAtTimeT As Integer = 50, Optional ByVal timeT As Integer = 7)
         Dim TimeValue As Integer
         Dim RatingsDecay As Double
+        Dim Rating As Integer
 
         Dim KeyRatingsList As New List(Of String)
         KeyRatingsList = KeyRatings(pos)
@@ -713,7 +646,10 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
             RatingsDecay = GetRatingsDecay(ratingsStartPoint, ratingsAtTimeT, timeT)
 
             For i As Integer = 0 To KeyRatingsList.Count - 1 'runs through the attribute key attribute list and aplpies the proper ratings based on round the player is generated for
-                dt.Rows(idNum).Item(String.Format("{0}", KeyRatingsList(i))) = ratingsStartPoint * ((1 + RatingsDecay) ^ TimeValue) + MT.GenerateInt32(-10, 10)
+                Rating = CInt(ratingsStartPoint * ((1 + RatingsDecay) ^ TimeValue) + MT.GenerateInt32(-10, 10))
+                dt.Rows(idNum).Item(String.Format("{0}", KeyRatingsList(i))) = Rating
+                'Add the Key Rating to the KeyRatings grade total
+                ActualGrade.KeyRatings += Rating
                 'Console.WriteLine("{0}:  {1}", KeyRatingsList(i), DT.Rows(IDNum).Item(String.Format("{0}", KeyRatingsList(i))))
             Next i
         Catch ex As System.ArgumentOutOfRangeException
@@ -1742,17 +1678,31 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
                 End Select
         End Select
 
+        Dim RatingToChange As Integer
+        Dim NewRating As Integer
         If PrimStrength.Count > 0 Then
             For i As Integer = 0 To PrimStrength.Count - 1
+                'We need to get the difference between the "updated ratings" and the original ratings in "ActualGrade.OtherRatings"
+                RatingToChange = dt.Rows(idNum).Item(PrimStrength(i))
+                NewRating = RatingToChange * MT.GenerateDouble(1.3, 1.5)
+                dt.Rows(idNum).Item(PrimStrength(i)) = NewRating
+                ActualGrade.OtherRatings += NewRating - RatingToChange
 
-                dt.Rows(idNum).Item(PrimStrength(i)) *= MT.GenerateDouble(1.3, 1.5)
-                'Console.WriteLine("{0}: {1}", PrimStrength(i), DT.Rows(IDNum).Item(PrimStrength(i)))
-                dt.Rows(idNum).Item(SecStrength(i)) *= MT.GenerateDouble(1.15, 1.25)
-                'Console.WriteLine("{0}: {1}", SecStrength(i), DT.Rows(IDNum).Item(SecStrength(i)))
-                dt.Rows(idNum).Item(PrimWeakness(i)) *= MT.GenerateDouble(0.5, 0.7)
-                'Console.WriteLine("{0}: {1}", PrimWeakness(i), DT.Rows(IDNum).Item(PrimWeakness(i)))
-                dt.Rows(idNum).Item(SecWeakness(i)) *= MT.GenerateDouble(0.75, 0.85)
-                'Console.WriteLine("{0}: {1}", SecWeakness(i), DT.Rows(IDNum).Item(SecWeakness(i)))
+                RatingToChange = dt.Rows(idNum).Item(SecStrength(i))
+                NewRating = RatingToChange * MT.GenerateDouble(1.15, 1.25)
+                dt.Rows(idNum).Item(SecStrength(i)) = NewRating
+                ActualGrade.OtherRatings += NewRating - RatingToChange
+
+                RatingToChange = dt.Rows(idNum).Item(PrimWeakness(i))
+                NewRating = RatingToChange * MT.GenerateDouble(0.5, 0.7)
+                dt.Rows(idNum).Item(PrimWeakness(i)) = NewRating
+                ActualGrade.OtherRatings += NewRating - RatingToChange
+
+                RatingToChange = dt.Rows(idNum).Item(SecWeakness(i))
+                NewRating = RatingToChange * MT.GenerateDouble(0.75, 0.85)
+                dt.Rows(idNum).Item(SecWeakness(i)) = NewRating
+                ActualGrade.OtherRatings += NewRating - RatingToChange
+
             Next i
         End If
 
@@ -1764,7 +1714,11 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
 
         If Balanced.Count <> 0 Then
             For i As Integer = 0 To Balanced.Count - 1
-                dt.Rows(idNum).Item(Balanced(i)) *= MT.GenerateDouble(0.9, 1.1)
+                'Update the ratings again
+                RatingToChange = dt.Rows(idNum).Item(Balanced(i))
+                NewRating = RatingToChange * MT.GenerateDouble(0.9, 1.1)
+                dt.Rows(idNum).Item(Balanced(i)) = NewRating
+                ActualGrade.OtherRatings += NewRating - RatingToChange
             Next i
         End If
     End Sub

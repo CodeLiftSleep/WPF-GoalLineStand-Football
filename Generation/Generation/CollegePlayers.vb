@@ -1,8 +1,8 @@
 ﻿Imports System.Text.RegularExpressions
+Imports GlobalResources
 Imports Newtonsoft.Json
 Public Class CollegePlayers
     Inherits Players
-
     'Public DraftDT As DataTable
     'Helper function to create draft class in JS
     Public Function CreatePlayers(ByVal numPlayers As Integer)
@@ -26,7 +26,9 @@ Public Class CollegePlayers
         Dim MyPos As String
         Dim PosType As String
         Dim DraftRound As String
+        Dim myRating As Integer
 
+        OtherRatingsCount = 0
         draftDT.Rows.Add()
         xCollegePlayer = New CollegePlayers
         PersonalityModel(draftDT, playerNum, xCollegePlayer)
@@ -62,16 +64,40 @@ Public Class CollegePlayers
 
             For x As Integer = 0 To draftDT.Columns.Count - 1 'cycles through the columns and assigns a rating to any of them that are still NULL values
                 If draftDT.Rows(playerNum).Item(x) Is DBNull.Value Then
-                    draftDT.Rows(playerNum).Item(x) = MT.GetGaussian(49.5, 16.5)
+                    OtherRatingsCount += 1
+                    myRating = CInt(MT.GetGaussian(49.5, 16.5))
+                    draftDT.Rows(playerNum).Item(x) = myRating
+                    ActualGrade.OtherRatings += myRating
                 End If
             Next x
+
             GetPosRatings(MyPos, PosType, playerNum, draftDT) 'Will get positional skills for players based on their position type
+
+            draftDT.Rows(playerNum).Item("ActualGrade") = GetActualGrade(playerNum, MyPos) 'Get the actual grade
+            'Reset the Actual Grades
+            ActualGrade.KeyRatings = 0
+            ActualGrade.OtherRatings = 0
+            ActualGrade.Combine = 0
+
             draftDT.Rows(playerNum).Item("DraftID") = playerNum
         Catch ex As System.InvalidCastException
             Console.WriteLine(ex.Data)
             Console.WriteLine(ex.Message)
         End Try
     End Sub
+    ''' <summary>
+    ''' We are going to grade the players based on certain formula which will give them an "Actual Grade"
+    ''' 50% Key Ratings, 25% other ratings, 25% Combnie
+    ''' </summary>
+    ''' <param name="playerNum"></param>
+    Private Function GetActualGrade(playerNum As Integer, pos As String) As Single
+        Dim Grade As Single
+        If pos = "QB" Then ActualGrade.Combine += (DraftDT.Rows(playerNum).Item("InterviewSkills") * 2.5)
+        ActualGrade.OtherRatings = ActualGrade.OtherRatings / (OtherRatingsCount - 4)
+        Grade = (((ActualGrade.KeyRatings * 0.6) / 10) + ((ActualGrade.Combine * 0.25) / 4) + (ActualGrade.OtherRatings * 0.15)) / 8.5
+        'Returns the grade calculated
+        Return Math.Round(Grade, 2)
+    End Function
 
     ''' <summary>
     ''' Common Position switches include:
@@ -219,7 +245,9 @@ Public Class CollegePlayers
     Public Shared Function GetWonderlic(ByVal pos As String) As Integer
         Dim Result As Integer
         Select Case pos
-            Case "QB" : Result = CInt(MT.GetGaussian(26.678, 6.521))
+            Case "QB"
+                Result = CInt(MT.GetGaussian(26.678, 6.521))
+                ActualGrade.Combine += Result * 1.5
             Case "RB" : Result = CInt(MT.GetGaussian(18.68, 6.1561))
             Case "FB" : Result = CInt(MT.GetGaussian(19.5313, 6.13384))
             Case "WR" : Result = CInt(MT.GetGaussian(19.6814, 6.14898))
@@ -242,42 +270,78 @@ Public Class CollegePlayers
     Public Shared Function GetBenchPress(ByVal pos As String) As Integer
         Dim Result As Integer
         Select Case pos
-            Case "QB" : Result = CInt(MT.GetGaussian(19.8, 2.85657))
-            Case "RB" : Result = CInt(MT.GetGaussian(20.3148, 4.51673))
-            Case "FB" : Result = CInt(MT.GetGaussian(23.4848, 4.28614))
-            Case "WR" : Result = CInt(MT.GetGaussian(16.7586, 3.38001))
-            Case "TE" : Result = CInt(MT.GetGaussian(21.3333, 4.45034))
-            Case "OT" : Result = CInt(MT.GetGaussian(24.9524, 4.60651))
-            Case "C" : Result = CInt(MT.GetGaussian(26.5313, 4.24253))
-            Case "OG" : Result = CInt(MT.GetGaussian(26.4419, 4.79487))
-            Case "DE" : Result = CInt(MT.GetGaussian(24.6825, 5.9089))
-            Case "DT" : Result = CInt(MT.GetGaussian(28.3519, 5.78362))
-            Case "OLB" : Result = CInt(MT.GetGaussian(22.5873, 4.95899))
-            Case "ILB" : Result = CInt(MT.GetGaussian(22.8947, 3.85793))
-            Case "CB" : Result = CInt(MT.GetGaussian(15.4, 3.32265))
-            Case "FS" : Result = CInt(MT.GetGaussian(16.5, 3.59048))
-            Case "SS" : Result = CInt(MT.GetGaussian(17.2333, 4.63093))
+            Case "QB" : Result = CInt(MT.GetGaussian(18.8667, 4.2235))
+            Case "RB" : Result = CInt(MT.GetGaussian(19.5167, 4.4728))
+            Case "FB"
+                Result = CInt(MT.GetGaussian(22.7708, 5.0063))
+                ActualGrade.Combine += (100 - ((37 - Result) * (100 / 31))) * 1.4
+            Case "WR" : Result = CInt(MT.GetGaussian(14.4701, 4.1916))
+            Case "TE"
+                Result = CInt(MT.GetGaussian(20.5018, 4.4807))
+                ActualGrade.Combine += (100 - ((35 - Result) * (100 / 33))) * 1.1
+            Case "OT"
+                Result = CInt(MT.GetGaussian(24.4946, 4.9212))
+                ActualGrade.Combine += (100 - ((40 - Result) * (100 / 32))) * 1.4
+            Case "C"
+                Result = CInt(MT.GetGaussian(26.1656, 5.3696))
+                ActualGrade.Combine += (100 - ((42 - Result) * (100 / 30))) * 1.4
+            Case "OG"
+                Result = CInt(MT.GetGaussian(25.484, 5.1749))
+                ActualGrade.Combine += (100 - ((45 - Result) * (100 / 37))) * 1.4
+            Case "DE" : Result = CInt(MT.GetGaussian(23.5995, 4.9735))
+            Case "DT"
+                Result = CInt(MT.GetGaussian(27.2712, 5.5624))
+                ActualGrade.Combine += (100 - ((51 - Result) * (100 / 44))) * 1.4
+            Case "OLB"
+                Result = CInt(MT.GetGaussian(22.2478, 4.7492))
+                ActualGrade.Combine += (100 - ((41 - Result) * (100 / 32))) * 0.7
+            Case "ILB"
+                Result = CInt(MT.GetGaussian(22.2811, 4.5683))
+                ActualGrade.Combine += (100 - ((36 - Result) * (100 / 29))) * 1.4
+            Case "CB" : Result = CInt(MT.GetGaussian(14.5743, 4.1655))
+            Case "FS" : Result = CInt(MT.GetGaussian(16.2967, 4.0014))
+            Case "SS" : Result = CInt(MT.GetGaussian(17.678, 4.4675))
         End Select
         Return Result
     End Function
     Public Shared Function Get3Cone(ByVal pos As String) As Double
         Dim Result As Double
         Select Case pos
-            Case "QB" : Result = Math.Round(MT.GetGaussian(7.16143, 0.27591), 2)
-            Case "RB" : Result = Math.Round(MT.GetGaussian(7.00848, 0.16455), 2)
-            Case "FB" : Result = Math.Round(MT.GetGaussian(7.30794, 0.26069), 2)
-            Case "WR" : Result = Math.Round(MT.GetGaussian(6.95564, 0.16844), 2)
-            Case "TE" : Result = Math.Round(MT.GetGaussian(7.15089, 0.20702), 2)
-            Case "OT" : Result = Math.Round(MT.GetGaussian(7.80527, 0.30271), 2)
-            Case "C" : Result = Math.Round(MT.GetGaussian(7.71718, 0.25131), 2)
-            Case "OG" : Result = Math.Round(MT.GetGaussian(7.87723, 0.32694), 2)
-            Case "DE" : Result = Math.Round(MT.GetGaussian(7.33298, 0.27823), 2)
-            Case "DT" : Result = Math.Round(MT.GetGaussian(7.70881, 0.22825), 2)
-            Case "OLB" : Result = Math.Round(MT.GetGaussian(7.12055, 0.23154), 2)
-            Case "ILB" : Result = Math.Round(MT.GetGaussian(7.222, 0.21437), 2)
-            Case "CB" : Result = Math.Round(MT.GetGaussian(6.984, 0.22688), 2)
-            Case "FS" : Result = Math.Round(MT.GetGaussian(7.02656, 0.19514), 2)
-            Case "SS" : Result = Math.Round(MT.GetGaussian(7.06844, 0.24738), 2)
+            Case "QB" : Result = Math.Round(MT.GetGaussian(7.09692, 0.20407), 2)
+            Case "RB"
+                Result = Math.Round(MT.GetGaussian(7.05457, 0.19593), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.5) * (100 / 114))) * 0.8
+            Case "FB"
+                Result = Math.Round(MT.GetGaussian(7.32222, 0.24529), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 7.04) * (100 / 65))) * 0.7
+            Case "WR"
+                Result = Math.Round(MT.GetGaussian(6.93154, 0.20612), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.3) * (100 / 122))) * 0.7
+            Case "TE"
+                Result = Math.Round(MT.GetGaussian(7.15717, 0.19084), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.76) * (100 / 82))) * 0.8
+            Case "OT" : Result = Math.Round(MT.GetGaussian(7.78569, 0.27153), 2)
+            Case "C" : Result = Math.Round(MT.GetGaussian(7.76528, 0.26628), 2)
+            Case "OG" : Result = Math.Round(MT.GetGaussian(7.86208, 0.24617), 2)
+            Case "DE"
+                Result = Math.Round(MT.GetGaussian(7.24321, 0.21967), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.8) * (100 / 116))) * 1.1
+            Case "DT" : Result = Math.Round(MT.GetGaussian(7.68642, 0.28196), 2)
+            Case "OLB"
+                Result = Math.Round(MT.GetGaussian(7.13264, 0.23479), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.64) * (100 / 114))) * 0.8
+            Case "ILB"
+                Result = Math.Round(MT.GetGaussian(7.11905, 0.18957), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.68) * (100 / 77))) * 0.8
+            Case "CB"
+                Result = Math.Round(MT.GetGaussian(6.91711, 0.18286), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.48) * (100 / 86))) * 0.8
+            Case "FS"
+                Result = Math.Round(MT.GetGaussian(6.97593, 0.21103), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.47) * (100 / 89))) * 0.8
+            Case "SS"
+                Result = Math.Round(MT.GetGaussian(6.99435, 0.17857), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 6.63) * (100 / 93))) * 0.8
         End Select
         Return Result
     End Function
@@ -287,21 +351,21 @@ Public Class CollegePlayers
         Dim Num As Integer
         Dim NumStr As Double
         Select Case pos
-            Case "QB" : NumString = CStr(Math.Round(MT.GetGaussian(30.551, 3.69258), 1))
-            Case "RB" : NumString = CStr(Math.Round(MT.GetGaussian(33.3657, 2.86198), 1))
-            Case "FB" : NumString = CStr(Math.Round(MT.GetGaussian(32.0172, 2.91395), 1))
-            Case "WR" : NumString = CStr(Math.Round(MT.GetGaussian(34.3807, 3.20614), 1))
-            Case "TE" : NumString = CStr(Math.Round(MT.GetGaussian(32.1915, 3.69956), 1))
-            Case "OT" : NumString = CStr(Math.Round(MT.GetGaussian(26.8952, 3.42092), 1))
-            Case "C" : NumString = CStr(Math.Round(MT.GetGaussian(28.2368, 3.332601), 1))
-            Case "OG" : NumString = CStr(Math.Round(MT.GetGaussian(26.1935, 2.41976), 1))
-            Case "DE" : NumString = CStr(Math.Round(MT.GetGaussian(32.4123, 3.98806), 1))
-            Case "DT" : NumString = CStr(Math.Round(MT.GetGaussian(29, 3.07743), 1))
-            Case "OLB" : NumString = CStr(Math.Round(MT.GetGaussian(33.5635, 4.15808), 1))
-            Case "ILB" : NumString = CStr(Math.Round(MT.GetGaussian(32.9865, 3.51538), 1))
-            Case "CB" : NumString = CStr(Math.Round(MT.GetGaussian(35.5467, 3.33027), 1))
-            Case "FS" : NumString = CStr(Math.Round(MT.GetGaussian(35.0238, 3.37348), 1))
-            Case "SS" : NumString = CStr(Math.Round(MT.GetGaussian(35.2439, 3.07433), 1))
+            Case "QB" : NumString = CStr(Math.Round(MT.GetGaussian(31.30833, 3.29879), 1))
+            Case "RB" : NumString = CStr(Math.Round(MT.GetGaussian(34.52838, 3.01042), 1))
+            Case "FB" : NumString = CStr(Math.Round(MT.GetGaussian(32.74, 2.96314), 1))
+            Case "WR" : NumString = CStr(Math.Round(MT.GetGaussian(35.36128, 3.07926), 1))
+            Case "TE" : NumString = CStr(Math.Round(MT.GetGaussian(32.82321, 3.30065), 1))
+            Case "OT" : NumString = CStr(Math.Round(MT.GetGaussian(27.92057, 3.07705), 1))
+            Case "C" : NumString = CStr(Math.Round(MT.GetGaussian(28.07801, 2.95459), 1))
+            Case "OG" : NumString = CStr(Math.Round(MT.GetGaussian(27.54122, 3.1192), 1))
+            Case "DE" : NumString = CStr(Math.Round(MT.GetGaussian(33.0172, 3.21246), 1))
+            Case "DT" : NumString = CStr(Math.Round(MT.GetGaussian(29.2865, 2.98532), 1))
+            Case "OLB" : NumString = CStr(Math.Round(MT.GetGaussian(34.33429, 3.36173), 1))
+            Case "ILB" : NumString = CStr(Math.Round(MT.GetGaussian(33.09685, 2.8938), 1))
+            Case "CB" : NumString = CStr(Math.Round(MT.GetGaussian(35.98004, 2.825), 1))
+            Case "FS" : NumString = CStr(Math.Round(MT.GetGaussian(35.76738, 3.00817), 1))
+            Case "SS" : NumString = CStr(Math.Round(MT.GetGaussian(35.38068, 2.76353), 1))
             Case "K", "P" : NumString = CStr(0)
         End Select
 
@@ -319,6 +383,18 @@ Public Class CollegePlayers
             ElseIf Num = 9 Then : Result = CDbl(NumString) + 0.1
             End If
         End If
+        Select Case pos
+            Case "FB" : ActualGrade.Combine += (100 - (2 * (40 - Result) * (100 / 30))) * 0.8
+            Case "WR" : ActualGrade.Combine += (100 - (2 * (45 - Result) * (100 / 39))) * 0.8
+            Case "OT" : ActualGrade.Combine += (100 - (2 * (35.5 - Result) * (100 / 33))) * 0.7
+            Case "C" : ActualGrade.Combine += (100 - (2 * (37.5 - Result) * (100 / 34))) * 0.7
+            Case "OG" : ActualGrade.Combine += (100 - (2 * (36 - Result) * (100 / 37))) * 0.7
+            Case "DE" : ActualGrade.Combine += (100 - (2 * (42 - Result) * (100 / 36))) * 0.7
+            Case "DT" : ActualGrade.Combine += (100 - (2 * (37 - Result) * (100 / 34))) * 0.7
+            Case "CB" : ActualGrade.Combine += (100 - (2 * (45 - Result) * (100 / 34))) * 1.1
+            Case "FS" : ActualGrade.Combine += (100 - (2 * (46 - Result) * (100 / 37))) * 1.1
+            Case "SS" : ActualGrade.Combine += (100 - (2 * (41.5 - Result) * (100 / 33))) * 1.1
+        End Select
         Return Result
     End Function
     Public Shared Function GetBroadJump(ByVal pos As String) As Integer
@@ -326,16 +402,31 @@ Public Class CollegePlayers
         Select Case pos
             Case "QB" : Result = CInt(MT.GetGaussian(109.792, 5.32666))
             Case "RB" : Result = CInt(MT.GetGaussian(117.897, 6.53304))
-            Case "FB" : Result = CInt(MT.GetGaussian(112.414, 6.87583))
+            Case "FB"
+                Result = CInt(MT.GetGaussian(112.79798, 5.82566))
+                ActualGrade.Combine += (100 - ((134 - Result) * (100 / 35))) * 1.1
             Case "WR" : Result = CInt(MT.GetGaussian(120.213, 4.79013))
-            Case "TE" : Result = CInt(MT.GetGaussian(113.587, 5.61665))
-            Case "OT" : Result = CInt(MT.GetGaussian(102.7, 5.56567))
-            Case "C" : Result = CInt(MT.GetGaussian(102.432, 4.95133))
-            Case "OG" : Result = CInt(MT.GetGaussian(100.839, 5.82041))
-            Case "DE" : Result = CInt(MT.GetGaussian(113.898, 5.58356))
-            Case "DT" : Result = CInt(MT.GetGaussian(106.217, 4.38829))
+            Case "TE"
+                Result = CInt(MT.GetGaussian(114.3037, 6.22834))
+                ActualGrade.Combine += (100 - ((131 - Result) * (100 / 34))) * 0.7
+            Case "OT"
+                Result = CInt(MT.GetGaussian(101.93716, 6.43781))
+                ActualGrade.Combine += (100 - ((118 - Result) * (100 / 45))) * 1.1
+            Case "C"
+                Result = CInt(MT.GetGaussian(101.32857, 5.9765))
+                ActualGrade.Combine += (100 - ((117 - Result) * (100 / 33))) * 1.1
+            Case "OG"
+                Result = CInt(MT.GetGaussian(99.85385, 6.61064))
+                ActualGrade.Combine += (100 - ((119 - Result) * (100 / 38))) * 1.1
+
+            Case "DE"
+                Result = CInt(MT.GetGaussian(114.53465, 6.21423))
+                ActualGrade.Combine += (100 - ((139 - Result) * (100 / 39))) * 0.8
+            Case "DT"
+                Result = CInt(MT.GetGaussian(105.11628, 5.74262))
+                ActualGrade.Combine += (100 - ((124 - Result) * (100 / 51))) * 1.1
             Case "OLB" : Result = CInt(MT.GetGaussian(116.323, 5.55841))
-            Case "ILB" : Result = CInt(MT.GetGaussian(113.263, 5.00886))
+            Case "ILB" : Result = CInt(MT.GetGaussian(113.81517, 6.46595))
             Case "CB" : Result = CInt(MT.GetGaussian(121.865, 5.82475))
             Case "FS" : Result = CInt(MT.GetGaussian(119.432, 6.13162))
             Case "SS" : Result = CInt(MT.GetGaussian(119.075, 6.38117))
@@ -346,7 +437,9 @@ Public Class CollegePlayers
         Dim Result As Double
         Select Case pos
             Case "QB" : Result = Math.Round(MT.GetGaussian(4.37, 0.18174), 2)
-            Case "RB" : Result = Math.Round(MT.GetGaussian(4.31, 0.13471), 2)
+            Case "RB"
+                Result = Math.Round(MT.GetGaussian(4.25799, 0.15547), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.82) * (100 / 92))) * 0.7
             Case "FB" : Result = Math.Round(MT.GetGaussian(4.4, 0.16438), 2)
             Case "WR" : Result = Math.Round(MT.GetGaussian(4.25, 0.12744), 2)
             Case "TE" : Result = Math.Round(MT.GetGaussian(4.39, 0.16592), 2)
@@ -355,11 +448,21 @@ Public Class CollegePlayers
             Case "OG" : Result = Math.Round(MT.GetGaussian(4.81, 0.18228), 2)
             Case "DE" : Result = Math.Round(MT.GetGaussian(4.45, 0.18935), 2)
             Case "DT" : Result = Math.Round(MT.GetGaussian(4.64, 0.18484), 2)
-            Case "OLB" : Result = Math.Round(MT.GetGaussian(4.31, 0.15413), 2)
-            Case "ILB" : Result = Math.Round(MT.GetGaussian(4.32, 0.12603), 2)
-            Case "CB" : Result = Math.Round(MT.GetGaussian(4.24, 0.13143), 2)
-            Case "FS" : Result = Math.Round(MT.GetGaussian(4.28, 0.16186), 2)
-            Case "SS" : Result = Math.Round(MT.GetGaussian(4.23, 0.15594), 2)
+            Case "OLB"
+                Result = Math.Round(MT.GetGaussian(4.28771, 0.15461), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.83) * (100 / 90))) * 0.7
+            Case "ILB"
+                Result = Math.Round(MT.GetGaussian(4.30868, 0.14409), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.89) * (100 / 87))) * 0.7
+            Case "CB"
+                Result = Math.Round(MT.GetGaussian(4.15649, 0.15063), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.75) * (100 / 102))) * 1.1
+            Case "FS"
+                Result = Math.Round(MT.GetGaussian(4.19131, 0.14409), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.83) * (100 / 90))) * 0.7
+            Case "SS"
+                Result = Math.Round(MT.GetGaussian(4.21146, 0.15328), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 3.86) * (100 / 80))) * 0.7
         End Select
         Return Result
     End Function
@@ -389,15 +492,29 @@ Public Class CollegePlayers
         Dim Result As Double
         Select Case pos
             Case "QB" : Result = Math.Round(MT.GetGaussian(1.84, 0.064), 2)
-            Case "RB" : Result = Math.Round(MT.GetGaussian(1.6, 0.0519), 2)
+            Case "RB"
+                Result = Math.Round(MT.GetGaussian(1.565, 0.05486), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.44) * (100 / 23))) * 1.1
             Case "FB" : Result = Math.Round(MT.GetGaussian(1.67, 0.056), 2)
-            Case "WR" : Result = Math.Round(MT.GetGaussian(1.59, 0.0535), 2)
+            Case "WR"
+                Result = Math.Round(MT.GetGaussian(1.55043, 0.05412), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.4) * (100 / 30))) * 1.1
             Case "TE" : Result = Math.Round(MT.GetGaussian(1.69, 0.0573), 2)
-            Case "OT" : Result = Math.Round(MT.GetGaussian(1.84, 0.064), 2)
-            Case "OG" : Result = Math.Round(MT.GetGaussian(1.84, 0.0695), 2)
-            Case "C" : Result = Math.Round(MT.GetGaussian(1.8, 0.0632), 2)
-            Case "DE" : Result = Math.Round(MT.GetGaussian(1.68, 0.0605), 2)
-            Case "DT" : Result = Math.Round(MT.GetGaussian(1.77, 0.0636), 2)
+            Case "OT"
+                Result = Math.Round(MT.GetGaussian(1.75769, 0.06507), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.61) * (100 / 29))) * 0.8
+            Case "OG"
+                Result = Math.Round(MT.GetGaussian(1.78769, 0.07617), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.68) * (100 / 25))) * 0.8
+            Case "C"
+                Result = Math.Round(MT.GetGaussian(1.81857, 0.06694), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.68) * (100 / 20))) * 0.8
+            Case "DE"
+                Result = Math.Round(MT.GetGaussian(1.62361, 0.05072), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.53) * (100 / 23))) * 1.4
+            Case "DT"
+                Result = Math.Round(MT.GetGaussian(1.75267, 0.07914), 2)
+                ActualGrade.Combine += (100 - (100 * (Result - 1.63) * (100 / 26))) * 0.8
             Case "OLB" : Result = Math.Round(MT.GetGaussian(1.63, 0.0548), 2)
             Case "ILB" : Result = Math.Round(MT.GetGaussian(1.66, 0.0638), 2)
             Case "CB" : Result = Math.Round(MT.GetGaussian(1.49, 0.0465), 2)

@@ -10,7 +10,14 @@
     Public DraftGradesDT As New DataTable 'DT for all college draft grades
     Public ProGradesDT As New DataTable 'DT for all player draft grades
     Public Football As New DataSet
-
+    Public ActualGrade As New GradeActual
+    Public OtherRatingsCount As Integer
+    'Structure that holds the grade for players
+    Public Structure GradeActual
+        Public KeyRatings As Integer
+        Public Combine As Integer
+        Public OtherRatings As Integer
+    End Structure
     ''' <summary>
     ''' Since an Enum can only take an integer and we need it to take a double, we are multiplying the needed round grade by 100--to use simply divide the
     ''' Enum value by 100 and compare it to the grade

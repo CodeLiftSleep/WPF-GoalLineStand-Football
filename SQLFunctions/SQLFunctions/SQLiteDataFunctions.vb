@@ -21,7 +21,7 @@ Public Class SQLiteDataFunctions
         If myFilePath <> "" Then
             FilePath = myFilePath 'changes the filepath if a new location is supplied
         Else
-            FilePath = FilePath.Replace("bin\x86\Debug\\", "")
+            FilePath = FilePath.Replace("bin\x86\Debug\", "")
         End If
         conn.Close()
         If conn.State <> ConnectionState.Open Then
