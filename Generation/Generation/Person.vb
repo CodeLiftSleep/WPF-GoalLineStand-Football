@@ -314,7 +314,7 @@ Public MustInherit Class Person
             Case "NFLPlayer"
                 Result = GetPlayerAge(position)
             Case "CollegePlayer"
-                Result = GetDraftAge()
+                Result = GetDraftAge(position)
         End Select
         Return Result
     End Function
@@ -616,22 +616,174 @@ Public MustInherit Class Person
     ''' Generates the draft age for a college player
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function GetDraftAge() As Integer
+    Private Shared Function GetDraftAge(ByVal pos As String) As Integer
         Dim Result As Integer
-        Dim i As Integer = MT.GenerateInt32(1, 100)
-        Select Case i
-            Case 1 To 82
-                Result = 22
-            Case 83 To 92
-                Result = 21
-            Case 93 To 96
-                Result = 23
-            Case 97
-                Result = 20
-            Case 98 To 99
-                Result = 24
-            Case 100
-                Result = 25
+        Dim i As Integer = MT.GenerateDouble(0, 100)
+        Select Case pos
+            Case "CB"
+                Select Case i
+                    Case 0 To 0.39 : Result = 20
+                    Case 0.4 To 8.32 : Result = 21
+                    Case 8.33 To 49.71 : Result = 22
+                    Case 49.72 To 90.14 : Result = 23
+                    Case 90.15 To 99.03 : Result = 24
+                    Case 99.04 To 100.0 : Result = 25
+                End Select
+            Case "DE"
+                Select Case i
+                    Case 0 To 0.27 : Result = 20
+                    Case 0.28 To 9.81 : Result = 21
+                    Case 9.82 To 43.24 : Result = 22
+                    Case 43.25 To 85.15 : Result = 23
+                    Case 85.16 To 97.35 : Result = 24
+                    Case 97.36 To 99.47 : Result = 25
+                    Case 99.48 To 100.0 : Result = 26
+                End Select
+            Case "DT"
+                Select Case i
+                    Case 0 To 1.11 : Result = 20
+                    Case 1.12 To 11.11 : Result = 21
+                    Case 11.12 To 43.33 : Result = 22
+                    Case 43.34 To 82.78 : Result = 23
+                    Case 82.79 To 96.11 : Result = 24
+                    Case 96.12 To 98.61 : Result = 25
+                    Case 98.62 To 99.72 : Result = 26
+                    Case 99.73 To 100.0 : Result = 27
+                End Select
+            Case "FB"
+                Select Case i
+                    Case 0 To 35.29 : Result = 22
+                    Case 35.3 To 82.35 : Result = 23
+                    Case 82.36 To 95.29 : Result = 24
+                    Case 95.3 To 100.0 : Result = 25
+                End Select
+            Case "FS"
+                Select Case i
+                    Case 0 To 9.09 : Result = 21
+                    Case 9.1 To 50.8 : Result = 22
+                    Case 50.81 To 90.91 : Result = 23
+                    Case 90.92 To 99.47 : Result = 24
+                    Case 99.48 To 100.0 : Result = 25
+                End Select
+
+            Case "ILB"
+                Select Case i
+                    Case 0 To 8.25 : Result = 21
+                    Case 8.26 To 45.36 : Result = 22
+                    Case 45.37 To 90.72 : Result = 23
+                    Case 90.73 To 98.45 : Result = 24
+                    Case 98.46 To 99.48 : Result = 25
+                    Case 99.49 To 100.0 : Result = 26
+                End Select
+            Case "K"
+                Select Case i
+                    Case 0 To 3.03 : Result = 21
+                    Case 3.04 To 48.48 : Result = 22
+                    Case 48.49 To 75.76 : Result = 23
+                    Case 75.77 To 100.0 : Result = 24
+                End Select
+            Case "LS"
+                Select Case i
+                    Case 0 To 25 : Result = 22
+                    Case 26 To 75 : Result = 23
+                    Case Else : Result = 24
+                End Select
+            Case "OC"
+                Select Case i
+                    Case 0 To 0.87 : Result = 20
+                    Case 0.88 To 4.35 : Result = 21
+                    Case 4.36 To 31.3 : Result = 22
+                    Case 31.31 To 85.22 : Result = 23
+                    Case 85.23 To 98.26 : Result = 24
+                    Case 98.27 To 99.13 : Result = 25
+                    Case 99.14 To 100.0 : Result = 26
+                End Select
+            Case "OG"
+                Select Case i
+                    Case 0 To 0.43 : Result = 20
+                    Case 0.44 To 3.42 : Result = 21
+                    Case 3.43 To 28.63 : Result = 22
+                    Case 28.64 To 86.75 : Result = 23
+                    Case 86.76 To 98.72 : Result = 24
+                    Case 98.73 To 99.15 : Result = 25
+                    Case 99.16 To 100.0 : Result = 26
+                End Select
+            Case "OLB"
+                Select Case i
+                    Case 0 To 0.28 : Result = 20
+                    Case 0.29 To 5.57 : Result = 21
+                    Case 5.58 To 45.13 : Result = 22
+                    Case 45.14 To 88.58 : Result = 23
+                    Case 88.59 To 98.33 : Result = 24
+                    Case 98.34 To 99.44 : Result = 25
+                    Case 99.45 To 100.0 : Result = 26
+                End Select
+            Case "OT"
+                Select Case i
+                    Case 0 To 0.59 : Result = 20
+                    Case 0.6 To 4.12 : Result = 21
+                    Case 4.13 To 34.41 : Result = 22
+                    Case 34.42 To 85.29 : Result = 23
+                    Case 85.3 To 97.94 : Result = 24
+                    Case 97.95 To 99.41 : Result = 25
+                    Case 99.42 To 100.0 : Result = 26
+                End Select
+            Case "P"
+                Select Case i
+                    Case 0 To 2.78 : Result = 21
+                    Case 2.79 To 22.22 : Result = 22
+                    Case 22.23 To 75.0 : Result = 23
+                    Case 75.01 To 100.0 : Result = 24
+                End Select
+            Case "QB"
+                Select Case i
+                    Case 0 To 6.16 : Result = 21
+                    Case 6.17 To 26.54 : Result = 22
+                    Case 26.55 To 77.73 : Result = 23
+                    Case 77.74 To 96.68 : Result = 24
+                    Case 96.69 To 98.1 : Result = 25
+                    Case 98.11 To 98.58 : Result = 26
+                    Case 98.59 To 99.05 : Result = 27
+                    Case 99.06 To 99.53 : Result = 28
+                    Case 99.54 To 100.0 : Result = 29
+                End Select
+            Case "RB"
+                Select Case i
+                    Case 0 To 17.92 : Result = 21
+                    Case 17.93 To 55.03 : Result = 22
+                    Case 55.04 To 89.94 : Result = 23
+                    Case 89.95 To 98.11 : Result = 24
+                    Case 98.12 To 99.69 : Result = 25
+                    Case 99.7 To 100.0 : Result = 27
+                End Select
+            Case "SS"
+                Select Case i
+                    Case 0 To 8.07 : Result = 21
+                    Case 8.08 To 42.86 : Result = 22
+                    Case 42.87 To 89.44 : Result = 23
+                    Case 89.45 To 98.76 : Result = 24
+                    Case 98.77 To 99.38 : Result = 25
+                    Case 99.39 To 100.0 : Result = 27
+                End Select
+            Case "TE"
+                Select Case i
+                    Case 0 To 0.4 : Result = 20
+                    Case 0.41 To 7.2 : Result = 21
+                    Case 7.21 To 38.4 : Result = 22
+                    Case 38.41 To 83.6 : Result = 23
+                    Case 83.61 To 98.4 : Result = 24
+                    Case 98.41 To 100.0 : Result = 25
+                End Select
+            Case "WR"
+                Select Case i
+                    Case 0 To 0.19 : Result = 20
+                    Case 0.2 To 12.36 : Result = 21
+                    Case 12.37 To 54.49 : Result = 22
+                    Case 54.5 To 91.01 : Result = 23
+                    Case 91.02 To 98.31 : Result = 24
+                    Case 98.32 To 99.63 : Result = 25
+                    Case 99.64 To 100.0 : Result = 27
+                End Select
         End Select
         Return Result
     End Function
@@ -1259,12 +1411,36 @@ Public MustInherit Class Person
     End Function
 
     ''' <summary>
-    ''' Arm Length is on average A person's height * 0.45
+    ''' Arm length based on combine data by height
     ''' </summary>
     ''' <param name="height"></param>
     ''' <returns></returns>
     Private Shared Function GetArmLength(height As Integer) As Double
-        Return Math.Round(MT.GetGaussian((height * 0.435), 0.55), 2)
+
+        Dim result As Double
+
+        Select Case height
+            Case 65 : result = MT.GetGaussian(28.88, 0.710642315)
+            Case 66 : result = MT.GetGaussian(29.22, 1.091515575)
+            Case 67 : result = MT.GetGaussian(29.62, 0.775336025)
+            Case 68 : result = MT.GetGaussian(29.82, 0.944693874)
+            Case 69 : result = MT.GetGaussian(30.51, 0.888752285)
+            Case 70 : result = MT.GetGaussian(30.93, 0.912302455)
+            Case 71 : result = MT.GetGaussian(31.3, 0.987515643)
+            Case 72 : result = MT.GetGaussian(31.52, 0.938939694)
+            Case 73 : result = MT.GetGaussian(31.97, 0.984615512)
+            Case 74 : result = MT.GetGaussian(32.47, 0.963542906)
+            Case 75 : result = MT.GetGaussian(32.83, 1.018174135)
+            Case 76 : result = MT.GetGaussian(33.11, 1.04347593)
+            Case 77 : result = MT.GetGaussian(33.65, 1.074612657)
+            Case 78 : result = MT.GetGaussian(33.85, 1.051983346)
+            Case 79 : result = MT.GetGaussian(34.17, 1.091649255)
+            Case 80 : result = MT.GetGaussian(34.51, 1.524794713)
+            Case 81 : result = MT.GetGaussian(33.5, 0.886566566)
+            Case 82 : result = MT.GetGaussian(33.38, 0.902365653)
+        End Select
+
+        Return Math.Round(result, 2)
     End Function
 
     ''' <summary>
