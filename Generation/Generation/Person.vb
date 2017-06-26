@@ -99,6 +99,8 @@ Public MustInherit Class Person
     Property Dominant As String
     Property Weakest As String
 
+
+
     Private Sub GetPersonalityStats(ByVal dt As DataTable, ByVal personNum As Integer)
         dt.Rows(personNum).Item("AbsentMinded") = AbsentMinded
         dt.Rows(personNum).Item("AbstractReasoning") = AbstractReasoning
@@ -245,7 +247,7 @@ Public MustInherit Class Person
     ''' <param name="Row"></param>
     ''' <param name="PersonType"></param>
     ''' <param name="Position"></param>
-    Public Shared Sub GenNames(ByRef dtOutputTo As DataTable, ByVal row As Integer, ByVal personType As String, Optional ByVal position As String = "")
+    Public Shared Sub GenNames(ByRef dtOutputTo As DataTable, ByVal row As Integer, ByVal personType As String, NumUC As Integer, Optional ByVal position As String = "", Optional ByVal DraftRound As String = "")
 
         Dim MyCollege As New KeyValuePair(Of String, String)
         MyCollege = GetCollege(Colleges, dtOutputTo)
@@ -256,8 +258,8 @@ Public MustInherit Class Person
             dtOutputTo.Rows(row).Item("College") = String.Format("'{0}'", MyCollege.Key)
             dtOutputTo.Rows(row).Item("Age") = GenAge(personType, position)
             dtOutputTo.Rows(row).Item("DOB") = String.Format("'{0}", GetDOB(dtOutputTo.Rows(row).Item("Age")))
-            dtOutputTo.Rows(row).Item("Height") = GetHeight(position)
-            dtOutputTo.Rows(row).Item("Weight") = GetWeight(dtOutputTo.Rows(row).Item("Height"), position)
+            dtOutputTo.Rows(row).Item("Height") = GetHeight(position, DraftRound)
+            dtOutputTo.Rows(row).Item("Weight") = GetWeight(dtOutputTo.Rows(row).Item("Height"), position, DraftRound)
         Catch ex As System.InvalidCastException
             Console.WriteLine(ex.Message)
             Console.WriteLine(ex.Data)
@@ -416,7 +418,7 @@ Public MustInherit Class Person
                     Case 104 To 110 : Result = 32
                     Case 111 To 115 : Result = 33
                 End Select
-            Case "C"
+            Case "OC", "C"
                 Select Case MT.GenerateInt32(1, 90)
                     Case 1 : Result = 22
                     Case 2 To 9 : Result = 23
@@ -618,37 +620,37 @@ Public MustInherit Class Person
     ''' <returns></returns>
     Private Shared Function GetDraftAge(ByVal pos As String) As Integer
         Dim Result As Integer
-        Dim i As Integer = MT.GenerateDouble(0, 100)
+        Dim i As Double = MT.GenerateDouble(0, 100)
         Select Case pos
             Case "CB"
                 Select Case i
-                    Case 0 To 0.39 : Result = 20
-                    Case 0.4 To 8.32 : Result = 21
-                    Case 8.33 To 49.71 : Result = 22
-                    Case 49.72 To 90.14 : Result = 23
-                    Case 90.15 To 99.03 : Result = 24
-                    Case 99.04 To 100.0 : Result = 25
+                    Case 0 To 0.29 : Result = 20
+                    Case 0.3 To 6.12 : Result = 21
+                    Case 6.13 To 56.52 : Result = 22
+                    Case 56.53 To 92.71 : Result = 23
+                    Case 92.71 To 99.29 : Result = 24
+                    Case Else : Result = 25
                 End Select
             Case "DE"
                 Select Case i
-                    Case 0 To 0.27 : Result = 20
-                    Case 0.28 To 9.81 : Result = 21
-                    Case 9.82 To 43.24 : Result = 22
-                    Case 43.25 To 85.15 : Result = 23
-                    Case 85.16 To 97.35 : Result = 24
-                    Case 97.36 To 99.47 : Result = 25
-                    Case 99.48 To 100.0 : Result = 26
+                    Case 0 To 0.18 : Result = 20
+                    Case 0.19 To 6.63 : Result = 21
+                    Case 6.64 To 53.54 : Result = 22
+                    Case 53.55 To 89.96 : Result = 23
+                    Case 89.97 To 98.21 : Result = 24
+                    Case 98.22 To 99.64 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "DT"
                 Select Case i
-                    Case 0 To 1.11 : Result = 20
-                    Case 1.12 To 11.11 : Result = 21
-                    Case 11.12 To 43.33 : Result = 22
-                    Case 43.34 To 82.78 : Result = 23
-                    Case 82.79 To 96.11 : Result = 24
-                    Case 96.12 To 98.61 : Result = 25
-                    Case 98.62 To 99.72 : Result = 26
-                    Case 99.73 To 100.0 : Result = 27
+                    Case 0 To 0.77 : Result = 20
+                    Case 0.78 To 7.68 : Result = 21
+                    Case 7.69 To 53.07 : Result = 22
+                    Case 53.08 To 88.1 : Result = 23
+                    Case 88.11 To 97.31 : Result = 24
+                    Case 97.32 To 99.04 : Result = 25
+                    Case 99.05 To 99.81 : Result = 26
+                    Case Else : Result = 27
                 End Select
             Case "FB"
                 Select Case i
@@ -659,28 +661,28 @@ Public MustInherit Class Person
                 End Select
             Case "FS"
                 Select Case i
-                    Case 0 To 9.09 : Result = 21
-                    Case 9.1 To 50.8 : Result = 22
-                    Case 50.81 To 90.91 : Result = 23
-                    Case 90.92 To 99.47 : Result = 24
-                    Case 99.48 To 100.0 : Result = 25
+                    Case 0 To 5.88 : Result = 21
+                    Case 5.89 To 59.34 : Result = 22
+                    Case 59.35 To 94.12 : Result = 23
+                    Case 94.13 To 99.65 : Result = 24
+                    Case Else : Result = 25
                 End Select
 
             Case "ILB"
                 Select Case i
-                    Case 0 To 8.25 : Result = 21
-                    Case 8.26 To 45.36 : Result = 22
-                    Case 45.37 To 90.72 : Result = 23
-                    Case 90.73 To 98.45 : Result = 24
-                    Case 98.46 To 99.48 : Result = 25
-                    Case 99.49 To 100.0 : Result = 26
+                    Case 0 To 5.35 : Result = 21
+                    Case 5.36 To 55.77 : Result = 22
+                    Case 55.78 To 93.98 : Result = 23
+                    Case 93.99 To 99.0 : Result = 24
+                    Case 99.01 To 99.67 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "K"
                 Select Case i
-                    Case 0 To 3.03 : Result = 21
-                    Case 3.04 To 48.48 : Result = 22
-                    Case 48.49 To 75.76 : Result = 23
-                    Case 75.77 To 100.0 : Result = 24
+                    Case 0 To 2.13 : Result = 21
+                    Case 2.14 To 56.38 : Result = 22
+                    Case 56.39 To 82.98 : Result = 23
+                    Case Else : Result = 24
                 End Select
             Case "LS"
                 Select Case i
@@ -688,103 +690,130 @@ Public MustInherit Class Person
                     Case 26 To 75 : Result = 23
                     Case Else : Result = 24
                 End Select
-            Case "OC"
+            Case "OC", "C"
                 Select Case i
-                    Case 0 To 0.87 : Result = 20
-                    Case 0.88 To 4.35 : Result = 21
-                    Case 4.36 To 31.3 : Result = 22
-                    Case 31.31 To 85.22 : Result = 23
-                    Case 85.23 To 98.26 : Result = 24
-                    Case 98.27 To 99.13 : Result = 25
-                    Case 99.14 To 100.0 : Result = 26
+                    Case 0 To 0.5 : Result = 20
+                    Case 0.51 To 2.5 : Result = 21
+                    Case 2.51 To 49.75 : Result = 22
+                    Case 49.76 To 91.5 : Result = 23
+                    Case 91.51 To 99.0 : Result = 24
+                    Case 99.01 To 99.5 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "OG"
                 Select Case i
-                    Case 0 To 0.43 : Result = 20
-                    Case 0.44 To 3.42 : Result = 21
-                    Case 3.43 To 28.63 : Result = 22
-                    Case 28.64 To 86.75 : Result = 23
-                    Case 86.76 To 98.72 : Result = 24
-                    Case 98.73 To 99.15 : Result = 25
-                    Case 99.16 To 100.0 : Result = 26
+                    Case 0 To 0.24 : Result = 20
+                    Case 0.25 To 1.95 : Result = 21
+                    Case 1.96 To 48.78 : Result = 22
+                    Case 48.79 To 92.46 : Result = 23
+                    Case 92.47 To 99.27 : Result = 24
+                    Case 99.28 To 99.51 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "OLB"
                 Select Case i
-                    Case 0 To 0.28 : Result = 20
-                    Case 0.29 To 5.57 : Result = 21
-                    Case 5.58 To 45.13 : Result = 22
-                    Case 45.14 To 88.58 : Result = 23
-                    Case 88.59 To 98.33 : Result = 24
-                    Case 98.34 To 99.44 : Result = 25
-                    Case 99.45 To 100.0 : Result = 26
+                    Case 0 To 0.2 : Result = 20
+                    Case 0.21 To 4.02 : Result = 21
+                    Case 4.03 To 53.46 : Result = 22
+                    Case 53.47 To 91.77 : Result = 23
+                    Case 91.78 To 98.8 : Result = 24
+                    Case 98.81 To 99.6 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "OT"
                 Select Case i
-                    Case 0 To 0.59 : Result = 20
-                    Case 0.6 To 4.12 : Result = 21
-                    Case 4.13 To 34.41 : Result = 22
-                    Case 34.42 To 85.29 : Result = 23
-                    Case 85.3 To 97.94 : Result = 24
-                    Case 97.95 To 99.41 : Result = 25
-                    Case 99.42 To 100.0 : Result = 26
+                    Case 0 To 0.39 : Result = 20
+                    Case 0.4 To 2.73 : Result = 21
+                    Case 2.74 To 48.05 : Result = 22
+                    Case 48.06 To 90.23 : Result = 23
+                    Case 90.24 To 98.63 : Result = 24
+                    Case 98.64 To 99.61 : Result = 25
+                    Case Else : Result = 26
                 End Select
             Case "P"
                 Select Case i
-                    Case 0 To 2.78 : Result = 21
-                    Case 2.79 To 22.22 : Result = 22
-                    Case 22.23 To 75.0 : Result = 23
-                    Case 75.01 To 100.0 : Result = 24
+                    Case 0 To 1.72 : Result = 21
+                    Case 1.73 To 32.22 : Result = 22
+                    Case 32.23 To 84.0 : Result = 23
+                    Case Else : Result = 24
                 End Select
             Case "QB"
                 Select Case i
-                    Case 0 To 6.16 : Result = 21
-                    Case 6.17 To 26.54 : Result = 22
-                    Case 26.55 To 77.73 : Result = 23
-                    Case 77.74 To 96.68 : Result = 24
-                    Case 96.69 To 98.1 : Result = 25
-                    Case 98.11 To 98.58 : Result = 26
-                    Case 98.59 To 99.05 : Result = 27
-                    Case 99.06 To 99.53 : Result = 28
-                    Case 99.54 To 100.0 : Result = 29
+                    Case 0 To 3.45 : Result = 21
+                    Case 3.46 To 14.59 : Result = 22
+                    Case 14.6 To 76.46 : Result = 23
+                    Case 76.47 To 98.14 : Result = 24
+                    Case 98.15 To 98.94 : Result = 25
+                    Case 98.95 To 99.2 : Result = 26
+                    Case 99.21 To 99.47 : Result = 27
+                    Case 99.48 To 99.73 : Result = 28
+                    Case Else : Result = 29
                 End Select
             Case "RB"
                 Select Case i
-                    Case 0 To 17.92 : Result = 21
-                    Case 17.93 To 55.03 : Result = 22
-                    Case 55.04 To 89.94 : Result = 23
-                    Case 89.95 To 98.11 : Result = 24
-                    Case 98.12 To 99.69 : Result = 25
-                    Case 99.7 To 100.0 : Result = 27
+                    Case 0 To 10 : Result = 21
+                    Case 10.01 To 63.82 : Result = 22
+                    Case 63.83 To 94.39 : Result = 23
+                    Case 94.4 To 98.95 : Result = 24
+                    Case 98.96 To 99.82 : Result = 25
+                    Case Else : Result = 27
                 End Select
             Case "SS"
                 Select Case i
-                    Case 0 To 8.07 : Result = 21
-                    Case 8.08 To 42.86 : Result = 22
-                    Case 42.87 To 89.44 : Result = 23
-                    Case 89.45 To 98.76 : Result = 24
-                    Case 98.77 To 99.38 : Result = 25
-                    Case 99.39 To 100.0 : Result = 27
+                    Case 0 To 5.14 : Result = 21
+                    Case 5.15 To 54.55 : Result = 22
+                    Case 54.56 To 93.28 : Result = 23
+                    Case 93.29 To 99.21 : Result = 24
+                    Case 99.22 To 99.6 : Result = 25
+                    Case Else : Result = 27
                 End Select
             Case "TE"
                 Select Case i
-                    Case 0 To 0.4 : Result = 20
-                    Case 0.41 To 7.2 : Result = 21
-                    Case 7.21 To 38.4 : Result = 22
-                    Case 38.41 To 83.6 : Result = 23
-                    Case 83.61 To 98.4 : Result = 24
-                    Case 98.41 To 100.0 : Result = 25
+                    Case 0 To 0.25 : Result = 20
+                    Case 0.26 To 4.58 : Result = 21
+                    Case 4.59 To 51.72 : Result = 22
+                    Case 51.73 To 89.57 : Result = 23
+                    Case 89.58 To 98.98 : Result = 24
+                    Case Else : Result = 25
                 End Select
             Case "WR"
                 Select Case i
-                    Case 0 To 0.19 : Result = 20
-                    Case 0.2 To 12.36 : Result = 21
-                    Case 12.37 To 54.49 : Result = 22
-                    Case 54.5 To 91.01 : Result = 23
-                    Case 91.02 To 98.31 : Result = 24
-                    Case 98.32 To 99.63 : Result = 25
-                    Case 99.64 To 100.0 : Result = 27
+                    Case 0 To 0.12 : Result = 20
+                    Case 0.13 To 7.72 : Result = 21
+                    Case 7.73 To 62.22 : Result = 22
+                    Case 62.23 To 94.39 : Result = 23
+                    Case 94.4 To 98.95 : Result = 24
+                    Case 98.96 To 99.77 : Result = 25
+                    Case Else : Result = 27
                 End Select
         End Select
+
+        If Result < 22 Then 'Check to see if this is an underclassman
+            If Result = 20 Then
+                Underclassman = True
+            Else 'we need to determine the percentage chance that a 21 year old is an underclassman by position
+                i = MT.GenerateDouble(0, 100)
+                Select Case pos
+                    Case "QB" : If i <= 48.4967 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "RB" : If i <= 58.83 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "WR" : If i <= 55.1166 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "TE" : If i <= 56.9869 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "OT" : If i <= 68.7546 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "OC" : If i <= 16.84 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "OG" : If i <= 52.0513 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "K" : If i <= 52.23532 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "P" : If i <= 55.4651 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "DE" : If i <= 43.6652 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "DT" : If i <= 32.1615 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "OLB" : If i <= 51.2935 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "ILB" : If i <= 41.4766 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "CB" : If i <= 48.4967 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "FS" : If i <= 52.0578 * (NumUnderclassmen / 91) Then Underclassman = True
+                    Case "SS" : If i <= 41.0895 * (NumUnderclassmen / 91) Then Underclassman = True
+                End Select
+            End If
+            If Underclassman Then TotalUCNum += 1
+        End If
         Return Result
     End Function
 
@@ -792,283 +821,27 @@ Public MustInherit Class Person
     Private Shared Function GetWeight(ByVal height As Integer, Optional ByVal pos As String = "", Optional ByVal DraftRound As String = "") As Integer
         Dim Result As Integer
         Select Case pos
-            Case "QB"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(3.003699108, 0.123396638), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(3.015538355, 0.089620613), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.080938917, 0.119446753), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.004249567, 0.089201945), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(2.98407395, 0.09160889), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(2.977188217, 0.116711851), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(2.982141441, 0.162016258), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.949304533, 0.125600723), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(2.934897009, 0.110407616), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(2.970727168, 0.118579623), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(2.962257506, 0.131202397), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(2.953787843, 0.14382517), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.924249965, 0.14382517), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.894712087, 0.14382517), 0) * height
-                End Select
-
-            Case "RB"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(3.145330281, 0.184785975), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(2.921546711, 0.120030258), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.178221876, 0.261885191), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.045921432, 0.151010826), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.076710136, 0.14689853), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.002405199, 0.159204157), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.023456358, 0.188065907), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.968671046, 0.167514653), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.02607181, 0.157511895), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.019723593, 0.213190993), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.010130564, 0.190826412), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.000537534, 0.16846183), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.970532159, 0.16846183), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.940526784, 0.16846183), 0) * height
-                End Select
-
-            Case "FB"
-                Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    'Case "R1Top10" : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 0) * height
-                    'Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    'Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.508949772, 0.229502968), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.268792987, 0.074676991), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.409490894, 0.127814127), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.320027249, 0.146637608), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.408492376, 0.351573592), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.416055271, 0.181941228), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.396590564, 0.188342053), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.377125858, 0.194742878), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.343354599, 0.194742878), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.30958334, 0.194742878), 0) * height
-                End Select
-
-            Case "WR"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(2.878050679, 0.13790027), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(2.820531314, 0.152772052), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(2.769601207, 0.095873513), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(2.814119401, 0.158427992), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(2.769485519, 0.173780544), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(2.751983511, 0.148253559), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(2.745593197, 0.164274201), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.715396021, 0.165086519), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(2.761429846, 0.172527942), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(2.727412614, 0.161498127), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(2.744007854, 0.15936696), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(2.760603094, 0.157235794), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.732997063, 0.157235794), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.705391032, 0.157235794), 0) * height
-                End Select
-
-            Case "TE"
-                Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(3.32625731, 0.052728079), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.340742591, 0.102434325), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.294840116, 0.098095697), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.364839303, 0.124863567), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.323679321, 0.096336292), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.331437105, 0.163662341), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.332416292, 0.110690371), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.338154674, 0.133395057), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.309857899, 0.136991643), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.324335664, 0.141966243), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.33881343, 0.146940843), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.305425296, 0.146940843), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.272037162, 0.146940843), 0) * height
-                End Select
-
-            Case "OT"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.128013337, 0.291322837), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.054830955, 0.160396642), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.09042381, 0.234550303), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.087884549, 0.240544699), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.045470775, 0.131974217), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.070312343, 0.159883187), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.094661827, 0.139046894), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.052433025, 0.208789456), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.018033707, 0.165895843), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.044203948, 0.177364955), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.057357097, 0.184156626), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.070510245, 0.190948297), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.029805143, 0.190948297), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.98910004, 0.190948297), 0) * height
-                End Select
-
-            Case "OG"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.142857143, 0.00532352), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.243243243, 0.057332982), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.108280608, 0.176609158), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.140023544, 0.071275999), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.154585455, 0.189253974), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.161878211, 0.165069285), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.157018897, 0.201381863), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.131887553, 0.161587063), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.08687883, 0.160347948), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.094256593, 0.168345707), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.114162068, 0.171849084), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.134067543, 0.175352461), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.092726868, 0.175352461), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.051386193, 0.175352461), 0) * height
-                End Select
-
-            Case "C"
-                Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    'Case "R1Top10" : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.119606402, 0.180327068), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.063947368, 0.06329437), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.009953455, 0.071413548), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.99760414, 0.102724539), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.048362086, 0.087614717), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.970194651, 0.258080014), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.995399578, 0.185328619), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.987296851, 0.226782373), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.994460588, 0.183097476), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.001624326, 0.139412578), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.961608082, 0.139412578), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.921591839, 0.139412578), 0) * height
-                End Select
-
-            Case "DE"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(3.564770162, 0.185051416), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(3.610796329, 0.266431885), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.577860622, 0.179025065), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.547725622, 0.170417349), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.541719995, 0.152499565), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.53623495, 0.149314484), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.537329365, 0.16708782), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.555613345, 0.194385079), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.566493425, 0.209385695), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.527475026, 0.202300321), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.516394764, 0.186120854), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.505314503, 0.169941388), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.470261358, 0.169941388), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.435208213, 0.169941388), 0) * height
-                End Select
-
-            Case "DT"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.124310262, 0.154570859), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.106714377, 0.22652317), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.07040748, 0.222294997), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.125450642, 0.163317016), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.062790068, 0.189487988), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.102091297, 0.170898834), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.083486766, 0.224333075), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.123058949, 0.185607464), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.073809782, 0.220106305), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.042051978, 0.290126666), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.038348346, 0.252191128), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.034644715, 0.21425559), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.994298268, 0.21425559), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.953951821, 0.21425559), 0) * height
-                End Select
-
-            Case "NT" : Result = CInt(MT.GetGaussian(4.29, 0.27) * height)
-            Case "LB" : Result = CInt(MT.GetGaussian(3.25886366, 0.22761413) * height)
-            Case "OLB"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(3.378282118, 0.072551029), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(3.302605928, 0.115748052), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.314396271, 0.14541675), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.27795127, 0.134993054), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.26097097, 0.154513591), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.240139862, 0.119749522), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.243760087, 0.11701307), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.225455634, 0.134653294), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.232632861, 0.120299887), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.238817437, 0.141158293), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.229814405, 0.130752526), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.220811373, 0.120346759), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.188603259, 0.120346759), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.156395145, 0.120346759), 0) * height
-                End Select
-
-            Case "ILB"
-                Select Case DraftRound
-                    'Case"r1Top5",  "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(3.292080305, 0.022101405), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(3.237780589, 0.076466835), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(3.328066483, 0.130632713), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(3.2825155, 0.103225907), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(3.273239734, 0.117187605), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(3.270329113, 0.07954734), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(3.274353496, 0.112657201), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(3.299572376, 0.11937643), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(3.312460323, 0.106755577), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(3.298910886, 0.099600815), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(3.28536145, 0.092446053), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(3.252507835, 0.092446053), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(3.219654221, 0.092446053), 0) * height
-                End Select
-
-            Case "CB"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(2.840293186, 0.158072916), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(2.715970142, 0.096337728), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(2.717826145, 0.104052774), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(2.716045297, 0.095867458), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(2.719427596, 0.110597779), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(2.702004905, 0.098496213), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(2.70886641, 0.105107122), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.695361835, 0.100950288), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(2.690204038, 0.124060574), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(2.685250219, 0.135575872), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(2.684192373, 0.127600655), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(2.683134526, 0.119625439), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.656303181, 0.119625439), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.629471836, 0.119625439), 0) * height
-                End Select
-
-            Case "DB" : Result = CInt(MT.GetGaussian(2.751497012, 0.111561502) * height)
-            Case "SS"
-                Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 0) * height
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(2.919767341, 0.078913623), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(2.905290099, 0.072640226), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(2.897312292, 0.092444192), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(2.948656933, 0.091568715), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(2.903821791, 0.083652184), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(2.916727579, 0.118404029), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.895904935, 0.115391547), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(2.880106784, 0.0899513), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(2.866493549, 0.146522805), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(2.888574011, 0.128158489), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(2.910654472, 0.109794173), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.881547928, 0.109794173), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.852441383, 0.109794173), 0) * height
-                End Select
-
-            Case "FS"
-                Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(2.999259534, 0.15393513), 0) * height
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(2.917808219, 0.1356656215), 0) * height
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(2.933783523, 0.127630602), 0) * height
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(2.794089478, 0.062443496), 0) * height
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(2.832525255, 0.1125825), 0) * height
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(2.822130288, 0.114004496), 0) * height
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(2.800061899, 0.101852847), 0) * height
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(2.844227237, 0.140222589), 0) * height
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(2.812912572, 0.108694958), 0) * height
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(2.839624309, 0.12325654), 0) * height
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(2.819249801, 0.119042942), 0) * height
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(2.798875292, 0.114829344), 0) * height
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(2.770886539, 0.114829344), 0) * height
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(2.742897786, 0.114829344), 0) * height
-                End Select
-
-            Case "K" : Result = CInt(MT.GetGaussian(2.76402701, 0.225939859) * height)
-            Case "P" : Result = CInt(MT.GetGaussian(2.918257853, 0.150105271) * height)
-            Case Else
-                Result = (CInt(MT.GetGaussian(3.5, 0.5)) * height)
+            Case "QB" : Result = Math.Round(MT.GetGaussian(222.2606383, 11.47152503), 0)
+            Case "RB" : Result = Math.Round(MT.GetGaussian(213.6614035, 14.70970716), 0)
+            Case "FB" : Result = Math.Round(MT.GetGaussian(245.7697842, 15.19072779), 0)
+            Case "WR" : Result = Math.Round(MT.GetGaussian(200.954386, 15.20905149), 0)
+            Case "TE" : Result = Math.Round(MT.GetGaussian(254.346056, 10.5141955), 0)
+            Case "OT" : Result = Math.Round(MT.GetGaussian(315.5371094, 14.3690044), 0)
+            Case "OG" : Result = Math.Round(MT.GetGaussian(314.3625304, 13.33187844), 0)
+            Case "C" : Result = Math.Round(MT.GetGaussian(301.67, 12.41619545), 0)
+            Case "DE" : Result = Math.Round(MT.GetGaussian(268.3985637, 14.0785003), 0)
+            Case "DT" : Result = Math.Round(MT.GetGaussian(305.9577735, 15.10292069), 0)
+            Case "NT" : Result = Math.Round(MT.GetGaussian(320.35366, 8.533562), 0)
+            Case "LB" : Result = Math.Round(MT.GetGaussian(235, 8.3536366), 0)
+            Case "OLB" : Result = Math.Round(MT.GetGaussian(239.8855422, 10.51744511), 0)
+            Case "ILB" : Result = Math.Round(MT.GetGaussian(241.4280936, 7.585575329), 0)
+            Case "CB" : Result = Math.Round(MT.GetGaussian(192.3109843, 9.28641138), 0)
+            Case "DB" : Result = Math.Round(MT.GetGaussian(198.232365, 8.55632656), 0)
+            Case "SS" : Result = Math.Round(MT.GetGaussian(210.1620553, 8.886934348), 0)
+            Case "FS" : Result = Math.Round(MT.GetGaussian(204.6089965, 9.27152462), 0)
+            Case "K" : Result = Math.Round(MT.GetGaussian(199.2978723, 19.28945972), 0)
+            Case "P" : Result = Math.Round(MT.GetGaussian(217.1034483, 12.06661286), 0)
+            Case Else : Result = Math.Round(MT.GetGaussian(242, 9.291573243), 0)
         End Select
         Return Result
     End Function
@@ -1624,10 +1397,10 @@ Public MustInherit Class Person
             Case "Warmth" 'Caring, Nurturing, Friendly, Participator
                 Select Case traitStrength
                     Case "Positive"
-                        Caring = MT.GetGaussian(75, 8.33)
-                        Nurturing = MT.GetGaussian(75, 8.33)
-                        Friendly = MT.GetGaussian(75, 8.33)
-                        Participator = MT.GetGaussian(75, 8.33)
+                        Caring = MT.GetGaussian(82.5, 11.6667)
+                        Nurturing = MT.GetGaussian(82.5, 11.6667)
+                        Friendly = MT.GetGaussian(82.5, 11.6667)
+                        Participator = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Caring + Nurturing + Friendly + Participator) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
@@ -1635,28 +1408,28 @@ Public MustInherit Class Person
                         End If
 
                     Case "Negative"
-                        Caring = MT.GetGaussian(25, 8.33)
-                        Nurturing = MT.GetGaussian(25, 8.33)
-                        Friendly = MT.GetGaussian(25, 8.33)
-                        Participator = MT.GetGaussian(25, 8.33)
+                        Caring = MT.GetGaussian(17.5, 11.6667)
+                        Nurturing = MT.GetGaussian(17.5, 11.6667)
+                        Friendly = MT.GetGaussian(17.5, 11.6667)
+                        Participator = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Caring + Nurturing + Friendly + Participator) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Friendly'"
                         End If
                     Case "Balanced"
-                        Caring = MT.GetGaussian(50, 8.33)
-                        Nurturing = MT.GetGaussian(50, 8.33)
-                        Friendly = MT.GetGaussian(50, 8.33)
-                        Participator = MT.GetGaussian(50, 8.33)
+                        Caring = MT.GetGaussian(50, 4.6667)
+                        Nurturing = MT.GetGaussian(50, 4.6667)
+                        Friendly = MT.GetGaussian(50, 4.6667)
+                        Participator = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "EmotionalStability"
                 Select Case traitStrength
                     Case "Positive"
-                        EmotionallyStable = MT.GetGaussian(75, 8.33)
-                        Conforming = MT.GetGaussian(75, 8.33)
-                        Mature = MT.GetGaussian(75, 8.33)
-                        CalmUnderPressure = MT.GetGaussian(75, 8.33)
+                        EmotionallyStable = MT.GetGaussian(82.5, 11.6667)
+                        Conforming = MT.GetGaussian(82.5, 11.6667)
+                        Mature = MT.GetGaussian(82.5, 11.6667)
+                        CalmUnderPressure = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (EmotionallyStable + Conforming + Mature + CalmUnderPressure) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
@@ -1664,412 +1437,412 @@ Public MustInherit Class Person
                         End If
 
                     Case "Negative"
-                        EmotionallyStable = MT.GetGaussian(25, 8.33)
-                        Conforming = MT.GetGaussian(25, 8.33)
-                        Mature = MT.GetGaussian(25, 8.33)
-                        CalmUnderPressure = MT.GetGaussian(25, 8.33)
+                        EmotionallyStable = MT.GetGaussian(17.5, 11.6667)
+                        Conforming = MT.GetGaussian(17.5, 11.6667)
+                        Mature = MT.GetGaussian(17.5, 11.6667)
+                        CalmUnderPressure = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (EmotionallyStable + Conforming + Mature + CalmUnderPressure) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Emotionally Stable'"
                         End If
                     Case "Balanced"
-                        EmotionallyStable = MT.GetGaussian(50, 8.33)
-                        Conforming = MT.GetGaussian(50, 8.33)
-                        Mature = MT.GetGaussian(50, 8.33)
-                        CalmUnderPressure = MT.GetGaussian(50, 8.33)
+                        EmotionallyStable = MT.GetGaussian(50, 4.6667)
+                        Conforming = MT.GetGaussian(50, 4.6667)
+                        Mature = MT.GetGaussian(50, 4.6667)
+                        CalmUnderPressure = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Dominance"
                 Select Case traitStrength
                     Case "Positive"
-                        Stubborn = MT.GetGaussian(75, 8.33)
-                        Aggressive = MT.GetGaussian(75, 8.33)
-                        Competitive = MT.GetGaussian(75, 8.33)
-                        Bossy = MT.GetGaussian(75, 8.33)
+                        Stubborn = MT.GetGaussian(82.5, 11.6667)
+                        Aggressive = MT.GetGaussian(82.5, 11.6667)
+                        Competitive = MT.GetGaussian(82.5, 11.6667)
+                        Bossy = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Stubborn + Aggressive + Competitive + Bossy) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Dominant'"
                         End If
                     Case "Negative"
-                        Stubborn = MT.GetGaussian(25, 8.33)
-                        Aggressive = MT.GetGaussian(25, 8.33)
-                        Competitive = MT.GetGaussian(25, 8.33)
-                        Bossy = MT.GetGaussian(25, 8.33)
+                        Stubborn = MT.GetGaussian(17.5, 11.6667)
+                        Aggressive = MT.GetGaussian(17.5, 11.6667)
+                        Competitive = MT.GetGaussian(17.5, 11.6667)
+                        Bossy = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Stubborn + Aggressive + Competitive + Bossy) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Dominant'"
                         End If
                     Case "Balanced"
-                        Stubborn = MT.GetGaussian(50, 8.33)
-                        Aggressive = MT.GetGaussian(50, 8.33)
-                        Competitive = MT.GetGaussian(50, 8.33)
-                        Bossy = MT.GetGaussian(50, 8.33)
+                        Stubborn = MT.GetGaussian(50, 4.6667)
+                        Aggressive = MT.GetGaussian(50, 4.6667)
+                        Competitive = MT.GetGaussian(50, 4.6667)
+                        Bossy = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Liveliness"
                 Select Case traitStrength
                     Case "Positive"
-                        Enthusiastic = MT.GetGaussian(75, 8.33)
-                        Impulsive = MT.GetGaussian(75, 8.33)
-                        FunLoving = MT.GetGaussian(75, 8.33)
-                        Expressive = MT.GetGaussian(75, 8.33)
+                        Enthusiastic = MT.GetGaussian(82.5, 11.6667)
+                        Impulsive = MT.GetGaussian(82.5, 11.6667)
+                        FunLoving = MT.GetGaussian(82.5, 11.6667)
+                        Expressive = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Enthusiastic + Impulsive + FunLoving + Expressive) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Fun Loving'"
                         End If
                     Case "Negative"
-                        Enthusiastic = MT.GetGaussian(25, 8.33)
-                        Impulsive = MT.GetGaussian(25, 8.33)
-                        FunLoving = MT.GetGaussian(25, 8.33)
-                        Expressive = MT.GetGaussian(25, 8.33)
+                        Enthusiastic = MT.GetGaussian(17.5, 11.6667)
+                        Impulsive = MT.GetGaussian(17.5, 11.6667)
+                        FunLoving = MT.GetGaussian(17.5, 11.6667)
+                        Expressive = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Enthusiastic + Impulsive + FunLoving + Expressive) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Fun Loving'"
                         End If
                     Case "Balanced"
-                        Enthusiastic = MT.GetGaussian(50, 8.33)
-                        Impulsive = MT.GetGaussian(50, 8.33)
-                        FunLoving = MT.GetGaussian(50, 8.33)
-                        Expressive = MT.GetGaussian(50, 8.33)
+                        Enthusiastic = MT.GetGaussian(50, 4.6667)
+                        Impulsive = MT.GetGaussian(50, 4.6667)
+                        FunLoving = MT.GetGaussian(50, 4.6667)
+                        Expressive = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "RuleConcious"
                 Select Case traitStrength
                     Case "Positive"
-                        Dutiful = MT.GetGaussian(75, 8.33)
-                        TeamPlayer = MT.GetGaussian(75, 8.33)
-                        FollowsRules = MT.GetGaussian(75, 8.33)
-                        Moralistic = MT.GetGaussian(75, 8.33)
+                        Dutiful = MT.GetGaussian(82.5, 11.6667)
+                        TeamPlayer = MT.GetGaussian(82.5, 11.6667)
+                        FollowsRules = MT.GetGaussian(82.5, 11.6667)
+                        Moralistic = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Dutiful + TeamPlayer + FollowsRules + Moralistic) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Rule Follower'"
                         End If
                     Case "Negative"
-                        Dutiful = MT.GetGaussian(25, 8.33)
-                        TeamPlayer = MT.GetGaussian(25, 8.33)
-                        FollowsRules = MT.GetGaussian(25, 8.33)
-                        Moralistic = MT.GetGaussian(25, 8.33)
+                        Dutiful = MT.GetGaussian(17.5, 11.6667)
+                        TeamPlayer = MT.GetGaussian(17.5, 11.6667)
+                        FollowsRules = MT.GetGaussian(17.5, 11.6667)
+                        Moralistic = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Dutiful + TeamPlayer + FollowsRules + Moralistic) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Rule Follower'"
                         End If
                     Case "Balanced"
-                        Dutiful = MT.GetGaussian(50, 8.33)
-                        TeamPlayer = MT.GetGaussian(50, 8.33)
-                        FollowsRules = MT.GetGaussian(50, 8.33)
-                        Moralistic = MT.GetGaussian(50, 8.33)
+                        Dutiful = MT.GetGaussian(50, 4.6667)
+                        TeamPlayer = MT.GetGaussian(50, 4.6667)
+                        FollowsRules = MT.GetGaussian(50, 4.6667)
+                        Moralistic = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "SocialBoldness"
                 Select Case traitStrength
                     Case "Positive"
-                        SociallyBold = MT.GetGaussian(75, 8.33)
-                        ThickSkinned = MT.GetGaussian(75, 8.33)
-                        Adventurous = MT.GetGaussian(75, 8.33)
-                        Uninhibited = MT.GetGaussian(75, 8.33)
+                        SociallyBold = MT.GetGaussian(82.5, 11.6667)
+                        ThickSkinned = MT.GetGaussian(82.5, 11.6667)
+                        Adventurous = MT.GetGaussian(82.5, 11.6667)
+                        Uninhibited = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (SociallyBold + ThickSkinned + Adventurous + Uninhibited) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Socially Bold'"
                         End If
                     Case "Negative"
-                        SociallyBold = MT.GetGaussian(25, 8.33)
-                        ThickSkinned = MT.GetGaussian(25, 8.33)
-                        Adventurous = MT.GetGaussian(25, 8.33)
-                        Uninhibited = MT.GetGaussian(25, 8.33)
+                        SociallyBold = MT.GetGaussian(17.5, 11.6667)
+                        ThickSkinned = MT.GetGaussian(17.5, 11.6667)
+                        Adventurous = MT.GetGaussian(17.5, 11.6667)
+                        Uninhibited = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (SociallyBold + ThickSkinned + Adventurous + Uninhibited) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Socially Bold'"
                         End If
                     Case "Balanced"
-                        SociallyBold = MT.GetGaussian(50, 8.33)
-                        ThickSkinned = MT.GetGaussian(50, 8.33)
-                        Adventurous = MT.GetGaussian(50, 8.33)
-                        Uninhibited = MT.GetGaussian(50, 8.33)
+                        SociallyBold = MT.GetGaussian(50, 4.6667)
+                        ThickSkinned = MT.GetGaussian(50, 4.6667)
+                        Adventurous = MT.GetGaussian(50, 4.6667)
+                        Uninhibited = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Sensitivity"
                 Select Case traitStrength
                     Case "Positive"
-                        Refined = MT.GetGaussian(75, 8.33)
-                        Intuitive = MT.GetGaussian(75, 8.33)
-                        Sentimental = MT.GetGaussian(75, 8.33)
-                        Sensitive = MT.GetGaussian(75, 8.33)
+                        Refined = MT.GetGaussian(82.5, 11.6667)
+                        Intuitive = MT.GetGaussian(82.5, 11.6667)
+                        Sentimental = MT.GetGaussian(82.5, 11.6667)
+                        Sensitive = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Refined + Intuitive + Sentimental + Sensitive) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Sensitive'"
                         End If
                     Case "Negative"
-                        Refined = MT.GetGaussian(25, 8.33)
-                        Intuitive = MT.GetGaussian(25, 8.33)
-                        Sentimental = MT.GetGaussian(25, 8.33)
-                        Sensitive = MT.GetGaussian(25, 8.33)
+                        Refined = MT.GetGaussian(17.5, 11.6667)
+                        Intuitive = MT.GetGaussian(17.5, 11.6667)
+                        Sentimental = MT.GetGaussian(17.5, 11.6667)
+                        Sensitive = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Refined + Intuitive + Sentimental + Sensitive) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Sensitive'"
                         End If
                     Case "Balanced"
-                        Refined = MT.GetGaussian(50, 8.33)
-                        Intuitive = MT.GetGaussian(50, 8.33)
-                        Sentimental = MT.GetGaussian(50, 8.33)
-                        Sensitive = MT.GetGaussian(50, 8.33)
+                        Refined = MT.GetGaussian(50, 4.6667)
+                        Intuitive = MT.GetGaussian(50, 4.6667)
+                        Sentimental = MT.GetGaussian(50, 4.6667)
+                        Sensitive = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Vigilance"
                 Select Case traitStrength
                     Case "Positive"
-                        Suspicious = MT.GetGaussian(75, 8.33)
-                        Oppositional = MT.GetGaussian(75, 8.33)
-                        Distrustful = MT.GetGaussian(75, 8.33)
-                        Vigilant = MT.GetGaussian(75, 8.33)
+                        Suspicious = MT.GetGaussian(82.5, 11.6667)
+                        Oppositional = MT.GetGaussian(82.5, 11.6667)
+                        Distrustful = MT.GetGaussian(82.5, 11.6667)
+                        Vigilant = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Suspicious + Oppositional + Distrustful + Vigilant) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Distrustful'"
                         End If
                     Case "Negative"
-                        Suspicious = MT.GetGaussian(25, 8.33)
-                        Oppositional = MT.GetGaussian(25, 8.33)
-                        Distrustful = MT.GetGaussian(25, 8.33)
-                        Vigilant = MT.GetGaussian(25, 8.33)
+                        Suspicious = MT.GetGaussian(17.5, 11.6667)
+                        Oppositional = MT.GetGaussian(17.5, 11.6667)
+                        Distrustful = MT.GetGaussian(17.5, 11.6667)
+                        Vigilant = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Suspicious + Oppositional + Distrustful + Vigilant) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Distrustful'"
                         End If
                     Case "Balanced"
-                        Suspicious = MT.GetGaussian(50, 8.33)
-                        Oppositional = MT.GetGaussian(50, 8.33)
-                        Distrustful = MT.GetGaussian(50, 8.33)
-                        Vigilant = MT.GetGaussian(50, 8.33)
+                        Suspicious = MT.GetGaussian(50, 4.6667)
+                        Oppositional = MT.GetGaussian(50, 4.6667)
+                        Distrustful = MT.GetGaussian(50, 4.6667)
+                        Vigilant = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Abstractedness"
                 Select Case traitStrength
                     Case "Positive"
-                        Impractical = MT.GetGaussian(75, 8.33)
-                        Imaginative = MT.GetGaussian(75, 8.33)
-                        AbsentMinded = MT.GetGaussian(75, 8.33)
-                        AbstractThinker = MT.GetGaussian(75, 8.33)
+                        Impractical = MT.GetGaussian(82.5, 11.6667)
+                        Imaginative = MT.GetGaussian(82.5, 11.6667)
+                        AbsentMinded = MT.GetGaussian(82.5, 11.6667)
+                        AbstractThinker = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Impractical + Imaginative + AbsentMinded + AbstractThinker) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Abstract'"
                         End If
                     Case "Negative"
-                        Impractical = MT.GetGaussian(25, 8.33)
-                        Imaginative = MT.GetGaussian(25, 8.33)
-                        AbsentMinded = MT.GetGaussian(25, 8.33)
-                        AbstractThinker = MT.GetGaussian(25, 8.33)
+                        Impractical = MT.GetGaussian(17.5, 11.6667)
+                        Imaginative = MT.GetGaussian(17.5, 11.6667)
+                        AbsentMinded = MT.GetGaussian(17.5, 11.6667)
+                        AbstractThinker = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Impractical + Imaginative + AbsentMinded + AbstractThinker) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Abstract'"
                         End If
                     Case "Balanced"
-                        Impractical = MT.GetGaussian(50, 8.33)
-                        Imaginative = MT.GetGaussian(50, 8.33)
-                        AbsentMinded = MT.GetGaussian(50, 8.33)
-                        AbstractThinker = MT.GetGaussian(50, 8.33)
+                        Impractical = MT.GetGaussian(50, 4.6667)
+                        Imaginative = MT.GetGaussian(50, 4.6667)
+                        AbsentMinded = MT.GetGaussian(50, 4.6667)
+                        AbstractThinker = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Privateness"
                 Select Case traitStrength
                     Case "Positive"
-                        Privateness = MT.GetGaussian(75, 8.33)
-                        Astute = MT.GetGaussian(75, 8.33)
-                        Diplomatic = MT.GetGaussian(75, 8.33)
-                        Polished = MT.GetGaussian(75, 8.33)
+                        Privateness = MT.GetGaussian(82.5, 11.6667)
+                        Astute = MT.GetGaussian(82.5, 11.6667)
+                        Diplomatic = MT.GetGaussian(82.5, 11.6667)
+                        Polished = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Privateness + Astute + Diplomatic + Polished) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Private'"
                         End If
                     Case "Negative"
-                        Privateness = MT.GetGaussian(25, 8.33)
-                        Astute = MT.GetGaussian(25, 8.33)
-                        Diplomatic = MT.GetGaussian(25, 8.33)
-                        Polished = MT.GetGaussian(25, 8.33)
+                        Privateness = MT.GetGaussian(17.5, 11.6667)
+                        Astute = MT.GetGaussian(17.5, 11.6667)
+                        Diplomatic = MT.GetGaussian(17.5, 11.6667)
+                        Polished = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Privateness + Astute + Diplomatic + Polished) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Private'"
                         End If
                     Case "Balanced"
-                        Privateness = MT.GetGaussian(50, 8.33)
-                        Astute = MT.GetGaussian(50, 8.33)
-                        Diplomatic = MT.GetGaussian(50, 8.33)
-                        Polished = MT.GetGaussian(50, 8.33)
+                        Privateness = MT.GetGaussian(50, 4.6667)
+                        Astute = MT.GetGaussian(50, 4.6667)
+                        Diplomatic = MT.GetGaussian(50, 4.6667)
+                        Polished = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Apprehension"
                 Select Case traitStrength
                     Case "Positive"
-                        Fearful = MT.GetGaussian(75, 8.33)
-                        SelfDoubting = MT.GetGaussian(75, 8.33)
-                        GuiltProne = MT.GetGaussian(75, 8.33)
-                        Insecure = MT.GetGaussian(75, 8.33)
+                        Fearful = MT.GetGaussian(82.5, 11.6667)
+                        SelfDoubting = MT.GetGaussian(82.5, 11.6667)
+                        GuiltProne = MT.GetGaussian(82.5, 11.6667)
+                        Insecure = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Fearful + SelfDoubting + GuiltProne + Insecure) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Apprehensive'"
                         End If
                     Case "Negative"
-                        Fearful = MT.GetGaussian(25, 8.33)
-                        SelfDoubting = MT.GetGaussian(25, 8.33)
-                        GuiltProne = MT.GetGaussian(25, 8.33)
-                        Insecure = MT.GetGaussian(25, 8.33)
+                        Fearful = MT.GetGaussian(17.5, 11.6667)
+                        SelfDoubting = MT.GetGaussian(17.5, 11.6667)
+                        GuiltProne = MT.GetGaussian(17.5, 11.6667)
+                        Insecure = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Fearful + SelfDoubting + GuiltProne + Insecure) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Apprehensive'"
                         End If
                     Case "Balanced"
-                        Fearful = MT.GetGaussian(50, 8.33)
-                        SelfDoubting = MT.GetGaussian(50, 8.33)
-                        GuiltProne = MT.GetGaussian(50, 8.33)
-                        Insecure = MT.GetGaussian(50, 8.33)
+                        Fearful = MT.GetGaussian(50, 4.6667)
+                        SelfDoubting = MT.GetGaussian(50, 4.6667)
+                        GuiltProne = MT.GetGaussian(50, 4.6667)
+                        Insecure = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "OpennessToChange"
                 Select Case traitStrength
                     Case "Positive"
-                        Adaptable = MT.GetGaussian(75, 8.33)
-                        Experimental = MT.GetGaussian(75, 8.33)
-                        Analytical = MT.GetGaussian(75, 8.33)
-                        Critical = MT.GetGaussian(75, 8.33)
+                        Adaptable = MT.GetGaussian(82.5, 11.6667)
+                        Experimental = MT.GetGaussian(82.5, 11.6667)
+                        Analytical = MT.GetGaussian(82.5, 11.6667)
+                        Critical = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Adaptable + Experimental + Analytical + Critical) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Open To Change'"
                         End If
                     Case "Negative"
-                        Adaptable = MT.GetGaussian(25, 8.33)
-                        Experimental = MT.GetGaussian(25, 8.33)
-                        Analytical = MT.GetGaussian(25, 8.33)
-                        Critical = MT.GetGaussian(25, 8.33)
+                        Adaptable = MT.GetGaussian(17.5, 11.6667)
+                        Experimental = MT.GetGaussian(17.5, 11.6667)
+                        Analytical = MT.GetGaussian(17.5, 11.6667)
+                        Critical = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Adaptable + Experimental + Analytical + Critical) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Open To Change'"
                         End If
                     Case "Balanced"
-                        Adaptable = MT.GetGaussian(50, 8.33)
-                        Experimental = MT.GetGaussian(50, 8.33)
-                        Analytical = MT.GetGaussian(50, 8.33)
-                        Critical = MT.GetGaussian(50, 8.33)
+                        Adaptable = MT.GetGaussian(50, 4.6667)
+                        Experimental = MT.GetGaussian(50, 4.6667)
+                        Analytical = MT.GetGaussian(50, 4.6667)
+                        Critical = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "SelfReliance"
                 Select Case traitStrength
                     Case "Positive"
-                        SelfSufficient = MT.GetGaussian(75, 8.33)
-                        Resourceful = MT.GetGaussian(75, 8.33)
-                        Individualistic = MT.GetGaussian(75, 8.33)
-                        Loner = MT.GetGaussian(75, 8.33)
+                        SelfSufficient = MT.GetGaussian(82.5, 11.6667)
+                        Resourceful = MT.GetGaussian(82.5, 11.6667)
+                        Individualistic = MT.GetGaussian(82.5, 11.6667)
+                        Loner = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (SelfSufficient + Resourceful + Individualistic + Loner) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Self Reliant'"
                         End If
                     Case "Negative"
-                        SelfSufficient = MT.GetGaussian(25, 8.33)
-                        Resourceful = MT.GetGaussian(25, 8.33)
-                        Individualistic = MT.GetGaussian(25, 8.33)
-                        Loner = MT.GetGaussian(25, 8.33)
+                        SelfSufficient = MT.GetGaussian(17.5, 11.6667)
+                        Resourceful = MT.GetGaussian(17.5, 11.6667)
+                        Individualistic = MT.GetGaussian(17.5, 11.6667)
+                        Loner = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (SelfSufficient + Resourceful + Individualistic + Loner) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Self Reliant'"
                         End If
                     Case "Balanced"
-                        SelfSufficient = MT.GetGaussian(50, 8.33)
-                        Resourceful = MT.GetGaussian(50, 8.33)
-                        Individualistic = MT.GetGaussian(50, 8.33)
-                        Loner = MT.GetGaussian(50, 8.33)
+                        SelfSufficient = MT.GetGaussian(50, 4.6667)
+                        Resourceful = MT.GetGaussian(50, 4.6667)
+                        Individualistic = MT.GetGaussian(50, 4.6667)
+                        Loner = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Perfectionism"
                 Select Case traitStrength
                     Case "Positive"
-                        Perfectionist = MT.GetGaussian(75, 8.33)
-                        StrongWilled = MT.GetGaussian(75, 8.33)
-                        Organized = MT.GetGaussian(75, 8.33)
-                        Controlling = MT.GetGaussian(75, 8.33)
+                        Perfectionist = MT.GetGaussian(82.5, 11.6667)
+                        StrongWilled = MT.GetGaussian(82.5, 11.6667)
+                        Organized = MT.GetGaussian(82.5, 11.6667)
+                        Controlling = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Perfectionist + StrongWilled + Organized + Controlling) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Perfectionist'"
                         End If
                     Case "Negative"
-                        Perfectionist = MT.GetGaussian(25, 8.33)
-                        StrongWilled = MT.GetGaussian(25, 8.33)
-                        Organized = MT.GetGaussian(25, 8.33)
-                        Controlling = MT.GetGaussian(25, 8.33)
+                        Perfectionist = MT.GetGaussian(17.5, 11.6667)
+                        StrongWilled = MT.GetGaussian(17.5, 11.6667)
+                        Organized = MT.GetGaussian(17.5, 11.6667)
+                        Controlling = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Perfectionist + StrongWilled + Organized + Controlling) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Perfectionist'"
                         End If
                     Case "Balanced"
-                        Perfectionist = MT.GetGaussian(50, 8.33)
-                        StrongWilled = MT.GetGaussian(50, 8.33)
-                        Organized = MT.GetGaussian(50, 8.33)
-                        Controlling = MT.GetGaussian(50, 8.33)
+                        Perfectionist = MT.GetGaussian(50, 4.6667)
+                        StrongWilled = MT.GetGaussian(50, 4.6667)
+                        Organized = MT.GetGaussian(50, 4.6667)
+                        Controlling = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Tension"
                 Select Case traitStrength
                     Case "Positive"
-                        HighEnergy = MT.GetGaussian(75, 8.33)
-                        Impatient = MT.GetGaussian(75, 8.33)
-                        Driven = MT.GetGaussian(75, 8.33)
-                        Tense = MT.GetGaussian(75, 8.33)
+                        HighEnergy = MT.GetGaussian(82.5, 11.6667)
+                        Impatient = MT.GetGaussian(82.5, 11.6667)
+                        Driven = MT.GetGaussian(82.5, 11.6667)
+                        Tense = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (HighEnergy + Impatient + Driven + Tense) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Tense'"
                         End If
                     Case "Negative"
-                        HighEnergy = MT.GetGaussian(25, 8.33)
-                        Impatient = MT.GetGaussian(25, 8.33)
-                        Driven = MT.GetGaussian(25, 8.33)
-                        Tense = MT.GetGaussian(25, 8.33)
+                        HighEnergy = MT.GetGaussian(17.5, 11.6667)
+                        Impatient = MT.GetGaussian(17.5, 11.6667)
+                        Driven = MT.GetGaussian(17.5, 11.6667)
+                        Tense = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (HighEnergy + Impatient + Driven + Tense) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Tense'"
                         End If
                     Case "Balanced"
-                        HighEnergy = MT.GetGaussian(50, 8.33)
-                        Impatient = MT.GetGaussian(50, 8.33)
-                        Driven = MT.GetGaussian(50, 8.33)
-                        Tense = MT.GetGaussian(50, 8.33)
+                        HighEnergy = MT.GetGaussian(50, 4.6667)
+                        Impatient = MT.GetGaussian(50, 4.6667)
+                        Driven = MT.GetGaussian(50, 4.6667)
+                        Tense = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Honesty"
                 Select Case traitStrength
                     Case "Positive"
-                        Honesty = MT.GetGaussian(75, 8.33)
-                        Fairness = MT.GetGaussian(75, 8.33)
-                        GreedAvoidance = MT.GetGaussian(75, 8.33)
-                        Modesty = MT.GetGaussian(75, 8.33)
+                        Honesty = MT.GetGaussian(82.5, 11.6667)
+                        Fairness = MT.GetGaussian(82.5, 11.6667)
+                        GreedAvoidance = MT.GetGaussian(82.5, 11.6667)
+                        Modesty = MT.GetGaussian(82.5, 11.6667)
                         DTotal(2) = (Honesty + Fairness + GreedAvoidance + Modesty) / 4
                         If DTotal(2) > DTotal(1) Then
                             DTotal(1) = DTotal(2)
                             Dominant = "'Honest'"
                         End If
                     Case "Negative"
-                        Honesty = MT.GetGaussian(25, 8.33)
-                        Fairness = MT.GetGaussian(25, 8.33)
-                        GreedAvoidance = MT.GetGaussian(25, 8.33)
-                        Modesty = MT.GetGaussian(25, 8.33)
+                        Honesty = MT.GetGaussian(17.5, 11.6667)
+                        Fairness = MT.GetGaussian(17.5, 11.6667)
+                        GreedAvoidance = MT.GetGaussian(17.5, 11.6667)
+                        Modesty = MT.GetGaussian(17.5, 11.6667)
                         WTotal(2) = (Honesty + Fairness + GreedAvoidance + Modesty) / 4
                         If WTotal(2) > WTotal(1) Then
                             WTotal(1) = WTotal(2)
                             Weakest = "'Tense'"
                         End If
                     Case "Balanced"
-                        Honesty = MT.GetGaussian(50, 8.33)
-                        Fairness = MT.GetGaussian(50, 8.33)
-                        GreedAvoidance = MT.GetGaussian(50, 8.33)
-                        Modesty = MT.GetGaussian(50, 8.33)
+                        Honesty = MT.GetGaussian(50, 4.6667)
+                        Fairness = MT.GetGaussian(50, 4.6667)
+                        GreedAvoidance = MT.GetGaussian(50, 4.6667)
+                        Modesty = MT.GetGaussian(50, 4.6667)
                 End Select
             Case "Reasoning"
                 Intelligent = MT.GetGaussian(49.5, 16.5)

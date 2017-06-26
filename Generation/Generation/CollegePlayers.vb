@@ -5,11 +5,15 @@ Imports Newtonsoft.Json
 Public Class CollegePlayers
     Inherits Players
 
+
     'Public DraftDT As DataTable
     'Helper function to create draft class in JS
     Public Function CreatePlayers(ByVal numPlayers As Integer)
 
         Dim myColPlayer As New CollegePlayers
+
+        NumUnderclassmen = numPlayers * MT.GetGaussian(3.033333333, 0.343139025) 'Get the number of underclassman in this draft
+
         'Initialize the DB
         Initialize("Football", DraftDT, "DraftPlayers", GetSQLString("College"))
         'Generate a Draft Class
@@ -17,6 +21,7 @@ Public Class CollegePlayers
         'Cycle through and create the specified number of players
         For x As Integer = 1 To numPlayers
             GenDraftPlayers(x, myColPlayer, DraftDT)
+            Underclassman = False
         Next x
         'Update the DB
         Update("Football", DraftDT, "DraftPlayers")
@@ -39,12 +44,13 @@ Public Class CollegePlayers
             MyPos = GetCollegePos(playerNum, draftDT)
             draftDT.Rows(playerNum).Item("CollegePOS") = String.Format("'{0}'", MyPos)
             DraftRound = GetDraftRound(MyPos)
+            AthleticFreak = GetFreak(MyPos, DraftRound)
+
             draftDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, draftDT, DraftRound)
             PosType = GetPosType(MyPos, playerNum, draftDT)
             draftDT.Rows(playerNum).Item("PosType") = String.Format("'{0}'", PosType)
-            GenNames(draftDT, playerNum, "CollegePlayer", MyPos)
-            'GetPersonalityStats(draftDT, playerNum, xCollegePlayer)
-
+            GenNames(draftDT, playerNum, "CollegePlayer", MyPos, DraftRound)
+            If Underclassman Then draftDT.Rows(playerNum).Item("Underclassman") = 1 'sets them as an underclassman
             draftDT.Rows(playerNum).Item("TwentyYardTime") = Get20Time(MyPos)
             draftDT.Rows(playerNum).Item("TenYardTime") = Get10Time(MyPos, DraftRound)
             draftDT.Rows(playerNum).Item("ShortShuttle") = GetShortShuttle(MyPos, DraftRound)
@@ -89,6 +95,14 @@ Public Class CollegePlayers
         End Try
     End Sub
 
+    Private Function GetFreak(myPos As String, draftRound As String) As Boolean
+        Dim IsAthFreak As Double = MT.GenerateDouble(0, 100)
+
+        'Select Case Position
+
+        'End Select
+    End Function
+
     ''' <summary>
     ''' We are going to grade the players based on certain formula which will give them an "Actual Grade"
     ''' 50% Key Ratings, 25% other ratings, 25% Combnie
@@ -97,7 +111,7 @@ Public Class CollegePlayers
     Private Function GetActualGrade(playerNum As Integer, pos As String) As Single
         Dim Grade As Single
         If pos = "QB" Then ActualGrade.Combine += (DraftDT.Rows(playerNum).Item("InterviewSkills") * 2.5)
-        ActualGrade.OtherRatings = ActualGrade.OtherRatings / (OtherRatingsCount - 6)
+        ActualGrade.OtherRatings = ActualGrade.OtherRatings / (OtherRatingsCount - 4)
         Grade = (((ActualGrade.KeyRatings * 0.65) / 9.85) + ((ActualGrade.Combine * 0.2) / 4) + (ActualGrade.OtherRatings * 0.15)) / 9.25
         'Returns the grade calculated
         Return Math.Round(Grade, 2)
@@ -1715,7 +1729,7 @@ Public Class CollegePlayers
             Case "SS"
                 Select Case DraftRound
                     'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 2)
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(4.13,   #DIV/0!	), 2)
+                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(4.13, 0.152326323), 2)
                     Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.18, 0.174355958), 2)
                     Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.145, 0.137961347), 2)
                     Case "R2" : Result = Math.Round(MT.GetGaussian(4.157777778, 0.165762252), 2)
@@ -2064,7 +2078,7 @@ Public Class CollegePlayers
         'Gens strength of draft class for each position
         '---------------------------------------------------
         'Poor-3%/25-35% less 1st/2nd round talent|25-35% less mid round talent
-        'Shallow-10%/3-13% less 1st/2nd round talent|25-35% less mid round talent
+        'Shallow-10%/10-15% less 1st/2nd round talent|25-35% less mid round talent
         'LackingTopEndButDeep-10%/ 15-25% less 1st/2nd round talent|15-25% more mid round talent
         'Normal-54%/between -5 to 5% on both
         'TopHeavy-10%/ 15-25% more 1st/2nd round talent|15-25% less mid round talent
@@ -2079,23 +2093,23 @@ Public Class CollegePlayers
                     TopEnd = MT.GenerateDouble(0.65, 0.75)
                     MidRound = MT.GenerateDouble(0.65, 0.75)
                     DraftClassDesc.Add("Poor")
-                Case 3 To 8 'shallow
-                    TopEnd = MT.GenerateDouble(0.87, 0.97)
+                Case 3 To 7 'shallow
+                    TopEnd = MT.GenerateDouble(0.85, 0.9)
                     MidRound = MT.GenerateDouble(0.65, 0.75)
                     DraftClassDesc.Add("Shallow")
-                Case 9 To 15 'LackingButDeep
+                Case 8 To 15 'LackingButDeep
                     TopEnd = MT.GenerateDouble(0.75, 0.85)
                     MidRound = MT.GenerateDouble(1.15, 1.25)
                     DraftClassDesc.Add("LackingButDeep")
-                Case 16 To 86 'Normal
+                Case 16 To 85 'Normal
                     TopEnd = MT.GenerateDouble(0.95, 1.05)
                     MidRound = MT.GenerateDouble(0.95, 1.05)
                     DraftClassDesc.Add("Normal")
-                Case 87 To 92 'TopHeavy
+                Case 86 To 90 'TopHeavy
                     TopEnd = MT.GenerateDouble(1.15, 1.25)
                     MidRound = MT.GenerateDouble(0.75, 0.85)
                     DraftClassDesc.Add("TopHeavy")
-                Case 93 To 98 'Deep
+                Case 91 To 98 'Deep
                     TopEnd = MT.GenerateDouble(1.03, 1.13)
                     MidRound = MT.GenerateDouble(1.25, 1.35)
                     DraftClassDesc.Add("Deep")

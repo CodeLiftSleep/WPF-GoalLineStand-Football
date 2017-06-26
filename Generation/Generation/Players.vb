@@ -6,6 +6,8 @@
 Public MustInherit Class Players
     Inherits Person
 
+    Public Property AthleticFreak As Boolean
+
     ''' <summary>
     ''' FieldNames for players will use the same attributes, but the College Players will have additional Combine related fields as well.
     ''' </summary>
@@ -28,7 +30,7 @@ Public MustInherit Class Players
 "DLCanTakeDoubleTeam int NULL, DLFinish int NULL, DLsetUpPassRush int NULL, LBDropDepth int NULL, LBFillGaps int NULL, DBPressBailCoverage int NULL, DBRunContain int NULL, DBBump int NULL, DBBaitQB int NULL, DBCatchUpSpeed int NULL, DBTechnique int NULL," +
 "KFakeAbility int NULL, KKickRise int NULL, PFakeAbility int NULL, PDistance int NULL, PHangTime int NULL, STCoverage int NULL, STWillingness int NULL, STAssignment int NULL, STDiscipline int NULL, Flexibility int NULL, Consistency int NULL," +
 "Instincts int NULL, Coachability int NULL, Leadership int NULL, Confidence int NULL, Clutch int NULL, WorkEthic int NULL, FilmStudy int NULL, Durability int NULL, Explosion int NULL, DeliversBlow int NULL, Toughness int NULL, ReadKeys int NULL," +
-"FieldAwareness int NULL, PlaybookKnowledge int NULL, BallSecurity int NULL, LovesFootball int NULL, Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NULL, " + PersonSQLString
+"FieldAwareness int NULL, PlaybookKnowledge int NULL, BallSecurity int NULL, LovesFootball int NULL, Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NULL, Underclassman int NULL" + PersonSQLString
 
             Case "NFL"
 
@@ -54,38 +56,38 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Select Case pos
             Case "QB"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.7464, 0.195168303), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.761666667, 0.216279141), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.715454545, 0.112637794), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.829090909, 0.176207522), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.757619048, 0.119996032), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.8904, 0.200613227), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.813461538, 0.179486875), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.8253125, 0.153138865), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.838809524, 0.199697361), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.845789474, 0.149478943), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.854026124, 0.162585411), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.862262774, 0.175691879), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.886574088, 0.175691879), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.910885401, 0.175691879), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.7464, 0.195168303), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.761666667, 0.216279141), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.715454545, 0.112637794), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.829090909, 0.176207522), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.757619048, 0.119996032), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.8904, 0.200613227), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.813461538, 0.179486875), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.8253125, 0.153138865), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.838809524, 0.199697361), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.845789474, 0.149478943), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.854026124, 0.162585411), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.862262774, 0.175691879), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.886574088, 0.175691879), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.910885401, 0.175691879), 2)
                 End Select
 
             Case "RB"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.468333333, 0.088094302), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.4175, 0.110264833), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.4925, 0.07459414), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.456, 0.089053503), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.527021277, 0.085080905), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.504375, 0.097955836), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.539, 0.093549588), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.535714286, 0.087961823), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.559056604, 0.107135144), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.554237288, 0.124571035), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.581113971, 0.12123202), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.607990654, 0.117893004), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.631030607, 0.117893004), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.654070561, 0.117893004), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.468333333, 0.088094302), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.4175, 0.110264833), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.4925, 0.07459414), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.456, 0.089053503), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.527021277, 0.085080905), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.504375, 0.097955836), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.539, 0.093549588), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.535714286, 0.087961823), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.559056604, 0.107135144), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.554237288, 0.124571035), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.581113971, 0.12123202), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.607990654, 0.117893004), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.631030607, 0.117893004), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.654070561, 0.117893004), 2)
                 End Select
 
                 'Add to the Actual Grade
@@ -93,167 +95,167 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
 
             Case "FB"
                 Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 2)
-                    'Case "R1Top10" : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 2)
-                    'Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 2)
-                    'Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.705, 0.120208153), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.618, 0.047644517), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.7435, 0.154418263), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.7345, 0.096544236), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.7615, 0.145177749), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.748461538, 0.108726899), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.773675214, 0.125723788), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.798888889, 0.142720678), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.822883333, 0.142720678), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.846877778, 0.142720678), 2)
+                    'Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 2)
+                    'Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 2)
+                    'Case "R1MidFirst",3 : Result = Math.Round(MT.GetGaussian(             #REF!	,   #REF!	), 2)
+                    'Case "R1LateFirst",4 : Result = Math.Round(MT.GetGaussian(                #REF!	,   #REF!	), 2)
+                    Case "R1Top5", "R1Top10", "R1MidFirst", "R1LateFirst", "R2", 5 : Result = Math.Round(MT.GetGaussian(4.705, 0.120208153), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.618, 0.047644517), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.7435, 0.154418263), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.7345, 0.096544236), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.7615, 0.145177749), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.748461538, 0.108726899), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.773675214, 0.125723788), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.798888889, 0.142720678), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.822883333, 0.142720678), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.846877778, 0.142720678), 2)
                 End Select
 
             Case "WR"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.448181818, 0.059969689), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.435555556, 0.110412181), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.465882353, 0.095855283), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.445, 0.086688032), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.4745, 0.092966579), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.477752809, 0.096091254), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.492386364, 0.094662065), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.496447368, 0.092443914), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.504827586, 0.083134272), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.501727273, 0.102848058), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.538201035, 0.098004265), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.574674797, 0.093160471), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.597548171, 0.093160471), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.620421545, 0.093160471), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.448181818, 0.059969689), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.435555556, 0.110412181), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.465882353, 0.095855283), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.445, 0.086688032), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.4745, 0.092966579), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.477752809, 0.096091254), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.492386364, 0.094662065), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.496447368, 0.092443914), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.504827586, 0.083134272), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.501727273, 0.102848058), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.538201035, 0.098004265), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.574674797, 0.093160471), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.597548171, 0.093160471), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.620421545, 0.093160471), 2)
                 End Select
 
                 'Add to Actual Grade
                 ActualGrade.Combine += (100 - (100 * (Result - 4.24) * (100 / 61))) * 1.4
             Case "TE"
                 Select Case DraftRound
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(4.51, 0.115325626), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.635, 0.122338329), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.632666667, 0.131663351), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.732666667, 0.105795291), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.73025, 0.116233353), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.750833333, 0.137329115), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.746222222, 0.121361385), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.759069767, 0.140607762), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.806785714, 0.158333447), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.825619748, 0.145686434), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.844453782, 0.13303942), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.86867605, 0.13303942), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.892898319, 0.13303942), 2)
+                    Case "R1Top5", 1, "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.51, 0.115325626), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.635, 0.122338329), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.632666667, 0.131663351), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.732666667, 0.105795291), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.73025, 0.116233353), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.750833333, 0.137329115), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.746222222, 0.121361385), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.759069767, 0.140607762), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.806785714, 0.158333447), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.825619748, 0.145686434), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.844453782, 0.13303942), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.86867605, 0.13303942), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.892898319, 0.13303942), 2)
                 End Select
 
                 'Add to Actual Grade
                 ActualGrade.Combine += (100 - (100 * (Result - 4.37) * (100 / 74))) * 1.4
             Case "OT"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(5.078571429, 0.205533345), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(5.153636364, 0.097187728), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(5.218, 0.164974746), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(5.222105263, 0.164099528), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(5.216734694, 0.155018652), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(5.182083333, 0.154561264), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(5.243958333, 0.174523541), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(5.252, 0.144816615), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(5.235769231, 0.172084637), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(5.294264706, 0.192767095), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(5.332465686, 0.18736266), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(5.370666667, 0.181958225), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(5.39752, 0.181958225), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(5.424373333, 0.181958225), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(5.078571429, 0.205533345), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(5.153636364, 0.097187728), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(5.218, 0.164974746), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(5.222105263, 0.164099528), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(5.216734694, 0.155018652), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(5.182083333, 0.154561264), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(5.243958333, 0.174523541), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(5.252, 0.144816615), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(5.235769231, 0.172084637), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(5.294264706, 0.192767095), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(5.332465686, 0.18736266), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(5.370666667, 0.181958225), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(5.39752, 0.181958225), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(5.424373333, 0.181958225), 2)
                 End Select
 
             Case "OG"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(5.05,   #DIV/0!	), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(5.28, 0.296984848), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(5.156666667, 0.128166558), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(5.267777778, 0.130936796), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(5.204444444, 0.164908677), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(5.264, 0.179440727), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(5.284565217, 0.161006646), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(5.277254902, 0.170212555), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(5.257567568, 0.160059111), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(5.289574468, 0.167188483), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(5.336395626, 0.189117087), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(5.383216783, 0.211045691), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(5.410132867, 0.211045691), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(5.437048951, 0.211045691), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(5.05, 0.2132365323), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(5.28, 0.296984848), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(5.156666667, 0.128166558), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(5.267777778, 0.130936796), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(5.204444444, 0.164908677), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(5.264, 0.179440727), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(5.284565217, 0.161006646), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(5.277254902, 0.170212555), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(5.257567568, 0.160059111), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(5.289574468, 0.167188483), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(5.336395626, 0.189117087), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(5.383216783, 0.211045691), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(5.410132867, 0.211045691), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(5.437048951, 0.211045691), 2)
                 End Select
 
             Case "C"
                 Select Case DraftRound
-                    'Case "R1Top5" : Result = Math.Round(MT.GetGaussian(5.05, 0.0525), 2)
-                    'Case "R1Top10" : Result = Math.Round(MT.GetGaussian(5.28, 0.296984848), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(5.1425, 0.089953692), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(5.23, 0.180554701), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(5.125555556, 0.132630501), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(5.197058824, 0.147511216), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(5.241904762, 0.156895476), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(5.211, 0.140590027), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(5.211481481, 0.172039881), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(5.2336, 0.18463658), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(5.251585714, 0.184719572), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(5.269571429, 0.184802564), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(5.295919286, 0.184802564), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(5.322267143, 0.184802564), 2)
+                    'Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(5.05, 0.0525), 2)
+                    'Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(5.28, 0.296984848), 2)
+                    Case "R1Top5", "R1Top10", "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(5.1425, 0.089953692), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(5.23, 0.180554701), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(5.125555556, 0.132630501), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(5.197058824, 0.147511216), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(5.241904762, 0.156895476), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(5.211, 0.140590027), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(5.211481481, 0.172039881), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(5.2336, 0.18463658), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(5.251585714, 0.184719572), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(5.269571429, 0.184802564), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(5.295919286, 0.184802564), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(5.322267143, 0.184802564), 2)
                 End Select
 
             Case "DE"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.683076923, 0.119260542), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.801818182, 0.135264052), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.747857143, 0.111533325), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.73826087, 0.110768069), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.795818182, 0.105702078), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.790576923, 0.106502572), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.802321429, 0.143311372), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.838823529, 0.151018503), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.861428571, 0.146305143), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.849487179, 0.147189227), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.879781758, 0.137861175), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.910076336, 0.128533122), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.934626718, 0.128533122), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.959177099, 0.128533122), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.683076923, 0.119260542), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.801818182, 0.135264052), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.747857143, 0.111533325), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.73826087, 0.110768069), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.795818182, 0.105702078), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.790576923, 0.106502572), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.802321429, 0.143311372), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.838823529, 0.151018503), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.861428571, 0.146305143), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.849487179, 0.147189227), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.879781758, 0.137861175), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.910076336, 0.128533122), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.934626718, 0.128533122), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.959177099, 0.128533122), 2)
                 End Select
 
             Case "DT"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(5.045, 0.080187281), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(5.03625, 0.142822317), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(5.029583333, 0.203885713), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(5.040434783, 0.135058178), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(5.06, 0.175566311), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(5.063870968, 0.148460458), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(5.109215686, 0.148254418), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(5.134615385, 0.14730645), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(5.094310345, 0.140101618), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(5.105797101, 0.151525632), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(5.129058551, 0.159600062), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(5.15232, 0.167674493), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(5.1780816, 0.167674493), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(5.2038432, 0.167674493), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(5.045, 0.080187281), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(5.03625, 0.142822317), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(5.029583333, 0.203885713), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(5.040434783, 0.135058178), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(5.06, 0.175566311), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(5.063870968, 0.148460458), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(5.109215686, 0.148254418), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(5.134615385, 0.14730645), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(5.094310345, 0.140101618), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(5.105797101, 0.151525632), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(5.129058551, 0.159600062), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(5.15232, 0.167674493), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(5.1780816, 0.167674493), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(5.2038432, 0.167674493), 2)
                 End Select
 
             Case "OLB"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.551666667, 0.080353386), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.608571429, 0.114953407), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.632727273, 0.13209599), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.591666667, 0.090033664), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.638928571, 0.10482329), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.645576923, 0.097425959), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.66637931, 0.080081061), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.698196721, 0.117381262), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.68122807, 0.132153458), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.690655738, 0.141667085), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.719788653, 0.134616539), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.748921569, 0.127565994), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.772666176, 0.127565994), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.796410784, 0.127565994), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.551666667, 0.080353386), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.608571429, 0.114953407), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.632727273, 0.13209599), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.591666667, 0.090033664), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.638928571, 0.10482329), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.645576923, 0.097425959), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.66637931, 0.080081061), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.698196721, 0.117381262), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.68122807, 0.132153458), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.690655738, 0.141667085), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.719788653, 0.134616539), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.748921569, 0.127565994), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.772666176, 0.127565994), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.796410784, 0.127565994), 2)
                 End Select
 
                 'Add to Actual Grade
@@ -262,76 +264,76 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
             Case "ILB" : Result = Math.Round(MT.GetGaussian(4.7626, 0.1308), 2)
 
                 Select Case DraftRound
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(4.6075, 0.060759087), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.583333333, 0.064291005), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.65375, 0.082624365), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.709354839, 0.112069487), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.711111111, 0.094710922), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.738823529, 0.101317524), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.695588235, 0.111795028), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.75625, 0.11514877), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.792121212, 0.124216484), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.811113798, 0.123039609), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.830106383, 0.121862735), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.854256915, 0.121862735), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.878407447, 0.121862735), 2)
+                    Case "R1Top5", 1, "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.6075, 0.060759087), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.583333333, 0.064291005), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.65375, 0.082624365), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.709354839, 0.112069487), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.711111111, 0.094710922), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.738823529, 0.101317524), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.695588235, 0.111795028), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.75625, 0.11514877), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.792121212, 0.124216484), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.811113798, 0.123039609), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.830106383, 0.121862735), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.854256915, 0.121862735), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.878407447, 0.121862735), 2)
                 End Select
 
             Case "CB"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.395, 0.075498344), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.413076923, 0.078780773), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.424615385, 0.075854111), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.432777778, 0.059694992), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.4584, 0.076229384), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.471612903, 0.079060933), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.479240506, 0.082799916), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.499876543, 0.085095444), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.5068, 0.084775698), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.488271605, 0.084495416), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.526819626, 0.090914786), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.565367647, 0.097334156), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.588194485, 0.097334156), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.611021324, 0.097334156), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.395, 0.075498344), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.413076923, 0.078780773), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.424615385, 0.075854111), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.432777778, 0.059694992), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.4584, 0.076229384), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.471612903, 0.079060933), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.479240506, 0.082799916), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.499876543, 0.085095444), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.5068, 0.084775698), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.488271605, 0.084495416), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.526819626, 0.090914786), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.565367647, 0.097334156), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.588194485, 0.097334156), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.611021324, 0.097334156), 2)
                 End Select
 
                 'Add to Actual Grade
                 ActualGrade.Combine += (100 - (100 * (Result - 4.25) * (100 / 70))) * 1.4
             Case "SS"
                 Select Case DraftRound
-                    Case "R1Top5", "R1Top10" : Result = Math.Round(MT.GetGaussian(4.474, 0.097877474), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.521666667, 0.097450842), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.491428571, 0.045981363), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.507307692, 0.079627015), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.563684211, 0.068085773), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.538076923, 0.06864513), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.577857143, 0.084737378), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.556086957, 0.064012721), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.574117647, 0.091919518), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.600483481, 0.096208285), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.626849315, 0.100497052), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.649983562, 0.100497052), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.673117808, 0.100497052), 2)
+                    Case "R1Top5", 1, "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.474, 0.097877474), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.521666667, 0.097450842), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.491428571, 0.045981363), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.507307692, 0.079627015), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.563684211, 0.068085773), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.538076923, 0.06864513), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.577857143, 0.084737378), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.556086957, 0.064012721), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.574117647, 0.091919518), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.600483481, 0.096208285), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.626849315, 0.100497052), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.649983562, 0.100497052), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.673117808, 0.100497052), 2)
 
                 End Select
                 'Add to Actual Grade
                 ActualGrade.Combine += (100 - (100 * (Result - 4.31) * (100 / 65))) * 1.4
             Case "FS"
                 Select Case DraftRound
-                    Case "R1Top5" : Result = Math.Round(MT.GetGaussian(4.455, 0.077781746), 2)
-                    Case "R1Top10" : Result = Math.Round(MT.GetGaussian(4.4, 0.05), 2)
-                    Case "R1MidFirst" : Result = Math.Round(MT.GetGaussian(4.514, 0.085615419), 2)
-                    Case "R1LateFirst" : Result = Math.Round(MT.GetGaussian(4.506666667, 0.053541261), 2)
-                    Case "R2" : Result = Math.Round(MT.GetGaussian(4.534333333, 0.091111275), 2)
-                    Case "R3" : Result = Math.Round(MT.GetGaussian(4.515769231, 0.089807486), 2)
-                    Case "R4" : Result = Math.Round(MT.GetGaussian(4.535526316, 0.071949583), 2)
-                    Case "R5" : Result = Math.Round(MT.GetGaussian(4.5459375, 0.084733334), 2)
-                    Case "R6" : Result = Math.Round(MT.GetGaussian(4.560714286, 0.084662684), 2)
-                    Case "R7" : Result = Math.Round(MT.GetGaussian(4.581153846, 0.084300744), 2)
-                    Case "PUFA" : Result = Math.Round(MT.GetGaussian(4.602222493, 0.096680542), 2)
-                    Case "LUFA" : Result = Math.Round(MT.GetGaussian(4.623291139, 0.10906034), 2)
-                    Case "PracSquad" : Result = Math.Round(MT.GetGaussian(4.646407595, 0.10906034), 2)
-                    Case "Reject" : Result = Math.Round(MT.GetGaussian(4.669524051, 0.10906034), 2)
+                    Case "R1Top5", 1 : Result = Math.Round(MT.GetGaussian(4.455, 0.077781746), 2)
+                    Case "R1Top10", 2 : Result = Math.Round(MT.GetGaussian(4.4, 0.05), 2)
+                    Case "R1MidFirst", 3 : Result = Math.Round(MT.GetGaussian(4.514, 0.085615419), 2)
+                    Case "R1LateFirst", 4 : Result = Math.Round(MT.GetGaussian(4.506666667, 0.053541261), 2)
+                    Case "R2", 5 : Result = Math.Round(MT.GetGaussian(4.534333333, 0.091111275), 2)
+                    Case "R3", 6 : Result = Math.Round(MT.GetGaussian(4.515769231, 0.089807486), 2)
+                    Case "R4", 7 : Result = Math.Round(MT.GetGaussian(4.535526316, 0.071949583), 2)
+                    Case "R5", 8 : Result = Math.Round(MT.GetGaussian(4.5459375, 0.084733334), 2)
+                    Case "R6", 9 : Result = Math.Round(MT.GetGaussian(4.560714286, 0.084662684), 2)
+                    Case "R7", 10 : Result = Math.Round(MT.GetGaussian(4.581153846, 0.084300744), 2)
+                    Case "PUFA", 11 : Result = Math.Round(MT.GetGaussian(4.602222493, 0.096680542), 2)
+                    Case "LUFA", 12 : Result = Math.Round(MT.GetGaussian(4.623291139, 0.10906034), 2)
+                    Case "PracSquad", 13 : Result = Math.Round(MT.GetGaussian(4.646407595, 0.10906034), 2)
+                    Case "Reject", 14 : Result = Math.Round(MT.GetGaussian(4.669524051, 0.10906034), 2)
                 End Select
 
                 'Add to Actual Grade
@@ -354,40 +356,24 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Dim GetRareUsed As New List(Of String)
 
         Select Case MT.GenerateDouble(0, 100)
-            Case 0 To 5.186
-                Result = "QB"
-            Case 5.187 To 12.102
-                Result = "RB"
-            Case 12.103 To 14.209
-                Result = "FB"
-            Case 14.21 To 24.743
-                Result = "WR"
-            Case 24.744 To 30.956
-                Result = "TE"
-            Case 30.957 To 35.764
-                Result = "C"
-            Case 35.765 To 41.167
-                Result = "OG"
-            Case 41.168 To 48.892
-                Result = "OT"
-            Case 48.893 To 57.266
-                Result = "DE"
-            Case 57.267 To 65.37
-                Result = "DT"
-            Case 65.371 To 74.029
-                Result = "OLB"
-            Case 74.03 To 78.23
-                Result = "ILB"
-            Case 78.231 To 83.581
-                Result = "FS"
-            Case 83.582 To 88.763
-                Result = "SS"
-            Case 88.764 To 96.218
-                Result = "CB"
-            Case 96.219 To 98.217
-                Result = "K"
-            Case Else
-                Result = "P"
+            Case 0 To 5.64287 : Result = "QB"
+            Case 5.64387 To 14.17452 : Result = "RB"
+            Case 14.17552 To 16.25505 : Result = "FB"
+            Case 16.25605 To 29.05254 : Result = "WR"
+            Case 29.05354 To 34.93489 : Result = "TE"
+            Case 34.93589 To 37.92845 : Result = "OC"
+            Case 37.92945 To 44.08023 : Result = "OG"
+            Case 44.08123 To 51.74375 : Result = "OT"
+            Case 51.74475 To 52.44724 : Result = "K"
+            Case 52.44824 To 53.31537 : Result = "P"
+            Case 53.31637 To 61.65245 : Result = "DE"
+            Case 61.65345 To 69.48062 : Result = "DT"
+            Case 69.48162 To 73.95599 : Result = "ILB"
+            Case 73.95699 To 81.395 : Result = "OLB"
+            Case 81.396 To 91.88744 : Result = "CB"
+            Case 91.88844 To 96.21314 : Result = "FS"
+            Case 96.21414 To 99.9 : Result = "SS"
+            Case Else : Result = "LS"
         End Select
 
         GetNevUsed = GetNeverUsed(Result)
@@ -869,7 +855,7 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Select Case draftRound
             Case "R1Top5"
                 TimeValue = 0
-            Case "R1Top10"
+            Case "R1Top10", 2
                 TimeValue = 1
             Case "R1MidFirst"
                 TimeValue = 2
@@ -900,7 +886,7 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
             RatingsDecay = GetRatingsDecay(ratingsStartPoint, ratingsAtTimeT, timeT)
 
             For i As Integer = 0 To KeyRatingsList.Count - 1 'runs through the attribute key attribute list and aplpies the proper ratings based on round the player is generated for
-                Rating = CInt(ratingsStartPoint * ((1 + RatingsDecay) ^ TimeValue) + MT.GenerateInt32(-10, 10))
+                Rating = CInt(ratingsStartPoint * ((1 + RatingsDecay) ^ TimeValue) + MT.GenerateInt32(-5, 5))
                 dt.Rows(idNum).Item(String.Format("{0}", KeyRatingsList(i))) = Rating
                 'Add the Key Rating to the KeyRatings grade total
                 ActualGrade.KeyRatings += Rating
@@ -1962,12 +1948,6 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
             Next i
         End If
 
-        If dt.Rows(idNum).Item("PlaySpeed") > 100 Then
-            dt.Rows(idNum).Item("FortyYardTime") = 4.3
-        Else
-            dt.Rows(idNum).Item("FortyYardTime") = Math.Round(((100 - dt.Rows(idNum).Item("PlaySpeed")) / 83.3333) + 4.3, 2)
-        End If
-
         If Balanced.Count <> 0 Then
             For i As Integer = 0 To Balanced.Count - 1
                 'Update the ratings again
@@ -1984,8 +1964,15 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Dim GetNum As Integer = MT.GenerateInt32(1, 100)
         Select Case pos
             Case "QB" 'Gets the type of QB this player will be---stats will be generated within the framework set up for each subtype
-                If dt.Rows(idNum).Item("FortyYardTime") < 4.65 Then
-                    Result = "Mobile"
+                If dt.Rows(idNum).Item("FortyYardTime") < 4.65 Then 'There is a 50% chance this will be a "Mobile QB"
+                    Select Case GetNum
+                        Case < 50 : Result = "Mobile"
+                        Case 51 To 60 : Result = "StrongArm"
+                        Case 61 To 70 : Result = "WestCoast"
+                        Case 71 To 80 : Result = "Balanced"
+                        Case 81 To 90 : Result = "Field General"
+                        Case Else : Result = "PocketPasser"
+                    End Select
                 Else
                     Select Case GetNum
                         Case 1 To 10

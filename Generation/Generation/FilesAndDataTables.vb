@@ -30,6 +30,10 @@ Public Module FilesAndDataTables
     Public ReadLName As StreamReader = New StreamReader(filepath + "LName.txt")
     Public ReadCollege As StreamReader = New StreamReader(filepath + "Colleges.txt")
     Public MyAgent As AgentType
+    Public NumUnderclassmen As Integer
+    Public TotalUCNum As Integer
+    Public AthFreak As Boolean
+    Public Underclassman As Boolean
     Public Enum PersonType
         Owner = 1
         Personnel = 2

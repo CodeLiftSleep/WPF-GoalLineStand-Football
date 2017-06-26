@@ -70,6 +70,7 @@ Public Class NFLPlayers
         Next i
 
     End Sub
+
     Public Sub GetRosterPlayers(ByVal playerNum As Integer, ByVal xNFLPlayer As NFLPlayers, ByVal playerDT As DataTable)
 
         xNFLPlayer = New NFLPlayers
@@ -83,7 +84,7 @@ Public Class NFLPlayers
             'GetPersonalityStats()
             playerDT.Rows(playerNum).Item("AgentID") = 0
             playerDT.Rows(playerNum).Item("TeamID") = 0
-            playerDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, playerDT)
+            playerDT.Rows(playerNum).Item("FortyYardTime") = Get40Time(MyPos, playerNum, playerDT, DraftRound:=MT.GenerateInt32(1, 11))
             playerDT.Rows(playerNum).Item("RETKickReturn") = GetKickRetAbility(MyPos, playerNum)
             playerDT.Rows(playerNum).Item("RETPuntReturn") = GetPuntRetAbility(MyPos, playerNum, playerDT)
             GetSTAbility(MyPos, playerNum, playerDT)
@@ -106,6 +107,7 @@ Public Class NFLPlayers
             Console.WriteLine(ex.Data)
         End Try
     End Sub
+
 End Class
 
 ''' <summary>
