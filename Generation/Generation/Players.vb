@@ -1990,7 +1990,15 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
 
             Case "RB"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.47 Then
-                    Result = "SpeedBack"
+                    Select Case GetNum
+                        Case < 50 : Result = "SpeedBack"
+                        Case 51 To 60 : Result = "Balanced"
+                        Case 61 To 70 : Result = "PowerBack"
+                        Case 71 To 80 : Result = "Receiving"
+                        Case 81 To 90 : Result = "One Cut"
+                        Case 91 To 100 : Result = "Scat Back"
+                    End Select
+
                 Else
                     Select Case GetNum
                         Case 1 To 40
@@ -2013,34 +2021,58 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
                         Result = "Receiving"
                 End Select
             Case "WR"
-                If dt.Rows(idNum).Item("FortyYardTime") < 4.47 Then
-                    Result = "Speed"
-                Else
+                If dt.Rows(idNum).Item("FortyYardTime") < 4.47 Then 'Cannot be a possession receiver
+                    If dt.Rows(idNum).Item("Height") < 71 And dt.Rows(idNum).Item("Weight") < 186 Then 'Slot receiver type
+                        Select Case GetNum
+                            Case < 50 : Result = "Slot"
+                            Case 51 To 80 : Result = "Speed"
+                            Case 81 To 90 : Result = "Balanced"
+                            Case 91 To 100 : Result = "Polished"
+                        End Select
+                    Else
+                        Select Case GetNum 'Still can be a slot receiver but just a lower chance
+                            Case < 50 : Result = "Speed"
+                            Case 51 To 70 : Result = "Balanced"
+                            Case 71 To 85 : Result = "Polished"
+                            Case Else : Result = "Slot"
+                        End Select
+                    End If
+                ElseIf dt.Rows(idNum).Item("Height") > 74 And dt.Rows(idNum).Item("Weight") > 199 Then 'Higher chance to be an RZ Threat as a big bodied receiver
                     Select Case GetNum
-                        Case 1 To 44
-                            Result = "Balanced"
-                        Case 46 To 65
-                            Result = "Possession"
-                        Case 66 To 85
-                            Result = "Polished"
-                        Case Else
-                            Result = "RZThreat"
+                        Case 1 To 50 : Result = "RZThreat"
+                        Case 51 To 65 : Result = "Balanced"
+                        Case 66 To 80 : Result = "Possession"
+                        Case 81 To 94 : Result = "Polished"
+                        Case Else : Result = "Slot" 'lower chance to be a slot receiver
+                    End Select
+                Else 'Can't be a RZThreat
+                    Select Case GetNum
+                        Case 1 To 30 : Result = "Balanced"
+                        Case 31 To 60 : Result = "Possession"
+                        Case 61 To 90 : Result = "Polished"
+                        Case Else : Result = "Slot" 'lower chance to be a slot receiver
                     End Select
                 End If
 
             Case "TE"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.61 Then
-                    Result = "VerticalThreat"
+                    Select Case GetNum
+                        Case < 50 : Result = "VerticalThreat"
+                        Case 51 To 65 : Result = "Balanced"
+                        Case 66 To 80 : Result = "Hybrid"
+                        Case Else : Result = "Receiving"
+                    End Select
+                ElseIf dt.Rows(idNum).Item("FortyYardTime") > 4.74 And dt.Rows(idNum).Item("Weight") > 259 Then
+                    Select Case GetNum
+                        Case < 75 : Result = "Blocking"
+                        Case Else : Result = "Hybrid" 'HBack Type TE
+                    End Select
                 Else
                     Select Case GetNum
-                        Case 1 To 40
-                            Result = "Balanced"
-                        Case 41 To 60
-                            Result = "Blocking"
-                        Case 61 To 80
-                            Result = "Hybrid" 'HBack Type TE
-                        Case Else
-                            Result = "Receiving"
+                        Case 1 To 40 : Result = "Balanced"
+                        Case 41 To 65 : Result = "Blocking"
+                        Case 66 To 74 : Result = "Hybrid"
+                        Case Else : Result = "Receiving"
                     End Select
                 End If
 
