@@ -247,7 +247,7 @@ Public MustInherit Class Person
     ''' <param name="Row"></param>
     ''' <param name="PersonType"></param>
     ''' <param name="Position"></param>
-    Public Shared Sub GenNames(ByRef dtOutputTo As DataTable, ByVal row As Integer, ByVal personType As String, NumUC As Integer, Optional ByVal position As String = "", Optional ByVal DraftRound As String = "")
+    Public Shared Sub GenNames(ByRef dtOutputTo As DataTable, ByVal row As Integer, ByVal personType As String, Optional ByVal position As String = "", Optional ByVal DraftRound As String = "")
 
         Dim MyCollege As New KeyValuePair(Of String, String)
         MyCollege = GetCollege(Colleges, dtOutputTo)
@@ -1145,6 +1145,29 @@ Public MustInherit Class Person
                 Result = MT.GetGaussian(70, 3)
         End Select
         Return Result
+    End Function
+
+    ''' <summary>
+    ''' We are going to use this to lookup values in the number Array and return values in the lookupArray.  For instance if we have the following arrays:
+    ''' numArray = New {10, 20, 30, 40, 100} and lookupArray = New {"QB", "RB", "WR", "TE", "CB"}
+    ''' A number is generated and checked against the index values of the number array---these are the BOUNDARY numbers, Ie, the first index means 0-9.99999999.  10 is the start of the next index.  So we then check
+    ''' if the value is less thn each index.  As soon as it is, we have the boundary value.  We take this index and then pull the corresponding value from the lookupArray index.  For Example:
+    ''' Random # is generated of 28.75, which is between 20 and 30.  It looks through the supplied indexes, and locates the first one where the value is less than the index value.  In this case it would be index 2,
+    ''' with a value of 30---then it looks up the corresponding value in the supplied lookup index to return the proper position---in this case "WR".  
+    ''' </summary>
+    ''' <param name="numArray"></param>
+    ''' <param name="lookupArray"></param>
+    ''' <param name="minVal"></param>
+    ''' <param name="maxval"></param>
+    ''' <returns></returns>
+    Public Shared Function CaseLookup(numArray As Array, lookupArray As Array, minVal As Double, maxval As Double) As String
+        Dim result As String = ""
+        Dim GetNum As Double = MT.GenerateDouble(minVal, maxval)
+
+        For i = 0 To numArray.Length - 1
+            If GetNum < numArray(i) Then result = lookupArray(i)
+        Next i
+        Return result
     End Function
 
     ''' <summary>

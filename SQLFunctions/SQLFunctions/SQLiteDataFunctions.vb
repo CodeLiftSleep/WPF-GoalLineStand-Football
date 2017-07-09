@@ -101,7 +101,6 @@ Public Class SQLiteDataFunctions
     '''     This will Keep the Actual Table, but simply Delete all the records in it
     ''' </summary>
     ''' <param name="dbName"></param>
-    ''' <param name="dt"></param>
     ''' <param name="tableName"></param>
     Public Sub DeleteTable(dbName As String, tableName As String,
                            Optional ByVal MyFilePath As String = "")

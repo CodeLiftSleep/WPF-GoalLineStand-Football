@@ -303,7 +303,7 @@ Public Class GamePlay
                             LGCount += 1
                         Else RGCount += 1
                         End If
-                    Case "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
+                    Case "OC", "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
                         CCount += 1
                     Case "DE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DE{DECount + 1}"
                         DECount += 1
@@ -368,7 +368,7 @@ Public Class GamePlay
                             LGCount += 1
                         Else RGCount += 1
                         End If
-                    Case "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
+                    Case "OC", "C" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"C{CCount + 1}"
                         CCount += 1
                     Case "DE" : Stats.Rows.Find(row.Item("PlayerId")).Item("DepthChart") = $"DE{DECount + 1}"
                         DECount += 1

@@ -15,7 +15,7 @@ RelTeam25 int NULL, RelTeam26 int NULL, RelTeam27 int NULL, RelTEam28 int NULL, 
         PersonalityModel(agentDT, agentNum, xAgent)
         agentDT.Rows.Add(agentNum)
 
-        GenNames(agentDT, agentNum, "Agent")
+        GenNames(agentDT, agentNum, "Agent", 0)
         'GetPersonalityStats()
 
         agentDT.Rows(agentNum).Item("Experience") = MT.GenerateInt32(0, (agentDT.Rows(agentNum).Item("Age") - 24))

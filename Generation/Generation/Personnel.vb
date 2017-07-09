@@ -46,7 +46,7 @@ DevLB int NULL, DevCB int NULL, DevSF int NULL, LowerBodyTrain int NULL, UpperBo
             personnelDT.Rows.Add(personnelNum)
             MyOPhil = GetOffPhil()
             MyDPhil = GetDefPhil()
-            GenNames(personnelDT, personnelNum, "Personnel")
+            GenNames(personnelDT, personnelNum, "Personnel", 0)
             'GetPersonalityStats(personnelDT, personnelNum, xPersonnel)
             personnelDT.Rows(personnelNum).Item("PersonnelType") = GetPersonnelType(personnelDT.Rows(personnelNum).Item("Age"))
             personnelDT.Rows(personnelNum).Item("OrganizationalPower") = GetOrgPower(personnelDT.Rows(personnelNum).Item("PersonnelType"))

@@ -11,7 +11,7 @@ TreatHipInj int NULL, TreatQuadInj int NULL, TreatHamstringInj int NULL, TreatCa
         xTrainer = New Trainer
         PersonalityModel(trainerDT, trainerNum, xTrainer)
         trainerDT.Rows.Add(trainerNum)
-        GenNames(trainerDT, trainerNum, "Trainer")
+        GenNames(trainerDT, trainerNum, "Trainer", 0)
         trainerDT.Rows(trainerNum).Item("Experience") = MT.GenerateInt32(0, (trainerDT.Rows(trainerNum).Item("Age") - 22))
         'GetPersonalityStats()
         trainerDT.Rows(trainerNum).Item("TrainerType") = String.Format("'{0}'", GetTrainerType())

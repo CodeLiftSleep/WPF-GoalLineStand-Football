@@ -16,7 +16,7 @@
         xOwner = New Owner
         PersonalityModel(ownerDT, ownerNum, xOwner)
         ownerDT.Rows.Add(ownerNum)
-        GenNames(ownerDT, ownerNum, "Owner") 'Gets first and last name, college, Age, DOB, Height and Weight
+        GenNames(ownerDT, ownerNum, "Owner", 0) 'Gets first and last name, college, Age, DOB, Height and Weight
         'GetPersonalityStats()
 
         ownerDT.Rows(ownerNum).Item("TeamID") = 0

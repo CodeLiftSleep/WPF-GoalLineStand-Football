@@ -11,7 +11,7 @@
         PersonalityModel(coachDT, coachNum, xCoach)
         ' For i As Integer = 0 To NumCoaches
         coachDT.Rows.Add(coachNum)
-        GenNames(coachDT, coachNum, "Coach") 'Gets Name, College, Age, Experience, Height and Weight for Coaches
+        GenNames(coachDT, coachNum, "Coach", 0) 'Gets Name, College, Age, Experience, Height and Weight for Coaches
         'GetPersonalityStats() 'Gets Personality Stats for the coaches
         Try
 
