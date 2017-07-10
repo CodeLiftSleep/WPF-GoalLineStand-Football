@@ -56,27 +56,27 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
 
         If freak.Contains(1) Then
             Select Case pos
-                Case "QB" : CaseLookup({6, 11, 16, 21, 26, 40, 50, 60, 70, 100.1}, {4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54, 4.55, 4.56}, 0, 100)
-                Case "RB" : CaseLookup({1.613, 3.226, 6.452, 8.065, 9.677, 11.29, 12.903, 14.516, 16.129, 22.379, 38.508, 41.734, 48.185, 77.218, 100.1}, {4.24, 4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34, 4.35, 4.36,
-                                       4.37, 4.38}, 0, 100)
-                Case "FB" : CaseLookup({2.5, 5, 7.5, 10, 15, 20, 25, 30, 35, 50, 60, 70, 100.1}, {4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54, 4.55, 4.56, 4.57, 4.58, 4.59}, 0, 100)
-                Case "WR" : CaseLookup({2.273, 4.545, 6.818, 9.091, 11.364, 13.636, 18.182, 22.727, 29.545, 43.182, 56.818, 70.455, 100.1}, {4.22, 14.23, 4.24, 4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34}, 0, 100)
-                Case "TE" : CaseLookup({2.273, 4.545, 6.818, 9.091, 11.364, 13.636, 15.909, 18.182, 20.455, 22.727, 27.273, 31.818, 40.909, 50, 68.182, 77.273, 100.1}, {4.37, 4.38, 4.39, 4.4, 4.41, 4.42, 4.43, 4.44, 4.45, 4.46,
-                                       4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53}, 0, 100)
-                Case "OT" : CaseLookup({1.786, 3.571, 5.357, 7.143, 8.929, 10.714, 12.5, 14.286, 16.071, 17.857, 19.643, 21.429, 23.214, 25, 26.786, 28.571, 30.357, 32.143, 33.929, 35.714, 37.5, 44.643, 55.357, 69.643, 83.929,
-                                       100.1}, {4.71, 4.72, 4.73, 4.74, 4.75, 4.76, 4.77, 4.78, 4.79, 4.8, 4.81, 4.82, 4.83, 4.84, 4.85, 4.86, 4.87, 4.88, 4.89, 4.9, 4.91, 4.92, 4.93, 4.94, 4.95, 4.96}, 0, 100)
+                Case "QB" : Result = CDbl(CaseLookup({6, 11, 16, 21, 26, 40, 50, 60, 70, 100.1}, {4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54, 4.55, 4.56}, 0, 100))
+                Case "RB" : Result = CDbl(CaseLookup({1.613, 3.226, 6.452, 8.065, 9.677, 11.29, 12.903, 14.516, 16.129, 22.379, 38.508, 41.734, 48.185, 77.218, 100.1}, {4.24, 4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34, 4.35, 4.36,
+                                       4.37, 4.38}, 0, 100))
+                Case "FB" : Result = CDbl(CaseLookup({2.5, 5, 7.5, 10, 15, 20, 25, 30, 35, 50, 60, 70, 100.1}, {4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54, 4.55, 4.56, 4.57, 4.58, 4.59}, 0, 100))
+                Case "WR" : Result = CDbl(CaseLookup({2.273, 4.545, 6.818, 9.091, 11.364, 13.636, 18.182, 22.727, 29.545, 43.182, 56.818, 70.455, 100.1}, {4.22, 14.23, 4.24, 4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34}, 0, 100))
+                Case "TE" : Result = CDbl(CaseLookup({2.273, 4.545, 6.818, 9.091, 11.364, 13.636, 15.909, 18.182, 20.455, 22.727, 27.273, 31.818, 40.909, 50, 68.182, 77.273, 100.1}, {4.37, 4.38, 4.39, 4.4, 4.41, 4.42, 4.43, 4.44, 4.45, 4.46,
+                                       4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53}, 0, 100))
+                Case "OT" : Result = CDbl(CaseLookup({1.786, 3.571, 5.357, 7.143, 8.929, 10.714, 12.5, 14.286, 16.071, 17.857, 19.643, 21.429, 23.214, 25, 26.786, 28.571, 30.357, 32.143, 33.929, 35.714, 37.5, 44.643, 55.357, 69.643, 83.929,
+                                       100.1}, {4.71, 4.72, 4.73, 4.74, 4.75, 4.76, 4.77, 4.78, 4.79, 4.8, 4.81, 4.82, 4.83, 4.84, 4.85, 4.86, 4.87, 4.88, 4.89, 4.9, 4.91, 4.92, 4.93, 4.94, 4.95, 4.96}, 0, 100))
                 Case "OC", "C" : Result = Math.Round(MT.GetGaussian(4.87, 0.026667), 2) 'not enough centers making this group to make any type of predictions basd on data...very spread out
                 Case "OG" : Result = Math.Round(MT.GetGaussian(4.885, 0.04166667), 2) 'same as for centers
-                Case "DE" : Result = CaseLookup({1.2, 2.4, 3.6, 4.8, 6, 7.2, 8.623, 10.347, 12.071, 13.795, 24.14, 27.589, 34.485, 41.382, 51.726, 62.071, 72.416, 93.106, 100.1}, {4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5,
-                                                4.51, 4.52, 4.53, 4.54, 4.55, 4.56, 4.57, 4.58, 4.59, 4.6, 4.61}, 0, 100)
-                Case "DT" : Result = CaseLookup({1.667, 3.333, 5, 6.667, 8.333, 10, 11.667, 15, 16.667, 18.333, 20, 33.333, 36.667, 43.333, 53.333, 66.667, 86.667, 100.1}, {4.68, 4.69, 4.7, 4.71, 4.72, 4.73, 4.74, 4.75,
-                                                4.76, 4.77, 4.78, 4.79, 4.8, 4.81, 4.82, 4.83, 4.84, 4.85}, 0, 100)
-                Case "OLB" : Result = CaseLookup({1.563, 3.125, 6.25, 9.375, 18.75, 25, 31.25, 37.5, 43.75, 59.375, 62.5, 71.875, 100.1}, {4.38, 4.39, 4.4, 4.41, 4.42, 4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5}, 0, 100)
-                Case "ILB" : Result = CaseLookup({1.471, 2.941, 4.412, 5.882, 7.353, 13.235, 19.118, 25, 30.882, 41.177, 47.06, 58.824, 70.589, 76.47, 100.1}, {4.42, 4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54,
-                                                 4.55, 4.56}, 0, 100)
-                Case "CB" : Result = CaseLookup({2.564, 5.128, 7.692, 10.256, 15.385, 20.513, 38.462, 56.41, 69.24, 100.1}, {4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34}, 0, 100)
-                Case "FS" : Result = CaseLookup({2.941, 5.882, 11.765, 17.647, 23.529, 35.294, 47.059, 58.824, 82.353, 100.1}, {4.31, 4.32, 4.33, 4.34, 4.35, 4.36, 4.37, 4.38, 4.39, 4.4}, 0, 100)
-                Case "SS" : Result = CaseLookup({6.667, 13.333, 20, 26.667, 33.333, 40, 60, 73.333, 100.1}, {4.34, 4.35, 4.36, 4.37, 4.38, 4.39, 4.4, 4.41, 4.42}, 0, 100)
+                Case "DE" : Result = CDbl(CaseLookup({1.2, 2.4, 3.6, 4.8, 6, 7.2, 8.623, 10.347, 12.071, 13.795, 24.14, 27.589, 34.485, 41.382, 51.726, 62.071, 72.416, 93.106, 100.1}, {4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5,
+                                                4.51, 4.52, 4.53, 4.54, 4.55, 4.56, 4.57, 4.58, 4.59, 4.6, 4.61}, 0, 100))
+                Case "DT" : Result = CDbl(CaseLookup({1.667, 3.333, 5, 6.667, 8.333, 10, 11.667, 15, 16.667, 18.333, 20, 33.333, 36.667, 43.333, 53.333, 66.667, 86.667, 100.1}, {4.68, 4.69, 4.7, 4.71, 4.72, 4.73, 4.74, 4.75,
+                                                4.76, 4.77, 4.78, 4.79, 4.8, 4.81, 4.82, 4.83, 4.84, 4.85}, 0, 100))
+                Case "OLB" : Result = CDbl(CaseLookup({1.563, 3.125, 6.25, 9.375, 18.75, 25, 31.25, 37.5, 43.75, 59.375, 62.5, 71.875, 100.1}, {4.38, 4.39, 4.4, 4.41, 4.42, 4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5}, 0, 100))
+                Case "ILB" : Result = CDbl(CaseLookup({1.471, 2.941, 4.412, 5.882, 7.353, 13.235, 19.118, 25, 30.882, 41.177, 47.06, 58.824, 70.589, 76.47, 100.1}, {4.42, 4.43, 4.44, 4.45, 4.46, 4.47, 4.48, 4.49, 4.5, 4.51, 4.52, 4.53, 4.54,
+                                                 4.55, 4.56}, 0, 100))
+                Case "CB" : Result = CDbl(CaseLookup({2.564, 5.128, 7.692, 10.256, 15.385, 20.513, 38.462, 56.41, 69.24, 100.1}, {4.25, 4.26, 4.27, 4.28, 4.29, 4.3, 4.31, 4.32, 4.33, 4.34}, 0, 100))
+                Case "FS" : Result = CDbl(CaseLookup({2.941, 5.882, 11.765, 17.647, 23.529, 35.294, 47.059, 58.824, 82.353, 100.1}, {4.31, 4.32, 4.33, 4.34, 4.35, 4.36, 4.37, 4.38, 4.39, 4.4}, 0, 100))
+                Case "SS" : Result = CDbl(CaseLookup({6.667, 13.333, 20, 26.667, 33.333, 40, 60, 73.333, 100.1}, {4.34, 4.35, 4.36, 4.37, 4.38, 4.39, 4.4, 4.41, 4.42}, 0, 100))
             End Select
         Else
             Select Case pos
@@ -1959,219 +1959,84 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
         Select Case pos
             Case "QB" 'Gets the type of QB this player will be---stats will be generated within the framework set up for each subtype
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.65 Then 'There is a 50% chance this will be a "Mobile QB"
-                    Select Case GetNum
-                        Case < 50 : Result = "Mobile"
-                        Case 51 To 60 : Result = "StrongArm"
-                        Case 61 To 70 : Result = "WestCoast"
-                        Case 71 To 80 : Result = "Balanced"
-                        Case 81 To 90 : Result = "Field General"
-                        Case Else : Result = "PocketPasser"
-                    End Select
+                    Result = CaseLookup({51, 61, 71, 81, 91, 101}, {"Mobile", "StrongArm", "WestCoast", "Balanced", "FieldGeneral", "PocketPasser"}, 0, 100)
                 Else
-                    Select Case GetNum
-                        Case 1 To 10
-                            Result = "StrongArm"
-                        Case 11 To 30
-                            Result = "WestCoast"
-                        Case 31 To 40
-                            Result = "FieldGeneral"
-                        Case 41 To 84
-                            Result = "Balanced"
-                        Case Else
-                            Result = "PocketPasser"
-                    End Select
+                    Result = CaseLookup({11, 31, 41, 85, 101}, {"StrongArm", "WestCoast", "FieldGeneral", "Balanced", "PocketPasser"}, 0, 100)
                 End If
-
             Case "RB"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.47 Then
-                    Select Case GetNum
-                        Case < 50 : Result = "SpeedBack"
-                        Case 51 To 60 : Result = "Balanced"
-                        Case 61 To 70 : Result = "PowerBack"
-                        Case 71 To 80 : Result = "Receiving"
-                        Case 81 To 90 : Result = "One Cut"
-                        Case 91 To 100 : Result = "Scat Back"
-                    End Select
-
+                    Result = CaseLookup({51, 61, 71, 81, 91, 101}, {"Speedback", "Balanced", "PowerBack", "Receiving", "OneCut", "ScatBack"}, 0, 100)
                 Else
-                    Select Case GetNum
-                        Case 1 To 40
-                            Result = "Balanced"
-                        Case 41 To 58
-                            Result = "PowerBack"
-                        Case 59 To 79
-                            Result = "Receiving"
-                        Case Else
-                            Result = "OneCut"
-                    End Select
+                    Result = CaseLookup({41, 59, 80, 101}, {"Balanced", "PowerBack", "Receiving", "OneCut"}, 0, 100)
                 End If
-            Case "FB"
-                Select Case GetNum
-                    Case 1 To 40
-                        Result = "BatteringRam"
-                    Case 41 To 85
-                        Result = "Balanced"
-                    Case Else
-                        Result = "Receiving"
-                End Select
+            Case "FB" : Result = CaseLookup({41, 86, 101}, {"BatteringRam", "Balanced", "Receiving"}, 0, 100)
             Case "WR"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.47 Then 'Cannot be a possession receiver
                     If dt.Rows(idNum).Item("Height") < 71 And dt.Rows(idNum).Item("Weight") < 186 Then 'Slot receiver type
-                        Select Case GetNum
-                            Case < 50 : Result = "Slot"
-                            Case 51 To 80 : Result = "Speed"
-                            Case 81 To 90 : Result = "Balanced"
-                            Case 91 To 100 : Result = "Polished"
-                        End Select
+                        Result = CaseLookup({51, 81, 91, 101}, {"Slot", "Speed", "Balanced", "Polished"}, 0, 100)
                     Else
-                        Select Case GetNum 'Still can be a slot receiver but just a lower chance
-                            Case < 50 : Result = "Speed"
-                            Case 51 To 70 : Result = "Balanced"
-                            Case 71 To 85 : Result = "Polished"
-                            Case Else : Result = "Slot"
-                        End Select
+                        Result = CaseLookup({51, 71, 86, 101}, {"Speed", "Balanced", "Polished", "Slot"}, 0, 100)
                     End If
                 ElseIf dt.Rows(idNum).Item("Height") > 74 And dt.Rows(idNum).Item("Weight") > 199 Then 'Higher chance to be an RZ Threat as a big bodied receiver
-                    Select Case GetNum
-                        Case 1 To 50 : Result = "RZThreat"
-                        Case 51 To 65 : Result = "Balanced"
-                        Case 66 To 80 : Result = "Possession"
-                        Case 81 To 94 : Result = "Polished"
-                        Case Else : Result = "Slot" 'lower chance to be a slot receiver
-                    End Select
+                    Result = CaseLookup({51, 66, 81, 95, 101}, {"RZThreat", "Balanced", "Possession", "Polished", "Slot"}, 0, 100)
                 Else 'Can't be a RZThreat
-                    Select Case GetNum
-                        Case 1 To 30 : Result = "Balanced"
-                        Case 31 To 60 : Result = "Possession"
-                        Case 61 To 90 : Result = "Polished"
-                        Case Else : Result = "Slot" 'lower chance to be a slot receiver
-                    End Select
+                    Result = CaseLookup({31, 61, 91, 101}, {"Balanced", "Possession", "Polished", "Slot"}, 0, 100)
                 End If
-
             Case "TE"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.61 Then
-                    Select Case GetNum
-                        Case < 50 : Result = "VerticalThreat"
-                        Case 51 To 65 : Result = "Balanced"
-                        Case 66 To 70 : Result = "Hybrid"
-                        Case Else : Result = "Receiving"
-                    End Select
+                    Result = CaseLookup({51, 66, 71, 101}, {"VerticalThreat", "Balanced", "Hybrid", "Receiving"}, 0, 100)
                 ElseIf dt.Rows(idNum).Item("FortyYardTime") > 4.74 And dt.Rows(idNum).Item("Weight") > 259 Then
-                    Select Case GetNum
-                        Case < 75 : Result = "Blocking"
-                        Case Else : Result = "Hybrid" 'HBack Type TE
-                    End Select
+                    Result = CaseLookup({75, 101}, {"Blocking", "Hybrid"}, 0, 100)
                 Else
-                    Select Case GetNum
-                        Case 1 To 40 : Result = "Balanced"
-                        Case 41 To 65 : Result = "Blocking"
-                        Case 66 To 74 : Result = "Hybrid"
-                        Case Else : Result = "Receiving"
-                    End Select
+                    Result = CaseLookup({41, 66, 75, 101}, {"Balanced", "Blocking", "Hybrid", "Receiving"}, 0, 100)
                 End If
-
             Case "OT"
                 If dt.Rows(idNum).Item("ThreeConeDrill") < 7.7 And dt.Rows(idNum).Item("BroadJump") > 104 And dt.Rows(idNum).Item("ShortShuttle") < 4.7 And dt.Rows(idNum).Item("TenYardTime") < 1.79 Then
                     If dt.Rows(idNum).Item("ArmLength") > 34 And dt.Rows(idNum).Item("Height") > 77 Then
                         Result = "LTProtoType"
-                    Else
-                        Select Case GetNum
-                            Case 1 To 40 : Result = "AthleticLacksTechnique"
-                            Case Else : Result = "Balanced"
-                        End Select
+                    Else Result = CaseLookup({41, 101}, {"AthleticLacksTechnique", "Balanced"}, 0, 100)
                     End If
                 End If
                 If dt.Rows(idNum).Item("BenchPress") > 27 And dt.Rows(idNum).Item("BroadJump") > 104 And dt.Rows(idNum).Item("ThreeConeDrill") > 7.85 And dt.Rows(idNum).Item("ShortShuttle") > 4.77 Then
                     If dt.Rows(idNum).Item("ArmLength") < 34 And dt.Rows(idNum).Item("Height") < 77 Then
                         Result = "RTProtoType"
-                    Else
-                        Select Case GetNum
-                            Case 1 To 40 : Result = "TechniqueLacksAthleticism"
-                            Case Else : Result = "Balanced"
-                        End Select
+                    Else Result = CaseLookup({41, 101}, {"TechniqueLacksAthleticism", "Balanced"}, 0, 100)
                     End If
                 End If
                 If Result = "" Then 'No position type yet
-                    Select Case GetNum
-                        Case 1 To 34 : Result = "Balanced"
-                        Case 35 To 67 : Result = "TechniqueLacksAthelticism"
-                        Case Else : Result = "AthleticismLacksTecnique"
-                    End Select
+                    Result = CaseLookup({35, 68, 101}, {"Balanced", "TechniqueLacksAthelticism", "AthleticismLacksTecnique"}, 0, 100)
                 End If
-
             Case "C", "OG"
                 If dt.Rows(idNum).Item("BroadJump") > 104 And dt.Rows(idNum).Item("ShortShuttle") > 4.8 And dt.Rows(idNum).Item("ThreeConeDrill") > 7.82 And dt.Rows(idNum).Item("BenchPress") > 28 Then
                     Result = "RoadGrader" 'very strong---very high runblocking ability, very low pass protecting ability
                 ElseIf dt.Rows(idNum).Item("Weight") < 300 And dt.Rows(idNum).Item("ShortShuttle") < 4.68 And dt.Rows(idNum).Item("ThreeConeDrill") < 7.72 And dt.Rows(idNum).Item("BenchPress") < 26 Then
                     Result = "ZoneBlocker"
-                Else
-                    Select Case GetNum
-                        Case 1 To 34 : Result = "Balanced"
-                        Case 35 To 67 : Result = "RunBlocker"
-                        Case Else : Result = "PassBlocker"
-                    End Select
+                Else Result = CaseLookup({35, 68, 101}, {"Balanced", "RunBlocker", "PassBlocker"}, 0, 100)
                 End If
-
             Case "DE"
-
                 If dt.Rows(idNum).Item("Weight") > 295 And dt.Rows(idNum).Item("BroadJump") > 116 And dt.Rows(idNum).Item("ThreeConeDrill") > 7.35 And dt.Rows(idNum).Item("FortyYardTime") > 4.84 Then
-                    Select Case GetNum
-                        Case 1 To 50 : Result = "ProtoTypeRDE4-3" 'good run defender, average or below average pass rusher, not as athletic 
-                        Case Else : Result = "RunStopper3-4"
-                    End Select
+                    Result = CaseLookup({51, 101}, {"ProtoTypeRDE4-3", "RunStopper3-4"}, 0, 100)
                 ElseIf dt.Rows(idNum).Item("Weight") < 275 And dt.Rows(idNum).Item("ShortShuttle") < 4.4 And dt.Rows(idNum).Item("ThreeConeDrill") < 7.23 And dt.Rows(idNum).Item("FortyYardTime") < 4.74 Then
-                    Select Case GetNum
-                        Case 1 To 50 : Result = "ProtoTypeLDE4-3" 'good pass rusher, quick burst, athletic
-
-                        Case Else : Result = "SituationalPassRusher"
-                    End Select
+                    Result = CaseLookup({51, 101}, {"ProtoTypeLDE4-3", "SituationalPassRusher"}, 0, 100)
                 ElseIf dt.Rows(idNum).Item("Weight") < 260 Then
                     Result = "Hybrid"
-                Else
-                    Select Case GetNum
-                        Case 35 To 67 : Result = "Versatile3-4"
-                        Case Else : Result = "Balanced4-3"
-                    End Select
+                Else Result = CaseLookup({51, 101}, {"Versatile3-4", "Balanced4-3"}, 0, 100)
                 End If
-
             Case "DT"
-
                 If dt.Rows(idNum).Item("Weight") < 310 And dt.Rows(idNum).Item("ShortShuttle") < 4.6 And dt.Rows(idNum).Item("ThreeConeDrill") < 7.6 And dt.Rows(idNum).Item("FortyYardTime") < 5.05 Then
                     Result = "Penetrator" 'quick DT's that split blocks and rush the QB
                 ElseIf dt.Rows(idNum).Item("Weight") > 330 And dt.Rows(idNum).Item("BroadJump") > 107 And dt.Rows(idNum).Item("ThreeConeDrill") > 7.7 And dt.Rows(idNum).Item("ShortShuttle") > 4.69 Then
                     Result = "NoseTackle"
-                Else
-                    Select Case GetNum
-                        Case 1 To 34
-                            Result = "RunStopper"
-                        Case 35 To 67
-                            Result = "Balanced"
-                        Case Else
-                            Result = "Versatile"
-                    End Select
+                Else Result = CaseLookup({35, 68, 101}, {"RunStopper", "Balanced", "Versatile"}, 0, 100)
                 End If
-
             Case "OLB"
                 If dt.Rows(idNum).Item("Weight") < 225 Then
                     Result = "Tweener4-3" 'Athletic but undersized ---safety hybrid
                 ElseIf dt.Rows(idNum).Item("ShortShuttle") < 4.26 And dt.Rows(idNum).Item("ThreeConeDrill") < 7.1 And dt.Rows(idNum).Item("FortyYardTime") < 4.65 Then
-                    Select Case GetNum
-                        Case 1 To 34 : Result = "WillProtoType4-3" 'used more in coverage than in a 3-4
-                        Case 35 To 67 : Result = "Balanced"
-                        Case Else : Result = "PassRush3-4"
-                    End Select
+                    Result = CaseLookup({35, 68, 101}, {"WillProtoType4-3", "Balanced", "PassRush3-4"}, 0, 100)
                 ElseIf dt.Rows(idNum).Item("BroadJump") > 118 And dt.Rows(idNum).Item("BenchPress") > 21 And dt.rows(idnum).item("FortyYardTime") < 4.71 Then
-                    Select Case GetNum
-                        Case 1 To 50 : Result = "SamProtoType4-3"
-                        Case Else : Result = "Balanced"
-                    End Select
-                Else
-                    Select Case GetNum
-                        Case 1 To 10 : Result = "WillProtoType4-3"
-                        Case 11 To 65 : Result = "Balanced"
-                        Case 66 To 76 : Result = "SameProtoType4-3"
-                        Case Else : Result = "PassRush3-4"
-                    End Select
+                    Result = CaseLookup({51, 101}, {"SamProtoType4-3", "Balanced"}, 0, 100)
+                Else Result = CaseLookup({11, 66, 77, 101}, {"WillProtoType4-3", "Balanced", "SamProtoType4-3", "PassRush3-4"}, 0, 100)
                 End If
             Case "ILB"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.68 And dt.Rows(idNum).Item("Weight") < 236 And dt.Rows(idNum).Item("VertJump") > 34 And dt.Rows(idNum).Item("ShortShuttle") < 4.28 Then
@@ -2179,89 +2044,22 @@ Concentration int NULL, HandlesElements int NULL, Potential int NULL, Raw int NU
                 ElseIf dt.Rows(idNum).Item("FortyYardTime") < 4.73 And dt.Rows(idNum).Item("Weight") > 245 And dt.Rows(idNum).Item("ShortShuttle") < 4.33 And dt.Rows(idNum).Item("ThreeConeDrill") < 7.25 Then
                     If dt.Rows(idNum).Item("Wonderlic") > 25 Then
                         Result = "MikeProtoType" 'Mike LB used in either system--Field General/Do Everything backer
-                    Else
-                        Select Case GetNum
-                            Case 1 To 60 : Result = "Balanced"
-                            Case Else : Result = "TacklingMachine"
-                        End Select
+                    Else Result = CaseLookup({61, 101}, {"Balanced", "TacklingMachine"}, 0, 100)
                     End If
                 ElseIf dt.Rows(idNum).Item("Weight") > 250 And dt.Rows(idNum).Item("FortyYardTime") > 4.74 And dt.Rows(idNum).Item("BroadJump") > 115 And dt.Rows(idNum).Item("BenchPress") > 23 Then
-                    Select Case GetNum
-                        Case 1 To 60 : Result = "TedProtoType3-4" 'Run Stopper LB/Takes on blocks---bigger and stronger, slower
-                        Case Else : Result = "TacklingMachine" 'Great Tackler
-                    End Select
-                Else
-                    Select Case GetNum
-                        Case 1 To 60 : Result = "Balanced" 'comes in during Nickel situations for coverage skills
-                        Case 61 To 70 : Result = "TacklingMachine"
-                        Case 71 To 80 : Result = "MikeProtoType"
-                        Case 81 To 90 : Result = "TedProtoType3-4"
-                        Case Else : Result = "Cover2ProtoType"
-                    End Select
+                    Result = CaseLookup({61, 101}, {"TedProtoType3-4", "TacklingMachine"}, 0, 100)
+                Else Result = CaseLookup({61, 71, 81, 91, 101}, {"Balanced", "TacklingMachine", "MikeProtoType", "TedProtoType3-4", "Cover2ProtoType"}, 0, 100)
                 End If
-
             Case "CB"
                 If dt.Rows(idNum).Item("FortyYardTime") < 4.43 Then
                     Result = "CoverCorner"
                 ElseIf dt.Rows(idNum).Item("BenchPress") > 15 And dt.Rows(idNum).Item("BroadJump") > 120 Then
-                    Select Case GetNum
-                        Case 1 To 50 : Result = "RunSupport" 'stronger 
-                        Case Else : Result = "Physical" 'stronger 
-                    End Select
-                Else
-                    Select Case GetNum
-                        Case 1 To 34
-                            Result = "ZoneCorner" 'quicker than fast
-                        Case 35 To 67
-                            Result = "Balanced"
-                        Case Else
-                            Result = "SlotCorner" 'quick and shfty
-                    End Select
+                    Result = CaseLookup({51, 101}, {"RunSupport", "Physical"}, 0, 100)
+                Else Result = CaseLookup({35, 68, 101}, {"ZoneCorner", "Balanced", "SlotCorner"}, 0, 100)
                 End If
-
-            Case "SS", "FS"
-                Select Case GetNum
-                    Case 1 To 20
-                        Result = "Zone"
-                    Case 21 To 35
-                        Result = "PlayMaker"
-                    Case 36 To 65
-                        Result = "Balanced"
-                    Case 66 To 85
-                        Result = "RunSupport"
-                    Case Else
-                        Result = "Hybrid" 'Can play LB also in a pinch
-                End Select
-
-            Case "K"
-                Select Case GetNum
-                    Case 1 To 10
-                        Result = "Clutch"
-                    Case 11 To 30
-                        Result = "Accurate"
-                    Case 31 To 75
-                        Result = "Balanced"
-                    Case 76 To 82
-                        Result = "KickoffSpecialist"
-                    Case Else
-                        Result = "BigLeg"
-                End Select
-
-            Case "P"
-                Select Case GetNum
-                    Case 1 To 15
-                        Result = "BigLeg"
-                    Case 16 To 30
-                        Result = "DirectionalPunter"
-                    Case 31 To 45
-                        Result = "Accurate"
-                    Case 46 To 55
-                        Result = "AussieRules"
-                    Case 56 To 70
-                        Result = "GreatHangTime"
-                    Case Else
-                        Result = "Balanced"
-                End Select
+            Case "SS", "FS" : Result = CaseLookup({21, 36, 66, 86, 101}, {"Zone", "Playmaker", "Balanced", "RunSupport", "Hybrid"}, 0, 100)
+            Case "K" : Result = CaseLookup({11, 31, 76, 83, 101}, {"Clutch", "Accurate", "Balanced", "KickoffSpecialist", "BigLeg"}, 0, 100)
+            Case "P" : Result = CaseLookup({16, 31, 46, 56, 71, 101}, {"BigLeg", "DirectionalPunter", "Accurate", "AussieRules", "GreatHangTime", "Balanced"}, 0, 100)
         End Select
         Return Result
     End Function

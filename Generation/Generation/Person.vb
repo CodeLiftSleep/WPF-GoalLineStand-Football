@@ -1164,8 +1164,13 @@ Public MustInherit Class Person
         Dim result As String = ""
         Dim GetNum As Double = MT.GenerateDouble(minVal, maxval)
 
+        If numArray.Length <> lookupArray.Length Then 'Checks to make sure the arrays are the same length
+            Throw New Exception("numArray and lookupArray MUST be the same length!")
+            Exit Function
+        End If
+
         For i = 0 To numArray.Length - 1
-            If GetNum < numArray(i) Then result = lookupArray(i)
+            If GetNum < numArray(i) Then result = lookupArray(i).ToString()
         Next i
         Return result
     End Function
