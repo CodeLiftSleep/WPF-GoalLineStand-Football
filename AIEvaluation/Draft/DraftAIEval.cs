@@ -63,28 +63,29 @@ namespace AIEvaluation.Draft
             decimal top450 = 0.0m; //grade cutoff for 450th player
 
             var pos = gradesList[0];
-            var playerRole = gradesList[1];
-            gradesList.RemoveRange(0, 2); //removes the position and role from the list
+            var playerRole = gradesList[0];
+            var j = 0;
+            //gradesList.RemoveRange(0, 2); //removes the position and role from the list
 
             for (int i = 0; i < gradesList.Count; i++) //cycle through the gradesList to run each list
             {
-                Parallel.For(0, PersonnelDT.Rows.Count, j =>
+                foreach( DataRow row in PersonnelDT.Rows)
                 { //runs this loop in parallel to check each row of the DT for the position
-                    {
-                        role = (int)PersonnelDT.Rows[j]["PersonnelType"];
+                    
+                        role =  Convert.ToInt32(row["PersonnelType"]);
                         switch (role)
                         {
                             case (int)GM: //check to make sure its a player with a high enough grade
                                 if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top150)
                                 {
-                                    DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
+                                    //DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
                                 break;
 
                             case (int)AssistantGM:
                                 if ((decimal)DraftDT.Rows[playerId]["ActualGrade"] >= top250)
                                 {
-                                    DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
+                                    //DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
                                 break;
 
@@ -106,7 +107,7 @@ namespace AIEvaluation.Draft
                             case (int)AreaScout: //Check to make sure its the proper region
                                 if (PersonnelDT.Rows[j]["ScoutRegion"].ToString() == region)
                                 {
-                                    DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
+                                    //DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                                 }
 
                                 break;
@@ -119,10 +120,11 @@ namespace AIEvaluation.Draft
                         {
                             //TODO: Add 2 DT's to the DB: DraftGradesDT and ProGradesDT...j as PK, PlayerID as columns
                             //TODO: Add ScoutRegion to the CollegePlayer DB
-                            DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
+                            //DraftGradesDT.Rows[j][playerId.ToString()] = GetGrade(playerId, j);
                         }
-                    }
-                });
+                    //j++;
+                }
+                
             }
         }
 

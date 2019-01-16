@@ -20,7 +20,9 @@
                    FontFamily="Motorwerk Regular"
                    FontSize="48"
                    Foreground="GhostWhite"
-                   Text="Goal Line Stand Football" />
+                   ><Run Text="Goal Line Stan"/><InlineUIContainer>
+
+            </InlineUIContainer><Run Text="d F"/><Run Text="ootball"/></TextBlock>
         <StackPanel Width="Auto"
                     Height="Auto"
                     Margin="0,50,0,0"
@@ -42,6 +44,12 @@
                     Height="60"
                     Margin="0,20,0,0"
                     Content="Exit Game"
+                    Style="{DynamicResource SimpleButton}" />
+            <Button x:Name="LoadDraftBtn"
+                    Width="145"
+                    Height="60"
+                    Margin="0,20,0,0"
+                    Content="Load Draft"
                     Style="{DynamicResource SimpleButton}" />
         </StackPanel>
     </Grid>

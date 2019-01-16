@@ -1,4 +1,6 @@
-﻿Imports NFL_Draft
+﻿
+Imports GlobalResources.SharedFiles
+Imports NFL_Draft
 
 Class MainWindow
     Public Shared NewGameScreen As New NewGame
@@ -24,4 +26,10 @@ Class MainWindow
         End If
     End Sub
 
+    Private Sub LoadDraftBtn_Click(sender As Object, e As RoutedEventArgs) Handles LoadDraftBtn.Click
+        Dim draftScreen As New NFLDraft(DraftDT)
+        draftScreen.Show()
+        Close()
+
+    End Sub
 End Class

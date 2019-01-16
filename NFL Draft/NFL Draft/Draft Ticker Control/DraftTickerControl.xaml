@@ -63,7 +63,7 @@
 
             <Image Name="ImgOnClock"
                    Height="50"
-                   Source="Resources/Minnesota_Vikings_2013_06.jpg" />
+                   Source="/Resources/Minnesota_Vikings_2013_06.jpg" />
             <TextBlock Margin="20,0,20,0"
                        VerticalAlignment="Center"
                        DockPanel.Dock="Left"

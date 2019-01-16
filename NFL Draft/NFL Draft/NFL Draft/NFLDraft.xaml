@@ -46,9 +46,6 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="Resources/NFLDraftBackground.jpg" />
-        </Grid.Background>
         <Button Name="btnDraftTicker"
                 Width="125"
                 Height="50"
@@ -474,7 +471,7 @@
                        Margin="40,0,0,0"
                        HorizontalAlignment="Center"
                        DockPanel.Dock="Left"
-                       Source="Resources/Minnesota_Vikings_2013_06.jpg"
+                       Source="/Resources/Minnesota_Vikings_2013_06.jpg"
                        Stretch="Fill" />
                 <TextBlock x:Name="CurTeam"
                            Width="100"
